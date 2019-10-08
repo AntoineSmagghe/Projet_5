@@ -3,37 +3,41 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Repository\UsersRepository;
 use DateTime;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePublicController extends AbstractController
 {
+    private $repo;
+    
+    public function __construct(UsersRepository $repo, ObjectManager $em)
+    {
+        $this->repo = $repo;
+        $this->em = $em;
+    }
+
     /**
      * @Route("/", name="home_public")
      */
     public function index()
     {
-        /*
-        $user = new Users();
-        $user->setSurname('Antoine')
-        ->setName('Smagghe')
-        ->setMail('antoine@smagghe.me')
-        ->setIsAdmin(true)
-        ->setPassword(' ')
-        ->setLastLog(new DateTime());
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-        */
-
-        $repo = $this->getDoctrine()->getRepository(Users::class);
-        $res = $repo->find(1);
-        $name = $res['surname'];
-        
+        $res = $this->repo->findAll(1);
+        $welcome = $res[0];
         return $this->render('home_public/index.html.twig', [
-            'whoisboss' => $name
-            ]);
+            'whoisboss' => $welcome
+        ]);
+    }
+
+    /**
+     * @Route("/article/{slug}", name="article", requirements={ "slug" : "[a-z0-9\-]*"})
+     */
+    public function article()
+    {
+        return $this->render('home_public/article.html.twig', [
+            'infos' => 'Hello la compagnie'
+        ]);
     }
 }

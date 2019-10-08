@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
@@ -84,6 +85,11 @@ class Users
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getSlug(): string
+    {
+        return (new Slugify())->Slugify($this->name);
     }
 
     public function getMail(): ?string
