@@ -2,20 +2,22 @@
 
 namespace App\Controller;
 
-use App\Entity\Users;
+use App\Repository\ArticleRepository;
 use App\Repository\UsersRepository;
-use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePublicController extends AbstractController
 {
-    private $repo;
+    private $users;
+
+    private $article;
     
-    public function __construct(UsersRepository $repo, ObjectManager $em)
+    public function __construct(UsersRepository $users,ArticleRepository $article, ObjectManager $em)
     {
-        $this->repo = $repo;
+        $this->article = $article;
+        $this->users = $users;
         $this->em = $em;
     }
 
@@ -24,20 +26,22 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
-        $res = $this->repo->findAll(1);
+        $res = $this->users->findAll(1);
         $welcome = $res[0];
         return $this->render('home_public/index.html.twig', [
-            'whoisboss' => $welcome
+            'user' => $welcome
         ]);
     }
 
     /**
-     * @Route("/article/{slug}", name="article", requirements={ "slug" : "[a-z0-9\-]*"})
+     * @Route("/article", name="article")
      */
     public function article()
     {
+        $res = $this->article->find(1);
+        dump($res);
         return $this->render('home_public/article.html.twig', [
-            'infos' => 'Hello la compagnie'
+            'article' => $res
         ]);
     }
 }
