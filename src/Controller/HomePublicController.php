@@ -6,6 +6,7 @@ use App\Repository\ArticleRepository;
 use App\Repository\UsersRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomePublicController extends AbstractController
@@ -34,12 +35,21 @@ class HomePublicController extends AbstractController
     }
 
     /**
-     * @Route("/article", name="article")
+     * @Route("/news", name="news")
      */
-    public function article()
+    public function news()
     {
-        $res = $this->article->find(1);
+        return $this->render('home_public/news.html.twig');
+    }
+    
+    /**
+     * @Route("/article/{id}", name="article", methods={"GET"})
+     */
+    public function article(Request $request)
+    {
+        $res = $this->article->findOneBy(['id' => $request->get('id')]);
         dump($res);
+
         return $this->render('home_public/article.html.twig', [
             'article' => $res
         ]);

@@ -58,12 +58,12 @@ class Users
         $this->created_at = new DateTime();
     }
 
-    public function getId(): ?int
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getSurname(): ?string
+    public function getSurname(): string
     {
         return $this->surname;
     }
@@ -75,7 +75,7 @@ class Users
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -92,7 +92,7 @@ class Users
         return (new Slugify())->Slugify($this->name);
     }
 
-    public function getMail(): ?string
+    public function getMail(): string
     {
         return $this->mail;
     }
@@ -104,7 +104,7 @@ class Users
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -116,7 +116,7 @@ class Users
         return $this;
     }
 
-    public function getIsAdmin(): ?bool
+    public function getIsAdmin(): bool
     {
         return $this->is_admin;
     }
@@ -128,7 +128,7 @@ class Users
         return $this;
     }
 
-    public function getLastLog(): ?\DateTimeInterface
+    public function getLastLog(): \DateTimeInterface
     {
         return $this->last_log;
     }
@@ -140,7 +140,7 @@ class Users
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): \DateTimeInterface
     {
         return $this->created_at;
     }
