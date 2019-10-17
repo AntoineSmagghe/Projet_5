@@ -29,26 +29,34 @@ class HomePublicController extends AbstractController
     {
         $res = $this->users->findAll(1);
         $welcome = $res[0];
+
+        $articles = $this->article->findAll();
+        dump($articles);
+
         return $this->render('home_public/index.html.twig', [
-            'user' => $welcome
+            'user' => $welcome,
+            'articles' => $articles
         ]);
     }
 
     /**
-     * @Route("/news", name="news")
+     * @Route("/article/{format}", name="articles")
      */
-    public function news()
+    public function articles(Request $request)
     {
-        return $this->render('home_public/news.html.twig');
+        $res = $this->article->findAll();
+
+        return $this->render('home_public/articles.html.twig', [
+            'articles' => $res
+        ]);
     }
     
     /**
-     * @Route("/article/{id}", name="article", methods={"GET"})
+     * @Route("/article/{format}/{id}", name="article", methods={"GET"})
      */
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-        dump($res);
 
         return $this->render('home_public/article.html.twig', [
             'article' => $res

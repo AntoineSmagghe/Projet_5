@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,9 +19,13 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 10,
+     *      minMessage = "S'il te plait, rentre au moins {{ limit }} caractères."
+     * )
      */
     private $title;
-
+    
     /**
      * @ORM\Column(type="text", nullable=true)
      */
@@ -48,6 +53,7 @@ class Article
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Url
      */
     private $id_admin;
 
