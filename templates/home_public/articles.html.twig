@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron">
+{% if format == 'news' %}
+    <h1>Les news du chant</h1>
+{% elseif format == 'members' %}
+    <h1>Les membres du chant</h1>
+{% elseif format == 'publicEvent' %}
+    <h1>Les évènements du chant</h1>
+{% endif %}
+</div>
+
+<div class="jumbotron row">
+{% for article in articles %}
+  <div class="card col-sm-4">
+    <img src="http://via.placeholder.com/300" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ article.title }}</h5>
+      <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
+      <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

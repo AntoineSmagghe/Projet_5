@@ -12,7 +12,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomePublicController extends AbstractController
 {
     private $users;
-
     private $article;
     
     public function __construct(UsersRepository $users,ArticleRepository $article, ObjectManager $em)
@@ -40,14 +39,15 @@ class HomePublicController extends AbstractController
     }
 
     /**
-     * @Route("/article/{format}", name="articles")
+     * @Route("/article/{format}", name="articles", methods={"GET"})
      */
     public function articles(Request $request)
     {
-        $res = $this->article->findAll();
-
+        $format = $request->get('format');
+        $res = $this->article->findAllByformat($format);
         return $this->render('home_public/articles.html.twig', [
-            'articles' => $res
+            'articles' => $res,
+            'format' => $format
         ]);
     }
     
@@ -57,7 +57,6 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-
         return $this->render('home_public/article.html.twig', [
             'article' => $res
         ]);

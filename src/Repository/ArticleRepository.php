@@ -19,6 +19,19 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    /**
+    * @return Article[] Returns an array of Article objects
+    */
+    public function findAllByformat($value)
+    {
+        return $this->createQueryBuilder('article')
+            ->andWhere('article.format = :val')
+            ->setParameter('val', $value)
+            ->orderBy('article.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */
