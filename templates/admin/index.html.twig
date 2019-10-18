@@ -5,12 +5,18 @@
 {% block body %}
 <div style="margin: 20px 40px">
     {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-2">
+                {{ form_row(form.date_event) }}
+            </div>
+            <div class="col-md-2">
+            {{ form_row(form.format) }}
+            </div>
+        </div>
         {{ form_row(form.title) }}
         {{ form_row(form.text) }}
-        {{ form_row(form.date_event) }}
-        {{ form_row(form.format) }}
         {{ form_row(form.api_data) }}
-        <button class="btn btn-success" type="submit"></button>
+        {{ form_row(form.save) }}
     {{form_end(form)}}
 </div>
 {% endblock %}

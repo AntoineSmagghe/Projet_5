@@ -26,14 +26,8 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
-        $res = $this->users->findAll(1);
-        $welcome = $res[0];
-
         $articles = $this->article->findAll();
-        dump($articles);
-
         return $this->render('home_public/index.html.twig', [
-            'user' => $welcome,
             'articles' => $articles
         ]);
     }

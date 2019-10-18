@@ -42,12 +42,12 @@ class Img
         $this->uploaded_at = new DateTime();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCode(): string
+    public function getCode(): ?string
     {
         return $this->code;
     }
@@ -59,7 +59,7 @@ class Img
         return $this;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -71,7 +71,7 @@ class Img
         return $this;
     }
 
-    public function getPath(): string
+    public function getPath(): ?string
     {
         return $this->path;
     }
@@ -83,7 +83,7 @@ class Img
         return $this;
     }
 
-    public function getUploadedAt(): DateTime
+    public function getUploadedAt(): ?DateTime
     {
         return $this->uploaded_at;
     }

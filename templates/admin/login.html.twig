@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="jumbotron">
+{{ form_start(form) }}
+
+{{form_row(form.mail)}}
+{{form_row(form.password)}}
+{{ form_row(form.login) }}
+
+{{ form_end(form) }}
+</div>
+{% endblock %}

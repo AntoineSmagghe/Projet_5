@@ -62,12 +62,12 @@ class Article
      */
     private $created_at;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
@@ -79,7 +79,7 @@ class Article
         return $this;
     }
 
-    public function getText(): string
+    public function getText(): ?string
     {
         return $this->text;
     }
@@ -91,7 +91,7 @@ class Article
         return $this;
     }
 
-    public function getDateEvent(): \DateTimeInterface
+    public function getDateEvent(): ?\DateTimeInterface
     {
         return $this->date_event;
     }
@@ -103,7 +103,7 @@ class Article
         return $this;
     }
 
-    public function getIdImg(): int
+    public function getIdImg(): ?int
     {
         return $this->id_img;
     }
@@ -115,7 +115,7 @@ class Article
         return $this;
     }
 
-    public function getFormat(): string
+    public function getFormat(): ?string
     {
         return $this->format;
     }
@@ -127,7 +127,7 @@ class Article
         return $this;
     }
 
-    public function getApiData(): string
+    public function getApiData(): ?string
     {
         return $this->api_data;
     }
@@ -139,7 +139,7 @@ class Article
         return $this;
     }
 
-    public function getIdAdmin(): int
+    public function getIdAdmin(): ?int
     {
         return $this->id_admin;
     }
