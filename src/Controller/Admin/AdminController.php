@@ -33,7 +33,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userInDb = $usersRepository->findOneByMail($users->getMail());
             if ($userInDb){
-                if ($users->getPassword() == $userInDb->getPassword()){
+                if (password_verify($users->getPassword(), $userInDb->getPassword())){
                     return $this->redirectToRoute('editPost');
                 } 
                 else{
