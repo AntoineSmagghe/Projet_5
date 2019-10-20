@@ -55,7 +55,7 @@ class Users
 
     public function __construct()
     {
-        $this->created_at = new DateTime();
+        $this->last_log = new DateTime();
     }
 
     public function getId(): ?int

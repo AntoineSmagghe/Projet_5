@@ -4,9 +4,9 @@
 <div class="jumbotron">
 {{ form_start(form) }}
 
-{{form_row(form.mail)}}
-{{form_row(form.password)}}
-{{ form_row(form.login) }}
+    {{form_row(form.mail, {'attr': {'placeholder': 'Tappez votre identifiant'}})}}
+    {{form_row(form.password, {'attr': {'placeholder': 'Votre mot de passe'}})}}
+    {{form_row(form.login, {'label': 'Login'})}}
 
 {{ form_end(form) }}
 </div>

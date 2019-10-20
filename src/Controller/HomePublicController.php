@@ -13,6 +13,7 @@ class HomePublicController extends AbstractController
 {
     private $users;
     private $article;
+    private $em;
     
     public function __construct(UsersRepository $users,ArticleRepository $article, ObjectManager $em)
     {
