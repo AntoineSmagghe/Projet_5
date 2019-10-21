@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,11 +39,6 @@ class Article
     private $date_event;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_img;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $format;
@@ -52,15 +49,25 @@ class Article
     private $api_data;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\Url
-     */
-    private $id_admin;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles")
+     */
+    private $imgs;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->imgs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,18 +110,6 @@ class Article
         return $this;
     }
 
-    public function getIdImg(): ?int
-    {
-        return $this->id_img;
-    }
-
-    public function setIdImg(int $id_img): self
-    {
-        $this->id_img = $id_img;
-
-        return $this;
-    }
-
     public function getFormat(): ?string
     {
         return $this->format;
@@ -139,18 +134,6 @@ class Article
         return $this;
     }
 
-    public function getIdAdmin(): ?int
-    {
-        return $this->id_admin;
-    }
-
-    public function setIdAdmin(int $id_admin): self
-    {
-        $this->id_admin = $id_admin;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
@@ -159,6 +142,46 @@ class Article
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Img[]
+     */
+    public function getImgs(): Collection
+    {
+        return $this->imgs;
+    }
+
+    public function addImg(Img $img): self
+    {
+        if (!$this->imgs->contains($img)) {
+            $this->imgs[] = $img;
+            $img->addIdArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImg(Img $img): self
+    {
+        if ($this->imgs->contains($img)) {
+            $this->imgs->removeElement($img);
+            $img->removeIdArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

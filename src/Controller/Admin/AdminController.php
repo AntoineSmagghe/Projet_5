@@ -56,7 +56,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/signin", name="signIn", methods={"POST", "GET"})
      */
-    public function signIn(ObjectManager $manager)
+    public function signIn(ObjectManager $manager, Request $request)
     {
         $newUser = new Users();
         $form = $this->createFormBuilder($newUser)
@@ -65,17 +65,23 @@ class AdminController extends AbstractController
             ->add('mail', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('envoyer', SubmitType::class)
-            ->getForm()
-            ;
+            ->getForm();
+        
+        $form->handleRequest($request);
+
+        dump($newUser);
 
         if ($form->isSubmitted() && $form->isValid()){
+            
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
+            
             $newUser->setPassword($bcryptPass);
+            $newUser->setCreatedAt(new DateTime());
 
             $manager->persist($newUser);
             $manager->flush();
 
-            echo "hello world!";
+            return $this->redirectToRoute("home_public");
         }
 
         return $this->render('admin/signin.html.twig', [
