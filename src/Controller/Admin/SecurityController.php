@@ -17,10 +17,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/admin", name="login", methods={"POST", "GET"})
+     * @Route("/connexion", name="login", methods={"POST", "GET"})
      */
-    public function login(Request $request, UsersRepository $usersRepository)
+    public function login(Request $request, UsersRepository $usersRepository, ObjectManager $manager)
     {
+        /*
         $users = new Users();
         $form = $this->createFormBuilder($users)
             ->add('mail', EmailType::class)
@@ -32,8 +33,11 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userInDb = $usersRepository->findOneByMail($users->getMail());
             if ($userInDb) {
-                if (password_verify($users->getPassword(), $userInDb->getPassword())) {
+                if (password_verify($users->getPassword(), $userInDb->getPassword())){
                     $userInDb->setLastLog(new DateTime());
+                    $manager->persist($userInDb);
+                    $manager->flush();
+                    
                     return $this->redirectToRoute('editPost');
                 } else {
                     return $this->redirectToRoute('home_public');
@@ -43,10 +47,10 @@ class SecurityController extends AbstractController
                 // Mettre un message d'erreur qui affiche login non valable.
             }
         }
-
-        return $this->render('security/login.html.twig', [
+        */
+        return $this->render('security/login.html.twig', /*[
             'form' => $form->createView()
-        ]);
+        ]*/);
     }
 
     /**
@@ -57,7 +61,7 @@ class SecurityController extends AbstractController
         $newUser = new Users();
         $form = $this->createFormBuilder($newUser)
             ->add('surname', TextType::class)
-            ->add('name', TextType::class)
+            ->add('userName', TextType::class)
             ->add('mail', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
@@ -67,10 +71,10 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
-            $newUser->setPassword($bcryptPass);
-            $newUser->setCreatedAt(new DateTime());
+            $newUser->setPassword($bcryptPass)
+                    ->setCreatedAt(new DateTime())
+                    ->setRoles(['ROLE_ADMIN']);
             $manager->persist($newUser);
             $manager->flush();
 

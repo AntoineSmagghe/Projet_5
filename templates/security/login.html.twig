@@ -2,12 +2,25 @@
 
 {% block body %}
 <div class="jumbotron">
-{{ form_start(form) }}
 
-    {{form_row(form.mail, {'attr': {'placeholder': 'Tappez votre identifiant'}})}}
-    {{form_row(form.password, {'attr': {'placeholder': 'Votre mot de passe'}})}}
-    {{form_row(form.login, {'label': 'Login'})}}
-
-{{ form_end(form) }}
+    <form action="{{ path('login') }}" method="post">
+        <div class="form-group">
+            <input type="text" name="_username" placeholder="Adresse mail" class="form-control">
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <input type="password" name="_password" placeholder="Mot de passe" class="form-control">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Envoyer</button>
+        </div>
+    </form>
+{#
+    {{ form_start(form) }}
+        {{form_row(form.mail, {'attr': {'placeholder': 'Tappez votre identifiant'}})}}
+        {{form_row(form.password, {'attr': {'placeholder': 'Votre mot de passe'}})}}
+        {{form_row(form.login, {'label': 'Login'})}}
+    {{ form_end(form) }}
+#}
 </div>
 {% endblock %}

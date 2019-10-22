@@ -9,11 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @UniqueEntity(
+ *      fields = {"mail"},
+ *      message = "Cet adresse mail a déjà été enregistré"
+ * )
  */
-class Users /*implements UserInterface*/
+class Users implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -30,10 +35,11 @@ class Users /*implements UserInterface*/
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private $userName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Email()
      */
     private $mail;
 
@@ -52,9 +58,9 @@ class Users /*implements UserInterface*/
     public $confirm_password;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="array")
      */
-    private $is_admin = false;
+    private $roles;
 
     /**
      * @ORM\Column(type="datetime")
@@ -94,21 +100,21 @@ class Users /*implements UserInterface*/
         return $this;
     }
 
-    public function getName(): ?string
+    public function getUsername(): ?string
     {
-        return $this->name;
+        return $this->userName;
     }
 
-    public function setName(string $name): self
+    public function setUsername(string $name): self
     {
-        $this->name = $name;
+        $this->userName = $name;
 
         return $this;
     }
 
     public function getSlug(): ?string
     {
-        return (new Slugify())->Slugify($this->name);
+        return (new Slugify())->Slugify($this->userName);
     }
 
     public function getMail(): ?string
@@ -134,16 +140,15 @@ class Users /*implements UserInterface*/
 
         return $this;
     }
-
-    public function getIsAdmin(): ?bool
+    
+    public function getRoles(): ?array
     {
-        return $this->is_admin;
+        return $this->roles;
     }
 
-    public function setIsAdmin(bool $is_admin): self
+    public function setRoles(array $role): self
     {
-        $this->is_admin = $is_admin;
-
+        $this->roles = $role;
         return $this;
     }
 
@@ -199,6 +204,16 @@ class Users /*implements UserInterface*/
             }
         }
 
+        return $this;
+    }
+
+    public function getSalt(): self
+    {
+        return $this;
+    }
+
+    public function eraseCredentials(): self
+    {
         return $this;
     }
 }
