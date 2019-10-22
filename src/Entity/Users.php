@@ -7,11 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
  */
-class Users
+class Users /*implements UserInterface*/
 {
     /**
      * @ORM\Id()
@@ -37,8 +39,17 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 8,
+     *      minMessage = "Le mot de passe doit avoir au minimum {{ limit }} caractères"
+     * )
      */
     private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Le mot de passe n'est pas identique")
+     */
+    public $confirm_password;
 
     /**
      * @ORM\Column(type="boolean")
