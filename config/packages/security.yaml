@@ -1,13 +1,13 @@
 security:
     encoders:
-        App\Entity\User:
+        App\Entity\Users:
             algorithm: auto
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: null }
+        #in_memory: { memory: null }
         in_database:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Users
                 property: mail
     firewalls:
         dev:
@@ -16,10 +16,12 @@ security:
         main:
             anonymous: true
             provider: in_database
-
             form_login:
+                provider: in_database
                 login_path: login
                 check_path: login
+                default_target_path: /admin/signin
+                always_use_default_target_path: true
 
             logout:
                 path: logout
@@ -33,5 +35,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

@@ -13,14 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/connexion", name="login", methods={"POST", "GET"})
      */
-    public function login(Request $request, UsersRepository $usersRepository, ObjectManager $manager)
+    public function login(AuthenticationUtils $authUtils, Request $request, UsersRepository $usersRepository, ObjectManager $manager)
     {
+        $antoine = $usersRepository->find(6);
+        dump($antoine->getRoles());
+
         /*
         $users = new Users();
         $form = $this->createFormBuilder($users)
@@ -48,9 +52,15 @@ class SecurityController extends AbstractController
             }
         }
         */
-        return $this->render('security/login.html.twig', /*[
-            'form' => $form->createView()
-        ]*/);
+
+        $error = $authUtils->getLastAuthenticationError();
+        $lastName = $authUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', [
+            /*'form' => $form->createView(),*/
+            'last_user' => $lastName,
+            'error' => $error
+        ]);
     }
 
     /**
@@ -77,8 +87,6 @@ class SecurityController extends AbstractController
                     ->setRoles(['ROLE_ADMIN']);
             $manager->persist($newUser);
             $manager->flush();
-
-            $this->addFlash('success', 'Nouvel utilisateur bien enregistré!');
 
             return $this->redirectToRoute("home_public");
         }
