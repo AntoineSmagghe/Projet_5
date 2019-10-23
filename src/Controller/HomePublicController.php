@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomePublicController extends AbstractController
 {
+    
     private $users;
     private $article;
     private $em;

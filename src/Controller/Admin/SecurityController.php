@@ -22,9 +22,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authUtils, Request $request, UsersRepository $usersRepository, ObjectManager $manager)
     {
-        $antoine = $usersRepository->find(6);
-        dump($antoine->getRoles());
-
         /*
         $users = new Users();
         $form = $this->createFormBuilder($users)
@@ -64,6 +61,11 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * @Route("/deconnexion", name="logout")
+     */
+    public function logout(){}
+
+    /**
      * @Route("/admin/signin", name="signIn", methods={"POST", "GET"})
      */
     public function signIn(ObjectManager $manager, Request $request)
@@ -71,7 +73,7 @@ class SecurityController extends AbstractController
         $newUser = new Users();
         $form = $this->createFormBuilder($newUser)
             ->add('surname', TextType::class)
-            ->add('userName', TextType::class)
+            ->add('name', TextType::class)
             ->add('mail', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('confirm_password', PasswordType::class)
@@ -83,8 +85,10 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
             $newUser->setPassword($bcryptPass)
+                    ->setLastLog(new DateTime())
                     ->setCreatedAt(new DateTime())
                     ->setRoles(['ROLE_ADMIN']);
+
             $manager->persist($newUser);
             $manager->flush();
 

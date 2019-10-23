@@ -2,10 +2,16 @@ security:
     encoders:
         App\Entity\Users:
             algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         #in_memory: { memory: null }
-        in_database:
+        from_database:
+            entity:
+                class: App\Entity\Users
+                property: mail
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
             entity:
                 class: App\Entity\Users
                 property: mail
@@ -15,9 +21,9 @@ security:
             security: false
         main:
             anonymous: true
-            provider: in_database
+            provider: from_database
             form_login:
-                provider: in_database
+                provider: from_database
                 login_path: login
                 check_path: login
                 default_target_path: /admin/signin

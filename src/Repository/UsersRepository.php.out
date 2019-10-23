@@ -27,6 +27,7 @@ class UsersRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
     // /**
     //  * @return Users[] Returns an array of Users objects
     //  */
