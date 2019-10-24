@@ -5,7 +5,7 @@ security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        #in_memory: { memory: null }
+        in_memory: { memory: null }
         from_database:
             entity:
                 class: App\Entity\Users
@@ -26,8 +26,6 @@ security:
                 provider: from_database
                 login_path: login
                 check_path: login
-                default_target_path: /admin/signin
-                always_use_default_target_path: true
 
             logout:
                 path: logout
@@ -42,4 +40,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/privateEvent, roles: ROLE_MEMBER }

@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class AdminController extends AbstractController
 {
@@ -20,8 +21,9 @@ class AdminController extends AbstractController
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      * @Route("/admin/edit", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article = null, Request $request, ObjectManager $manager)
+    public function editPost(Article $article = null, Request $request, ObjectManager $manager, Security $security)
     {
+        $article = new Article();
         $form = $this->createFormBuilder($article)
             ->add('date_event', DateType::class, ['widget' => 'single_text'])
             ->add('format', ChoiceType::class, [
@@ -41,10 +43,10 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $article->setCreatedAt(new DateTime());
-            /*
-            $article->setUser(App\Entity\Users::class 1);
-            $article->addImg("https://img.surfsession.com/pictures/2017/20170111/thumbnail/1701112644.png");
-            */
+            $article->setUser($security->getUser());
+            
+            //$article->addImg("https://img.surfsession.com/pictures/2017/20170111/thumbnail/1701112644.png");
+            
             $manager->persist($article);
             $manager->flush();
 

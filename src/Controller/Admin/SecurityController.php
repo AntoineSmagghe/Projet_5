@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
@@ -20,41 +21,19 @@ class SecurityController extends AbstractController
     /**
      * @Route("/connexion", name="login", methods={"POST", "GET"})
      */
-    public function login(AuthenticationUtils $authUtils, Request $request, UsersRepository $usersRepository, ObjectManager $manager)
+    public function login(AuthenticationUtils $authUtils, Security $security, Request $request)
     {
-        /*
-        $users = new Users();
-        $form = $this->createFormBuilder($users)
-            ->add('mail', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('login', SubmitType::class)
-            ->getForm();
-        $form->handleRequest($request);
+        dump($security->getToken());
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userInDb = $usersRepository->findOneByMail($users->getMail());
-            if ($userInDb) {
-                if (password_verify($users->getPassword(), $userInDb->getPassword())){
-                    $userInDb->setLastLog(new DateTime());
-                    $manager->persist($userInDb);
-                    $manager->flush();
-                    
-                    return $this->redirectToRoute('editPost');
-                } else {
-                    return $this->redirectToRoute('home_public');
-                    // message d'erreur de login.
-                }
-            } else {
-                // Mettre un message d'erreur qui affiche login non valable.
-            }
+        if ($request->get('security.authentication.success')){
+            $usr = $security->getUser();
+            dump($usr);
         }
-        */
-
+        
         $error = $authUtils->getLastAuthenticationError();
         $lastName = $authUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
-            /*'form' => $form->createView(),*/
             'last_user' => $lastName,
             'error' => $error
         ]);
@@ -86,8 +65,8 @@ class SecurityController extends AbstractController
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
             $newUser->setPassword($bcryptPass)
                     ->setLastLog(new DateTime())
-                    ->setCreatedAt(new DateTime())
-                    ->setRoles(['ROLE_ADMIN']);
+                    ->setCreatedAt(new DateTime());
+                    //->setRoles(['ROLE_ADMIN']);
 
             $manager->persist($newUser);
             $manager->flush();

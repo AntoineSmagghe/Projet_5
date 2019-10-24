@@ -9,9 +9,11 @@
             <div class="container col">
                 <p class="lead text-justify">{{ article.text|nl2br }}</p>
             </div>
+            {#
             <div class="container col">
                 <p class="lead"> Image id numéro : {{ article.idImg }}</p>
             </div>
+            #}
         </div>
         <div class="row m-4">
             <div class="container col-3">
@@ -19,7 +21,7 @@
             </div>
             <div class="container col-3">
                 <p class="lead">created at : {{ article.createdAt|date("d/m/Y") }}</p>
-                <p class="lead">created by admin id : {{ article.idAdmin }}</p>
+                <p class="lead">created by admin : {{ article.user.surname }}</p>
             </div>
         </div>
     </div>
