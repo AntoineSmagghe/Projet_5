@@ -8,6 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class HomePublicController extends AbstractController
 {
@@ -15,9 +16,11 @@ class HomePublicController extends AbstractController
     private $users;
     private $article;
     private $em;
+    private $security;
     
-    public function __construct(UsersRepository $users,ArticleRepository $article, ObjectManager $em)
+    public function __construct(Security $security, UsersRepository $users,ArticleRepository $article, ObjectManager $em)
     {
+        $this->security = $security;
         $this->article = $article;
         $this->users = $users;
         $this->em = $em;
@@ -28,7 +31,13 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
-        $articles = $this->article->findAll();
+        if ($this->security->getUser() !== null){
+            $articles = $this->article->findAll();
+        } else {
+            $articles = $this->article->takeAllExceptPrivateEvent();
+        }
+        
+        dump($articles);
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles
         ]);

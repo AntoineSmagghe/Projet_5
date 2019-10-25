@@ -63,8 +63,8 @@ class SecurityController extends AbstractController
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
             $newUser->setPassword($bcryptPass)
                     ->setLastLog(new DateTime())
-                    ->setCreatedAt(new DateTime());
-                    //->setRoles(['ROLE_ADMIN']);
+                    ->setCreatedAt(new DateTime())
+                    ->setRoles(['ROLE_MEMBRE']);
 
             $manager->persist($newUser);
             $manager->flush();

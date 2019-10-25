@@ -19,6 +19,15 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function takeAllExceptPrivateEvent(){
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.format != :val')
+            ->setParameter('val', 'privateEvent')
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
     * @return Article[] Returns an array of Article objects
     */
