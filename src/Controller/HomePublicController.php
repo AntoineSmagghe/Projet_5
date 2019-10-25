@@ -31,6 +31,7 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
+        dump($this->users->find(2));
         if ($this->security->getUser() !== null){
             $articles = $this->article->findAll();
         } else {
