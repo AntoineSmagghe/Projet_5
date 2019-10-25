@@ -23,8 +23,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authUtils, Security $security, Request $request)
     {
-        dump($security->getToken());
-
         if ($request->get('security.authentication.success')){
             $usr = $security->getUser();
             dump($usr);

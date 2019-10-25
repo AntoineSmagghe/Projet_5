@@ -2,17 +2,24 @@
 
 namespace App\EventListener;
 
-use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Symfony\Component\Security\Http\Firewall\ListenerInterface;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
-
-class LoginEvent implements ListenerInterface
+class LoginEvent
 {
-    public function putLastLog(RequestEvent $requestEvent)
+    private $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
-        echo "hello world!";
+        $this->em = $em;
+    }
+
+    public function onSecurityInteractivelogin(InteractiveLoginEvent $logEvent)
+    {
+        $user = $logEvent->getAuthenticationToken()->getUser();
+        $user->setLastLog(new DateTime());
+        $this->em->persist($user);
+        $this->em->flush();
     }
 }
