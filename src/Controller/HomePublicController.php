@@ -31,14 +31,12 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
-        dump($this->users->find(2));
         if ($this->security->getUser() !== null){
             $articles = $this->article->findAll();
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         
-        dump($articles);
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles
         ]);

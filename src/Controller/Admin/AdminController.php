@@ -28,8 +28,8 @@ class AdminController extends AbstractController
             ->add('date_event', DateType::class, ['widget' => 'single_text'])
             ->add('format', ChoiceType::class, [
                 'choices' => [
-                    'Event Public' => 'publicEvent',
-                    'Event Privé' => 'privateEvent',
+                    'Evènement Public' => 'publicEvent',
+                    'Evènement Privé' => 'privateEvent',
                     'News' => 'news',
                     'Release' => 'releases',
                     'Membres' => 'members'
@@ -55,6 +55,7 @@ class AdminController extends AbstractController
                 'id' => $article->getId()
                 ]);
         }
+        
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView()
         ]);

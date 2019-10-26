@@ -40,12 +40,12 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-  <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
-  <script>
-    ClassicEditor
-        .create(document.querySelector('.ckeditor'))
-        .catch(error => {
-            console.error(error);
-        });
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('.ckeditor'))
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 {% endblock %}
