@@ -5,6 +5,7 @@
     <div class="jumbotron jumbotron-fluid m-4">
         <h1 class="p-3">{{ article.title }}</h1>
         <p class="p-3">Le {{ article.dateEvent|date("d/m/Y") }}</p>
+        <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
         <div class="row m-4">
             <div class="container col">
                 <p class="lead text-justify">{{ article.text|nl2br }}</p>

@@ -19,6 +19,7 @@
           <h5 class="card-title">{{ article.title }}</h5>
           <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
           <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
+          <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
         </div>
       </div>
     </div>
