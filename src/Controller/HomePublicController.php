@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,12 +18,14 @@ class HomePublicController extends AbstractController
     private $article;
     private $em;
     private $security;
+    private $imgRepo;
     
-    public function __construct(Security $security, UsersRepository $users,ArticleRepository $article, ObjectManager $em)
+    public function __construct(Security $security, UsersRepository $users,ArticleRepository $article, ImgRepository $imgRepo, ObjectManager $em)
     {
         $this->security = $security;
         $this->article = $article;
         $this->users = $users;
+        $this->imgRepo = $imgRepo;
         $this->em = $em;
     }
 
@@ -32,7 +35,7 @@ class HomePublicController extends AbstractController
     public function index()
     {
         if ($this->security->getUser() !== null){
-            $articles = $this->article->findAll();
+            $articles = $this->article->findAll();    
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
@@ -48,9 +51,12 @@ class HomePublicController extends AbstractController
     public function articles(Request $request)
     {
         $format = $request->get('format');
-        $res = $this->article->findAllByformat($format);
+        $articles = $this->article->findAllByformat($format);
+        $img = $this->imgRepo->find(91);
+
         return $this->render('home_public/articles.html.twig', [
-            'articles' => $res,
+            'img' => $img,
+            'articles' => $articles,
             'format' => $format
         ]);
     }

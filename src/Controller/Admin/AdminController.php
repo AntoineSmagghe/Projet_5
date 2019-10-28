@@ -3,14 +3,12 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Article;
+use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
 use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -18,33 +16,23 @@ use Symfony\Component\Security\Core\Security;
 class AdminController extends AbstractController
 {
     /**
+     * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
-     * @Route("/admin/edit", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article = null, Request $request, ObjectManager $manager, Security $security)
+    public function editPost(Article $article = null, ArticleRepository $articleRepository, Request $request, ObjectManager $manager, Security $security)
     {
-        $article = new Article();
-        $form = $this->createFormBuilder($article)
-            ->add('date_event', DateType::class, ['widget' => 'single_text'])
-            ->add('format', ChoiceType::class, [
-                'choices' => [
-                    'Evènement Public' => 'publicEvent',
-                    'Evènement Privé' => 'privateEvent',
-                    'News' => 'news',
-                    'Release' => 'releases',
-                    'Membres' => 'members'
-            ]])
-            ->add('title', TextType::class)
-            ->add('text', TextareaType::class, ['required' => false])
-            ->add('api_data', TextType::class, ['required' => false])
-            ->add('save', SubmitType::class)
-            ->getForm();
+        if ($article === null){
+            $article = new Article();
+        }
+        
+        $form = $this->createForm(ArticleType::class, $article);           
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+                        
             $article->setCreatedAt(new DateTime());
             $article->setUser($security->getUser());
-            
+
             //$article->addImg("https://img.surfsession.com/pictures/2017/20170111/thumbnail/1701112644.png");
             
             $manager->persist($article);
@@ -59,5 +47,15 @@ class AdminController extends AbstractController
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    private function savePicture()
+    {
+        $systemfile = new Filesystem();
+        if (!$systemfile->exists(sys_get_temp_dir()."/uploaded_pictures"))
+        {
+            $systemfile->mkdir(sys_get_temp_dir(). "/uploaded_pictures", 0775);
+        }
+       
     }
 }

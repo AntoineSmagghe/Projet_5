@@ -12,6 +12,14 @@ use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
+    private $formats = [
+        'publicEvent'=> 'Evènement Public',
+        'privateEvent' => 'Evènement Privé', 
+        'news' => 'News', 
+        'releases' => 'Release', 
+        'members' => 'Membres' 
+    ];
+
     public function load(ObjectManager $manager)
     {
         $fk = Factory::create('fr_FR');
@@ -29,11 +37,8 @@ class AppFixtures extends Fixture
                 ;
             $manager->persist($user);
         }
-
-        $manager->flush();
-
+        
         for ($i = 0; $i < 10; $i++) {
-
             // --> Création des images
             for ($j = 0; $j < mt_rand(5, 10); $j++) {
                 $img = new Img();
@@ -44,14 +49,14 @@ class AppFixtures extends Fixture
                     ;
                 $manager->persist($img);
             }
-
+            
             // --> Fixture pour un article!
             $article = new Article();
             $article->setApiData($fk->url)
                 ->setTitle($fk->realText(100))
                 ->setText($fk->realText(1200))
-                ->setFormat(array_rand(["news", "publicEvent", "privateEvent", "releases", "members"], 1))
-                ->setUser($manager->find(Users::class, random_int(1, 3)))
+                ->setFormat(array_rand($this->formats, 1))
+                ->setUser($user)
                 ->addImg($img)
                 ->setApiData($fk->url())
                 ->setCreatedAt(new DateTime())
@@ -59,7 +64,6 @@ class AppFixtures extends Fixture
                 ;
             $manager->persist($article);
         }
-        $manager->flush();
-        return $this->redirectToRoute("home_public");
+        $manager->flush(); 
     }
 }
