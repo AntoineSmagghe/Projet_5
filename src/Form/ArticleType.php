@@ -40,9 +40,7 @@ class ArticleType extends AbstractType
                     new File([
                         'maxSize' => '10000k',
                         'mimeTypes' => [
-                            'image/png',
-                            'image/jpg',
-                            'image/svg'
+                            'image/*',
                         ],
                         'mimeTypesMessage' => 'Envoie une image valide wesh, vérifie le format (png, jpg ou svg) ou la taille (max 10Mo)'
                     ])

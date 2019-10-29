@@ -42,9 +42,7 @@ class AppFixtures extends Fixture
             // --> Création des images
             for ($j = 0; $j < mt_rand(5, 10); $j++) {
                 $img = new Img();
-                $img->setCode(strval($fk->numberBetween(1000000, 9999999)))
-                    ->setName($fk->word() . ".jpg")
-                    ->setPath($fk->imageUrl(640, 480, 'nightlife'))
+                $img->setName($fk->word() . ".jpg")
                     ->setUploadedAt(new DateTime())
                     ;
                 $manager->persist($img);
