@@ -29,3 +29,8 @@ services:
     App\EventListener\LoginEvent:
         tags:
             - { name: 'kernel.event_listener', event: 'security.interactive_login'}
+    
+    # a service to upload images
+    App\Service\Uploader:
+            arguments:
+                $uploadDirectory: "%picture_directory%"
