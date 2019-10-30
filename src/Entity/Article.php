@@ -55,7 +55,6 @@ class Article
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles")
-     * @ORM\Column(nullable=true)
      */
     private $imgs;
 
@@ -149,6 +148,7 @@ class Article
 
     /**
      * @return Collection|Img[]
+     * 
      */
     public function getImgs(): Collection
     {

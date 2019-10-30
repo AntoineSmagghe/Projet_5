@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Img;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
@@ -20,7 +21,7 @@ class HomePublicController extends AbstractController
     private $security;
     private $imgRepo;
     
-    public function __construct(Security $security, UsersRepository $users,ArticleRepository $article, ImgRepository $imgRepo, ObjectManager $em)
+    public function __construct(Security $security, UsersRepository $users, ArticleRepository $article, ImgRepository $imgRepo, ObjectManager $em)
     {
         $this->security = $security;
         $this->article = $article;
@@ -34,10 +35,15 @@ class HomePublicController extends AbstractController
      */
     public function index()
     {
-        if ($this->security->getUser() !== null){
-            $articles = $this->article->findAll();    
+        if ($this->security->getUser() !== null) {
+            $articles = $this->article->findAll();
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
+        }
+        
+        foreach ($articles as $i){
+            dump($i->getImgs());
+
         }
         
         return $this->render('home_public/index.html.twig', [
@@ -52,10 +58,8 @@ class HomePublicController extends AbstractController
     {
         $format = $request->get('format');
         $articles = $this->article->findAllByformat($format);
-        $img = $this->imgRepo->find(91);
 
         return $this->render('home_public/articles.html.twig', [
-            'img' => $img,
             'articles' => $articles,
             'format' => $format
         ]);
@@ -67,8 +71,11 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
+        //$image = $res->getImgs();
+
         return $this->render('home_public/article.html.twig', [
-            'article' => $res
+            //'image' => $image
+            'article' => $res,
         ]);
     }
 }

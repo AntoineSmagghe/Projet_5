@@ -41,10 +41,10 @@ class ArticleType extends AbstractType
                         'maxSize' => '10000k',
                         'mimeTypes' => [
                             'image/*',
-                        ],
+                            ],
                         'mimeTypesMessage' => 'Envoie une image valide wesh, vérifie le format (png, jpg ou svg) ou la taille (max 10Mo)'
-                    ])
-                ]
+                        ])
+                    ],
             ])
             ->add('api_data', TextType::class, ['required' => false])
             ->add('save', SubmitType::class)

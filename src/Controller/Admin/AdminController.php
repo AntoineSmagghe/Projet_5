@@ -36,33 +36,21 @@ class AdminController extends AbstractController
                 ->setUser($security->getUser());
 
             /**
-             * @var UploadedFiles $imgs
+             * @var UploadedFile $imgs
              */
             $imgs = $form['imgs']->getData();
             dump($imgs);
 
             if ($imgs){
-
                 $imgName = $uploader->upload($imgs);
-
                 $imgObj = new Img();
                 $imgObj->setName($imgName);
-
                 $manager->persist($imgObj);
-                $manager->flush();
-
-                dump($imgObj);
-
                 $article->addImg($imgObj);
-
                 $manager->persist($article);
-
                 $manager->flush();
-
-                return $this->redirect($this->generateUrl("picture_directory"));
             }
             
-
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(), 
                 'id' => $article->getId()
