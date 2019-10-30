@@ -42,8 +42,9 @@ class HomePublicController extends AbstractController
         }
         
         foreach ($articles as $i){
-            dump($i->getImgs());
-
+            //$img = new img();
+            $img = $i->getImgs($i);
+            dump($img);
         }
         
         return $this->render('home_public/index.html.twig', [
