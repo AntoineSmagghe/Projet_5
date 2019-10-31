@@ -39,10 +39,10 @@ class AdminController extends AbstractController
              * @var UploadedFile $imgs
              */
             $imgs = $form['imgs']->getData();
-            dump($imgs);
 
             if ($imgs){
                 $imgName = $uploader->upload($imgs);
+                
                 $imgObj = new Img();
                 $imgObj->setName($imgName);
                 $manager->persist($imgObj);

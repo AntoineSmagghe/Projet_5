@@ -15,10 +15,16 @@ class Uploader
 
     public function upload(UploadedFile $file) : string
     {
+        // Si le filesize($file) est plus le même que le nombre retrouvé dans la BD
+        //
+        // Alors on renvoie l'erreur > Image déjà téléchargée l'ami! 
+
         $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeName = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalName);
-        $uniqueName = $safeName . "-" . uniqid() . "." . $file->guessExtension();
-
+        $uniqueName = $safeName . "-" . filesize($file) . "." . $file->guessExtension();
+        
+        //uniqid()
+        
         try {
             $file->move($this->getTargetDirectory(), $uniqueName);
         } catch (FileException $e) {
