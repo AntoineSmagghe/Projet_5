@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="jumbotron">
-    <h1>Bienvenue, votre nouvelle vision du son commence ici</h1>
+    <h1>Well I there {% if app.user != null %} {{ app.user.surname }} {% endif %}!</h1>
 </div>
 
 <div class="row">

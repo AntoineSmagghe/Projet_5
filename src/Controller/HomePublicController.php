@@ -72,10 +72,14 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-        //$image = $res->getImgs();
-
+        /*
+        $image = $this->imgRepo->findOneBy(['id' => ]);
+        */
+        $image2 = new Img($res->getImgs());
+        $image2->getName();
+        dump($image2);
         return $this->render('home_public/article.html.twig', [
-            //'image' => $image
+            //'image' => $image,
             'article' => $res,
         ]);
     }

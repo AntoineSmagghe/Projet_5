@@ -42,7 +42,7 @@ class AdminController extends AbstractController
 
             if ($imgs){
                 $imgName = $uploader->upload($imgs);
-                
+                                
                 $imgObj = new Img();
                 $imgObj->setName($imgName);
                 $manager->persist($imgObj);

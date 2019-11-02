@@ -6,6 +6,7 @@
         <h1 class="p-3">{{ article.title }}</h1>
         <p class="p-3">Le {{ article.dateEvent|date("d/m/Y") }}</p>
         <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
+        <img src="/public/upload/pictures/ {{dump(article.Imgs.Name)}}" alt="">
         <div class="row m-4">
             <div class="container col">
                 <p class="lead text-justify">{{ article.text|nl2br }}</p>
