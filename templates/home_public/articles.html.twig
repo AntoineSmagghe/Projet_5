@@ -21,7 +21,9 @@
       <h5 class="card-title">{{ article.title }}</h5>
       <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
       <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
+      {% if is_granted('ROLE_ADMIN') %}
       <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
+      {% endif %}
     </div>
   </div>
 {% endfor %}
