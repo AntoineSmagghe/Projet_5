@@ -23,6 +23,11 @@
       <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
       {% if is_granted('ROLE_ADMIN') %}
       <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
+      <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+      </form>
       {% endif %}
     </div>
   </div>

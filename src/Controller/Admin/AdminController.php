@@ -8,8 +8,8 @@ use App\Form\ArticleType;
 use App\Service\Uploader;
 use DateTime;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,13 +62,15 @@ class AdminController extends AbstractController
         ]);
     }
 
-    private function savePicture()
+    /**
+     * @Route("/admin/delete/{id}", name="delPost", methods="DELETE")
+     */
+    public function delPost(Article $article, Request $request, ObjectManager $manager)
     {
-        $systemfile = new Filesystem();
-        if (!$systemfile->exists(sys_getloadavg(). "public/upload/pictures"))
-        {
-            $systemfile->mkdir(sys_get_temp_dir(). "public/upload/pictures", 0775);
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->get("_token"))){
+            $manager->remove($article);
+            $manager->flush();
+            return $this->redirectToRoute('articles', ['format' => $article->getFormat()]);
         }
-       
     }
 }
