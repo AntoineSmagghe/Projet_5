@@ -1,14 +1,25 @@
 easy_admin:
+  design:
+    templates:
+      label_null: 'base.html.twig'
   user:
     name_property_path: 'surname'
     display_name: true
   site_name: "Administration de la base de donnée CDLM"
-    # List the entity class name you want to manage
+  # List the entity class name you want to manage
   entities:
     Article:
       class: App\Entity\Article
+      image_base_path: '%picture_directory%'
       list:
-        fields: ['id', 'title', 'date_event', 'format', 'created_at', { property: 'imgs.id', label: 'Image' }, { property: 'user.surname', label: 'Nom'}]
+        fields: 
+          - 'id'
+          - 'title'
+          - 'date_event'
+          - 'format'
+          - 'created_at'
+          - { property: 'imgs.id', label: 'Image', type: 'image' }
+          - { property: 'user.surname', label: 'Nom' }
     Img:
       class: App\Entity\Img
     Users:
