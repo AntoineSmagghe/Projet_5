@@ -41,12 +41,10 @@ class HomePublicController extends AbstractController
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         
-        /*
         foreach ($articles as $i){
             $img = $i->getImgs();
             dump($img);
         }
-        */
         
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles

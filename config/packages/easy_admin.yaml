@@ -18,9 +18,15 @@ easy_admin:
           - 'date_event'
           - 'format'
           - 'created_at'
-          - { property: 'imgs.id', label: 'Image', type: 'image' }
+          - { property: 'imgs.name', label: 'Image', type: 'image' }
           - { property: 'user.surname', label: 'Nom' }
     Img:
       class: App\Entity\Img
+      image_base_path: '%picture_directory%'
+      list:
+        fields:
+          - 'id'
+          - { property: 'name', label: 'Image', type: 'image'}
+          - { property: 'uploaded_at', label: "Date d'upload"}
     Users:
       class: App\Entity\Users
