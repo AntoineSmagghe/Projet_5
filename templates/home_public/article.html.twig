@@ -6,31 +6,29 @@
         <h1 class="p-3">{{ article.title }}</h1>
         <p class="p-3">Le {{ article.dateEvent|date("d/m/Y") }}</p>
         {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
-        <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-            <button class="btn btn-danger">Supprimer</button>
-        </form>
+            <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
+            <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                <button class="btn btn-danger">Supprimer</button>
+            </form>
         {% endif %}
-        {#<img src="/public/upload/pictures/ {{dump(article.Imgs.Name)}}" alt="">#}
         <div class="row m-4">
+            {% for image in article.imgs %}
+            <div class="container col-3">
+                    <img style="width: 100%;" src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo de l'article {{ article.title }}">
+            </div>
+            {% endfor %}
             <div class="container col">
                 <p class="lead text-justify">{{ article.text|nl2br }}</p>
             </div>
-            {#
-            <div class="container col">
-                <p class="lead"> Image id numéro : {{ article.idImg }}</p>
-            </div>
-            #}
         </div>
         <div class="row m-4">
             <div class="container col-3">
                 <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ article.apiData }}&color=%230e0d26&inverse=true&auto_play=true&show_user=true"></iframe>
             </div>
             <div class="container col-3">
-                <p class="lead">created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }}</p>
-                <p class="lead">created by : {{ article.user.surname }}</p>
+                <p class="lead">created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
             </div>
         </div>
     </div>

@@ -41,11 +41,6 @@ class HomePublicController extends AbstractController
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         
-        foreach ($articles as $i){
-            $img = $i->getImgs();
-            dump($img);
-        }
-        
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles
         ]);
@@ -71,12 +66,8 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-        /*
-        $image = $this->imgRepo->findOneBy(['id' => ]);
-        */
-        
+                
         return $this->render('home_public/article.html.twig', [
-            //'image' => $image,
             'article' => $res,
         ]);
     }
