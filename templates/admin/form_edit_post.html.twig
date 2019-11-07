@@ -1,0 +1,15 @@
+{% extends 'admin/edit_post.html.twig' %}
+{% use "form_div_layout.html.twig" %}
+
+{#% extends 'form_div_layout.html.twig' %#}
+
+{% dump(image_url) %}
+{% block file_widget %}
+{% spaceless %}
+    {% if image_url != null %}
+        {% for imgs in image_url %}
+            <img src="{{ asset('/upload/pictures/' ~ imgs.name) }}"/>
+        {% endfor %}
+    {% endif %}
+{% endspaceless %}
+{% endblock %}

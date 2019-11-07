@@ -175,6 +175,15 @@ class Article
         return $this;
     }
 
+    public function getWebPath()
+    {
+        $arrayWebPath = array();
+        foreach ($this->getImgs() as $img){
+            array_push($arrayWebPath, '/upload/pictures/' . $img->getName());
+        }
+        return $arrayWebPath;
+    }
+
     public function getUser(): ?Users
     {
         return $this->user;

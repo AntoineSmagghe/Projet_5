@@ -27,7 +27,8 @@
                 'placeholder': 'Tappez le texte ici'
             }
         }) }}
-        {{ form_row(form.imgs)}}
+        {% block file_widget %} {% endblock %}
+        {#{form_row(form.imgs)}#}
         {{ form_row(form.api_data, {
             'label': 'Données de l\'api',
             'attr': {

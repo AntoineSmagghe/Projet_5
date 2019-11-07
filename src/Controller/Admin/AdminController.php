@@ -56,7 +56,7 @@ class AdminController extends AbstractController
                 ]);
         }
         
-        return $this->render('admin/edit_post.html.twig', [
+        return $this->render('admin/form_edit_post.html.twig', [
             'form' => $form->createView()
         ]);
     }

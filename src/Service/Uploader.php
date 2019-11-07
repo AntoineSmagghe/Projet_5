@@ -19,7 +19,6 @@ class Uploader
     public function upload(UploadedFile $file) : string
     {
         // Si le filesize($file) n'est plus le même que le nombre retrouvé dans la BD
-        //
         // Alors on renvoie l'erreur > Image déjà téléchargée l'ami!
 
         $fileSize = filesize($file);
@@ -35,7 +34,7 @@ class Uploader
             try {
                 $file->move($this->getTargetDirectory(), $uniqueName);
             } catch (FileException $e) {
-                // --> créer une nouvelle exception 
+                // --> Créer une nouvelle exception 
                 dump($e);
             }
 
