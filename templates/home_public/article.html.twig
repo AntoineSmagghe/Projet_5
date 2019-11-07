@@ -28,7 +28,7 @@
                 <iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ article.apiData }}&color=%230e0d26&inverse=true&auto_play=true&show_user=true"></iframe>
             </div>
             <div class="container col-3">
-                <p class="lead">created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
+                <p class="lead">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
             </div>
         </div>
     </div>

@@ -30,3 +30,8 @@ easy_admin:
           - { property: 'uploaded_at', label: "Date d'upload"}
     Users:
       class: App\Entity\Users
+      list:
+        fields:
+          - 'surname'
+          - 'name'
+          - 'mail'

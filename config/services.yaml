@@ -30,7 +30,10 @@ services:
         tags:
             - { name: 'kernel.event_listener', event: 'security.interactive_login'}
     
-    # a service to upload images
+    # A service to upload pictures
     App\Service\Uploader:
             arguments:
                 $uploadDirectory: "%picture_directory%"
+    # A form service for CRUD pictures
+    App\Form\ArticleType:
+        tags: ['form.type_extension']

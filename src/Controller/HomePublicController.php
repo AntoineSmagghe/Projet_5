@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Img;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
