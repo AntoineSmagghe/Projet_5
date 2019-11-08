@@ -1,9 +1,7 @@
 {% extends 'admin/edit_post.html.twig' %}
 {% use "form_div_layout.html.twig" %}
 
-{#% extends 'form_div_layout.html.twig' %#}
-
-{% dump(image_url) %}
+{% dump() %}
 {% block file_widget %}
 {% spaceless %}
     {% if image_url != null %}
