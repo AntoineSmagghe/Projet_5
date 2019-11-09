@@ -17,7 +17,9 @@ class ImageType extends AbstractTypeExtension
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefined(['image_property']);
+        $resolver->setDefined([
+            'image_property'
+        ]);
     }
     
     public function buildView(FormView $view, FormInterface $form, array $options)

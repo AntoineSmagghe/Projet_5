@@ -52,8 +52,16 @@ class ArticleType extends AbstractType
         ;
     }
 
+    public function getParent()
+    {
+        return FileType::class;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['data_class' => Article::class]);
+        $resolver->setDefaults([
+            'data_class' => Article::class,
+            'compound' => true,
+            ]);
     }
 }   

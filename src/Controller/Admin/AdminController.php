@@ -30,17 +30,21 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-                        
+
             $article->setCreatedAt(new DateTime())
                 ->setUser($security->getUser());
 
             /**
              * @var UploadedFile $imgs
              */
+
             $imgs = $form['imgs']->getData();
 
             if ($imgs){
+
+                
                 $imgName = $uploader->upload($imgs);
+                
                                 
                 $imgObj = new Img();
                 $imgObj->setName($imgName);
@@ -56,7 +60,7 @@ class AdminController extends AbstractController
                 ]);
         }
         
-        return $this->render('admin/form_edit_post.html.twig', [
+        return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView()
         ]);
     }

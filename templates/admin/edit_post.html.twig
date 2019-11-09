@@ -27,8 +27,8 @@
                 'placeholder': 'Tappez le texte ici'
             }
         }) }}
-        {% block file_widget %} {% endblock %}
-        {#{form_row(form.imgs)}#}
+        {{ include('admin/form_edit_post.html.twig') }}
+        {% block file_widget %}{% endblock %}
         {{ form_row(form.api_data, {
             'label': 'Données de l\'api',
             'attr': {

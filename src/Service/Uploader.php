@@ -30,7 +30,6 @@ class Uploader
 
             //uniqid()
 
-            
             try {
                 $file->move($this->getTargetDirectory(), $uniqueName);
             } catch (FileException $e) {
