@@ -2,6 +2,6 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-        products:
-            uri_prefix: /upload/pictures/
-            upload_destination: '%kernel.project_dir%/public/upload/pictures/'
+        images:
+            uri_prefix: '%app.path.images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.images%'

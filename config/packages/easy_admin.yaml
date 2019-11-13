@@ -17,7 +17,7 @@ easy_admin:
           - 'date_event'
           - 'format'
           - 'created_at'
-          - { property: 'imgs.name', label: 'Images', type: 'image', base_path: '/upload/pictures/' }
+          - { property: 'imgs.name', label: 'Images', type: 'vich_image', base_path: '/upload/pictures/' }
           - { property: 'user.surname', label: 'Nom' }
     Img:
       class: App\Entity\Img

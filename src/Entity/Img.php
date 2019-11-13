@@ -6,26 +6,37 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImgRepository")
+ * @Vich\Uploadable
  */
 class Img
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer")    
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $name;
 
     /**
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
+     * @var File
+     */
+    private $imgData;
+
+    /**
      * @ORM\Column(type="datetime")
+     * @var \DateTime
      */
     private $uploaded_at;
 

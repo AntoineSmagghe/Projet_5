@@ -35,6 +35,7 @@ services:
     App\Service\Uploader:
             arguments:
                 $uploadDirectory: "%picture_directory%"
+                
     # A form service for CRUD pictures
     App\Form\Extension\ImageType:
         tags: ['form.type_extension']

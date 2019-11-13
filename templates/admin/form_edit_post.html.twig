@@ -1,6 +1,7 @@
 {% extends "form_div_layout.html.twig" %}
 
-{% dump(_context) %}
+{% set compound = form.vars.compound %}
+{% set id = image_url.id %}
 {% block file_widget %}
 {% spaceless %}
     {% if image_url != null %}
