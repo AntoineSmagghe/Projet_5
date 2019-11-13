@@ -6,10 +6,14 @@ easy_admin:
     name_property_path: 'surname'
     display_name: true
   site_name: "Administration de la base de donnée CDLM"
+
   # List the entity class name you want to manage
   entities:
     Article:
       class: App\Entity\Article
+      form:
+        fields:
+          - { property: 'imgs.imgData', label: 'Images', type: 'file', base_path: '%app.path.images%' }  
       list:
         fields: 
           - 'id'
@@ -17,15 +21,19 @@ easy_admin:
           - 'date_event'
           - 'format'
           - 'created_at'
-          - { property: 'imgs.name', label: 'Images', type: 'vich_image', base_path: '/upload/pictures/' }
+          - { property: 'imgs.name', label: 'Images', type: 'array', base_path: '%app.path.images%' }
           - { property: 'user.surname', label: 'Nom' }
+    
     Img:
       class: App\Entity\Img
       list:
         fields:
-          - 'id'
-          - { property: 'name', label: 'Image', type: 'image', base_path: '/upload/pictures/'}
+          - { property: 'name', label: 'Image', type: 'image', base_path: '%app.path.images%'}
           - { property: 'uploaded_at', label: "Date d'upload"}
+      form:
+        fields:
+          - { property: 'name', type: 'file', base_path: '%app.path.images%'}
+    
     Users:
       class: App\Entity\Users
       list:
@@ -33,3 +41,5 @@ easy_admin:
           - 'surname'
           - 'name'
           - 'mail'
+          - 'articles'
+          - 'roles'

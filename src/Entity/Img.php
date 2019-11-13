@@ -29,7 +29,7 @@ class Img
     private $name;
 
     /**
-     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="images", fileNameProperty="Img")
      * @var File
      */
     private $imgData;
@@ -47,13 +47,30 @@ class Img
 
     public function __construct()
     {
-        $this->uploaded_at = new DateTime();
         $this->idArticles = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setImgData(File $image = null)
+    {
+        $this->imgData = $image;
+        if ($image){
+            $this->uploaded_at = new DateTime();
+        }
+    }
+
+    public function getImgData()
+    {
+        return $this->imgData;
     }
 
     public function getName(): ?string

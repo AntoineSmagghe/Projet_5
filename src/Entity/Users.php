@@ -80,7 +80,11 @@ class Users implements UserInterface
     {
         $this->articles = new ArrayCollection();
     }
-
+    
+    public function __toString()
+    {
+        return $this->surname;
+    }
 
     public function getId(): ?int
     {
