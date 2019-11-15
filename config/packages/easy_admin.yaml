@@ -2,18 +2,18 @@ easy_admin:
   site_name: 'Administration de la base de données CDLM'
   
   list:
-    actions: ['show']
+    actions: 
+      - { name: 'show', icon: 'eye', label: false }
+      - { name: 'edit', icon: 'pencil', label: false }
+      - { name: 'delete', icon: 'trash', label: false }
   
   design:
     templates:
       label_null: 'base.html.twig'
     menu:
-      - label: false
-        icon: 'database'
-        children:
-          - { entity: 'Article', label: 'Articles', icon: 'newspaper' }
-          - { entity: 'Img', label: 'Images', icon: 'images' } 
-          - { entity: 'Users', label: 'Membres', icon: 'user' }
+      - { entity: 'Article', label: 'Articles', icon: 'newspaper' }
+      - { entity: 'Img', label: 'Images', icon: 'images' } 
+      - { entity: 'Users', label: 'Membres', icon: 'user' }
 
   user:
     name_property_path: 'surname'
@@ -24,15 +24,25 @@ easy_admin:
 
     Article:
       class: App\Entity\Article
+      show:
+        fields: 
+          - 'id'
+          - 'title'
+          - 'date_event'
+          - 'format'
+          - 'created_at'
+          - imgs
+          - { property: 'user', label: 'Membre' }
       form:
         form_options:
           data_class: 'App\Entity\Article'
+          upload_dir: '%app.path.images%'
+          download_dir: '%app.path.images%'
+          multiple: true
         fields:
-          - { property: 'imgs', type: 'file', upload_dir: '/public/upload/pictures/', download_dir: '/public/upload/pictures/', multiple: true }
+          - { property: 'imgs', type: 'file' }
           - { property: 'text', type: 'text_editor' }
       list:
-        action:
-          - show
         fields: 
           - 'id'
           - 'title'
