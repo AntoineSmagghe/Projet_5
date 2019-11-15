@@ -1,19 +1,31 @@
 easy_admin:
+  site_name: 'Administration de la base de données CDLM'
   design:
     templates:
       label_null: 'base.html.twig'
+    menu:
+      - label: ""
+        icon: 'database'
+        children:
+          - { entity: 'Article', label: 'Articles', icon: 'newspaper' }
+          - { entity: 'Img', label: 'Images', icon: 'images' } 
+          - { entity: 'Users', label: 'Membres', icon: 'user' }
+
   user:
     name_property_path: 'surname'
     display_name: true
-  site_name: "Administration de la base de donnée CDLM"
 
   # List the entity class name you want to manage
   entities:
+    
     Article:
       class: App\Entity\Article
       form:
+        form_options:
+          data_class: 'App\Entity\Article'
         fields:
-          - { property: 'imgs.imgData', label: 'Images', type: 'file', base_path: '%app.path.images%' }  
+          - { property: 'imgs', type: 'file', upload_dir: '/public/upload/pictures/', download_dir: '/public/upload/pictures/', multiple: true }
+          - { property: 'text', type: 'text_editor' }
       list:
         fields: 
           - 'id'
@@ -21,18 +33,20 @@ easy_admin:
           - 'date_event'
           - 'format'
           - 'created_at'
-          - { property: 'imgs.name', label: 'Images', type: 'array', base_path: '%app.path.images%' }
-          - { property: 'user.surname', label: 'Nom' }
+          - 'imgs'
+          - 'user'
     
     Img:
       class: App\Entity\Img
       list:
         fields:
-          - { property: 'name', label: 'Image', type: 'image', base_path: '%app.path.images%'}
-          - { property: 'uploaded_at', label: "Date d'upload"}
+          - { property: 'name', label: 'Image', type: 'image', base_path: '%app.path.images%' }
+          - { property: 'uploaded_at', label: "Date d'upload" }
+          - { property: 'idArticles', label: "Articles" }
       form:
         fields:
-          - { property: 'name', type: 'file', base_path: '%app.path.images%'}
+          - { property: 'name', type: 'file', base_path: '%app.path.images%', multiple: true }
+          - 'idArticles'
     
     Users:
       class: App\Entity\Users
@@ -40,6 +54,7 @@ easy_admin:
         fields:
           - 'surname'
           - 'name'
-          - 'mail'
-          - 'articles'
-          - 'roles'
+          - { property: 'mail', label: 'Email', type: 'email' }
+          - { property: 'articles', label: "Nombre d'articles" }
+          - { property: 'roles', label: 'Accès' }
+          - { property: 'last_log', label: 'Dernière connexion' }

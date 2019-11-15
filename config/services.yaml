@@ -38,4 +38,5 @@ services:
                 
     # A form service for CRUD pictures
     App\Form\Extension\ImageType:
-        tags: ['form.type_extension']
+        tags: 
+            - { name: 'form.type_extension' }
