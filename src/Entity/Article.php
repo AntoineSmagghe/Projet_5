@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Service\Uploader;
+use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
- * @Vich\Uploadable
+ * @Vich\Uploadable()
  */
 class Article
 {
@@ -57,9 +59,17 @@ class Article
     private $created_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
      */
     private $imgs;
+
+    /**
+     * @var File|null
+     * @Assert\All({
+     *  @Assert\Image(mimeTypes="image/*")
+     * })
+     */
+    private $imgsFile;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="articles")
@@ -69,7 +79,7 @@ class Article
 
     public function __construct()
     {
-        $this->imgs = new ArrayCollection();
+        $this->created_at = new DateTime();
     }
 
     public function __toString()
@@ -126,7 +136,7 @@ class Article
     public function setFormat(string $format): self
     {
         $this->format = $format;
-
+        
         return $this;
     }
 
@@ -179,10 +189,10 @@ class Article
             $this->imgs->removeElement($img);
             $img->removeIdArticle($this);
         }
-
         return $this;
     }
 
+    /*
     public function getWebPath()
     {
         $arrayWebPath = array();
@@ -190,6 +200,33 @@ class Article
             array_push($arrayWebPath, '/upload/pictures/' . $img->getName());
         }
         return $arrayWebPath;
+    }
+    */
+    
+    /**
+     * @return mixed
+     */
+    public function getImgsFile()
+    {
+        return $this->imgsFile;
+    }
+
+    /**
+     * @param mixed $imgsFile
+     * @return Article
+     */
+    public function setImgsFile($images, Uploader $uploader): self
+    {
+        foreach($images as $image)
+        {
+            $path = $uploader->upload($image);
+            $img = new Img();
+            $img->setImgData($image)
+                ->setName($path);
+            $this->addImg($img);
+        }
+        $this->imgsFile = $images;
+        return $this;
     }
 
     public function getUser(): ?Users

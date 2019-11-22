@@ -26,31 +26,31 @@ easy_admin:
       class: App\Entity\Article
       show:
         fields: 
-          - 'id'
-          - 'title'
-          - 'date_event'
-          - 'format'
-          - 'created_at'
+          - id
+          - title
+          - date_event
+          - format
+          - created_at
           - imgs
           - { property: 'user', label: 'Membre' }
-      form:
-        form_options:
-          data_class: 'App\Entity\Article'
-          upload_dir: '%app.path.images%'
-          download_dir: '%app.path.images%'
-          multiple: true
-        fields:
-          - { property: 'imgs', type: 'file' }
-          - { property: 'text', type: 'text_editor' }
+      #form:
+      #  form_options:
+      #    data_class: null
+      #    upload_dir: '%app.path.images%'
+      #    download_dir: '%app.path.images%'
+      #    multiple: true
+      #  fields:
+      #    - { property: 'imgs', type: 'file' }
+      #    - { property: 'text', type: 'text_editor' }
       list:
         fields: 
-          - 'id'
-          - 'title'
-          - 'date_event'
-          - 'format'
-          - 'created_at'
-          - 'imgs'
-          - 'user'
+          - id
+          - title
+          - date_event
+          - format
+          - created_at
+          - imgs
+          - { property: 'user', label: 'Membre' }
     
     Img:
       class: App\Entity\Img

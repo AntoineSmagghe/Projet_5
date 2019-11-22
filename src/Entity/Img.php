@@ -6,11 +6,13 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImgRepository")
- * @Vich\Uploadable
+ * @Vich\Uploadable()
  */
 class Img
 {
@@ -59,15 +61,19 @@ class Img
         return $this->id;
     }
 
-    public function setImgData(File $image = null)
+    /**
+     * @var File|null
+     */
+    public function setImgData(File $image = null): self
     {
         $this->imgData = $image;
         if ($image){
-            $this->uploaded_at = new DateTime();
+            $this->uploaded_at = new DateTime('now');
         }
+        return $this;
     }
 
-    public function getImgData()
+    public function getImgData(): ?File
     {
         return $this->imgData;
     }

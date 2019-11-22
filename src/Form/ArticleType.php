@@ -26,16 +26,13 @@ class ArticleType extends AbstractType
                     'Evènement Privé' => 'privateEvent',
                     'News' => 'news',
                     'Release' => 'releases',
-                    'Membres' => 'members'
+                    'Membres' => 'members',
                 ]
             ])
             ->add('title', TextType::class)
             ->add('text', TextareaType::class, ['required' => false])
-            ->add('imgs', FileType::class, [
-                'label' => "Ajouter une image",
-                'image_property' => 'getWebPath',
+            ->add('imgsFile', FileType::class, [
                 'multiple' => true,
-                'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File([
@@ -52,16 +49,17 @@ class ArticleType extends AbstractType
         ;
     }
 
+    /*
     public function getParent()
     {
         return FileType::class;
     }
+    */
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Article::class,
-            'compound' => true,
             ]);
     }
 }   

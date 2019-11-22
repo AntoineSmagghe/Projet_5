@@ -12,7 +12,7 @@
             <div class="col-md-2">
             {{ form_row(form.format, {
                 'label': 'Type de l\'article', 
-                'placeholder': 'Sélectionnez ici',
+                'placeholder': 'Sélectionnez ici'
                 }) }}
             </div>
         </div>
@@ -27,18 +27,30 @@
                 'placeholder': 'Tappez le texte ici'
             }
         }) }}
-        {{ include('admin/form_edit_post.html.twig') }}
-        {% block file_widget %}{% endblock %}
+        {#{ include('admin/form_edit_post.html.twig') }#}
+        {#% block file_widget %}{% endblock %#}
         {{ form_row(form.api_data, {
             'label': 'Données de l\'api',
             'attr': {
                 'placeholder': 'Entrez les URL',
             }
         }) }}
+        {{ form_row(form.imgsFile, {
+            'label': 'Ajouter une image',
+        }) }}
         {{ form_row(form.save, {
             'label': 'Sauvegarder',
         }) }}
     {{form_end(form)}}
+    {% for image in article.imgs %}
+        <div class="edit_image">
+            <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="" style="width: 100px;">
+        </div>
+        {% dump(image.id) %}
+        <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
+            Supprimer
+        </a>
+    {% endfor %}
 </div>
 {% endblock %}
 {% block javascripts %}
@@ -49,5 +61,8 @@
             .catch(error => {
                 console.error(error);
             });
+
+        let requette = new Requests();
+        requette.delPictures();
     </script>
 {% endblock %}
