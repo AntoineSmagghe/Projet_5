@@ -45,13 +45,10 @@
     {% for image in article.imgs %}
         <div class="edit_image">
             <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="" style="width: 100px;">
+            <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
+                Supprimer
+            </a>
         </div>
-        {% dump(image.id) %}
-        
-        <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
-            Supprimer
-        </a>
-        
     {% endfor %}
 </div>
 {% endblock %}

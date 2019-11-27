@@ -18,9 +18,9 @@ class Requests
                 .then(response => response.json())
                 .then(data => {
                     if(data.success){
-                        a.parentNode.parentNode.removeChild(a.parentNode)
+                        a.parentNode.parentNode.removeChild(a.parentNode);
                     }else{
-                        alert(data.error)
+                        alert(data.error);
                     }
                 })
                 .catch(e => alert(e));

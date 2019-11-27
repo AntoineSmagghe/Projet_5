@@ -7,6 +7,7 @@ use App\Entity\Img;
 use App\Form\ArticleType;
 use App\Service\Uploader;
 use Doctrine\Common\Persistence\ObjectManager;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -85,10 +86,14 @@ class AdminController extends AbstractController
         $data = json_decode($request->getContent(), true);
         if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
         {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($image);
-            $em->flush();
-            return new JsonResponse(['success' => 1]);
+            try{
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($image);
+                $em->flush();
+                return new JsonResponse(['success' => 1]);
+            }catch(Exception $e){
+                dump($e);
+            }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);
     }
