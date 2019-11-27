@@ -32,6 +32,6 @@ services:
             - { name: 'kernel.event_listener', event: 'security.interactive_login'}
     
     # A service to upload pictures
-    App\Service\Uploader:
-            arguments:
-                $uploadDirectory: "%picture_directory%"
+    # App\Service\Uploader:
+    #         arguments:
+    #             $uploadDirectory: "%picture_directory%"

@@ -5,11 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
-use App\Service\Uploader;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +19,7 @@ class AdminController extends AbstractController
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article = null, Request $request, ObjectManager $manager,Uploader $uploader, Security $security)
+    public function editPost(Article $article = null, Request $request, ObjectManager $manager, Security $security)
     {
         if ($article === null){
             $article = new Article();
