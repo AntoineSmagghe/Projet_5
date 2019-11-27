@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\File;
 
 class ArticleType extends AbstractType
 {
@@ -31,18 +30,9 @@ class ArticleType extends AbstractType
             ])
             ->add('title', TextType::class)
             ->add('text', TextareaType::class, ['required' => false])
-            ->add('imgs', FileType::class, [
+            ->add('imgsFile', FileType::class, [
                 'multiple' => true,
                 'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2Gi',
-                        'mimeTypes' => [
-                            'image/*',
-                            ],
-                        'mimeTypesMessage' => 'Envoie une image valide wesh, vérifie le format (png, jpg ou svg) ou la taille (max 10Mo)'
-                        ])
-                    ],
             ])
             ->add('api_data', TextType::class, ['required' => false])
             ->add('save', SubmitType::class)

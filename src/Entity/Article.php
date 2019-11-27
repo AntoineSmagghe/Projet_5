@@ -59,6 +59,8 @@ class Article
      */
     private $imgs;
 
+    private $imgsFile;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
@@ -190,31 +192,30 @@ class Article
         return $arrayWebPath;
     }
     */
-    // /**
-    //  * @return mixed
-    //  */
-    // public function getImgsFile()
-    // {
-    //     return $this->imgsFile;
-    // }
+
+    /**
+    * @return mixed
+    */
+    public function getImgsFile()
+    {
+        return $this->imgsFile;
+    }
     
-    // /**
-    //  * @param mixed $imgsFile
-    //  * @return Article
-    //  */
-    // public function setImgsFile($images, Uploader $uploader): self
-    // {
-    //     foreach($images as $image)
-    //     {
-    //         $path = $uploader->upload($image);
-    //         $img = new Img();
-    //         $img->setImgData($image)
-    //             ->setName($path);
-    //         $this->addImg($img);
-    //     }
-    //     $this->imgsFile = $images;
-    //     return $this;
-    // }
+    /**
+     * @param mixed $imgsFile
+     * @return Article
+     */
+    public function setImgsFile($images): self
+    {
+        foreach($images as $image)
+        {
+            $img = new Img();
+            $img->setImgData($image);
+            $this->addImg($img);
+        }
+        $this->imgsFile = $images;
+        return $this;
+    }
     
     public function getUser(): ?Users
     {

@@ -30,21 +30,22 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()){
-            if ($article->getImgsFile() instanceof UploadedFile){
-                
-                /**
-                 * @var UploadedFile $imgs
-                 */
-                $imgs = $form['imgsFile']->getData();
 
-                foreach ($images as $imgs){
-                    $imgName = $uploader->upload($imgs);
-                    $imgObj = new Img();
-                    $imgObj->setName($imgName);
-                    $manager->persist($imgObj);
-                    $article->addImg($imgObj);
-                }
-            }
+            // if ($article->getImgsFile() instanceof UploadedFile){
+                
+            //     /**
+            //      * @var UploadedFile $imgs
+            //      */
+            //     $imgs = $form['imgsFile']->getData();
+
+            //     foreach ($imgs as $images){
+            //         $imgName = $uploader->upload($imgs);
+            //         $imgObj = new Img();
+            //         $imgObj->setName($imgName);
+            //         $manager->persist($imgObj);
+            //         $article->addImg($imgObj);
+            //     }
+            // }
             
 
             $article->setUser($security->getUser());
@@ -79,13 +80,14 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/delete/image/{id}", name="delImg", methods="DELETE")
      */
-    public function delImg(Img $image, Request $request, ObjectManager $manager)
+    public function delImg(Img $image, Request $request)
     {
         $data = json_decode($request->getContent(), true);
-        if ($this->isCsrfTokenValid('delete', $image->get('id'), $data['_token']))
+        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
         {
-            $manager->remove($image);
-            $manager->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($image);
+            $em->flush();
             return new JsonResponse(['success' => 1]);
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);

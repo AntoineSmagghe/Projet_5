@@ -30,7 +30,7 @@ class Img
 
     /**
      * @Vich\UploadableField(mapping="images", fileNameProperty="name")
-     * @var File
+     * @var File|null
      */
     private $imgData;
 
@@ -60,21 +60,26 @@ class Img
         return $this->id;
     }
 
+
     /**
-     * @var File|null
+     * @return null|File
+     */
+    public function getImgData(): ?File
+    {
+        return $this->imgData;
+    }
+
+    /**
+     * @param null|File $imgData
+     * @return self
      */
     public function setImgData(File $image = null): self
     {
         $this->imgData = $image;
-        if ($image){
+        if ($image) {
             $this->uploaded_at = new DateTime('now');
         }
         return $this;
-    }
-
-    public function getImgData(): ?File
-    {
-        return $this->imgData;
     }
 
     public function getName(): ?string

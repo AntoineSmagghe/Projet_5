@@ -25,7 +25,7 @@ class Uploader
         
         /*if ($this->tchekExistingFile($fileSize) === false){*/
             $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeName = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalName);
+            $safeName = hash('sha256', transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalName));
             $uniqueName = $safeName . "-" . $fileSize . "." . $file->guessExtension();
 
             //uniqid()
