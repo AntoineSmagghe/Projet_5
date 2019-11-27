@@ -2,18 +2,14 @@
 
 namespace App\Entity;
 
-use App\Service\Uploader;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
- * @Vich\Uploadable()
  */
 class Article
 {
@@ -62,14 +58,6 @@ class Article
      * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
      */
     private $imgs;
-
-    /**
-     * @var File|null
-     * @Assert\All({
-     *  @Assert\Image(mimeTypes="image/*")
-     * })
-     */
-    private $imgsFile;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="articles")
@@ -165,10 +153,10 @@ class Article
     }
 
     /**
-     * @return Collection|Img[]
+     * @return Collection|Img[]|null
      * 
      */
-    public function getImgs(): Collection
+    public function getImgs()
     {
         return $this->imgs;
     }
@@ -202,33 +190,32 @@ class Article
         return $arrayWebPath;
     }
     */
+    // /**
+    //  * @return mixed
+    //  */
+    // public function getImgsFile()
+    // {
+    //     return $this->imgsFile;
+    // }
     
-    /**
-     * @return mixed
-     */
-    public function getImgsFile()
-    {
-        return $this->imgsFile;
-    }
-
-    /**
-     * @param mixed $imgsFile
-     * @return Article
-     */
-    public function setImgsFile($images, Uploader $uploader): self
-    {
-        foreach($images as $image)
-        {
-            $path = $uploader->upload($image);
-            $img = new Img();
-            $img->setImgData($image)
-                ->setName($path);
-            $this->addImg($img);
-        }
-        $this->imgsFile = $images;
-        return $this;
-    }
-
+    // /**
+    //  * @param mixed $imgsFile
+    //  * @return Article
+    //  */
+    // public function setImgsFile($images, Uploader $uploader): self
+    // {
+    //     foreach($images as $image)
+    //     {
+    //         $path = $uploader->upload($image);
+    //         $img = new Img();
+    //         $img->setImgData($image)
+    //             ->setName($path);
+    //         $this->addImg($img);
+    //     }
+    //     $this->imgsFile = $images;
+    //     return $this;
+    // }
+    
     public function getUser(): ?Users
     {
         return $this->user;

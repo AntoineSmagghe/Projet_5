@@ -31,7 +31,7 @@ class ArticleType extends AbstractType
             ])
             ->add('title', TextType::class)
             ->add('text', TextareaType::class, ['required' => false])
-            ->add('imgsFile', FileType::class, [
+            ->add('imgs', FileType::class, [
                 'multiple' => true,
                 'required' => false,
                 'constraints' => [

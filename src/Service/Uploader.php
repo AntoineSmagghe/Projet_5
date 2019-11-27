@@ -38,8 +38,9 @@ class Uploader
             }
 
             return $uniqueName;
-        /*}*/
+        /*}
         return false;
+        */
     }
 
     private function tchekExistingFile($fileSize): bool

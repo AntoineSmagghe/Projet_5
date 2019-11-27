@@ -30,14 +30,11 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()){
-
-            /*
             if ($article->getImgsFile() instanceof UploadedFile){
-
+                
                 /**
                  * @var UploadedFile $imgs
                  */
-                /*
                 $imgs = $form['imgsFile']->getData();
 
                 foreach ($images as $imgs){
@@ -48,7 +45,7 @@ class AdminController extends AbstractController
                     $article->addImg($imgObj);
                 }
             }
-            */
+            
 
             $article->setUser($security->getUser());
             $manager->persist($article);
