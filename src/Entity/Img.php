@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImgRepository")
@@ -29,8 +30,11 @@ class Img
     private $name;
 
     /**
-     * @Vich\UploadableField(mapping="images", fileNameProperty="name")
      * @var File|null
+     * @Assert\Image(
+     *      mimeTypes="image/"
+     * )
+     * @Vich\UploadableField(mapping="images", fileNameProperty="name")
      */
     private $imgData;
 
@@ -48,6 +52,7 @@ class Img
     public function __construct()
     {
         $this->idArticles = new ArrayCollection();
+        $this->uploaded_at = new DateTime('now');
     }
 
     public function __toString()
@@ -76,9 +81,6 @@ class Img
     public function setImgData(File $image = null): self
     {
         $this->imgData = $image;
-        if ($image) {
-            $this->uploaded_at = new DateTime('now');
-        }
         return $this;
     }
 

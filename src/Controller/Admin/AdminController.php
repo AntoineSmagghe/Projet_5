@@ -17,40 +17,17 @@ class AdminController extends AbstractController
 {
     /**
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
-     * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article = null, Request $request, ObjectManager $manager, Security $security)
+    public function createPost(Request $request)
     {
-        if ($article === null){
-            $article = new Article();
-        }
-        
+        $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()){
-
-            // if ($article->getImgsFile() instanceof UploadedFile){
-                
-            //     /**
-            //      * @var UploadedFile $imgs
-            //      */
-            //     $imgs = $form['imgsFile']->getData();
-
-            //     foreach ($imgs as $images){
-            //         $imgName = $uploader->upload($imgs);
-            //         $imgObj = new Img();
-            //         $imgObj->setName($imgName);
-            //         $manager->persist($imgObj);
-            //         $article->addImg($imgObj);
-            //     }
-            // }
-            
-
             $article->setUser($security->getUser());
             $manager->persist($article);
             $manager->flush();
-              
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(), 
                 'id' => $article->getId(),
@@ -60,6 +37,35 @@ class AdminController extends AbstractController
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article
+        ]);
+    }
+
+    /**
+     * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
+     */
+    public function editPost(Article $article, Request $request, ObjectManager $manager, Security $security)
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+        // -> The form is not considered subbmited when we modify it. 
+
+        if ($form->isSubmitted()){
+            if ($form->isValid()){
+               $manager->persist($article);
+               $manager->flush();
+               
+               return $this->redirectToRoute('article', [
+                   'format' => $article->getFormat(), 
+                   'id' => $article->getId(),
+                   ]);
+           }else{
+               throw new Exception("Le formulaire n'est pas valide.");
+           }
+        }
+        
+        return $this->render('admin/edit_post.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article,
         ]);
     }
 
