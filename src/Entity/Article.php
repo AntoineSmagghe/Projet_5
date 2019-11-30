@@ -59,6 +59,11 @@ class Article
      */
     private $imgs;
 
+    /**
+     * Assert\All({
+     *      @Assert\Image(mimeTypes="image/")
+     * })
+     */
     private $imgsFile;
 
     /**
@@ -156,7 +161,6 @@ class Article
 
     /**
      * @return Collection|Img[]|null
-     * 
      */
     public function getImgs()
     {
@@ -213,7 +217,7 @@ class Article
             $img->setImgData($image);
             $this->addImg($img);
         }
-        $this->imgsFile = $images;
+        //$this->imgsFile = $images;
         return $this;
     }
     
