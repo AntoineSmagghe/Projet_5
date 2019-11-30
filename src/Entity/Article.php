@@ -159,6 +159,11 @@ class Article
         return $this;
     }
 
+    public function getImg(): Img
+    {
+        return $this->imgs[0];
+    }
+
     /**
      * @return Collection|Img[]|null
      */
