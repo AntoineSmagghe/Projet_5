@@ -217,7 +217,7 @@ class Article
             $img->setImgData($image);
             $this->addImg($img);
         }
-        $this->imgsFile = $images;
+        //$this->imgsFile = $images;
         return $this;
     }
     

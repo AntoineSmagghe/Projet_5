@@ -47,12 +47,12 @@ class AdminController extends AbstractController
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        // -> The form is not considered subbmited when we modify it. 
 
         if ($form->isSubmitted()){
             if ($form->isValid()){
                $manager->persist($article);
                $manager->flush();
+               $this->addFlash("L'article a bien été enregistré.");
                
                return $this->redirectToRoute('article', [
                    'format' => $article->getFormat(), 
