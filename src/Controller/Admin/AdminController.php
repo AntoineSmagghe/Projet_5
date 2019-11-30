@@ -45,7 +45,6 @@ class AdminController extends AbstractController
             //         $article->addImg($imgObj);
             //     }
             // }
-            
 
             $article->setUser($security->getUser());
             $manager->persist($article);
