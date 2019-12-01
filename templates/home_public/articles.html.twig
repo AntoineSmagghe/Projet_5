@@ -16,9 +16,7 @@
 <div class="jumbotron row">
 {% for article in articles %}
   <div class="card col-sm-4">
-  {% for img in article.Imgs %}
-    <img src="{{ asset('/upload/pictures/' ~ img.name) }}" class="card-img-top" alt="{{ article.title }}">
-  {% endfor %}
+  <img src="{{ asset('/upload/pictures/' ~ article.img) }}" class="card-img-top" alt="{{ article.title }}">
     <div class="card-body">
       <h5 class="card-title">{{ article.title }}</h5>
       <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
