@@ -21,7 +21,7 @@
             'attr': {'placeholder': 'Titre de l\'évènement'}
             }) }}
         {{ form_row(form.text, {
-            'label': 'Contenu de l\'article',
+            'label': 'Contenu',
             'attr': {
                 'class': 'ckeditor',
                 'placeholder': 'Tappez le texte ici'
@@ -33,12 +33,18 @@
                 'placeholder': 'Entrez les URL',
             }
         }) }}
-        {{ form_row(form.imgsFile, {
-            'label': 'Ajouter une image',
-        }) }}
+        <div class="row">
+            <div class="col-md-3">
+                {{ form_row(form.imgsFile, {
+                    'label': 'Ajouter des images',
+                    'attr': {'placeholder': 'Ajouter des images'}
+                }) }}
+            </div>
+        </div>
         {{ form_row(form.save, {
-            'label': 'Sauvegarder',
+            'label': 'Publier',
         }) }}
+
     {{form_end(form)}}
     {% for image in article.imgs %}
         <div class="edit_image">
@@ -52,7 +58,7 @@
 {% endblock %}
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
-    <script>
+    <script type="text/javascript">
         ClassicEditor
             .create(document.querySelector('.ckeditor'))
             .catch(error => {
@@ -62,4 +68,21 @@
         let requette = new Requests();
         requette.delPictures();
     </script>
+
+    <script type="text/javascript">
+        (function (document) {
+            var input = document.getElementById("article_imgsFile");
+            var placeholder = input.parentElement.querySelector(".custom-file-label");
+
+            input.addEventListener(
+                "change",
+                function ()
+                {
+                    var value = input.value.replace('C:\\fakepath\\', '').trim();
+                    placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
+                }
+            );
+        })(document);
+    </script>
+
 {% endblock %}
