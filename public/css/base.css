@@ -1,7 +1,3 @@
-img:active {
-    transform: scale(4);
-}
-
 img{
     cursor: pointer;
 }

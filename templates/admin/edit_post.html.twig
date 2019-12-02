@@ -47,8 +47,8 @@
 
     {{form_end(form)}}
     {% for image in article.imgs %}
-        <div class="edit_image">
-            <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}" style="width: 100px;">
+        <div class="edit_image hes-gallery">
+            <img src="{{ vich_uploader_asset(image, 'imgData')|imagine_filter("thumb") }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
             <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
                 Supprimer
             </a>
@@ -59,24 +59,34 @@
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
     <script src="/js/Requests.js"></script>
+    <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
     <script type="text/javascript">
+    //text editor
         ClassicEditor
             .create(document.querySelector('.ckeditor'))
             .catch(error => {
                 console.error(error);
             });
 
+    //ajax request for delete pictures
         let requette = new Requests();
         requette.delPictures();
-
         ((document)=>{
             const input = document.getElementById("article_imgsFile");
             const placeholder = input.parentElement.querySelector(".custom-file-label");
+            HesGallery.init();
 
             input.addEventListener("change", ()=>{
                     let value = input.value.replace('C:\\fakepath\\', '').trim();
                     placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
                 });
         })(document);
+
+        HesGallery.setOptions({
+            wrapAround: true,
+            disableScrolling: true,
+            keyboardControl: true
+        });
+
     </script>
 {% endblock %}

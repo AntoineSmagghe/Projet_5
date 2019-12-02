@@ -14,13 +14,8 @@
             </form>
         {% endif %}
         <div class="row m-4">
-            {% for image in article.imgs %}
-            <div class="container col-3">
-                    <img style="width: 100%;" src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
-            </div>
-            {% endfor %}
             <div class="container col">
-                <p class="lead text-justify">{{ article.text|nl2br }}</p>
+                <p class="lead text-justify">{{ article.text|raw }}</p>
             </div>
         </div>
         <div class="row m-4">
@@ -31,6 +26,13 @@
                 <p class="lead">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
             </div>
         </div>
+        {% for image in article.imgs %}
+        <div class="container col-3 hes-gallery">
+                <img style="width: 100%;" src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+<script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
+{% endblock %}
