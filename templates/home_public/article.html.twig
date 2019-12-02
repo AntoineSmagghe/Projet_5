@@ -16,7 +16,7 @@
         <div class="row m-4">
             {% for image in article.imgs %}
             <div class="container col-3">
-                    <img style="width: 100%;" src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo de l'article {{ article.title }}">
+                    <img style="width: 100%;" src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             </div>
             {% endfor %}
             <div class="container col">

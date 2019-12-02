@@ -48,7 +48,7 @@
     {{form_end(form)}}
     {% for image in article.imgs %}
         <div class="edit_image">
-            <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="" style="width: 100px;">
+            <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}" style="width: 100px;">
             <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
                 Supprimer
             </a>
@@ -58,6 +58,7 @@
 {% endblock %}
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+    <script src="/js/Requests.js"></script>
     <script type="text/javascript">
         ClassicEditor
             .create(document.querySelector('.ckeditor'))
@@ -67,22 +68,15 @@
 
         let requette = new Requests();
         requette.delPictures();
-    </script>
 
-    <script type="text/javascript">
-        (function (document) {
-            var input = document.getElementById("article_imgsFile");
-            var placeholder = input.parentElement.querySelector(".custom-file-label");
+        ((document)=>{
+            const input = document.getElementById("article_imgsFile");
+            const placeholder = input.parentElement.querySelector(".custom-file-label");
 
-            input.addEventListener(
-                "change",
-                function ()
-                {
-                    var value = input.value.replace('C:\\fakepath\\', '').trim();
+            input.addEventListener("change", ()=>{
+                    let value = input.value.replace('C:\\fakepath\\', '').trim();
                     placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
-                }
-            );
+                });
         })(document);
     </script>
-
 {% endblock %}
