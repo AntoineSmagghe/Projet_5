@@ -159,9 +159,15 @@ class Article
         return $this;
     }
 
-    public function getImg(): Img
+    /**
+     * @return Img|null
+     */
+    public function getImg()
     {
-        return $this->imgs[0];
+        if ($this->imgs != null){
+            return $this->imgs[0];
+        }
+        return null;
     }
 
     /**

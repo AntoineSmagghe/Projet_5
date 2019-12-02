@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,13 +19,12 @@ class HomePublicController extends AbstractController
     private $security;
     private $imgRepo;
     
-    public function __construct(Security $security, UsersRepository $users, ArticleRepository $article, ImgRepository $imgRepo, ObjectManager $em)
+    public function __construct(Security $security, UsersRepository $users, ArticleRepository $article, ImgRepository $imgRepo)
     {
         $this->security = $security;
         $this->article = $article;
         $this->users = $users;
         $this->imgRepo = $imgRepo;
-        $this->em = $em;
     }
 
     /**

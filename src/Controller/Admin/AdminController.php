@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +19,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      */
-    public function createPost(Request $request, ObjectManager $manager, Security $security)
+    public function createPost(Request $request, EntityManagerInterface $manager, Security $security)
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -44,7 +44,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article, Request $request, ObjectManager $manager, Security $security)
+    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -72,7 +72,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/delete/{id}", name="delPost", methods="DELETE")
      */
-    public function delPost(Article $article, Request $request, ObjectManager $manager)
+    public function delPost(Article $article, Request $request, EntityManagerInterface $manager)
     {
         if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->get("_token")))
         {
