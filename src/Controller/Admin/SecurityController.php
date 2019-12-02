@@ -4,9 +4,8 @@ namespace App\Controller\Admin;
 
 use DateTime;
 use App\Entity\Users;
-use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -45,7 +44,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/signin", name="signIn", methods={"POST", "GET"})
      */
-    public function signIn(ObjectManager $manager, Request $request)
+    public function signIn(EntityManagerInterface $manager, Request $request)
     {
         $newUser = new Users();
         $form = $this->createFormBuilder($newUser)
