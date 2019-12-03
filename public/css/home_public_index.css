@@ -1,0 +1,52 @@
+/************
+*   COVER   *
+*************/
+.welcome_view{
+    height: 900px;
+    background: url("../img/cover.JPG") no-repeat center;
+    background-size: cover;
+}
+
+.welcome_view h1{
+    font-weight: bold;
+    text-shadow: -3px 5px 0 yellow, 4px -5px 0 blue;
+    padding: 5rem;
+    font-size: 3.5rem;
+}
+
+/***********
+*   BODY   *
+************/
+#welcome_cards{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: auto;
+}
+
+/************
+*   CARDS   *
+*************/
+.card_welcome{
+    width: 540px;
+}
+
+.in_card_welcome{
+    display: flex;
+    flex-direction: column;
+    border: 1px black;
+}
+
+.col_wel_img{
+    padding: 1.25rem;
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+.col_wel_txt{
+    flex-basis: auto;
+    text-align: justify;
+}

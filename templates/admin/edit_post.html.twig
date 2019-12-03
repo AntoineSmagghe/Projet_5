@@ -48,7 +48,7 @@
     {{form_end(form)}}
     {% for image in article.imgs %}
         <div class="edit_image hes-gallery">
-            <img src="{{ vich_uploader_asset(image, 'imgData')|imagine_filter("thumb") }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+            <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
             <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn btn-danger">
                 Supprimer
             </a>
@@ -82,11 +82,11 @@
                 });
         })(document);
 
+    //Gallery photo
         HesGallery.setOptions({
             wrapAround: true,
             disableScrolling: true,
             keyboardControl: true
         });
-
     </script>
 {% endblock %}

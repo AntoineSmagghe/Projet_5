@@ -1,24 +1,31 @@
 {% extends 'base.html.twig' %}
-{% block style %}
+{% block header %}
+  <link rel="stylesheet" href="css/home_public_index.css">
 {% endblock %}
+{% block style %}{% endblock %}
 {% block title %}Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses.{% endblock %}
 
 {% block body %}
-<div class="jumbotron">
+<div class="welcome_view">
     <h1>Well I there {% if app.user != null %} {{ app.user.surname }} {% endif %}!</h1>
 </div>
-
-<div class="row">
+<h2>What's new on CDLM?</h2>
+<section id="welcome_cards">
 {% for article in articles %}
-  <div class="card mb-3 m-auto" style="width: 540px;">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-          <img src="{{ asset('upload/pictures/' ~ article.img)|imagine_filter("thumb") }}" class="card-img-top" alt="Photo de l'article : {{article.title}}">
+{% set text = article.text|raw %}
+  <div class="card_welcome">
+    <div class="in_card_welcome">
+      <div class="col_wel_img">
+          {% if article.img == '' %}
+          <img src="img/CDLM_logo.svg" class="card-img-top" alt="Photo de l'article : {{article.title}}">
+          {% else %}
+          <img src="{{ asset('upload/pictures/' ~ article.img) }}" class="card-img-top" alt="Photo de l'article : {{article.title}}">
+          {% endif %}
       </div>
-      <div class="col-md-8">
+      <div class="col_wel_txt">
         <div class="card-body">
           <h5 class="card-title">{{ article.title }}</h5>
-          <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
+          <p class="card-text">{{ text[:150] ~ '...' }}</p>
           <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
           {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
@@ -33,5 +40,5 @@
     </div>
   </div>
 {% endfor %}
-</div>
+</section>
 {% endblock %}
