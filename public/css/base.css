@@ -131,7 +131,13 @@ nav ul{
 	padding: 15px;
 }
 
+.btn_dropdown_menu{
+	animation: textMove 3s;
+}
+
 .dropdown_menu{
+	display: none;
+	margin-top: -20px;
 	flex-direction: column;
 }
 

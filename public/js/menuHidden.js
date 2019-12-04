@@ -35,10 +35,6 @@ class menuHidden{
         });
     }
     
-    hideMenuWhenScroll(listenEvent){
-        window.removeEventListener(listenEvent, this.hideMenuWhenScroll);
-    }
-    
     closeMenu(){
         this.idToShow.addEventListener("mouseleave", ()=>{
             if (this.hideIco){
@@ -57,6 +53,10 @@ class menuHidden{
                 this.idListen.style.animation = this.animOut + ".5s";
             });
         }
+    }
+
+    hideMenuWhenScroll(listenEvent){
+        window.removeEventListener(listenEvent, this.hideMenuWhenScroll);
     }
 
     isMobile() {
