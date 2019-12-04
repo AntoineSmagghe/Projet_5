@@ -6,7 +6,6 @@ use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityManager;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -19,16 +18,20 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      */
-    public function createPost(Request $request, EntityManagerInterface $manager, Security $security)
+    public function createPost(Article $article = null, Request $request, EntityManagerInterface $manager, Security $security)
     {
-        $article = new Article();
+        if ($article == null){
+            $article = new Article();
+        }
+        
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        
+                
         if ($form->isSubmitted() && $form->isValid()){
             $article->setUser($security->getUser());
             $manager->persist($article);
             $manager->flush();
+                        
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(), 
                 'id' => $article->getId(),
@@ -44,7 +47,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
+    public function editPost(Article $article, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -85,13 +88,13 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/delete/image/{id}", name="delImg", methods="DELETE")
      */
-    public function delImg(Img $image, Request $request)
+    public function delImg(Img $image, Request $request, EntityManagerInterface $em)
     {
         $data = json_decode($request->getContent(), true);
         if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
         {
             try{
-                $em = $this->getDoctrine()->getManager();
+                dump($image->getName());
                 $em->remove($image);
                 $em->flush();
                 return new JsonResponse(['success' => 1]);

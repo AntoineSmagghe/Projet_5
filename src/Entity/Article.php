@@ -3,10 +3,11 @@
 namespace App\Entity;
 
 use DateTime;
+use App\Entity\Img;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -220,7 +221,7 @@ class Article
         return $this;
     }
     
-    public function getUser(): ?Users
+    public function getUser() 
     {
         return $this->user;
     }

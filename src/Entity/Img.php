@@ -68,7 +68,7 @@ class Img
     /**
      * @return null|File
      */
-    public function getImgData(): ?File
+    public function getImgData()
     {
         return $this->imgData;
     }
@@ -83,12 +83,12 @@ class Img
         return $this;
     }
 
-    public function getName(): ?string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
