@@ -4,12 +4,11 @@
 {% endblock %}
 {% block style %}{% endblock %}
 {% block title %}Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses.{% endblock %}
-
 {% block body %}
 <div class="welcome_view">
-    <h1 class="moving_title">Well I there {% if app.user != null %} {{ app.user.surname }} {% endif %}!</h1>
+    <h1 class="moving_title">Hi there {% if app.user != null %} {{ app.user.surname }} {% endif %}!</h1>
 </div>
-<h2 class="moving_title">What's new on CDLM?</h2>
+<h2>What's new on CDLM?</h2>
 <section id="welcome_cards">
 {% for article in articles %}
 {% set text = article.text|striptags %}
@@ -17,9 +16,9 @@
     <div class="in_card_welcome">
       <div class="col_wel_img">
           {% if article.img == '' %}
-          <img src="img/CDLM_logo.svg" class="card-img-top" alt="Photo de l'article : {{article.title}}">
+          <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
           {% else %}
-          <img src="{{ asset('upload/pictures/' ~ article.img) }}" class="card-img-top" alt="Photo de l'article : {{article.title}}">
+          <img src="{{ asset('upload/pictures/' ~ article.img) }}" alt="Photo de l'article : {{article.title}}">
           {% endif %}
       </div>
       <div class="col_wel_txt">

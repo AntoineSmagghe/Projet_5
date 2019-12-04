@@ -2,21 +2,15 @@
 *   KEYFRAMES   *
 *****************/
 @keyframes textMove{
-  0%{
-    text-shadow: 5px 0px 0 yellow, -5px 2px 0 blue;
-  }
-  25%{
-    text-shadow: -5px 0px 0 yellow, 0px 5px 0 blue;
-  }
-  50%{
-    text-shadow: 0px 5px 0 yellow, 5px 2px 0 blue;
-  }
-  75%{
-    text-shadow: -5px 5px 0 yellow, 5px -5px 0px blue;
-  }
-  100%{
-    text-shadow: -3px 5px 0 yellow, 4px -5px 0 blue;
-  }
+    0%, 100%{
+        text-shadow: 5px 0px 0 var(--red), -5px 2px 0 var(--blue);
+    }
+    20%, 40%, 60%, 80%{
+        text-shadow: -10px 0px 0 var(--red), 10px 2px 0 var(--blue);
+    }
+    10%, 30%, 50%, 70%, 90%{
+        text-shadow: 10px 0px 0 var(--red), -15px 2px 0 var(--blue);
+    }
 }
 
 @keyframes slideDown{
@@ -30,15 +24,26 @@
     }
 }
 
+@keyframes slideUp{
+    from{
+        transform: translateY(900px);
+        filter: blur(50px);
+    }
+    to{
+        transform: translateY(0);
+        filter: blur(0);    
+    }
+}
+
 /************
 *   COVER   *
 *************/
 .welcome_view{
-    animation: slideDown 3s ease;
+    animation: slideUp 3s ease;
     height: 900px;
     background: url("../img/cover.JPG") no-repeat center;
     background-size: cover;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px var(--black);
 }
 
 .moving_title{
@@ -47,7 +52,6 @@
     padding: 5rem;
     font-size: 3.5rem;
     cursor: pointer;
-    animation: textMove 2s linear;
 }
 
 .moving_title:hover{
@@ -71,6 +75,10 @@
 *************/
 .welcome_card{
     width: 540px;
+    margin: 0.6rem;
+    box-shadow: 0 0 2px var(--black);
+    background-color: rgba(255,255,255,0.8);
+    animation: slideDown 2s ease;
 }
 
 .in_card_welcome{
@@ -82,7 +90,10 @@
     padding: 1.25rem;
     width: 100%;
     overflow: hidden;
-    
+}
+
+.col_wel_img img{
+    width: 100%;
 }
 
 .col_wel_txt{
@@ -119,24 +130,28 @@
     justify-content: space-between;
 }
 
+.buttons a:hover{
+    background-color: var(--grey);
+}
+
 .btn_more{
     text-align: center;
     height: 35px;
-    background: teal;
-    color: white;
+    background-color: var(--grey);
     width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
 .btn_modify{
     text-align: center;
     height: 35px;
-    background: green;
-    color: white;
+    background-color: var(--red);
     width: 25%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }

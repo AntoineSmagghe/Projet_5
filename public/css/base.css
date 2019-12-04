@@ -1,11 +1,18 @@
+/****************
+*   KEYFRAMES   *
+*****************/
+@keyframes rotate360{
+	from {
+		transform: rotate(-360deg);
+	}
+	to {
+		transform: rotate(0);
+	}
+}
+
 /************
 * CSS RESET *
 *************/
-
-/* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 * {
 	margin: 0;
 	padding: 0;
@@ -22,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: whitesmoke;
 }
 ol, ul {
 	list-style: none;
@@ -52,3 +60,81 @@ img{
     cursor: pointer;
 }
 
+/************
+*	COLOR	*
+*************/
+/*
+:root{
+	--white: #29D855;
+	--black: #0D0D0D;
+	--red: #A60320;
+	--blue: #6C2EF3;
+	--grey: #2A1C8B;
+}
+:root{
+	--black: #5118A3;
+	--grey: #2A1C8B;
+	--red: #6E1799;
+	--blue: #182BA3;
+	--white: #174A99;
+}
+*/
+
+:root{
+	--grey: #8C8C88;
+	--red: #A6774E;
+	--white: #F2B279;
+	--blue:#404040;
+	--black: #0D0D0D;
+}
+
+/************
+*	NAVBAR	*
+*************/
+
+nav{
+	overflow: hidden;
+	background-color: var(--blue);
+	position: sticky;
+	padding: .75rem 2rem;
+	height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.12rem;
+	font-weight: bold;
+	z-index: 9;
+}
+
+.logo_header{
+	width: 5rem;
+	filter: invert();
+	animation: rotate360 5s linear;
+}
+
+.logo_header:hover{
+	animation: rotate360 2s linear;
+}
+
+nav a{
+	color: white;
+	display: block;
+}
+
+nav ul{
+	display: flex;
+	flex-direction: row;
+}
+
+.item_menu{
+	overflow: hidden;
+	padding: 15px;
+}
+
+.dropdown_menu{
+	flex-direction: column;
+}
+
+.dropdown_menu a{
+	display: block;
+}
