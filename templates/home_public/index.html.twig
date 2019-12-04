@@ -6,9 +6,9 @@
 {% block title %}Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses.{% endblock %}
 {% block body %}
 <div class="welcome_view">
-    <h1 class="moving_title">Hi there {% if app.user != null %} {{ app.user.surname }} {% endif %}!</h1>
+    <h1 class="moving_title">Hi there {% if app.user != null %} {{ app.user.surname }} {% endif %}!<br>Ready for party?</h1>
 </div>
-<h2>What's new on CDLM?</h2>
+<h2 class="part_title">What's new on CDLM?</h2>
 <section id="welcome_cards">
 {% for article in articles %}
 {% set text = article.text|striptags %}

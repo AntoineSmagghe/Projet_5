@@ -13,26 +13,34 @@
 {% endif %}
 </div>
 
-<div class="jumbotron row">
+<div class="welcome_cards">
 {% for article in articles %}
-  <div class="card col-sm-4">
-  {% if article.img == "" %}
-  <img src="/img/CDLM_logo.svg" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
-  {% else %}
-  <img src="{{ asset('/upload/pictures/' ~ article.img) }}" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
-  {% endif %}
-    <div class="card-body">
-      <h5 class="card-title">{{ article.title }}</h5>
-      <p class="card-text">{{ article.text[:150] ~ '...' }}</p>
-      <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn btn-primary">More...</a>
-      {% if is_granted('ROLE_ADMIN') %}
-      <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn btn-success">Modifier</a>
-      <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-        <button class="btn btn-danger">Supprimer</button>
-      </form>
-      {% endif %}
+  <div class="welcome_card">
+    <div class="in_card_welcome">
+      <div class="col_wel_img">
+        {% if article.img == "" %}
+        <img src="/img/CDLM_logo.svg" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
+        {% else %}
+        <img src="{{ asset('/upload/pictures/' ~ article.img) }}" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
+        {% endif %}
+      </div>
+      <div class="col_wel_txt">
+        <div class="col_wel_txt_body">
+          <h5>{{ article.title }}</h5>
+          <p>{{ article.text[:350] ~ '...' }}</p>
+          <div class="buttons">
+            <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn_more">More...</a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
+            <form class="btn_del" method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+              <button>Supprimer</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endfor %}

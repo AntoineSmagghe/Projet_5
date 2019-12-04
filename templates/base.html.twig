@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/keyframes.css">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/ef657a2258.js" crossorigin="anonymous"></script>
         {% block header %}{% endblock %}
         <style>{% block stylesheets %}{% endblock %}</style>
         {% block style %}{% endblock %}
@@ -15,12 +17,25 @@
         <header>
             <nav>
                 <a href="/">
-                    <img class="logo_header" src="img/CDLM_logo.svg" alt="Logo CDLM">
+                    <img class="logo_header" src="/img/CDLM_logo.svg" alt="Logo CDLM">
                 </a>
                 <ul>
                     <li class="item_menu">
                         <a class="link_menu" href="{{ path("articles", {"format": "news"}) }}">News</a>
                     </li>
+                    {% if app.user != null %}
+                    <li class="item_menu">
+                        <button class="btn_dropdown_menu">Events</button>
+                        <div class="dropdown_menu">
+                            <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">Public</a>
+                            <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">Private</a>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="item_menu">
+                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">Events</a>
+                    </li>
+                    {% endif %}
                     <li class="item_menu">
                         <button class="btn_dropdown_menu">Label</button>
                         <div class="dropdown_menu">
@@ -34,10 +49,11 @@
                     </li>
                     {% if is_granted("ROLE_ADMIN") %}
                     <li class="item_menu">
-                        <a href="{{ path("creatPost") }}" class="link_menu">New post</a>
-                    </li>
-                    <li class="item_menu">
-                        <a href="{{ path("signIn") }}" class="link_menu">New member</a>
+                        <button class="btn_dropdown_menu">Admin</button>
+                        <div class="dropdown_menu">
+                            <a href="{{ path("creatPost") }}" class="link_dropdown_menu">Create post</a>
+                            <a href="{{ path("signIn") }}" class="link_dropdown_menu">Create member</a>
+                        </div>
                     </li>
                     {% endif %}
                     {% if app.user == null %}
@@ -46,29 +62,10 @@
                     </li>
                     {% else %}
                     <li class="item_menu">
-                        <a class="link_menu" href="{{ path("logout") }}">Logout</a>
+                        <a class="link_menu" href="{{ path("logout") }}"><i class="fas fa-sign-out-alt"></i></a>
                     </li>
                     {% endif %}
-                    <li class="item_menu"></li>
-                </ul>
-
-                
-                {#% if app.user != null %}
-                    <li class="item_menu dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Events
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="nav-link" href="{{ path("articles", {"format": "publicEvent"}) }}">Public</a>    
-                            <a class="nav-link" href="{{ path("articles", {"format": "privateEvent"}) }}">Private</a>
-                        </div>
-                    </li>
-                {% else %}
-                    <li class="item_menu">
-                        <a class="link_menu" href="{{ path("articles", {"format": "publicEvent"}) }}">Events</a>
-                    </li>
-                {% endif %#}
-                        
+                </ul>                        
             </nav>
         </header>
         {% block body %}{% endblock %}
@@ -76,12 +73,18 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="js/menuHidden.js"></script>
+        <script src="/js/menuHidden.js"></script>
         <script>
             let btn_dropdown_menu = document.querySelectorAll(".btn_dropdown_menu");
             let dropdown_menu = document.querySelectorAll(".dropdown_menu");
             for (let i in btn_dropdown_menu){
-                let burgerMenu = new menuHidden(btn_dropdown_menu[i], dropdown_menu[i], "flex", "test", "test");
+                let burgerMenu = new menuHidden(
+                                    btn_dropdown_menu[i], 
+                                    dropdown_menu[i], 
+                                    "flex", 
+                                    "scaleBlur", 
+                                    "scaleBlur"
+                                    );
                 burgerMenu.listenIco();
             }
             
