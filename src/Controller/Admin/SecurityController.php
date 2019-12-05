@@ -67,8 +67,9 @@ class SecurityController extends AbstractController
 
             $manager->persist($newUser);
             $manager->flush();
+            $this->addFlash('success', "Le membre a bien été enregistré en base de donées.");
 
-            return $this->redirectToRoute("home_public");
+            return $this->redirectToRoute("signIn");
         }
 
         return $this->render('admin/signin.html.twig', [

@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="jumbotron">
+<div>
 {% if format == 'news' %}
-    <h1>Les news du chant</h1>
+  <h1 class="part_title">Les news du chant</h1>
 {% elseif format == 'publicEvent' %}
-    <h1>Les évènements du chant</h1>
+  <h1 class="part_title">Les évènements</h1>
+{% elseif format == 'privateEvent' %}
+  <h1 class="part_title">Les évènements privés</h1>
 {% elseif format == 'members' %}
-    <h1>Les membres du chant</h1>
+  <h1 class="part_title">Les membres du chant</h1>
 {% elseif format == 'releases' %}
-    <h1>Les dernières sorties</h1>
+  <h1 class="part_title">Les dernières sorties</h1>
 {% endif %}
 </div>
 
-<div class="welcome_cards">
+<div id="welcome_cards">
 {% for article in articles %}
   <div class="welcome_card">
     <div class="in_card_welcome">
@@ -32,11 +34,6 @@
             <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn_more">More...</a>
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
-            <form class="btn_del" method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-              <input type="hidden" name="_method" value="DELETE">
-              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-              <button>Supprimer</button>
-            </form>
             {% endif %}
           </div>
         </div>

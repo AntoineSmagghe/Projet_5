@@ -1,0 +1,40 @@
+#edit_post{
+    max-width: 1500px;
+    margin: auto;
+    padding: 1.5rem;
+}
+
+/************
+*   GALLERY *
+*************/
+#gallery{
+    max-width: 1500px;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    background-color: white;
+}
+
+.edit_image{
+    padding: .75rem;
+}
+
+.edit_image img{
+    width: 200px;
+    cursor: zoom-in;
+}
+
+.btn_del_pictures{
+    display: none;
+    position: relative;
+    margin: -35px auto 0 auto;
+}
+
+.edit_image:hover .btn_del_pictures{
+    display: flex;
+    cursor: pointer;
+}

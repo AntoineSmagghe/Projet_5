@@ -165,16 +165,30 @@ nav ul{
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    height: auto;
+	height: auto;
+	max-width: 1500px;
+	margin: auto;
+}
+
+/************
+*	TITLES	*
+*************/
+.part_title{
+	padding: 1.5rem;
+	height: 150px;
+	max-width: 1500px;
+	margin: 35px auto 0 auto;
+	font-weight: bold;
+	text-align: center;
 }
 
 /************
 *   CARDS   *
 *************/
 .welcome_card{
-    width: 540px;
+    width: 480px;
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
     background-color: rgba(255,255,255,0.8);
@@ -237,11 +251,12 @@ nav ul{
 .btn_more{
     text-align: center;
     height: 35px;
+    width: 100px;
     background-color: var(--grey);
-    width: 25%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+	justify-content: center;
+	align-items: center;
     color: white;
 }
 
@@ -249,20 +264,49 @@ nav ul{
     text-align: center;
     height: 35px;
     background-color: var(--red);
-    width: 25%;
+    width: 100px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+	justify-content: center;
+	align-items: center;
 	color: white;
 }
 
 .btn_del{
 	text-align: center;
 	height: 35px;
-	width: 25%;
+	width: 100px;
     background-color: red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+	justify-content: center;
+	align-items: center;
 	color: white;
+}
+
+/********************
+*	FLASH MESSAGES	*
+*********************/
+.flash-success{
+	width: 70%;
+	height: 40px;
+	position: relative;
+	margin: auto;
+	background: var(--green);
+}
+
+.flash-fail{
+	width: 70%;
+	height: 40px;
+	position: relative;
+	margin: auto;
+	background-color: var(--red);
+}
+
+.flash-info{
+	width: 70%;
+	height: 40px;
+	position: relative;
+	margin: auto;
+	background-color: var(--red);
 }
