@@ -31,7 +31,18 @@
 .btn_del_pictures{
     display: none;
     position: relative;
-    margin: -35px auto 0 auto;
+    top: -50px;
+    left: 150px;
+    width: 35px;
+}
+
+.btn_del_pictures i{
+    color: red;
+    font-size: 2.5rem;
+}
+
+.btn_del_pictures i:hover{
+    transform: scale(1.15);
 }
 
 .edit_image:hover .btn_del_pictures{
