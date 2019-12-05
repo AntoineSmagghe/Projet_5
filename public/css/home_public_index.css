@@ -8,6 +8,8 @@
     box-shadow: 0 0 5px var(--black);
     position: static;
     z-index: 5;
+    max-width: 1500px;
+    margin: auto;
 }
 
 .moving_title{

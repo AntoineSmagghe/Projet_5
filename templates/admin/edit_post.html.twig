@@ -4,6 +4,13 @@
 
 {% block body %}
 <div style="margin: 20px 40px">
+    {% if app.request.attributes.get('_route') == 'editPost' %}
+    <form class="btn_del" method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+        <button>Supprimer</button>
+    </form>
+    {% endif %}
     {{ form_start(form) }}
         <div class="row">
             <div class="col-md-2">

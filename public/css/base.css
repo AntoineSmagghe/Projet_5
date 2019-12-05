@@ -81,28 +81,28 @@ img{
 *	NAVBAR	*
 *************/
 
-nav{
-	overflow: hidden;
+header{
 	background-color: var(--blue);
+}
+
+nav{
 	position: sticky;
-	padding: .75rem 2rem;
-	height: 100px;
+	padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1.12rem;
 	font-weight: bold;
 	z-index: 9;
+	max-width: 1500px;
+    margin: auto;
 }
 
-.logo_header{
+#logo_header{
 	width: 4rem;
 	filter: invert();
 	animation: rotate360 2s linear;
-}
-
-.logo_header:hover{
-	animation: rotate360 2s linear;
+	margin: 0 0 0 15px;
 }
 
 nav a{
@@ -113,21 +113,49 @@ nav a{
 nav ul{
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
-.item_menu{
-	overflow: hidden;
-	padding: 15px;
+.item_menu a, .item_menu button{
+	display: block;
+	padding: 41px;
+}
+
+.item_menu:last-child{
+	margin-left: 5vw;
+	font-size: 1.5rem;
+	margin-top: 0;
 }
 
 .dropdown_menu{
 	display: none;
-	margin-top: -20px;
+	margin-top: -100px;
 	flex-direction: column;
 }
 
 .dropdown_menu a{
 	display: block;
+	background-color: gray;
+}
+
+.item_menu:last-child .dropdown_menu:last-child{
+	right: 10px;
+	top: 110px;
+}
+
+.sign_form_menu{
+	background-color: white;
+	padding: 20px;
+}
+
+
+.sign_form_menu .btn_more{
+	padding: 5px;
+}
+
+.form_row{
+	font-size: 1rem;
+	margin: 10px;
 }
 
 /***********
