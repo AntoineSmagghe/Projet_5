@@ -15,6 +15,13 @@ use Symfony\Component\Security\Core\Security;
 
 class AdminController extends AbstractController
 {
+    private $manager;
+    
+    public function __construct (EntityManagerInterface $manager)
+    {
+        $this->manager = $manager;
+    }
+
     /**
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      */
@@ -91,15 +98,14 @@ class AdminController extends AbstractController
     public function delImg(Img $image, Request $request, EntityManagerInterface $em)
     {
         $data = json_decode($request->getContent(), true);
-        if ($this->isCsrfTokenValid('delete' . $image->getId(), $data['_token']))
+        if ($this->isCsrfTokenValid('delete.picture' . $image->getId(), $data['_token']))
         {
             try{
-                dump($image->getName());
-                $em->remove($image);
-                $em->flush();
+                $this->manager->remove($image);
+                $this->manager->flush();
                 return new JsonResponse(['success' => 1]);
             }catch(Exception $e){
-                dump($e);
+                return new JsonResponse(['error' => (string)$e], 500);
             }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);

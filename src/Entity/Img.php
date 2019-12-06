@@ -29,7 +29,6 @@ class Img
     private $name;
 
     /**
-     * @var File|null
      * @Assert\Image(
      *      mimeTypes="image/"
      * )
@@ -64,7 +63,6 @@ class Img
         return $this->id;
     }
 
-
     /**
      * @return null|File
      */
@@ -83,12 +81,12 @@ class Img
         return $this;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 

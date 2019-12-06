@@ -59,7 +59,7 @@
         {% for image in article.imgs %}
             <div class="edit_image hes-gallery">
                 <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}" class="btn_del_pictures">
+                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
                     <i class="far fa-trash-alt"></i>
                 </a>
             </div>
