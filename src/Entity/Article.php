@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use DateTime;
 use App\Entity\Img;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -56,6 +57,7 @@ class Article
     private $created_at;
 
     /**
+     * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
      */
     private $imgs;
@@ -76,6 +78,7 @@ class Article
     public function __construct()
     {
         $this->created_at = new DateTime();
+        $this->imgs = new ArrayCollection();
     }
 
     public function __toString()

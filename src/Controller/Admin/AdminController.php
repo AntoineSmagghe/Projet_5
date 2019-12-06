@@ -15,13 +15,6 @@ use Symfony\Component\Security\Core\Security;
 
 class AdminController extends AbstractController
 {
-    private $manager;
-    
-    public function __construct (EntityManagerInterface $manager)
-    {
-        $this->manager = $manager;
-    }
-
     /**
      * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
      */
@@ -101,11 +94,11 @@ class AdminController extends AbstractController
         if ($this->isCsrfTokenValid('delete.picture' . $image->getId(), $data['_token']))
         {
             try{
-                $this->manager->remove($image);
-                $this->manager->flush();
+                $em->remove($image);
+                $em->flush();
                 return new JsonResponse(['success' => 1]);
             }catch(Exception $e){
-                return new JsonResponse(['error' => (string)$e], 500);
+                return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.'], 500);
             }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);
