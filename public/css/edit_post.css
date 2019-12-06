@@ -1,3 +1,6 @@
+/************
+*   FORM    *
+*************/
 #edit_post{
     max-width: 1500px;
     margin: auto;
@@ -7,26 +10,27 @@
 /************
 *   GALLERY *
 *************/
-#gallery{
-    max-width: 1500px;
-    height: auto;
-    margin: auto;
+.hes-gallery{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    flex-wrap: wrap;
     align-items: flex-start;
-    background-color: white;
+    flex-wrap: wrap;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
 }
 
 .edit_image{
     padding: .75rem;
+    height: 200px;
 }
 
 .edit_image img{
     width: 200px;
     cursor: zoom-in;
+    box-shadow: 0 0 2px black;
 }
+
 
 .btn_del_pictures{
     display: none;

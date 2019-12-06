@@ -55,7 +55,7 @@ class Article
      * @ORM\Column(type="datetime")
      */
     private $created_at;
-
+    
     /**
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})

@@ -23,7 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.format != :val')
             ->setParameter('val', 'privateEvent')
-            ->orderBy('a.id', 'ASC')
+            ->orderBy('a.id', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -36,7 +36,19 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('article')
             ->andWhere('article.format = :val')
             ->setParameter('val', $value)
-            ->orderBy('article.id', 'ASC')
+            ->orderBy('article.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function findAllDESC()
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult();
     }

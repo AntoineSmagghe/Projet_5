@@ -80,7 +80,6 @@ img{
 /************
 *	NAVBAR	*
 *************/
-
 header{
 	background-color: var(--blue);
 }
@@ -177,11 +176,15 @@ nav ul{
 *************/
 .part_title{
 	padding: 1.5rem;
-	height: 150px;
+	height: auto;
 	max-width: 1500px;
-	margin: 35px auto 0 auto;
+	margin: 35px auto 20px auto;
 	font-weight: bold;
 	text-align: center;
+}
+
+.subtitle{
+	text-shadow: -4px 4px 0 var(--grey);
 }
 
 /************

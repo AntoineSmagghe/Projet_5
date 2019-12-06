@@ -33,7 +33,7 @@ class HomePublicController extends AbstractController
     public function index()
     {
         if ($this->security->getUser() !== null) {
-            $articles = $this->article->findAll();
+            $articles = $this->article->findAllDESC();
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }

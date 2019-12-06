@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}"Editeur d'article pour le Chant de la Machine."{% endblock %}
-{% block style %}<link rel="stylesheet" href="/css/edit_post.css"></link> {% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/edit_post.css"></link> 
+{% endblock %}
 {% block body %}
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
@@ -54,16 +56,18 @@
         }) }}
     {{form_end(form)}}
     <aside ></aside>
-    <h2>Galerie</h2>
+    <h2 class="subtitle">Galerie</h2>
     <div id="gallery">
-        {% for image in article.imgs %}
-            <div class="edit_image hes-gallery">
-                <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
-                    <i class="far fa-trash-alt"></i>
-                </a>
+            <div class="hes-gallery">
+            {% for image in article.imgs %}
+                <div class="edit_image">
+                    <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
+            {% endfor %}
             </div>
-        {% endfor %}
     </div>
 </section>
 {% endblock %}
