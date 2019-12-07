@@ -58,7 +58,7 @@ class Article
     
     /**
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
      */
     private $imgs;
 
