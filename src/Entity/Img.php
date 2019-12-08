@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use App\Entity\Article;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -106,23 +107,27 @@ class Img
     }
 
     /**
-     * @return Collection|Article[]
+     * @return Collection|Article
      */
     public function getArticle(): Collection
     {
         return $this->article;
     }
 
+    /**
+     * 
+     * @param Collection|Article
+     */    
     public function addArticle(Article $article): self
     {
         if (!$this->article->contains($article)) {
-            $this->article[] = $article;
+            $this->article = $article;
         }
 
         return $this;
     }
 
-    public function removeIdArticle(Article $article): self
+    public function removeArticle(Article $article): self
     {
         if ($this->article->contains($article)) {
             $this->article->removeElement($article);

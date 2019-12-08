@@ -58,7 +58,7 @@ class Article
     
     /**
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Img", mappedBy="article", cascade={"persist", "remove"})
      */
     private $imgs;
 
@@ -163,17 +163,17 @@ class Article
         return $this;
     }
 
-    /**
+/*    /**
      * @return Img|null
      */
-    public function getImg()
+/*    public function getImg()
     {
         if ($this->imgs != null){
             return $this->imgs[0];
         }
         return null;
     }
-
+*/    
     /**
      * @return Collection|Img[]|null
      */
@@ -186,7 +186,7 @@ class Article
     {
         if (!$this->imgs->contains($img)) {
             $this->imgs[] = $img;
-            $img->addIdArticle($this);
+            $img->addArticle($this);
         }
 
         return $this;
@@ -196,7 +196,7 @@ class Article
     {
         if ($this->imgs->contains($img)) {
             $this->imgs->removeElement($img);
-            $img->removeIdArticle($this);
+            $img->removeArticle($this);
         }
         return $this;
     }
