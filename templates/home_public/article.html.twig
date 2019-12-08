@@ -39,6 +39,11 @@
             <div class="">
                 <p class="">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
             </div>
+            {% if article.modifiedBy != '' %}
+            <div class="">
+                <p class="">Modified at : {{ article.updatedAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.modifiedBy.surname }}</p>
+            </div>
+            {% endif %}
         </div>
         <h2 class="subtitle">Galerie</h2>
         <div class="hes-gallery">

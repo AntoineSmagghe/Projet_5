@@ -75,6 +75,16 @@ class Article
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users")
+     */
+    private $modified_by;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -232,6 +242,30 @@ class Article
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getModifiedBy(): ?Users
+    {
+        return $this->modified_by;
+    }
+
+    public function setModifiedBy(?Users $modified_by): self
+    {
+        $this->modified_by = $modified_by;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
