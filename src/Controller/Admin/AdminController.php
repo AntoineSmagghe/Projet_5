@@ -29,7 +29,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
                 
         if ($form->isSubmitted() && $form->isValid()){
-            $article->setUser($security->getUser());
+            $article->setUser($security->getUser())
+                    ->setUpdatedAt(new DateTime('now'));
             $manager->persist($article);
             $manager->flush();
                         
@@ -54,8 +55,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-            $article->setUpdatedAt(new DateTime("now"));
-            $article->setModifiedBy($security->getUser());
+            $article->setModifiedBy($security->getUser())
+                    ->setUpdatedAt(new DateTime("now"));
             $manager->persist($article);
             $manager->flush();
                             
