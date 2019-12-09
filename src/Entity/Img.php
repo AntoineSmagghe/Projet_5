@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use App\Entity\Article;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -43,13 +44,13 @@ class Img
     private $uploaded_at;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", inversedBy="imgs")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Article", inversedBy="imgs")
      */
-    private $idArticles;
+    private $article;
 
     public function __construct()
     {
-        $this->idArticles = new ArrayCollection();
+        $this->article = new ArrayCollection();
         $this->uploaded_at = new DateTime('now');
     }
 
@@ -106,26 +107,30 @@ class Img
     }
 
     /**
-     * @return Collection|Article[]
+     * @return Collection|Article
      */
-    public function getIdArticles(): Collection
+    public function getArticle(): Collection
     {
-        return $this->idArticles;
+        return $this->article;
     }
 
-    public function addIdArticle(Article $idArticle): self
+    /**
+     * 
+     * @param Collection|Article
+     */    
+    public function addArticle(Article $article): self
     {
-        if (!$this->idArticles->contains($idArticle)) {
-            $this->idArticles[] = $idArticle;
+        if (!$this->article->contains($article)) {
+            $this->article = $article;
         }
 
         return $this;
     }
 
-    public function removeIdArticle(Article $idArticle): self
+    public function removeArticle(Article $article): self
     {
-        if ($this->idArticles->contains($idArticle)) {
-            $this->idArticles->removeElement($idArticle);
+        if ($this->article->contains($article)) {
+            $this->article->removeElement($article);
         }
 
         return $this;

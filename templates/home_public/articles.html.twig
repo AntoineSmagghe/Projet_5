@@ -20,16 +20,16 @@
   <div class="welcome_card">
     <div class="in_card_welcome">
       <div class="col_wel_img">
-        {% if article.img == "" %}
+        {% if article.imgs|first == "" %}
         <img src="/img/CDLM_logo.svg" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
         {% else %}
-        <img src="{{ asset('/upload/pictures/' ~ article.img) }}" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
+        <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" class="card-img-top" alt="Photo de l'article : {{ article.title }}">
         {% endif %}
       </div>
       <div class="col_wel_txt">
         <div class="col_wel_txt_body">
           <h5>{{ article.title }}</h5>
-          <p>{{ article.text[:350] ~ '...' }}</p>
+          <p>{{ article.text|striptags|slice(0, 350) ~ '...' }}</p>
           <div class="buttons">
             <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn_more">More...</a>
             {% if is_granted('ROLE_ADMIN') %}

@@ -35,6 +35,7 @@ class HomePublicController extends AbstractController
     {
         if ($this->security->getUser() !== null) {
             $articles = $this->article->findAllDESC();
+
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }

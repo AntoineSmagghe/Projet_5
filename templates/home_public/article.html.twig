@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{article.text[:200]|raw }}{% endblock %}
+{% block title %}{{article.text[:200]|striptags }}{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/article.css">
 <link rel="stylesheet" href="/css/home_public_index.css">
 {% endblock %}
 {% block body %}
     <section id="article_body">
+        {% if article.imgs != '' %}
         <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="">
+        {% else %}
+        <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+        {% endif %}
         <h1 class="article_cover_title">{{ article.title }}</h1>
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
@@ -35,12 +39,19 @@
             <div class="">
                 <p class="">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
             </div>
+            {% if article.modifiedBy != '' %}
+            <div class="">
+                <p class="">Modified at : {{ article.updatedAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.modifiedBy.surname }}</p>
+            </div>
+            {% endif %}
         </div>
         <h2 class="subtitle">Galerie</h2>
         <div class="hes-gallery">
-        {% for image in article.imgs %}
-                <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
-        {% endfor %}
+        {% if article.imgs is defined %}
+            {% for image in article.imgs %}
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+            {% endfor %}
+        {% endif %}
         </div>
     </section>
 {% endblock %}

@@ -10,20 +10,20 @@
 <h2 class="part_title">What's new on CDLM?</h2>
 <section id="welcome_cards">
 {% for article in articles %}
-{% set text = article.text|striptags %}
   <div class="welcome_card">
     <div class="in_card_welcome">
       <div class="col_wel_img">
-          {% if article.img == '' %}
+          {% if article.imgs|first == '' %}
           <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
           {% else %}
-          <img src="{{ asset('upload/pictures/' ~ article.img) }}" alt="Photo de l'article : {{article.title}}">
+          <img src="{{ asset('upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{article.title}}">
           {% endif %}
       </div>
       <div class="col_wel_txt">
         <div class="col_wel_txt_body">
           <h5>{{ article.title }}</h5>
-          <p>{{ text[:350] ~ '...'}}</p>
+          <p>Le {{ article.dateEvent|date("m/d/Y") }}
+          <p>{{ article.text|striptags|raw|slice(0,350) }} ...</p>
           <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>

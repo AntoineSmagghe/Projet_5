@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,7 +29,8 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
                 
         if ($form->isSubmitted() && $form->isValid()){
-            $article->setUser($security->getUser());
+            $article->setUser($security->getUser())
+                    ->setUpdatedAt(new DateTime('now'));
             $manager->persist($article);
             $manager->flush();
                         
@@ -47,23 +49,21 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article, Request $request, EntityManagerInterface $manager)
+    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
-            if ($form->isValid()){
-               $manager->persist($article);
-               $manager->flush();
-                              
-               return $this->redirectToRoute('article', [
-                   'format' => $article->getFormat(), 
-                   'id' => $article->getId(),
-                   ]);
-           }else{
-               throw new Exception("Le formulaire n'est pas valide.");
-           }
+        if ($form->isSubmitted() && $form->isValid()){
+            $article->setModifiedBy($security->getUser())
+                    ->setUpdatedAt(new DateTime("now"));
+            $manager->persist($article);
+            $manager->flush();
+                            
+            return $this->redirectToRoute('article', [
+                'format' => $article->getFormat(),
+                'id' => $article->getId(),
+                ]);
         }
         
         return $this->render('admin/edit_post.html.twig', [

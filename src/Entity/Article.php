@@ -58,7 +58,7 @@ class Article
     
     /**
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Img", mappedBy="idArticles", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Img", mappedBy="article", cascade={"persist", "remove"})
      */
     private $imgs;
 
@@ -74,6 +74,16 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users")
+     */
+    private $modified_by;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated_at;
 
     public function __construct()
     {
@@ -163,17 +173,17 @@ class Article
         return $this;
     }
 
-    /**
+/*    /**
      * @return Img|null
      */
-    public function getImg()
+/*    public function getImg()
     {
         if ($this->imgs != null){
             return $this->imgs[0];
         }
         return null;
     }
-
+*/    
     /**
      * @return Collection|Img[]|null
      */
@@ -186,7 +196,7 @@ class Article
     {
         if (!$this->imgs->contains($img)) {
             $this->imgs[] = $img;
-            $img->addIdArticle($this);
+            $img->addArticle($this);
         }
 
         return $this;
@@ -196,7 +206,7 @@ class Article
     {
         if ($this->imgs->contains($img)) {
             $this->imgs->removeElement($img);
-            $img->removeIdArticle($this);
+            $img->removeArticle($this);
         }
         return $this;
     }
@@ -232,6 +242,30 @@ class Article
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getModifiedBy(): ?Users
+    {
+        return $this->modified_by;
+    }
+
+    public function setModifiedBy(?Users $modified_by): self
+    {
+        $this->modified_by = $modified_by;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
