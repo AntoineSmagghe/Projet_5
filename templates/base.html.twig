@@ -72,35 +72,33 @@
                     {% endif %}
                     {% if app.user == null %}
                     <li class="item_menu">
-                        <!--a class="link_menu" href="{#{ path("login") }#}"><i class="fas fa-sign-in-alt"></i></a-->
-                        <button class="btn_dropdown_menu"><i class="fas fa-sign-in-alt"></i></button>
-                        <div class="dropdown_menu">
-                            <div class="sign_form_menu">
-                                <form action="{{ path('login') }}" method="post">
-                                    <div class="form_row">
-                                        <label for="mail">Email</label>
-                                        <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
-                                    </div>
-                                    <div class="form_row">
-                                        <label for="password">Mot de passe</label>
-                                        <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
-                                    </div>
-                                    <div class="form_row">
-                                        <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
-                                        <button type="submit" class="btn_more">Envoyer</button>
-                                    </div>
-                                </form>
-                            </div>
+                        <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
+                        <div class="sign_in_form">
+                            <form action="{{ path('login') }}" method="post">
+                                <div class="form_row">
+                                    <label for="mail">Email</label>
+                                    <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
+                                </div>
+                                <div class="form_row">
+                                    <label for="password">Mot de passe</label>
+                                    <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
+                                </div>
+                                <div class="form_row">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
+                                    <button type="submit" class="btn_more">Envoyer</button>
+                                </div>
+                            </form>
                         </div>
                     </li>
                     {% else %}
                     <li class="item_menu">
-                        <a class="link_menu" href="{{ path("logout") }}"><i class="fas fa-sign-out-alt"></i></a>
+                        <a class="link_menu" href="{{ path("logout") }}"><img src="/img/sign-out-alt-solid.svg" alt="Sign out logo"></a>
                     </li>
                     {% endif %}
                 </ul>                        
             </nav>
         </header>
+        <div id="background_modal"></div>
         {# read and display all flash messages #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -111,24 +109,37 @@
         {% endfor %}
         {% block body %}{% endblock %}
         <footer></footer>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="/js/menuHidden.js"></script>
+        <script src="/js/Modal.js"></script>
         <script>
-            let btn_dropdown_menu = document.querySelectorAll(".btn_dropdown_menu");
-            let dropdown_menu = document.querySelectorAll(".dropdown_menu");
-            for (let i in btn_dropdown_menu){
-                let burgerMenu = new menuHidden(
-                                    btn_dropdown_menu[i], 
-                                    dropdown_menu[i], 
-                                    "flex", 
-                                    "scaleBlur", 
-                                    "scaleBlur"
-                                    );
-                burgerMenu.listenIco();
-            }
-            
+            window.addEventListener("load", ()=>{
+                //Sub menus dropdown when mouse over.
+                let btn_dropdown_menu = document.querySelectorAll(".btn_dropdown_menu");
+                let dropdown_menu = document.querySelectorAll(".dropdown_menu");
+                for (let i = 0; i < btn_dropdown_menu.length; i++){
+                    let burgerMenu = new menuHidden(
+                        btn_dropdown_menu[i], 
+                        dropdown_menu[i], 
+                        "flex", 
+                        "scaleBlur", 
+                        "scaleBlur"
+                    );
+                    burgerMenu.listenIco();
+                }
+
+                //Form appear when click on icon.
+                let signinModal = new Modal(
+                    document.getElementsByClassName("sign_in_form")[0],
+                    "flex",
+                    document.getElementById("background_modal"),
+                    document.getElementsByClassName("sign_in_btn")[0],
+                );
+                console.log("c'est parti");
+                signinModal.init();
+            });
         </script>
         {% block javascripts %}{% endblock %}
     </body>
