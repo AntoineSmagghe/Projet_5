@@ -71,6 +71,7 @@
                     </li>
                     {% endif %}
                     {% if app.user == null %}
+                    <div id="background_modal"></div>
                     <li class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
                         <div class="sign_in_form">
@@ -98,7 +99,6 @@
                 </ul>                        
             </nav>
         </header>
-        <div id="background_modal"></div>
         {# read and display all flash messages #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
