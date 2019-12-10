@@ -47,11 +47,6 @@ class Article
     private $format;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $api_data;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
@@ -84,6 +79,11 @@ class Article
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $api_data = [];
 
     public function __construct()
     {
@@ -146,18 +146,6 @@ class Article
     {
         $this->format = $format;
         
-        return $this;
-    }
-
-    public function getApiData(): ?string
-    {
-        return $this->api_data;
-    }
-
-    public function setApiData(?string $api_data): self
-    {
-        $this->api_data = $api_data;
-
         return $this;
     }
 
@@ -266,6 +254,18 @@ class Article
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getApiData(): ?array
+    {
+        return $this->api_data;
+    }
+
+    public function setApiData(?array $api_data): self
+    {
+        $this->api_data = $api_data;
 
         return $this;
     }
