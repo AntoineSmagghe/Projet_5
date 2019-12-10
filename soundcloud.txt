@@ -1,0 +1,19 @@
+SoundCloud CDLM ClientId = 
+Vu5tlmvC9eCLFZkxXG32N1yQMfDSAPAA
+
+
+For resolve an soundcloud url
+
+call the resolver :
+https://api.soundcloud.com/resolve?
+
+put the original URL :
+url=<url of the track>
+
+add the client id:
+client_id=<client id>.
+
+Exemple :
+https://api.soundcloud.com/resolve?url=https://soundcloud.com/cdlm-free/vz4-tchen&client_id=Vu5tlmvC9eCLFZkxXG32N1yQMfDSAPAA
+
+This will return a JSON format with all the informations. 

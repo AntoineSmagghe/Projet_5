@@ -27,6 +27,7 @@ class HomePublicController extends AbstractController
         $this->imgRepo = $imgRepo;
     }
 
+    
     /**
      * @Route("/", name="home_public")
      */

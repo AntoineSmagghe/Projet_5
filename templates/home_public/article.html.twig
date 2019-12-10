@@ -29,7 +29,8 @@
             </aside>
             <aside>
                 <h2 class="subtitle">Musique</h2>
-                <p class="">{{ article.apiData|raw }}</p>
+                <div class="widget_SC"></div>
+                <p>{{ article.apiData|raw }}</p>
             </aside>
         </div>
         <div class="">
@@ -57,4 +58,38 @@
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+<script>
+    SC.initialize({
+        client_id: 'Vu5tlmvC9eCLFZkxXG32N1yQMfDSAPAA'
+    });
+
+    SC.resolve("{{article.apiData}}")
+        .then((track)=>{
+            document.getElementsByClassName("widget_SC")[0].innerHTML = '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>'
+    })
+/*
+    SC.oEmbed(track_url, { auto_play: false } )
+        .then((oEmbed)=>{
+                let iframeTrack = oEmbed.html
+                    .replace("visual=true&", "")
+                    .replace("show_artwork=true&", "show_artwork=false&")
+                    .replace("", "")
+                    ;
+                document.getElementsByClassName("widget_SC")[0].innerHTML = iframeTrack;
+            });
+
+    function getComments(track) {
+        SC.get('/tracks/' + track.id + '/comments');
+    };
+
+    function listComments(comments) {
+        comments.forEach((comment)=>{
+            console.log(comment.body);
+        });
+    };
+    SC.resolve(track_url).then(getComments).then(listComments)
+*/
+</script>
+
 {% endblock %}
