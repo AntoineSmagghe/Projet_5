@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -34,7 +35,12 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'required' => false,
             ])
-            ->add('api_data', TextType::class, ['required' => false])
+            ->add('api_data', CollectionType::class, [
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'attr' => ['class' => 'soundcloud_url']
+                ]
+                ])
             ->add('save', SubmitType::class)
         ;
     }
