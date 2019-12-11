@@ -36,6 +36,14 @@
                 'placeholder': 'Tappez le texte ici'
             }
         }) }}
+        <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+        {% for sound in form.api_data %}
+            <li>
+                {{form_row(form.sound)}}
+            </li>
+        {% endfor %}
+        </ul>
+        <button id="add_form_field">add SC</button>
         {{ form_row(form.api_data) }}
         <div class="row">
             <div class="col-md-3">
@@ -70,6 +78,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
     <script src="/js/Requests.js"></script>
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
+    <script src="/js/addField.js"></script>
     <script type="text/javascript">
     //text editor
         ClassicEditor
@@ -98,5 +107,12 @@
             disableScrolling: true,
             keyboardControl: true
         });
+    //Add Soundcloud Field
+        let addInput = new addField(
+            document.getElementById("add_form_field"), 
+            document.getElementsByClassName("api_data")[0], 
+            document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
+            );
+        addInput.init();
     </script>
 {% endblock %}
