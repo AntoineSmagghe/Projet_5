@@ -9,14 +9,20 @@ class addField
 
     indexValue(){
         this.index = this.ulElement.children.length;
-        this.data_prototype.setAttribute("index", this.index);
-        this.data_prototype.replace("__name__", this.index);
     }
-
+    
     builder(){
         this.addBtn.addEventListener("click", ()=>{
+            let indexedPrototype = this.data_prototype.replace(/__name__/g, this.index);
             let newLi = document.createElement("li");
-            newLi.innerHTML = this.data_prototype;
+            newLi.innerHTML = indexedPrototype;
+            /*
+            let node = new DOMParser().parseFromString(indexedPrototype, "text/html");
+            let nodeInput = node.getElementsByTagName('input')[0];
+            nodeInput.id = "article_api_data_" + this.index;
+            nodeInput.name = "article[api_data][" + this.index + "]";
+            newLi.appendChild(nodeInput);
+            */
             this.ulElement.appendChild(newLi);
             this.index++;
         });

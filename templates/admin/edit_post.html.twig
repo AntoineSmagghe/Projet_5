@@ -39,12 +39,13 @@
         <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
         {% for sound in form.api_data %}
             <li>
-                {{form_row(form.sound)}}
+                {{form_row(sound, {
+                    'label': false
+                })}}
             </li>
         {% endfor %}
         </ul>
-        <button id="add_form_field">add SC</button>
-        {{ form_row(form.api_data) }}
+        <a id="add_form_field" class="btn_modify">Ajouter un set</a>
         <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.imgsFile, {
@@ -107,6 +108,7 @@
             disableScrolling: true,
             keyboardControl: true
         });
+
     //Add Soundcloud Field
         let addInput = new addField(
             document.getElementById("add_form_field"), 

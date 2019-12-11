@@ -37,6 +37,5 @@ class Modal
 
     init(){
         this.openModal();
-        console.log("c'est parti!");
     }
 }
