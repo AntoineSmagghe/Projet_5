@@ -5,7 +5,6 @@ class addField
         this.ulElement = ulElement;
         this.data_prototype = data_prototype;
         this.index = 0;
-        this.delBtn;
     }
 
     indexValue(){
@@ -15,13 +14,12 @@ class addField
     builder(){
         this.addBtn.addEventListener("click", ()=>{
             let indexedPrototype = this.data_prototype.replace(/__name__/g, this.index);
-            let newLi = document.createElement("li");
-            this.delBtn = document.createElement("button");
-            this.delBtn.setAttribute("class", "btn_del_sets");
-            this.delBtn.textContent = "supprimer.";
             
-            newLi.appendChild(this.delBtn);
-            newLi.insertAdjacentHTML('afterbegin', indexedPrototype);
+            let newLi = document.createElement("li");
+            let newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "form-group");
+            newDiv.insertAdjacentHTML('beforeend', indexedPrototype);
+
             /*
             let node = new DOMParser().parseFromString(indexedPrototype, "text/html");
             let nodeInput = node.getElementsByTagName('input')[0];
@@ -29,23 +27,41 @@ class addField
             nodeInput.name = "article[api_data][" + this.index + "]";
             newLi.appendChild(nodeInput);
             */
+
+            newLi.appendChild(newDiv);
             this.ulElement.appendChild(newLi);
-            this.remover();
+            this.addRemover();
             this.index++;
         });
+    }
+
+    createDelBtn(){
+        let delBtn = document.createElement("button");
+        delBtn.setAttribute("class", "btn_del_sets");
+        delBtn.setAttribute("name", this.index);
+        delBtn.setAttribute("type", "button");
+        delBtn.textContent = "Supprimer";
+        return delBtn;
+    }
+
+    addRemover(){
+        let input = document.getElementById("article_api_data_" + this.index);
+        input.parentElement.parentElement.appendChild(this.createDelBtn());
+        this.remover();
     }
 
     remover(){
         let removeBtn = document.getElementsByClassName("btn_del_sets");
         for (let i = 0; i < removeBtn.length; i++){
             removeBtn[i].addEventListener("click", (e)=>{
-                e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+                e.target.parentElement.remove();
             });
         }
     }
     
     init(){
         this.indexValue();
+        this.remover();
         this.builder();
     }
 }

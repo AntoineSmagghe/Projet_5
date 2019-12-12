@@ -25,7 +25,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(
-     *      min = 10,
+     *      min = 2,
      *      minMessage = "S'il te plait, rentre au moins {{ limit }} caractères."
      * )
      */
@@ -82,6 +82,11 @@ class Article
 
     /**
      * @ORM\Column(type="array", nullable=true)
+     * @Assert\All({
+     *      @Assert\Url(
+     *          message = "l'url {{ value }} n'est pas valide",
+     *      )
+     * })
      */
     private $api_data = [];
 
@@ -161,17 +166,6 @@ class Article
         return $this;
     }
 
-/*    /**
-     * @return Img|null
-     */
-/*    public function getImg()
-    {
-        if ($this->imgs != null){
-            return $this->imgs[0];
-        }
-        return null;
-    }
-*/    
     /**
      * @return Collection|Img[]|null
      */
