@@ -7,6 +7,7 @@ use App\Entity\Img;
 use App\Entity\Users;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 
@@ -50,9 +51,9 @@ class AppFixtures extends Fixture
             
             // --> Fixture pour un article!
             $article = new Article();
-            $article->setApiData($fk->url)
+            $article->setApiData(new ArrayCollection())
                 ->setTitle($fk->realText(100))
-                ->setText($fk->realText(1200))
+                ->setText($fk->realText(6300))
                 ->setFormat(array_rand($this->formats, 1))
                 ->setUser($user)
                 ->addImg($img)

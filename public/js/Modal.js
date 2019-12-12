@@ -10,6 +10,7 @@ class Modal
 
     openModal(){
         this.openBtn.addEventListener("click", ()=>{
+            this.modal.style.animation = "slideRight .5s ease";
             this.background.style.display = "block";
             this.modal.style.display = this.display;
             this.closeModal();
@@ -19,13 +20,17 @@ class Modal
     closeModal(){
         window.addEventListener("click", (e)=>{
             if (e.target == this.background){
-                this.modal.style.display = "none";
-                this.background.style.display = "none";
+                this.modal.style.animation = "slideRightReverse .5s ease";
+                setTimeout(()=>{
+                    this.modal.style.display = "none";
+                    this.background.style.display = "none";
+                }, 400);
+
                 this.openModal();
             }
         });
         
-        if (closeBtn != null){
+        if (this.closeBtn != null){
             this.closeBtn.addEventListener("click", (e)=>{
                 e.stopPropagation();
                 this.modal.style.display = "none";
