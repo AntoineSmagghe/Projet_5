@@ -83,7 +83,9 @@
     <script type="text/javascript">
     //text editor
         ClassicEditor
-            .create(document.querySelector('.ckeditor'))
+            .create(document.querySelector('.ckeditor'), {
+                removePlugins: ["ImageUpload", "MediaEmbed"],
+            })
             .catch(error => {
                 console.error(error);
             });
