@@ -48,7 +48,8 @@ a:hover{
 }
 
 img{
-    cursor: pointer;
+	cursor: pointer;
+	object-fit: cover;
 }
 
 /************
@@ -161,12 +162,12 @@ nav ul{
 
 #background_modal{
 	display: none;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	z-index: 6;
 	background-color: rgba(0,0,0,0.5);
-	height: 100vh;
+	height: 100%;
 	width: 100%;
 }
 
@@ -271,7 +272,8 @@ a.admin_menu{
 }
 
 .col_wel_img img{
-    width: 100%;
+	width: 100%;
+	height: 220px;
 }
 
 .col_wel_txt{

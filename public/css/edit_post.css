@@ -13,6 +13,11 @@
     flex-direction: column;
 }
 
+.form-group input{
+    padding: 5px;
+    background-color: LightGrey;
+}
+
 .row{
     display: flex;
     flex-direction: row;

@@ -6,13 +6,13 @@
 <link rel="stylesheet" href="/css/home_public_index.css">
 {% endblock %}
 {% block body %}
+    {% if article.imgs != '' %}
+    <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="">
+    {% else %}
+    <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+    {% endif %}
+    <h1 class="article_cover_title">{{ article.title }}</h1>
     <section id="article_body">
-        {% if article.imgs != '' %}
-        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="">
-        {% else %}
-        <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
-        {% endif %}
-        <h1 class="article_cover_title">{{ article.title }}</h1>
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
             <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">

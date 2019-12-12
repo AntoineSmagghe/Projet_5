@@ -29,6 +29,7 @@
     <body>
         <header>
             <nav>
+                <div id="background_modal"></div>
                 <a href="/">
                     <img id="logo_header" src="/img/CDLM_logo.svg" alt="Logo CDLM">
                 </a>
@@ -69,7 +70,6 @@
                         </div>
                     </li>
                     {% endif %}
-                    <div id="background_modal"></div>
                     {% if app.user == null %}
                     <li class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
