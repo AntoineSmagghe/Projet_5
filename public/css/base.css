@@ -242,7 +242,9 @@ a.admin_menu{
 
 .subtitle{
 	font-weight: bold;
-	display: inline;
+	display: inline-block;
+	font-size: 2rem;
+	margin: 20px 0;
 	background-color:var(--blue);
 	color: white;
 }

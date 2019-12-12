@@ -37,13 +37,16 @@ class ArticleType extends AbstractType
             ])
             ->add('api_data', CollectionType::class, [
                 'allow_delete' => true,
-                'prototype_data' => 'Insérez une URL soundcloud',
+                'delete_empty' => true,
                 'allow_add' => true,
                 'entry_type' => TextType::class,
                 'entry_options' => [
-                    'attr' => ['class' => 'soundcloud_url']
+                    'attr' => [
+                        'class' => 'soundcloud_url',
+                        'placeholder' => 'Une url stp',
+                    ]
                 ]
-                ])
+            ])
             ->add('save', SubmitType::class)
         ;
     }
