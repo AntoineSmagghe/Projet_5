@@ -9,12 +9,13 @@
 
 .form-group{
     margin: 20px 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 .form-group input{
-    padding: 5px;
+    padding: 10px;
     background-color: LightGrey;
 }
 
@@ -22,6 +23,60 @@
     display: flex;
     flex-direction: row;
 }
+
+/****************
+*   TEXT AREA   *
+*****************/
+.edit_text_content{
+    flex-basis: 70%;
+}
+
+/************
+*   URL SC  *
+*************/
+
+.api_data{
+    flex-basis: 30%;
+    padding: 20px;
+}
+
+.api_data li{
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+
+.api_data li input{
+    width: calc(100% - 40px);
+    margin: auto;
+}
+
+.btn_del_sets{
+    font-size: 20px;
+    margin: 0 0 0 15px;
+}
+
+#add_form_field{
+    margin: 0 60px 0 0;
+    display:flex;
+    justify-content: flex-end;
+}
+
+/****************
+*   INPUT FILE  *
+*****************/
+.custom-file{
+    display: none;
+}
+
+label[for="article_imgsFile"]
+{
+    padding: 10px;
+    background-color: var(--grey);
+    color: black;
+    cursor: pointer;
+}
+
 /************
 *   GALLERY *
 *************/
@@ -42,6 +97,7 @@
 
 .edit_image img{
     width: 200px;
+    height: 150px;
     cursor: zoom-in;
     box-shadow: 0 0 2px black;
 }

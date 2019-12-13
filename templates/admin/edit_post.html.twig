@@ -29,38 +29,45 @@
                 }) }}
             </div>
         </div>
-        {{ form_row(form.title, {
-            'label': 'Titre de l\'évènement',
-            'attr': {'placeholder': 'Titre de l\'évènement'}
-            }) }}
-        {{ form_row(form.text, {
-            'label': 'Contenu',
-            'attr': {
-                'class': 'ckeditor',
-                'placeholder': 'Tappez le texte ici'
-            }
-        }) }}
+            {{ form_row(form.title, {
+                'label': 'Titre de l\'évènement',
+                'attr': {'placeholder': 'Titre de l\'évènement'}
+                }) }}
+        <div class="row">
+            <div class="edit_text_content">
+                {{ form_row(form.text, {
+                    'label': 'Contenu',
+                    'attr': {
+                        'class': 'ckeditor',
+                        'placeholder': 'Tappez le texte ici'
+                    }
+                }) }}
+            </div>
         <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
         {% for sound in form.api_data %}
             <li>
                 {{form_row(sound, {
                     'label': false
                 })}}
-                <button class="btn_del_sets" type="button">Supprimer</button>
+                <button class="btn_del_sets fas fa-times" type="button"></button>
             </li>
         {% endfor %}
         </ul>
-        <a id="add_form_field" class="btn_modify">Ajouter un set</a>
+        </div>
+        <div id="add_form_field">
+            <a class="btn_modify">Add sound</a>
+        </div>
         <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.imgsFile, {
-                    'label': 'Ajouter des images',
-                    'attr': {'placeholder': 'Ajouter des images'}
+                    'label': 'Add images',
                 }) }}
             </div>
         </div>
     {{form_end(form)}}
-    <h2 class="subtitle">Galerie</h2>
+    {% if article.imgs.snapshot != null %}
+        <h2 class="subtitle">Galerie</h2>
+    {% endif %}
     <div id="gallery">
             <div class="hes-gallery">
             {% for image in article.imgs %}

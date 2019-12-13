@@ -11,7 +11,9 @@
     {% else %}
     <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
     {% endif %}
-    <h1 class="article_cover_title">{{ article.title }}</h1>
+    <div class="article_cover_title">
+        <h1>{{ article.title }}</h1>
+    </div>
     <section id="article_body">
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
@@ -42,14 +44,14 @@
             </div>
             {% endif %}
         </div>
-        <h2 class="subtitle">Galerie</h2>
-        <div class="hes-gallery">
-        {% if article.imgs is defined %}
+        {% if article.imgs.snapshot != null %}
+            <h2 class="subtitle">Galerie</h2>
+            <div class="hes-gallery">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
+            </div>
         {% endif %}
-        </div>
     </section>
 {% endblock %}
 {% block javascripts %}

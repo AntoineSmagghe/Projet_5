@@ -37,10 +37,9 @@ class addField
 
     createDelBtn(){
         let delBtn = document.createElement("button");
-        delBtn.setAttribute("class", "btn_del_sets");
+        delBtn.setAttribute("class", "btn_del_sets fas fa-times");
         delBtn.setAttribute("name", this.index);
         delBtn.setAttribute("type", "button");
-        delBtn.textContent = "Supprimer";
         return delBtn;
     }
 
