@@ -6,6 +6,7 @@ use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Validator\Constraints\Date;
 
 class AdminController extends AbstractController
 {
@@ -35,7 +37,7 @@ class AdminController extends AbstractController
             $manager->flush();
                         
             return $this->redirectToRoute('article', [
-                'format' => $article->getFormat(), 
+                'format' => $article->getFormat(),
                 'id' => $article->getId(),
                 ]);
         }
@@ -60,7 +62,10 @@ class AdminController extends AbstractController
             $manager->persist($article);
             $manager->flush();
             
-            $this->addFlash("success", 'Article enregistré.');
+            $now = new DateTime("now", new DateTimeZone("europe/rome"));
+            $n = $now->format('d/m/Y à H:i:s');
+
+            $this->addFlash("success", 'Article enregistré le ' . $n);
             /*
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(),

@@ -75,3 +75,10 @@
 .txt_and_music aside p{
     text-align: justify;
 }
+
+.widget_SC iframe{
+    margin: 5px auto;
+    padding: 10px;
+    background-color: black;
+    border-radius: 2px;
+}

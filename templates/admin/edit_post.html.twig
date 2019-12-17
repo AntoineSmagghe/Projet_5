@@ -28,12 +28,15 @@
                 }) }}
             </div>
         </div>
-            {{ form_row(form.title, {
-                'label': 'Titre de l\'évènement',
-                'attr': {'placeholder': 'Titre de l\'évènement'}
-                }) }}
+        <div id="add_form_field">
+            <a class="btn_modify">Add sound</a>
+        </div>
         <div class="row">
             <div class="edit_text_content">
+                {{ form_row(form.title, {
+                    'label': 'Titre de l\'évènement',
+                    'attr': {'placeholder': 'Titre de l\'évènement'}
+                }) }}
                 {{ form_row(form.text, {
                     'label': 'Contenu',
                     'attr': {
@@ -42,24 +45,33 @@
                     }
                 }) }}
             </div>
-        <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
-        {% for sound in form.api_data %}
-            <li>
-                {{form_row(sound, {
-                    'label': false
-                })}}
-                <button class="btn_del_sets fas fa-times" type="button"></button>
-            </li>
-        {% endfor %}
-        </ul>
+            <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+                {% for sound in form.api_data %}
+                <li>
+                    {{form_row(sound, {
+                        'label': false
+                    })}}
+                    <button class="btn_del_sets fas fa-times" type="button"></button>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
-        <div id="add_form_field">
-            <a class="btn_modify">Add sound</a>
+        {% if app.request.attributes.get('_route') == 'editPost' %}
+        <div class="">
+            <div class="">
+                <p class="">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
+            </div>
+            {% if article.modifiedBy != '' %}
+            <div class="">
+                <p class="">Modified at : {{ article.updatedAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.modifiedBy.surname }}</p>
+            </div>
+            {% endif %}
         </div>
+        {% endif %}
         <div class="row">
             <div class="col-md-3">
                 {{ form_row(form.imgsFile, {
-                    'label': 'Add images',
+                    'label': 'Upload images',
                 }) }}
             </div>
         </div>
@@ -133,7 +145,7 @@
     //Add Soundcloud Field
         let addInput = new addField(
             document.getElementById("add_form_field"), 
-            document.getElementsByClassName("api_data")[0], 
+            document.getElementsByClassName("api_data")[0],
             document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
             );
         addInput.init();
