@@ -8,19 +8,15 @@
     box-shadow: 0 0 5px var(--black);
     position: static;
     z-index: 5;
-    max-width: 1500px;
     margin: auto;
+    padding: 100px 0 0 0;
 }
 
 .moving_title{
+    max-width: 1500px;
+    margin: auto;
+    padding: 0 0 0 50px;
+    color: whitesmoke;
+    font-size: 3rem;
     font-weight: bold;
-    text-shadow: -3px 5px 0 yellow, 4px -5px 0 blue;
-    font-size: 3.5rem;
-    cursor: auto;
-    position: absolute;
-    margin: 5rem 0 0 5rem;
-}
-
-.moving_title:hover{
-    animation: textMove .5s linear infinite;
 }

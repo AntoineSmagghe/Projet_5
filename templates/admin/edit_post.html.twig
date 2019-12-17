@@ -65,8 +65,10 @@
             </div>
         </div>
     {{form_end(form)}}
-    {% if article.imgs.snapshot != null %}
-        <h2 class="subtitle">Galerie</h2>
+    {% if app.request.attributes.get('_route') == 'editPost' %}
+        {% if article.imgs.snapshot != null %}
+            <h2 class="subtitle">Galerie</h2>
+        {% endif %}
     {% endif %}
     <div id="gallery">
             <div class="hes-gallery">
@@ -93,9 +95,18 @@
             .create(document.querySelector('.ckeditor'), {
                 removePlugins: ["ImageUpload", "MediaEmbed"],
             })
+            .then(newEditor =>{
+                editor = newEditor;
+            })
             .catch(error => {
                 console.error(error);
             });
+
+        document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
+            e.preventDefault();
+            const editorData = editor.getData();
+            console.log(editorData);
+        });
 
     //ajax request for delete pictures
         let requette = new Requests();

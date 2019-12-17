@@ -23,7 +23,7 @@
         <div class="col_wel_txt_body">
           <h5>{{ article.title }}</h5>
           <p>Le {{ article.dateEvent|date("m/d/Y") }}
-          <p>{{ article.text|striptags|raw|slice(0,350) }} ...</p>
+          <p>{{ article.text|raw|striptags|slice(0,350) }} ...</p>
           <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>

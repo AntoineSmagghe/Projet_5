@@ -6,10 +6,10 @@
 <link rel="stylesheet" href="/css/home_public_index.css">
 {% endblock %}
 {% block body %}
-    {% if article.imgs != '' %}
-    <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="">
+    {% if article.imgs.snapshot != [] %}
+    <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="Photo de l'article : {{article.title}}" >
     {% else %}
-    <img src="img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+    <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
     {% endif %}
     <div class="article_cover_title">
         <h1>{{ article.title }}</h1>
@@ -63,10 +63,10 @@
     });
 
     {% for sound in article.apiData %}
-    SC.resolve("{{sound}}")
-        .then((track)=>{
-            document.getElementsByClassName("widget_SC")[0].innerHTML = '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>'
-    })
+        SC.resolve(" {{sound}} ")
+            .then((track)=>{
+                document.getElementsByClassName("widget_SC")[0].insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
+        })
     {% endfor %}
 
 /*
