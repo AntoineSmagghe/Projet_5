@@ -11,28 +11,30 @@ class addField
         this.index = this.ulElement.children.length;
     }
     
+    events(){
+        this.builder();
+        this.addBtn.addEventListener("click", this.builder);
+    }
+
     builder(){
-        this.addBtn.addEventListener("click", ()=>{
-            let indexedPrototype = this.data_prototype.replace(/__name__/g, this.index);
-            
-            let newLi = document.createElement("li");
-            let newDiv = document.createElement("div");
-            newDiv.setAttribute("class", "form-group");
-            newDiv.insertAdjacentHTML('beforeend', indexedPrototype);
+        let indexedPrototype = this.data_prototype.replace(/__name__/g, this.index);
+        let newLi = document.createElement("li");
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("class", "form-group");
+        newDiv.insertAdjacentHTML('beforeend', indexedPrototype);
 
-            /*
-            let node = new DOMParser().parseFromString(indexedPrototype, "text/html");
-            let nodeInput = node.getElementsByTagName('input')[0];
-            nodeInput.id = "article_api_data_" + this.index;
-            nodeInput.name = "article[api_data][" + this.index + "]";
-            newLi.appendChild(nodeInput);
-            */
+        /*
+        let node = new DOMParser().parseFromString(indexedPrototype, "text/html");
+        let nodeInput = node.getElementsByTagName('input')[0];
+        nodeInput.id = "article_api_data_" + this.index;
+        nodeInput.name = "article[api_data][" + this.index + "]";
+        newLi.appendChild(nodeInput);
+        */
 
-            newLi.appendChild(newDiv);
-            this.ulElement.appendChild(newLi);
-            this.addRemover();
-            this.index++;
-        });
+        newLi.appendChild(newDiv);
+        this.ulElement.appendChild(newLi);
+        this.addRemover();
+        this.index++;
     }
 
     createDelBtn(){
@@ -61,6 +63,6 @@ class addField
     init(){
         this.indexValue();
         this.remover();
-        this.builder();
+        this.events();
     }
 }

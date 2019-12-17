@@ -43,7 +43,6 @@
                 }) }}
             </div>
         <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
-
         {% for sound in form.api_data %}
             <li>
                 {{form_row(sound, {
@@ -71,16 +70,16 @@
         {% endif %}
     {% endif %}
     <div id="gallery">
-            <div class="hes-gallery">
-            {% for image in article.imgs %}
-                <div class="edit_image">
-                    <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
-                </div>
-            {% endfor %}
+        <div class="hes-gallery">
+        {% for image in article.imgs %}
+            <div class="edit_image">
+                <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
+                    <i class="far fa-trash-alt"></i>
+                </a>
             </div>
+        {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}
