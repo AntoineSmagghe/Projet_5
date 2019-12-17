@@ -115,7 +115,7 @@ nav{
 	margin: 0 0 0 15px;
 }
 
-nav a{
+nav a, nav button{
 	color: white;
 	display: block;
 }

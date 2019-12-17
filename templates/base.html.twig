@@ -39,7 +39,7 @@
                     </li>
                     {% if app.user != null %}
                     <li class="item_menu">
-                        <button class="btn_dropdown_menu">Events</button>
+                        <button class="btn_dropdown_menu">Events <i class="fas fa-angle-down"></i></button>
                         <div class="dropdown_menu">
                             <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">Public</a>
                             <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">Private</a>
@@ -51,7 +51,7 @@
                     </li>
                     {% endif %}
                     <li class="item_menu">
-                        <button class="btn_dropdown_menu">Label</button>
+                        <button class="btn_dropdown_menu">Label <i class="fas fa-angle-down"></i></button>
                         <div class="dropdown_menu">
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
@@ -61,15 +61,6 @@
                     <li class="item_menu">
                         <a class="link_menu" href="#">About</a>
                     </li>
-                    {% if is_granted("ROLE_ADMIN") %}
-                    <li class="item_menu">
-                        <button class="btn_dropdown_menu">Admin</button>
-                        <div class="dropdown_menu">
-                            <a href="{{ path("creatPost") }}" class="link_dropdown_menu">Create post</a>
-                            <a href="{{ path("signIn") }}" class="link_dropdown_menu">Create member</a>
-                        </div>
-                    </li>
-                    {% endif %}
                     {% if app.user == null %}
                     <li class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
@@ -94,6 +85,10 @@
                     <li class="item_menu">
                         <img src="/img/ellipsis-h-solid.svg" alt="Logo informations admin" class="sign_in_btn">
                         <div class="sign_in_form">
+                            {% if is_granted("ROLE_ADMIN") %}
+                            <a class="admin_menu" href="{{ path("creatPost") }}">Create post</a>
+                            <a class="admin_menu" href="{{ path("signIn") }}">Create member</a>
+                            {% endif %}
                             <a class="admin_menu" href="#">Account</a>
                             <a class="admin_menu" href="{{ path("logout") }}">Logout</a>
                         </div>
