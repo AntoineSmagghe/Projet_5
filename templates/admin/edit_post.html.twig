@@ -11,6 +11,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
         <button class="btn_del">Supprimer</button>
     </form>
+    <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="btn_modify">Voir</a>
     {% endif %}
     {{ form_start(form) }}
         {{ form_row(form.save, {
