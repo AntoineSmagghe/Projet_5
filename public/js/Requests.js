@@ -1,7 +1,27 @@
 
 class Requests
 {
-    //Delete of pictures
+    //Record Article
+    saveArticle()
+    {
+        document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
+            e.preventDefault();
+            console.log(e);
+            fetch(e.target.action, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                body: e.submit,
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(e => alert(e));
+        });
+    }
+
+    //Delete pictures
     delPictures()
     {
         document.querySelectorAll('[data-delete]').forEach(a => {

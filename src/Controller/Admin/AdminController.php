@@ -59,11 +59,14 @@ class AdminController extends AbstractController
                     ->setUpdatedAt(new DateTime("now"));
             $manager->persist($article);
             $manager->flush();
-                            
+            
+            $this->addFlash("success", 'Article enregistré.');
+            /*
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(),
                 'id' => $article->getId(),
-                ]);
+            ]);
+            */
         }
         
         return $this->render('admin/edit_post.html.twig', [

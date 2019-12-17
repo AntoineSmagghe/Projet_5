@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}"Editeur d'article pour le Chant de la Machine."{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/edit_post.css"></link> 
@@ -44,6 +43,7 @@
                 }) }}
             </div>
         <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+
         {% for sound in form.api_data %}
             <li>
                 {{form_row(sound, {
@@ -102,15 +102,17 @@
                 console.error(error);
             });
 
+/* essai de remplacer par des br 
         document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
             e.preventDefault();
             const editorData = editor.getData();
             console.log(editorData);
         });
-
+*/
     //ajax request for delete pictures
         let requette = new Requests();
         requette.delPictures();
+
         ((document)=>{
             const input = document.getElementById("article_imgsFile");
             const placeholder = input.parentElement.querySelector(".custom-file-label");

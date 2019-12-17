@@ -14,8 +14,9 @@
     flex-direction: column;
 }
 
-.form-group input{
+.form-group input, .form-group select{
     padding: 10px;
+    margin: 10px 5px;
     background-color: LightGrey;
 }
 
