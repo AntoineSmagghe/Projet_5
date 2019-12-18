@@ -1,17 +1,19 @@
 {% extends 'base.html.twig' %}
-{% block title %}"Editeur d'article pour le Chant de la Machine."{% endblock %}
+{% block title %}Editeur d'article pour le Chant de la Machine.{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/edit_post.css"></link> 
 {% endblock %}
 {% block body %}
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
-    <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-        <button class="btn_del">Supprimer</button>
-    </form>
-    <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="btn_modify">Voir</a>
+    <div class="see_and_delete">
+        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="btn_modify">Voir</a>
+        <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+            <button class="btn_del">Supprimer</button>
+        </form>
+    </div>
     {% endif %}
     {{ form_start(form) }}
         {{ form_row(form.save, {
@@ -29,8 +31,8 @@
                 }) }}
             </div>
         </div>
-        <div id="add_form_field">
-            <a class="btn_modify">Add sound</a>
+        <div id="add_form_field" >
+            <a id="add_sc_btn" class="btn_modify">Add sound</a>
         </div>
         <div class="row">
             <div class="edit_text_content">
@@ -60,11 +62,11 @@
         {% if app.request.attributes.get('_route') == 'editPost' %}
         <div class="">
             <div class="">
-                <p class="">Created at : {{ article.createdAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.user.surname }}</p>
+                <p class="">Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
             </div>
             {% if article.modifiedBy != '' %}
             <div class="">
-                <p class="">Modified at : {{ article.updatedAt|date("H\\hm\\ms\\s \\l\\e d/m/Y", "Europe/Paris") }} by {{ article.modifiedBy.surname }}</p>
+                <p class="">Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
             </div>
             {% endif %}
         </div>
@@ -107,20 +109,10 @@
             .create(document.querySelector('.ckeditor'), {
                 removePlugins: ["ImageUpload", "MediaEmbed"],
             })
-            .then(newEditor =>{
-                editor = newEditor;
-            })
             .catch(error => {
                 console.error(error);
             });
 
-/* essai de remplacer par des br 
-        document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
-            e.preventDefault();
-            const editorData = editor.getData();
-            console.log(editorData);
-        });
-*/
     //ajax request for delete pictures
         let requette = new Requests();
         requette.delPictures();
@@ -145,7 +137,7 @@
 
     //Add Soundcloud Field
         let addInput = new addField(
-            document.getElementById("add_form_field"), 
+            document.getElementById("add_sc_btn"), 
             document.getElementsByClassName("api_data")[0],
             document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
             );

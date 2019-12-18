@@ -41,3 +41,4 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/article/privateEvent, roles: ROLE_MEMBER }
+         - { path: ^/users, roles: ROLE_MEMBER }
