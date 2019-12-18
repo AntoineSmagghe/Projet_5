@@ -103,24 +103,15 @@
     <script src="/js/addField.js"></script>
     <script type="text/javascript">
     //text editor
+        let editor;
         ClassicEditor
             .create(document.querySelector('.ckeditor'), {
                 removePlugins: ["ImageUpload", "MediaEmbed"],
-            })
-            .then(newEditor =>{
-                editor = newEditor;
             })
             .catch(error => {
                 console.error(error);
             });
 
-/* essai de remplacer par des br 
-        document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
-            e.preventDefault();
-            const editorData = editor.getData();
-            console.log(editorData);
-        });
-*/
     //ajax request for delete pictures
         let requette = new Requests();
         requette.delPictures();

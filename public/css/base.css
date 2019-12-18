@@ -260,7 +260,7 @@ a.admin_menu{
 *   CARDS   *
 *************/
 .welcome_card{
-    width: 360px;
+    width: 480px;
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
     background-color: rgba(255,255,255,0.8);
