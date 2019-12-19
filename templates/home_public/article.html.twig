@@ -13,6 +13,7 @@
     {% endif %}
     <div class="article_cover_title">
         <h1>{{ article.title }}</h1>
+        <p class="date_event">Organisé le : {{ article.dateEvent|date("d/m/Y") }}</p>
     </div>
     <section id="article_body">
         {% if is_granted('ROLE_ADMIN') %}
@@ -24,20 +25,18 @@
                 <button class="btn_del">Supprimer</button>
             </form>
         </div>
-        {% endif %}
-        <p class="">Organisé le : {{ article.dateEvent|date("d/m/Y") }}</p>
+        {% endif %}  
         <div class="txt_and_music">
-            <aside>
-                <h2 class="subtitle">Description</h2>
+            <aside id="txt">
                 <p class="">{{ article.text|raw }}</p>
             </aside>
-            <aside>
-                <h2 class="subtitle">Musique</h2>
+            {% if article.apiData != [] %}
+            <aside id="music">
                 <div class="widget_SC"></div>
             </aside>
+            {% endif %}
         </div>
         {% if article.imgs.snapshot != null %}
-            <h2 class="subtitle">Galerie</h2>
             <div class="hes-gallery">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
