@@ -13,18 +13,13 @@
     {% endif %}
     <div class="article_cover_title">
         <h1>{{ article.title }}</h1>
-        <p class="date_event">Organisé le : {{ article.dateEvent|date("d/m/Y") }}</p>
+        <div class="date_event">
+            <p>Organisé le : {{ article.dateEvent|date("d/m/Y") }}</p>
+        </div>
     </div>
     <section id="article_body">
         {% if is_granted('ROLE_ADMIN') %}
-        <div class="see_and_delete">
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
-            <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-                <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-                <button class="btn_del">Supprimer</button>
-            </form>
-        </div>
+        <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
         {% endif %}  
         <div class="txt_and_music">
             <aside id="txt">

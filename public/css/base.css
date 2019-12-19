@@ -263,7 +263,7 @@ a.admin_menu{
     width: 480px;
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
-    background-color: rgba(255,255,255,0.8);
+    background-color: lightgrey;
     animation: scaleBlur 1s ease;
 }
 
@@ -313,47 +313,47 @@ a.admin_menu{
 .buttons{
     display: flex;
     flex-basis: 45%;
-    justify-content: space-between;
+	justify-content: space-between;
+	font-weight: bold;
 }
 
 .buttons a:hover{
-    background-color: var(--grey);
+	background-color: var(--grey);
+	color: white;
+}
+
+.a_btn{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	height: 35px;
+	width: 100px;
+	font-weight: bold;
+    box-shadow: 0 0 2px lightgrey;
+	border-radius: 2px;
+	cursor:pointer;
+}
+
+.a_btn:hover{
+	transform: scale(1.05);
+	color: white;
 }
 
 .btn_more{
     text-align: center;
-    height: 35px;
-    width: 100px;
-    background-color: var(--grey);
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-    color: white;
+    background-color: lightskyblue;
 }
 
 .btn_modify{
     text-align: center;
-    height: 35px;
-    background-color: var(--red);
-    width: 100px;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: white;
+    background-color: var(--white);
 }
 
 .btn_del{
 	text-align: center;
-	height: 35px;
-	width: 100px;
     background-color: red;
-    display: flex;
-    flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	color: white;
 }
 
 /********************

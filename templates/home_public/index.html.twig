@@ -28,9 +28,9 @@
           {% endautoescape %}
           <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="btn_modify">Modifier</a>
+            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn a_btn btn_modify">Modifier</a>
             {% endif %}
-            <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="btn_more">More...</a>
+            <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="a_btn a_btn btn_more">More...</a>
           </div>
         </div>
       </div>

@@ -7,18 +7,18 @@
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
     <div class="see_and_delete">
-        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="btn_modify">Voir</a>
+        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="a_btn btn_modify">Voir</a>
         <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-            <button class="btn_del">Supprimer</button>
+            <button class="a_btn btn_del">Supprimer</button>
         </form>
     </div>
     {% endif %}
     {{ form_start(form) }}
         {{ form_row(form.save, {
             'label': 'Enregistrer',
-            'attr': {'class': 'btn_modify'}
+            'attr': {'class': 'a_btn btn_modify'}
         }) }}
         <div class="row">
             <div class="col-md-2">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div id="add_form_field" >
-            <a id="add_sc_btn" class="btn_modify">Add sound</a>
+            <a id="add_sc_btn" class="a_btn btn_modify">Add sound</a>
         </div>
         <div class="row">
             <div class="edit_text_content">
@@ -90,7 +90,7 @@
         {% for image in article.imgs %}
             <div class="edit_image">
                 <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
+                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">
                     <i class="far fa-trash-alt"></i>
                 </a>
             </div>
