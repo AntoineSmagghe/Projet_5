@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Editeur d'article pour le Chant de la Machine.{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="/css/edit_post.css"></link> 
+<link rel="stylesheet" href="/css/edit_post.css"></link>
+<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
 <section id="edit_post">
@@ -55,19 +56,19 @@
                         'label': false,
                         'attr': {'class': 'url_SC'}
                     })}}
-                    <button class="btn_del_sets fas fa-times" type="button"></button>
+                    <button class="btn_del_sets" type="button">X</button>
                 </li>
                 {% endfor %}
             </ul>
         </div>
         {% if app.request.attributes.get('_route') == 'editPost' %}
-        <div class="">
-            <div class="">
-                <p class="">Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
+        <div id="datetime_article">
+            <div class="onelinetxt">
+                <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
             </div>
             {% if article.modifiedBy != '' %}
-            <div class="">
-                <p class="">Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
+            <div class="onelinetxt">
+                <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
             </div>
             {% endif %}
         </div>
@@ -82,21 +83,20 @@
     {{form_end(form)}}
     {% if app.request.attributes.get('_route') == 'editPost' %}
         {% if article.imgs.snapshot != null %}
-            <h2 class="subtitle">Galerie</h2>
+        <div id="gallery">
+            <div class="hes-gallery">
+            {% for image in article.imgs %}
+                <div class="edit_image">
+                    <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">
+                        <i class="far fa-trash-alt"></i>
+                    </a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
         {% endif %}
     {% endif %}
-    <div id="gallery">
-        <div class="hes-gallery">
-        {% for image in article.imgs %}
-            <div class="edit_image">
-                <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">
-                    <i class="far fa-trash-alt"></i>
-                </a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
 </section>
 {% endblock %}
 {% block javascripts %}

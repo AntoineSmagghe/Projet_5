@@ -4,6 +4,7 @@
 .see_and_delete{
     display: flex;
     justify-content: space-between;
+    margin: 0 5px;
 }
 
 /************
@@ -51,6 +52,14 @@
     flex-basis: 70%;
 }
 
+#datetime_article{
+    margin: 5px;
+}
+
+.onelinetxt{
+    padding: 0 5px;
+}
+
 /************
 *   URL SC  *
 *************/
@@ -79,11 +88,14 @@
 .btn_del_sets{
     font-size: 20px;
     margin: 0 0 0 15px;
+    font-weight: 900;
+    font-family: 'Quicksand', sans-serif;
 }
 
 #add_form_field{
     display:flex;
     justify-content: flex-end;
+    margin: 0 5px 0 0;
 }
 
 .form-group.soundcloud_url{
@@ -118,8 +130,9 @@ label[for="article_imgsFile"]
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    background-color: rgba(0,0,0,0.2);
+    background-color: lightgrey;
     border-radius: 3px;
+    margin: 0 5px;
 }
 
 .edit_image{
