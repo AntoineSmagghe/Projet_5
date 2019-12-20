@@ -39,7 +39,7 @@
                     </li>
                     {% if app.user != null %}
                     <li class="item_menu">
-                        <button class="btn_dropdown_menu">Events <i class="fas fa-angle-down"></i></button>
+                        <button class="btn_dropdown_menu">Events</button>
                         <div class="dropdown_menu">
                             <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">Public</a>
                             <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">Private</a>
@@ -51,7 +51,7 @@
                     </li>
                     {% endif %}
                     <li class="item_menu">
-                        <button class="btn_dropdown_menu">Label <i class="fas fa-angle-down"></i></button>
+                        <button class="btn_dropdown_menu">Label</button>
                         <div class="dropdown_menu">
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
