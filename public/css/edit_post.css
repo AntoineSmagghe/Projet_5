@@ -34,12 +34,11 @@
 }
 
 .login_form{
-    max-width: 500px;
-    margin: 50px auto;
+    max-width: 480px;
+    margin: 100px auto;
     padding: 20px;
-    background-color: lightgrey;
     border-radius: 2px;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 2px black;
 }
 .sf-toolbar-clearer{
     display: none !important;
