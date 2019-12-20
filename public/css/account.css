@@ -1,4 +1,4 @@
-#account_form{
+#account_form, #reset_password{
     max-width: 480px;
     margin: auto;
 }

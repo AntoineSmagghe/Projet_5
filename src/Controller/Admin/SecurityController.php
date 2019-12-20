@@ -5,12 +5,14 @@ namespace App\Controller\Admin;
 use DateTime;
 use App\Entity\Users;
 use App\Form\ResetPasswordType;
+use App\Form\UserIdentityType;
 use App\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -23,7 +25,7 @@ class SecurityController extends AbstractController
     {
         if ($request->get('security.authentication.success')){
             $usr = $security->getUser();
-            dump($usr);
+            dump($usr); 
         }
         
         $error = $authUtils->getLastAuthenticationError();
@@ -72,21 +74,14 @@ class SecurityController extends AbstractController
      */
     public function account(EntityManagerInterface $manager, Request $request)
     {
-        if ($request->getContent() == null){
-            $user = $this->getUser();
-        } else {
-            $user = new Users();
-        }
-        $form = $this->createForm(UsersType::class, $user);
+        $user = $this->getUser();
+        $form = $this->createForm(UserIdentityType::class, $user);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $bcryptPass = password_hash($user->getPassword(), PASSWORD_BCRYPT);
-            $user->setPassword($bcryptPass);
             $manager->persist($user);
             $manager->flush();
             $this->addFlash('success', "Les changements ont bien été enregistrés en base de données.");
-
             return $this->redirectToRoute("account");
         }
 
@@ -97,27 +92,21 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/users/reset-password", name="resetPassword", methods={"POST, "GET"})
+     * @Route("/users/reset-password", name="resetPassword", methods={"POST", "GET"})
      */
-    public function resetPassword(Request $request, EntityManagerInterface $em)
+    public function resetPassword(UserPasswordEncoderInterface $passwordEncoder, Request $request, EntityManagerInterface $em)
     {
         $user = $this->getUser();
         $form = $this->createForm(ResetPasswordType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $passwordEncoder = $this->get('security.password_encoder');
-            $oldPassword = $request->request->get('etiquettebundle_user')['oldPassword'];
-
-            // Si l'ancien mot de passe est bon
-            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
-                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            if ($passwordEncoder->isPasswordValid($user, $request->request->get('reset_password')['oldPassword'])){
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getResetPassword());
                 $user->setPassword($newEncodedPassword);
-
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
-
+                $this->addFlash('success', 'Votre mot de passe à bien été changé !');
                 return $this->redirectToRoute('account');
             } else {
                 $form->addError(new FormError('Ancien mot de passe incorrect'));

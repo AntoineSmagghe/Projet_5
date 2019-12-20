@@ -32,7 +32,7 @@ class UsersType extends AbstractType
                     ]
                 ]
             ])
-            ->add('envoyer', SubmitType::class)
+            ->add('submit', SubmitType::class)
         ;
     }
 

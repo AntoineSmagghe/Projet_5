@@ -57,6 +57,11 @@ class Users implements UserInterface
     public $confirm_password;
 
     /**
+     * 
+     */
+    public $reset_password;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -146,7 +151,18 @@ class Users implements UserInterface
 
         return $this;
     }
+    
+    public function getResetPassword(): string
+    {
+        return (string) $this->reset_password;
+    }
 
+    public function setResetPassword(string $rawPassword): self
+    {
+        $this->reset_password = $rawPassword;
+        
+        return $this;
+    }
     /**
      * @see UserInterface
      */
@@ -160,8 +176,7 @@ class Users implements UserInterface
      */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->reset_password = null;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
