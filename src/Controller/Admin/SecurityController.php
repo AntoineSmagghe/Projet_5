@@ -4,15 +4,11 @@ namespace App\Controller\Admin;
 
 use DateTime;
 use App\Entity\Users;
+use App\Form\ResetPasswordType;
 use App\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -51,24 +47,6 @@ class SecurityController extends AbstractController
     {
         $newUser = new Users();
         $form = $this->createForm(UsersType::class, $newUser);
-        /*
-            ->add('surname', TextType::class)
-            ->add('name', TextType::class)
-            ->add('mail', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('confirm_password', PasswordType::class)
-            ->add('roles', CollectionType::class, [
-                'entry_type' => ChoiceType::class,
-                'entry_options' => [
-                    'choices' => [
-                        'Administrateur' => 'ROLE_ADMIN',
-                        'Membre' => 'ROLE_MEMBRE'
-                    ]
-                ]
-            ])
-            ->add('envoyer', SubmitType::class)
-            ->getForm();
-*/
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,29 +70,19 @@ class SecurityController extends AbstractController
     /**
      * @Route("/users/account", name="account", methods={"POST", "GET"})
      */
-    public function account(EntityManagerInterface $manager, Security $security, Request $request)
+    public function account(EntityManagerInterface $manager, Request $request)
     {
         if ($request->getContent() == null){
-            $user = $security->getUser();
+            $user = $this->getUser();
         } else {
             $user = new Users();
         }
         $form = $this->createForm(UsersType::class, $user);
-        /*
-            ->add('surname', TextType::class)
-            ->add('name', TextType::class)
-            ->add('mail', EmailType::class)
-            ->add('password', PasswordType::class)
-            ->add('confirm_password', PasswordType::class)
-            ->add('envoyer', SubmitType::class)
-            ->getForm();
-*/
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $bcryptPass = password_hash($user->getPassword(), PASSWORD_BCRYPT);
             $user->setPassword($bcryptPass);
-
             $manager->persist($user);
             $manager->flush();
             $this->addFlash('success', "Les changements ont bien été enregistrés en base de données.");
@@ -123,8 +91,41 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('users/account.html.twig', [
-            'user' => $security->getUser(),
+            'user' => $this->getUser(),
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/users/reset-password", name="resetPassword", methods={"POST, "GET"})
+     */
+    public function resetPassword(Request $request, EntityManagerInterface $em)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(ResetPasswordType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $passwordEncoder = $this->get('security.password_encoder');
+            $oldPassword = $request->request->get('etiquettebundle_user')['oldPassword'];
+
+            // Si l'ancien mot de passe est bon
+            if ($passwordEncoder->isPasswordValid($user, $oldPassword)) {
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($newEncodedPassword);
+
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('notice', 'Votre mot de passe à bien été changé !');
+
+                return $this->redirectToRoute('account');
+            } else {
+                $form->addError(new FormError('Ancien mot de passe incorrect'));
+            }
+        }
+
+        return $this->render('users/reset_password.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }
