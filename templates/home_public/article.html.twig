@@ -21,16 +21,15 @@
         {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
         {% endif %}  
-        <div class="txt_and_music">
-            <aside id="txt">
-                <p class="">{{ article.text|raw }}</p>
-            </aside>
-            {% if article.apiData != [] %}
-            <aside id="music">
-                <div class="widget_SC"></div>
-            </aside>
-            {% endif %}
-        </div>
+        {% if article.apiData != [] %}
+        <aside id="music">
+            <div class="widget_SC"></div>
+        </aside>
+        {% endif %}
+        <article id="txt">
+            <h2>{{ article.title }}</h2>
+            {{ article.text|raw }}
+        </article>
         {% if article.imgs.snapshot != null %}
             <div class="hes-gallery">
             {% for image in article.imgs %}
@@ -78,5 +77,4 @@
     SC.resolve(track_url).then(getComments).then(listComments)
 */
 </script>
-
 {% endblock %}

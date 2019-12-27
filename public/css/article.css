@@ -31,7 +31,7 @@
 
 .date_event{
     max-width: 1500px;
-    margin: 20px auto 0 auto;
+    margin: 30px auto 0 auto;
 }
 
 .date_event p{
@@ -48,7 +48,7 @@
 #article_body{
     max-width: 1500px;
     padding: 2rem;
-    margin: -200px auto 0 auto;
+    margin: -200px auto 0 auto; 
 }
 
 /************
@@ -64,49 +64,47 @@
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    background-color: lightgrey;
-    box-shadow: 0 0 2px lightgrey;
     border-radius: 3px;
 }
 
 .hes-gallery img{
     width: 200px;
     height: 150px;
-    margin: 10px;
+    margin: 10px 5px;
     box-shadow: 0 0 2px black;
 }
 
 /****************
 *    ASIDE ELT  *
 *****************/
-.txt_and_music{
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-}
-
-.txt_and_music aside{
-    flex-basis: 50%;
-}
-
-.txt_and_music aside p{
+article {
     text-align: justify;
 }
 
 #music{
     position: relative;
     top: -700px;
+    width: 500px;
     display: inline-table;
+    float: right;
 }
 
 #txt{
-    margin: 50px 0;
-    background-color: lightgrey;
-    box-shadow: 0 0 2px lightgrey;
-    padding: 10px;
+    margin: 50px auto;
+    max-width: 900px;
+    background-color: white;
+    box-shadow: 0 0 5px white;
+    padding: 20px;
     border-radius: 2px;
     font-size: 1.1rem;
     line-height: 150%;
+}
+
+#txt h2{
+    font-weight: bolder;
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0 50px 0;
 }
 
 .widget_SC{

@@ -129,7 +129,6 @@ label[for="article_imgsFile"]
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    background-color: lightgrey;
     border-radius: 3px;
     margin: 0 5px;
 }

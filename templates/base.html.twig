@@ -2,7 +2,9 @@
 <html lang="fr-FR">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}{% endblock %}</title>
+
         <!-- FAVICONS -->
         <link rel="apple-touch-icon" sizes="57x57" href="/img/favicons/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/img/favicons/apple-icon-60x60.png">
@@ -18,11 +20,10 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/img/favicons/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="/css/base.css">
-        <link rel="stylesheet" href="/css/keyframes.css">
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/ef657a2258.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/keyframes.css">
         {% block header %}{% endblock %}
         {% block style %}{% endblock %}
     </head>
