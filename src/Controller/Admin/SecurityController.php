@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use DateTime;
 use App\Entity\Users;
+use App\Form\ResetMailType;
 use App\Form\ResetPasswordType;
 use App\Form\UserIdentityType;
 use App\Form\UsersType;
@@ -113,8 +114,27 @@ class SecurityController extends AbstractController
             }
         }
 
-        return $this->render('users/reset_password.html.twig', array(
+        return $this->render('users/reset_password.html.twig', [
             'form' => $form->createView(),
-        ));
+        ]);
+    }
+
+    /**
+     * @Route("users/reset-email", name="resetMail", methods={"POST", "GET"})
+     */
+    public function resetMail(Request $request, EntityManagerInterface $manager)
+    {
+        $user = $this->getUser();
+        $form = $this->createForm(ResetMailType::class, $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+            $manager->persist($user);
+            $manager->flush();
+            $this->addFlash('success', 'Votre adresse mail a bien été changée !');
+            return $this->redirectToRoute('account');
+        }
+        return $this->render('users/reset_mail.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

@@ -4,33 +4,29 @@ namespace App\Form;
 
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ResetPasswordType extends AbstractType
+class ResetMailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('oldPassword', PasswordType::class, [
-                'mapped' => false
-            ])
-            ->add('reset_password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'Les deux mots de passe doivent être identiques',
+            ->add('mail', RepeatedType::class,[
+                'type' => EmailType::class,
+                'invalid_message' => "Les deux adresses ne correspondent pas.",
                 'options' => [
                     'attr' => [
-                        'class' => 'password-field'
+                        'class' => 'field_class'
                     ]
                 ],
-                'required' => true,
-                'first_options'  => ['label' => 'Nouveau mot de passe'],
-                'second_options' => ['label' => 'Répétez le mot de passe'],
+                'first_options'  => ['label' => 'Nouvelle adresse'],
+                'second_options' => ['label' => "Répétez l'adresse"],
             ])
-            ->add('submit', SubmitType::class)            
+            ->add('submit', SubmitType::class)
         ;
     }
 

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/edit_post.css"></link>
+<link rel="stylesheet" href="/css/account.css"></link>
+{% endblock %}
+{% block body %}
+<section id="reset_mail" class="form-group">
+<h1 class="subtitle">Changement d'adresse mail</h1>
+{{ form_start(form) }}
+    {{ form_row(form.mail, {'label': 'Tappez deux fois'})}}
+    {{ form_row(form.submit, {'attr': {'class': 'a_btn btn_modify'}})}}
+{{ form_end(form) }}
+</section>
+{% endblock %}

@@ -1,4 +1,4 @@
-#account_form, #reset_password, #sigin_form{
+#account_form, #reset_password, #sigin_form, #reset_mail{
     max-width: 480px;
     margin: 100px auto 0 auto;
 }
