@@ -115,7 +115,6 @@ class Img
     }
 
     /**
-     * 
      * @param Collection|Article
      */    
     public function addArticle(Article $article): self

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
@@ -88,6 +89,18 @@ class Article
      * })
      */
     private $api_data = [];
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Img", cascade={"persist", "remove"})
+     */
+    private $cover;
+
+    /**
+     * Assert\All({
+     *      @Assert\Image(mimeTypes="image/")
+     * })
+     */
+    private $coverFile;
 
     public function __construct()
     {
@@ -260,6 +273,31 @@ class Article
     {
         $this->api_data = $api_data;
 
+        return $this;
+    }
+
+    public function getCover(): ?Img
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Img $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getCoverFile(): ?UploadedFile
+    {
+        return $this->coverFile;
+    }
+
+    public function setCoverFile($cover): self
+    {
+        $image = new Img();
+        $image->setImgData($cover);
+        $this->setCover($image);
         return $this;
     }
 }

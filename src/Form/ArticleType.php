@@ -35,6 +35,9 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'required' => false,
             ])
+            ->add('coverFile', FileType::class, [
+                'required' => false,
+            ])
             ->add('api_data', CollectionType::class, [
                 'allow_delete' => true,
                 'delete_empty' => true,
