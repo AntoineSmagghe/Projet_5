@@ -1,12 +1,15 @@
 
 class Requests
 {
+    //Change the cover image
+    changeCover()
+    {
+    }
+
     //Record Article
     saveArticle()
     {
         document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
-            e.preventDefault();
-            console.log(e);
             fetch(e.target.action, {
                 method: 'POST',
                 headers: {

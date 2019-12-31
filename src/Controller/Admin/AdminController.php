@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
+use App\Repository\ArticleRepository;
+use App\Repository\ImgRepository;
 use DateTime;
 use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,10 +32,13 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
                 
         if ($form->isSubmitted() && $form->isValid()){
+            $now = new DateTime("now", new DateTimeZone("europe/rome"));
             $article->setUser($security->getUser())
-                    ->setUpdatedAt(new DateTime('now'));
+                    ->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
+            $n = $now->format('d/m/Y à H:i:s');
+            $this->addFlash("success", 'Article crée le ' . $n);
                         
             return $this->redirectToRoute('article', [
                 'format' => $article->getFormat(),
@@ -56,14 +61,13 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+            $now = new DateTime("now", new DateTimeZone("europe/rome"));
             $article->setModifiedBy($security->getUser())
-                    ->setUpdatedAt(new DateTime("now"));
+                    ->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
             
-            $now = new DateTime("now", new DateTimeZone("europe/rome"));
             $n = $now->format('d/m/Y à H:i:s');
-
             $this->addFlash("success", 'Article enregistré le ' . $n);
             
             /*
@@ -110,5 +114,31 @@ class AdminController extends AbstractController
             }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);
+    }
+
+    /**
+     * @Route("/test/make-cover", name="makeCover", methods={"POST"})
+     */
+    public function makeCoverImage(Request $request, EntityManagerInterface $em, ImgRepository $image)
+    {
+        $imgId = json_decode($request->getContent(), true);
+        try{
+            $imagesOfArticles = $image->findByArticleId([$imgId["articleId"]]);
+/*
+            $newCover = $image->find((int)$imgId["pictureId"]);
+            
+            foreach($imagesOfArticles as $imageOfArticle){
+                $imageOfArticle->setCover(false);
+            }
+
+            $newCover->setCover(true);
+            
+            $em->persist($newCover);
+            $em->flush();
+*/
+            return new JsonResponse(['success' => true]);
+        }catch(Exception $e){
+            return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.'], 500);
+        }
     }
 }

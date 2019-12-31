@@ -89,13 +89,6 @@ class Article
      */
     private $api_data = [];
 
-    /**
-     * Assert\All({
-     *      @Assert\Image(mimeTypes="image/")
-     * })
-     */
-    private $coverFile;
-
     public function __construct()
     {
         $this->created_at = new DateTime();

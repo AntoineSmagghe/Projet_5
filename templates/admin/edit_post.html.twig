@@ -88,9 +88,9 @@
             {% for image in article.imgs %}
                 <div class="edit_image">
                     <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
+                    {#<a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">X</a>#}
+                    <label for="Image {{image.id}}"></label>
+                    <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
                 </div>
             {% endfor %}
             </div>
@@ -105,6 +105,25 @@
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
     <script src="/js/addField.js"></script>
     <script type="text/javascript">
+
+    //Input change for select cover image
+        const inputsCover = document.getElementsByTagName("input");
+        for (let i in inputsCover){
+            if (inputsCover[i].type === "radio"){
+                inputsCover[i].addEventListener("change", (e)=>{
+                    let pictureId = JSON.stringify({"pictureId": e.target.value, "articleId": {{ article.id }} });
+                    let req = new Request("{{ path('makeCover') }}", { method: 'POST', body: pictureId });               
+                    fetch(req)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+                    .catch(e => console.error(e));
+                });
+            }
+        }
+        
+
     //text editor
         let editor;
         ClassicEditor
@@ -116,8 +135,8 @@
             });
 
     //ajax request for delete pictures
-        let requette = new Requests();
-        requette.delPictures();
+        let request = new Requests();
+        request.delPictures();
 
         ((document)=>{
             const input = document.getElementById("article_imgsFile");
