@@ -297,6 +297,7 @@ class Article
     {
         $image = new Img();
         $image->setImgData($cover);
+        $image->setCover(true);
         $this->setCover($image);
         return $this;
     }

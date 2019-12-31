@@ -48,10 +48,16 @@ class Img
      */
     private $article;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $cover;
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
         $this->uploaded_at = new DateTime('now');
+        $this->cover = false;
     }
 
     public function __toString()
@@ -131,6 +137,18 @@ class Img
         if ($this->article->contains($article)) {
             $this->article->removeElement($article);
         }
+
+        return $this;
+    }
+
+    public function getCover(): bool
+    {
+        return $this->cover;
+    }
+
+    public function setCover(bool $bool): self
+    {
+        $this->cover = $bool;
 
         return $this;
     }
