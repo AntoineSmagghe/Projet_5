@@ -394,3 +394,23 @@ a.admin_menu{
 	background-color: red;
     font-weight: bold;
 }
+
+footer{
+	width: 100%;
+	margin: 50px 0 0 0;
+	padding: 20px 0;
+	background-color: var(--blue);
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.footer_card{
+	height: 150px;
+	width: 200px;
+	padding: 20px;
+	margin: 30px 10px;
+	background-color: rgba(255,255,255,0.1);
+	color: white;
+	border-radius: 3px;
+}
