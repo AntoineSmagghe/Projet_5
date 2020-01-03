@@ -5,6 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
+<div class="underNav"></div>
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
     <div class="see_and_delete">
@@ -88,7 +89,7 @@
             {% for image in article.imgs %}
                 <div class="edit_image">
                     <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                    {#<a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">X</a>#}
+                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">X</a>
                     <label for="Image {{image.id}}"></label>
                     <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
                 </div>

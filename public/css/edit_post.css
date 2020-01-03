@@ -1,3 +1,10 @@
+.underNav{
+    height: 100px;
+    width: 100%;
+    position: relative;
+    top: 0;
+}
+
 /************
 *   BUTTON  *
 *************/
@@ -118,6 +125,9 @@ label[for="article_imgsFile"]
     background-color: var(--grey);
     color: white;
     cursor: pointer;
+}
+
+input[name="cover"]{
 }
 
 /************

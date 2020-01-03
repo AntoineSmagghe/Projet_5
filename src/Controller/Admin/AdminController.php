@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Article;
 use App\Entity\Img;
 use App\Form\ArticleType;
-use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use DateTime;
 use DateTimeZone;
@@ -123,22 +122,19 @@ class AdminController extends AbstractController
     {
         $imgId = json_decode($request->getContent(), true);
         try{
-            $imagesOfArticles = $image->findByArticleId([$imgId["articleId"]]);
-/*
+            $conn = $em->getConnection();
+            $sql = 'UPDATE cdlmdb.img SET cover = false WHERE article_id = :id';
+            $stmt = $conn->prepare($sql);
+            $stmt->execute(["id" => $imgId["articleId"]]);
+            
             $newCover = $image->find((int)$imgId["pictureId"]);
-            
-            foreach($imagesOfArticles as $imageOfArticle){
-                $imageOfArticle->setCover(false);
-            }
-
             $newCover->setCover(true);
-            
             $em->persist($newCover);
             $em->flush();
-*/
+            
             return new JsonResponse(['success' => true]);
         }catch(Exception $e){
-            return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.'], 500);
+            return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.' . $e], 500);
         }
     }
 }
