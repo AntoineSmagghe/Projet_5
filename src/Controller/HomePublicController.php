@@ -35,7 +35,6 @@ class HomePublicController extends AbstractController
     {
         if ($this->security->getUser() !== null) {
             $articles = $this->article->findAllDESC();
-
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
@@ -71,9 +70,10 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-                
+        $imageCover = $this->imgRepo->findBy(["cover" => true, "article" => $request->get('id')]);
         return $this->render('home_public/article.html.twig', [
             'article' => $res,
+            'cover' => $imageCover,
         ]);
     }
 }
