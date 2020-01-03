@@ -15,7 +15,6 @@ class HomePublicController extends AbstractController
     
     private $users;
     private $article;
-    private $em;
     private $security;
     private $imgRepo;
     
