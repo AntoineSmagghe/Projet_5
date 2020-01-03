@@ -95,17 +95,19 @@ header{
 }
 
 nav{
-	position: sticky;
-	height: 100px;
-	max-width: 1500px;
-	padding: 0 2rem;
+	position: fixed;
+    height: 100px;
+    width: calc(100% - 4rem);
+    max-width: 1500px;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 1.12rem;
-	font-weight: bold;
-	z-index: 5;
+    font-weight: bold;
+    z-index: 5;
     margin: auto;
+	opacity: 0.8;
 }
 
 #logo_header{
@@ -187,6 +189,7 @@ nav ul{
 	padding: 10px;
 	right: 10px;
 	top: 110px;
+	opacity: 1;
 }
 
 .sign_in_form .btn_more{
