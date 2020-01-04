@@ -55,25 +55,6 @@
 *   BUTTON  *
 *************/
 
-/************
-*   GALLERY *
-*************/
-.hes-gallery{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    border-radius: 3px;
-}
-
-.hes-gallery img{
-    width: 200px;
-    height: 150px;
-    margin: 10px 5px;
-    box-shadow: 0 0 2px black;
-}
-
 /****************
 *    ASIDE ELT  *
 *****************/

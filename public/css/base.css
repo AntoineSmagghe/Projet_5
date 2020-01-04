@@ -18,7 +18,9 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
-	background-color: whitesmoke;
+	background: url("/img/18556493_10158695312680298_6402872989759344248_o.jpg");
+	background-size: cover;
+	/*background-image: linear-gradient(to bottom, var(--grey), transparent);*/
 }
 
 ol, ul {
@@ -90,10 +92,6 @@ img{
 /************
 *	NAVBAR	*
 *************/
-header{
-	background-color: var(--blue);
-}
-
 nav{
 	position: fixed;
     height: 100px;
@@ -215,6 +213,7 @@ a.admin_menu{
 	color: var(--blue);
 	text-align: center;
 	font-size: 1.2rem;
+	transition: .5s ease;
 }
 
 .admin_menu:hover{
@@ -310,6 +309,32 @@ a.admin_menu{
 }
 
 /************
+*	GALLERY	*
+*************/
+.hes-gallery{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    border-radius: 3px;
+}
+
+.hes-gallery img{
+	width: 200px;
+	height: 150px;
+	margin: 10px 5px;
+	box-shadow: 0 0 2px black;
+	transition: .5s ease;
+	filter: sepia(50%);
+}
+
+.hes-gallery img:hover{
+	transform: translateY(-5px);
+	filter: inherit;
+}
+
+/************
 *   BUTTON  *
 *************/
 .buttons{
@@ -336,6 +361,7 @@ a.admin_menu{
     box-shadow: 0 0 2px lightgrey;
 	border-radius: 2px;
 	cursor:pointer;
+	transition: .3s ease;
 }
 
 .a_btn:hover{

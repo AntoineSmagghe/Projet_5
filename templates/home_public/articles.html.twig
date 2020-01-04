@@ -1,43 +1,47 @@
 {% extends 'base.html.twig' %}
-
+{% block style %}
+<link rel="stylesheet" href="/css/articles.css">
+{% endblock %}
 {% block body %}
-<div>
-{% if format == 'news' %}
-  <h1 class="part_title">Les news du chant</h1>
-{% elseif format == 'publicEvent' %}
-  <h1 class="part_title">Les évènements</h1>
-{% elseif format == 'privateEvent' %}
-  <h1 class="part_title">Les évènements privés</h1>
-{% elseif format == 'releases' %}
-  <h1 class="part_title">Les dernières sorties</h1>
-{% endif %}
-</div>
+<section id="articles">
+  <div>
+  {% if format == 'news' %}
+    <h1 class="part_title">Les news du chant</h1>
+  {% elseif format == 'publicEvent' %}
+    <h1 class="part_title">Les évènements</h1>
+  {% elseif format == 'privateEvent' %}
+    <h1 class="part_title">Les évènements privés</h1>
+  {% elseif format == 'releases' %}
+    <h1 class="part_title">Les dernières sorties</h1>
+  {% endif %}
+  </div>
+  <div id="welcome_cards">
+  {% for article in articles %}
+    <div class="welcome_card">
+      <div class="in_card_welcome">
+        <div class="col_wel_img">
 
-<div id="welcome_cards">
-{% for article in articles %}
-  <div class="welcome_card">
-    <div class="in_card_welcome">
-      <div class="col_wel_img">
-        {% if article.imgs|first == "" %}
-        <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
-        {% else %}
-        <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
-        {% endif %}
-      </div>
-      <div class="col_wel_txt">
-        <div class="col_wel_txt_body">
-          <h5>{{ article.title }}</h5>
-          <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,350) }} ...</p>
-          <div class="buttons">
-            <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="a_btn a_btn btn_more">More...</a>
-            {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
-            {% endif %}
+          {% if article.imgs|first == "" %}
+          <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+          {% else %}
+          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
+          {% endif %}
+        </div>
+        <div class="col_wel_txt">
+          <div class="col_wel_txt_body">
+            <h5>{{ article.title }}</h5>
+            <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,350) }} ...</p>
+            <div class="buttons">
+              <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="a_btn a_btn btn_more">More...</a>
+              {% if is_granted('ROLE_ADMIN') %}
+              <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
     </div>
+  {% endfor %}
   </div>
-{% endfor %}
-</div>
+</section>
 {% endblock %}

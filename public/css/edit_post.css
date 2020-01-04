@@ -134,12 +134,6 @@ input[name="cover"]{
 *   GALLERY *
 *************/
 .hes-gallery{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    border-radius: 3px;
     margin: 0 5px;
 }
 
