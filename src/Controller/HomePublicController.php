@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Img;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
@@ -37,9 +38,11 @@ class HomePublicController extends AbstractController
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
+        $covers = $this->getCovers($articles);
         
         return $this->render('home_public/index.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'covers' => $covers,
         ]);
     }
 
@@ -51,15 +54,19 @@ class HomePublicController extends AbstractController
         $format = $request->get('format');
         $articles = $this->article->findAllByformat($format);
 
+        $covers = $this->getCovers($articles);
+
         if ($format == 'members'){
             return $this->render('home_public/members.html.twig', [
                 'members' => $articles,
+                'covers' => $covers,
             ]);
         }
 
         return $this->render('home_public/articles.html.twig', [
             'articles' => $articles,
-            'format' => $format
+            'format' => $format,
+            'covers' => $covers,
         ]);
     }
     
@@ -69,10 +76,31 @@ class HomePublicController extends AbstractController
     public function article(Request $request)
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
-        $imageCover = $this->imgRepo->findBy(["cover" => true, "article" => $request->get('id')]);
+        $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $request->get('id')]);
         return $this->render('home_public/article.html.twig', [
             'article' => $res,
             'cover' => $imageCover,
         ]);
+    }
+
+    private function getCovers($articles)
+    {
+        $covers = [];
+        for($i=0; $i < count($articles); $i++){
+            $cover = $this->imgRepo->findOneBy([
+                "cover" => true, 
+                "article" => $articles[$i]->getId()
+                ]);
+
+            if ($cover != null){
+                $cover = $cover->getName();
+                $covers[$i] = [
+                    "idArticle" => $articles[$i]->getId(),
+                    "covername" => $cover,
+                ];
+            }
+        }
+        
+        return $covers;
     }
 }

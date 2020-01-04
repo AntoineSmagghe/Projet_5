@@ -20,12 +20,23 @@
     <div class="welcome_card">
       <div class="in_card_welcome">
         <div class="col_wel_img">
+        {% if covers != [] %}
+          {% for cover in covers %}
+            {% if cover.idArticle == article.id %}
+            <img src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l'article : {{ article.title }}">    
+            {% elseif article.imgs|first != "" %}
+            <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
+            {% else %}
+            <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+            {% endif %}
+          {% endfor %}
 
-          {% if article.imgs|first == "" %}
-          <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
-          {% else %}
-          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
-          {% endif %}
+        {% elseif article.imgs|first != "" %}
+        <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
+        {% else %}
+        <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+        {% endif %}
+        
         </div>
         <div class="col_wel_txt">
           <div class="col_wel_txt_body">

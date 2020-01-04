@@ -8,8 +8,7 @@
 {% block body %}
     {% if article.imgs.snapshot != [] %}
         {% if cover != null %}
-        {% set covername = cover|first %}
-        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ covername.name ) }}" alt="Photo de l'article : {{article.title}}" >
+        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="Photo de l'article : {{article.title}}" >
         {% else %}
         <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="Photo de l'article : {{article.title}}" >
         {% endif %}

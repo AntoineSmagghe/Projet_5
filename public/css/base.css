@@ -18,9 +18,8 @@ footer, header, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
-	background: url("/img/18556493_10158695312680298_6402872989759344248_o.jpg");
+	background: url("/img/18556493_10158695312680298_6402872989759344248_o.jpg") center;
 	background-size: cover;
-	/*background-image: linear-gradient(to bottom, var(--grey), transparent);*/
 }
 
 ol, ul {
@@ -104,7 +103,9 @@ nav{
     font-size: 1.12rem;
     font-weight: bold;
     z-index: 5;
-    margin: auto;
+	margin: auto;
+	background-color: rgba(0,0,0,0.4);
+    box-shadow: 0 0 5px rgba(0,0,0,0.7);
 }
 
 #logo_header{
@@ -423,11 +424,13 @@ a.admin_menu{
     font-weight: bold;
 }
 
+/************
+*	FOOTER	*
+*************/
 footer{
 	width: 100%;
 	margin: 50px 0 0 0;
 	padding: 20px 0;
-	background-color: var(--blue);
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
@@ -438,7 +441,7 @@ footer{
 	width: 200px;
 	padding: 20px;
 	margin: 30px 10px;
-	background-color: rgba(255,255,255,0.1);
+	background-color: rgba(255,255,255,0.2);
 	color: white;
 	border-radius: 3px;
 }
