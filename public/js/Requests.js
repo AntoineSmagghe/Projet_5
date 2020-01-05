@@ -1,11 +1,6 @@
 
 class Requests
 {
-    //Change the cover image
-    changeCover()
-    {
-    }
-
     //Record Article
     saveArticle()
     {
@@ -27,8 +22,8 @@ class Requests
     //Delete pictures
     delPictures()
     {
-        document.querySelectorAll('[data-delete]').forEach(a => {
-            a.addEventListener('click', e => {
+        document.querySelectorAll('[data-delete]').forEach((a) => {
+            a.addEventListener('click', (e) => {
                 e.preventDefault()
                 fetch(a.getAttribute('href'), {
                     method: 'DELETE',
@@ -41,12 +36,12 @@ class Requests
                 .then(response => response.json())
                 .then(data => {
                     if(data.success){
-                        a.parentNode.parentNode.removeChild(a.parentNode);
+                        document.getElementsByName(data.idImg)[0].remove();
                     }else{
                         alert(data.error);
                     }
                 })
-                .catch(e => alert(e));
+                .catch((e) => alert(e));
             })
         })
     }

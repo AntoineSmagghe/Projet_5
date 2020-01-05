@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 {% block header %}{% endblock %}
-{% block style %}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/membres.css">
+{% endblock %}
 {% block body %}
-<h1 class="part_title">Les membres du chant</h1>
 <div id="article_members">
+<h1 class="part_title">Les membres du chant</h1>
 {% for member in members %}
     {% if member.imgs|first == "" %}
     <img src="/img/CDLM_logo.svg" class="member_img" alt="Photo de l'artiste : {{ member.title }}">

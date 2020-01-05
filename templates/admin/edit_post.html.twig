@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
-<div class="underNav"></div>
+<div class="undernav"></div>
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
     <div class="see_and_delete">
@@ -87,12 +87,14 @@
         <div id="gallery">
             <div class="hes-gallery">
             {% for image in article.imgs %}
-                <div class="edit_image">
+                <figure class="edit_image" name="{{image.id}}">
                     <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                    <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="a_btn btn_del_pictures">X</a>
-                    <label for="Image {{image.id}}"></label>
-                    <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
-                </div>
+                    <figcaptation class="action_image">
+                        <label for="Image {{image.id}}"></label>
+                        <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
+                        <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">X</a>
+                    </figcaptation>
+                </figure>
             {% endfor %}
             </div>
         </div>
@@ -139,11 +141,10 @@
         let request = new Requests();
         request.delPictures();
 
+    //Replace the real filename in the input download field.
         ((document)=>{
             const input = document.getElementById("article_imgsFile");
             const placeholder = input.parentElement.querySelector(".custom-file-label");
-            HesGallery.init();
-
             input.addEventListener("change", ()=>{
                     let value = input.value.replace('C:\\fakepath\\', '').trim();
                     placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
@@ -151,6 +152,7 @@
         })(document);
 
     //Gallery photo
+        HesGallery.init();
         HesGallery.setOptions({
             wrapAround: true,
             disableScrolling: true,

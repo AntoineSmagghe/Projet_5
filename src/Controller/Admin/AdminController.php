@@ -102,12 +102,13 @@ class AdminController extends AbstractController
     public function delImg(Img $image, Request $request, EntityManagerInterface $em)
     {
         $data = json_decode($request->getContent(), true);
-        if ($this->isCsrfTokenValid('delete.picture' . $image->getId(), $data['_token']))
+        $idImg = $image->getId();
+        if ($this->isCsrfTokenValid('delete.picture' . $idImg, $data['_token']))
         {
             try{
                 $em->remove($image);
                 $em->flush();
-                return new JsonResponse(['success' => 1]);
+                return new JsonResponse(['success' => 1, 'idImg' => $idImg], 200);
             }catch(Exception $e){
                 return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.'], 500);
             }
@@ -116,7 +117,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/test/make-cover", name="makeCover", methods={"POST"})
+     * @Route("/admin/make-cover", name="makeCover", methods={"POST"})
      */
     public function makeCoverImage(Request $request, EntityManagerInterface $em, ImgRepository $image)
     {
