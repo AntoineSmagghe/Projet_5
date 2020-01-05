@@ -103,4 +103,10 @@ article {
     background-color: var(--blue);
     opacity: 0.9;
     border-radius: 2px;
+    transition: .5s ease;
+}
+
+.widget_SC iframe:hover{
+    width: 150%;
+    transform: translateX(-270px);
 }

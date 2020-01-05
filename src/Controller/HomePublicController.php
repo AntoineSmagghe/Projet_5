@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Img;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
@@ -38,8 +37,10 @@ class HomePublicController extends AbstractController
         } else {
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
+
         $covers = $this->getCovers($articles);
-        
+
+        dump($covers);        
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,
             'covers' => $covers,

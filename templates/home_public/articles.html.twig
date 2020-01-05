@@ -20,23 +20,22 @@
     <div class="welcome_card">
       <div class="in_card_welcome">
         <div class="col_wel_img">
+        {% set hasCover = false %}
         {% if covers != [] %}
           {% for cover in covers %}
             {% if cover.idArticle == article.id %}
-            <img src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l'article : {{ article.title }}">    
-            {% elseif article.imgs|first != "" %}
-            <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
-            {% else %}
-            <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+              <img src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l\'article : {{ article.title }}">
+              {% set hasCover = true %}
             {% endif %}
           {% endfor %}
-
-        {% elseif article.imgs|first != "" %}
-        <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
-        {% else %}
-        <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
         {% endif %}
-        
+        {% if hasCover == false %}
+          {% if article.imgs|first != "" %}
+          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
+          {% else %}
+          <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+          {% endif %}
+        {% endif %}
         </div>
         <div class="col_wel_txt">
           <div class="col_wel_txt_body">
