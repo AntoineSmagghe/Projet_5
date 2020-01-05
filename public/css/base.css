@@ -46,7 +46,6 @@ a{
 
 a:hover{
 	text-decoration: none;
-	color: inherit;
 }
 
 button{
@@ -126,9 +125,19 @@ nav ul{
 	align-items: center;
 }
 
+.item_menu{
+	transition: .2s ease;
+}
+
+.item_menu:hover{
+	background-color: rgba(255,255,255,0.3);
+	color: blue;
+}
+
 .item_menu a, .item_menu button{
 	display: block;
 	padding: 2.3rem;
+	font-weight: bolder;
 }
 
 .item_menu img{
@@ -148,13 +157,15 @@ nav ul{
 
 .dropdown_menu{
 	display: none;
-	margin-top: -100px;
 	flex-direction: column;
 }
 
 .dropdown_menu a{
 	display: block;
-	background-color: gray;
+}
+
+.link_dropdown_menu:hover{
+	background-color: rgba(255,255,255,0.3);
 }
 
 .item_menu:last-child .dropdown_menu:last-child{
