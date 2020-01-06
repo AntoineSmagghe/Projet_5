@@ -406,7 +406,7 @@ a.admin_menu{
 	height: 35px;
 	width: 100px;
 	font-weight: bold;
-    box-shadow: 0 0 2px lightgrey;
+    box-shadow: 0 0 2px black;
 	border-radius: 2px;
 	cursor:pointer;
 	transition: .3s ease;
@@ -415,6 +415,7 @@ a.admin_menu{
 .a_btn:hover{
 	transform: scale(1.05);
 	color: white;
+	box-shadow: initial;
 }
 
 .btn_more{
