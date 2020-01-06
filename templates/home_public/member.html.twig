@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block header %}{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/label.css">
+{% endblock %}
+{% block body %}
+<section id="member">
+    <aside id="member_picture">
+        <figure>
+            {% if article.imgs.snapshot != [] %}
+                {% if cover != null %}
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="Photo de l'article : {{article.title}}" >
+                {% else %}
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="Photo de l'article : {{article.title}}" >
+                {% endif %}
+            {% else %}
+            <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+            {% endif %}
+            <figcaption>
+            <a href="mailto:cdlm-free@gmail.com" class="a_btn btn_more">Booking</a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+            {% endif %}
+            </figcaption>
+        </figure>
+    </aside>
+    <article id="member_text_soundcloud">
+        <h1>{{article.title}}</h1>
+        <div class="text">{{article.text|raw}}</div>
+        <h2>Sets</h2>
+        <div class="widget_SC"></div>
+        {% if article.imgs.snapshot != null %}
+            <h2>Images</h2>
+            <div class="hes-gallery member_images">
+            {% for image in article.imgs %}
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+            {% endfor %}
+            </div>
+        {% endif %}
+    </article>
+</section>
+{% endblock %}
+{% block javascripts %}
+<script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
+<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+<script type="text/javascript">
+    SC.initialize({
+            client_id: 'Vu5tlmvC9eCLFZkxXG32N1yQMfDSAPAA'
+        });
+
+        {% for sound in article.apiData %}
+            SC.resolve(" {{sound}} ")
+                .then((track)=>{
+                    document.getElementsByClassName("widget_SC")[0].insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
+            });
+        {% endfor %}
+</script>
+{% endblock %}

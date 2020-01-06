@@ -146,6 +146,14 @@ input[name="cover"]{
     transition: .5s ease;
 }
 
+.edit_image:first-child{
+    padding: .75rem .75rem .75rem 0;
+}
+
+.edit_image:last-child{
+    padding: .75rem 0 .75rem .74rem;
+}
+
 .edit_image img{
     width: 200px;
     height: 150px;

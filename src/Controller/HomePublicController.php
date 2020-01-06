@@ -78,6 +78,14 @@ class HomePublicController extends AbstractController
     {
         $res = $this->article->findOneBy(['id' => $request->get('id')]);
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $request->get('id')]);
+
+        if ($res->getFormat() === "members"){
+            return $this->render('home_public/member.html.twig', [
+                'article' => $res,
+                'cover' => $imageCover,
+            ]);
+        }
+        
         return $this->render('home_public/article.html.twig', [
             'article' => $res,
             'cover' => $imageCover,

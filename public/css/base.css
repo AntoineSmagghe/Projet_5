@@ -362,7 +362,7 @@ a.admin_menu{
 .hes-gallery{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 3px;
@@ -419,7 +419,7 @@ a.admin_menu{
 
 .btn_more{
     text-align: center;
-    background-color: lightskyblue;
+    background-color: #3498db;
 }
 
 .btn_modify{
@@ -437,25 +437,25 @@ a.admin_menu{
 *********************/
 .flash-success{
 	width: 100%;
-    height: 40px;
+	height: 40px;
     position: relative;
-    margin: auto;
+    margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: limegreen;
-    font-weight: bold;
+    background-color: lightgreen;
+	font-weight: bold;
 }
 
 .flash-fail{
 	width: 100%;
     height: 40px;
     position: relative;
-    margin: auto;
+    margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-	background-color: red;
+	background-color: lightcoral;
     font-weight: bold;
 }
 
@@ -463,11 +463,11 @@ a.admin_menu{
 	width: 100%;
     height: 40px;
     position: relative;
-    margin: auto;
+    margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
     align-items: center;
-	background-color: red;
+	background-color: lightskyblue;
     font-weight: bold;
 }
 

@@ -24,7 +24,7 @@
     <section id="article_body">
         {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
-        {% endif %}  
+        {% endif %}
         {% if article.apiData != [] %}
         <aside id="music">
             <div class="widget_SC"></div>
