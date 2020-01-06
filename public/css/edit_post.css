@@ -96,6 +96,7 @@
     margin: 0 0 0 15px;
     font-weight: 900;
     font-family: 'Quicksand', sans-serif;
+    color: red;
 }
 
 #add_form_field{
@@ -136,22 +137,18 @@ input[name="cover"]{
 /************
 *   GALLERY *
 *************/
+#gallery{
+    margin: 0 -5px;
+}
+
 .hes-gallery{
     margin: 0 5px;
 }
 
 .edit_image{
-    padding: .75rem;
     height: 150px;
     transition: .5s ease;
-}
-
-.edit_image:first-child{
-    padding: .75rem .75rem .75rem 0;
-}
-
-.edit_image:last-child{
-    padding: .75rem 0 .75rem .74rem;
+    padding: 5px;
 }
 
 .edit_image img{
@@ -173,6 +170,7 @@ input[name="cover"]{
 
 .btn_del_pictures{
     color: red;
+    font-family: 'Quicksand', sans-serif;
     padding: 10px;
     font-size: 1.7rem;
     font-weight: bolder;

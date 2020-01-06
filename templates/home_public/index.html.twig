@@ -35,7 +35,7 @@
           <h5>{{ article.title }}</h5>
           <p>Le {{ article.dateEvent|date("m/d/Y") }}
           {% autoescape 'html' %}
-          <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,350) }} ...</p>
+          <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,150) }} ...</p>
           {% endautoescape %}
           <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}

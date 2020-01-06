@@ -18,7 +18,7 @@ footer, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
-	background-color: white;
+	background-color: slategrey;
 }
 
 ol, ul {
@@ -309,7 +309,7 @@ a.admin_menu{
 *   CARDS   *
 *************/
 .welcome_card{
-    width: 480px;
+    width: 300px;
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
     background-color: lightgrey;
@@ -437,8 +437,11 @@ a.admin_menu{
 *********************/
 .flash-success{
 	width: 100%;
+	max-width: 1500px;
 	height: 40px;
-    position: relative;
+	position: sticky;
+	top: 0px;
+    z-index: 1;
     margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
@@ -449,8 +452,11 @@ a.admin_menu{
 
 .flash-fail{
 	width: 100%;
+	max-width: 1500px;
     height: 40px;
-    position: relative;
+	position: sticky;
+	top: 0px;
+    z-index: 1;
     margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
@@ -461,8 +467,11 @@ a.admin_menu{
 
 .flash-info{
 	width: 100%;
+	max-width: 1500px;
     height: 40px;
-    position: relative;
+	position: sticky;
+	top: 0px;
+    z-index: 1;
     margin: 70px auto -70px auto;
     display: flex;
     justify-content: center;
