@@ -113,6 +113,7 @@ nav{
     z-index: 5;
 	margin: auto;
 	text-shadow: 0 0 5px black;
+	background-color: rgba(0,0,0,0.5);
 }
 
 #logo_header{
@@ -167,7 +168,7 @@ nav ul{
 }
 
 .item_menu:last-child{
-	margin: 0 2vw 0 6vw;
+	margin: 0 15px 0 0;
 	font-size: 1.5rem;
 	margin-top: 0;
 }
