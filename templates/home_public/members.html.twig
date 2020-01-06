@@ -4,14 +4,50 @@
 <link rel="stylesheet" href="/css/membres.css">
 {% endblock %}
 {% block body %}
-<div id="article_members">
-<h1 class="part_title">Les membres du chant</h1>
-{% for member in members %}
-    {% if member.imgs|first == "" %}
-    <img src="/img/CDLM_logo.svg" class="member_img" alt="Photo de l'artiste : {{ member.title }}">
-    {% else %}
-    <img src="{{ asset('/upload/pictures/' ~ member.imgs|first) }}" class="member_img" alt="Photo de l'article : {{ member.title }}">
-    {% endif %}
-{% endfor %}
-</div>
+<section id="members">
+    <h1 class="part_title">Les membres du chant</h1>
+    <div id="article_members">
+        <aside class="members_txt">
+        <h2>Artistes DJ et VJ du Chant de la Machine</h2>
+        <p>Ullamco ad dolor sint ad et veniam proident fugiat et aliquip nostrud aliqua. Cupidatat deserunt ullamco sunt qui laboris est ex mollit minim laboris nostrud. Non occaecat nostrud commodo fugiat dolor mollit mollit culpa magna. Ipsum non pariatur nulla culpa do excepteur anim duis ipsum. Sint quis ullamco dolor consequat laboris elit.
+
+        Irure esse occaecat in magna duis ipsum consequat magna commodo enim veniam in. Consectetur culpa nulla proident esse consequat voluptate eu incididunt quis cillum quis incididunt. Culpa cupidatat anim commodo minim sunt labore proident. Sit aute exercitation aliquip veniam sint est excepteur qui mollit consectetur proident dolore. Consectetur id sunt commodo est nulla.
+
+        Commodo voluptate culpa consequat aliquip ut excepteur labore duis ipsum officia excepteur. Laboris excepteur velit pariatur consequat mollit officia laboris. Non proident cillum dolore consectetur. Fugiat ipsum occaecat eiusmod eiusmod Lorem enim cupidatat eu excepteur esse dolor. Sunt aute id eiusmod ex eu esse incididunt ad pariatur dolore proident commodo ullamco est. Voluptate ut dolor amet consectetur culpa quis tempor veniam cupidatat Lorem qui nisi id.
+
+        Reprehenderit officia fugiat dolore quis do. Cillum dolore consequat culpa ad esse magna labore cupidatat. Officia esse ad enim adipisicing reprehenderit. Nisi duis nulla nulla sint aliqua cillum minim aliqua. Aliqua adipisicing proident eiusmod ea in ullamco non anim commodo ullamco magna duis.
+
+        Officia amet adipisicing enim aliqua laboris do enim adipisicing dolor. Duis magna labore nostrud tempor laboris qui. Nostrud aliquip incididunt ut laborum do ipsum consequat non ex est nulla id irure.
+
+        Irure aute eu ut commodo minim cupidatat proident laboris ullamco nisi exercitation cillum anim officia. Laborum exercitation fugiat consectetur exercitation exercitation reprehenderit amet eiusmod. Proident ut veniam aliqua nisi enim do ut officia.</p>
+        </aside>
+        <article class="members_picture">
+        {% for member in members %}
+            <figure>
+                <a href="{{path('article', {"format" : "members", "id" : member.id})}}">
+                    {% set hasCover = false %}
+                    {% if covers != [] %}
+                    {% for cover in covers %}
+                        {% if cover.idArticle == member.id %}
+                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l\'artiste : {{ member.title }}">
+                        {% set hasCover = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% if hasCover == false %}
+                        {% if member.imgs|first != "" %}
+                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ member.imgs|first) }}" alt="Photo de l'artiste : {{ member.title }}">
+                        {% else %}
+                        <img class="img_member" src="/img/CDLM_logo.svg" alt="logo pour l'artiste {{ member.title }}">
+                        {% endif %}
+                    {% endif %}
+                    <figcaption>
+                        <h3>{{member.title}}</h3>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+        </article>
+    </div>
+</section>
 {% endblock %}
