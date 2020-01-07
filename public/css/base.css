@@ -490,11 +490,12 @@ a.admin_menu{
 *************/
 footer{
 	width: 100%;
-	margin: 50px 0 0 0;
-	padding: 20px 0;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
+    max-width: 1500px;
+    margin: 50px auto 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .footer_card{

@@ -50,7 +50,7 @@
                     }
                 }) }}
             </div>
-            <ul class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+            <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
                 {% for sound in form.api_data %}
                 <li>
                     {{form_row(sound, {
@@ -160,6 +160,15 @@
         });
 
     //Add Soundcloud Field
+    {% if form.api_data.children != [] %}
+        document.getElementById("list_sc").style.flexBasis = "300%";
+        document.getElementById("list_sc").style.flexBasis = "25px 20px 20px 20px";
+    {% endif %}
+        document.getElementById("add_form_field").addEventListener("click", ()=>{
+            document.getElementById("list_sc").style.flexBasis = "300%";
+            document.getElementById("list_sc").style.flexBasis = "25px 20px 20px 20px";
+        });
+
         let addInput = new addField(
             document.getElementById("add_sc_btn"), 
             document.getElementsByClassName("api_data")[0],

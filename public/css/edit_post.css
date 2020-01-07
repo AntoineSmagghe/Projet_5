@@ -54,12 +54,9 @@
 /****************
 *   TEXT AREA   *
 *****************/
-.edit_text_content{
-    flex-basis: 70%;
-}
-
 #datetime_article{
     margin: 5px;
+    display: inline-block;
 }
 
 .onelinetxt{
@@ -69,10 +66,10 @@
 /************
 *   URL SC  *
 *************/
-
 .api_data{
-    flex-basis: 30%;
-    padding: 25px 20px 20px 20px;
+    flex-basis: 0;
+    margin-top: 25px;
+    transition: 1s ease;
 }
 
 .api_data li{
