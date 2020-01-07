@@ -14,9 +14,11 @@
 
 .moving_title{
     max-width: 1500px;
-    margin: auto;
+    margin: 0 auto 50px auto;
     padding: 0 0 0 50px;
     color: whitesmoke;
     font-size: 3rem;
     font-weight: bold;
+    position: sticky;
+    top: 150px;
 }

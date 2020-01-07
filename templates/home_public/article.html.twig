@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}{{article.text[:200]|striptags }}{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/article.css">
@@ -15,32 +14,37 @@
     {% else %}
     <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
     {% endif %}
-    <div class="article_cover_title">
-        <h1>{{ article.title }}</h1>
-        <div class="date_event">
-            <p>Organisé le : {{ article.dateEvent|date("d/m/Y") }}</p>
+    <section id="article_cover">
+    <div class="incover">
+        <div class="article_cover_title">
+            <h1>{{ article.title }}</h1>
+            <div class="date_event">
+                <p>Organisé le {{ article.dateEvent|date("d/m/Y") }}</p>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+            {% endif %}
         </div>
     </div>
-    <section id="article_body">
-        {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
-        {% endif %}
-        {% if article.apiData != [] %}
-        <aside id="music">
-            <div class="widget_SC"></div>
-        </aside>
-        {% endif %}
+    </section>
+    <section id="article_body">  
         <article id="txt">
-            <h2>{{ article.title }}</h2>
             {{ article.text|raw }}
         </article>
-        {% if article.imgs.snapshot != null %}
+        <aside id="music">
+            {% if article.apiData != [] %}
+            <h2>Musique</h2>
+            <div id="widget_SC"></div>
+            {% endif %}
+            {% if article.imgs.snapshot != null %}
+            <h2>Image</h2>
             <div class="hes-gallery">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
-        {% endif %}
+            {% endif %}
+        </aside>
     </section>
 {% endblock %}
 {% block javascripts %}
@@ -48,14 +52,14 @@
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
 <script>
     SC.initialize({
-        client_id: 'Vu5tlmvC9eCLFZkxXG32N1yQMfDSAPAA'
+        client_id: 'h3reaiIhlDG8GqF3EAhi6mQWjWREp0LQ'
     });
 
     {% for sound in article.apiData %}
-        SC.resolve(" {{sound}} ")
+        SC.resolve("{{sound}}")
             .then((track)=>{
-                document.getElementsByClassName("widget_SC")[0].insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
-        })
+                document.getElementById("widget_SC").insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
+        });
     {% endfor %}
 /*
     SC.oEmbed(track_url, { auto_play: false } )
