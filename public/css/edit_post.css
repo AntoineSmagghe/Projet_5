@@ -54,6 +54,10 @@
 /****************
 *   TEXT AREA   *
 *****************/
+#edit_text_content{
+    flex-basis: 100%;
+}
+
 #datetime_article{
     margin: 5px;
     display: inline-block;
@@ -69,7 +73,7 @@
 .api_data{
     flex-basis: 0;
     margin-top: 25px;
-    transition: 1s ease;
+    transition: .5s ease;
 }
 
 .api_data li{

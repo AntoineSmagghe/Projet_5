@@ -37,7 +37,7 @@
             <a id="add_sc_btn" class="a_btn btn_modify">Add sound</a>
         </div>
         <div class="row">
-            <div class="edit_text_content">
+            <div id="edit_text_content">
                 {{ form_row(form.title, {
                     'label': 'Titre de l\'évènement',
                     'attr': {'placeholder': 'Titre de l\'évènement'}
@@ -125,7 +125,6 @@
                 });
             }
         }
-        
 
     //text editor
         let editor;
@@ -160,13 +159,17 @@
         });
 
     //Add Soundcloud Field
+    const listSc = document.getElementById("list_sc");
+    const editTextContent = document.getElementById("edit_text_content");
     {% if form.api_data.children != [] %}
-        document.getElementById("list_sc").style.flexBasis = "300%";
-        document.getElementById("list_sc").style.flexBasis = "25px 20px 20px 20px";
+        listSc.style.flexBasis = "30%";
+        listSc.style.flexBasis = "25px 20px 20px 20px";
+        editTextContent.style.flexBasis = "75%";
     {% endif %}
         document.getElementById("add_form_field").addEventListener("click", ()=>{
-            document.getElementById("list_sc").style.flexBasis = "300%";
-            document.getElementById("list_sc").style.flexBasis = "25px 20px 20px 20px";
+            listSc.style.flexBasis = "30%";
+            listSc.style.flexBasis = "25px 20px 20px 20px";
+            editTextContent.style.flexBasis = "75%";
         });
 
         let addInput = new addField(
