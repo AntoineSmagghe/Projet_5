@@ -9,7 +9,7 @@
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
     <div class="see_and_delete">
-        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="a_btn btn_modify">Voir</a>
+        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="a_btn btn_more">Voir</a>
         <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">

@@ -39,8 +39,7 @@ class HomePublicController extends AbstractController
         }
 
         $covers = $this->getCovers($articles);
-
-        dump($covers);        
+  
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,
             'covers' => $covers,
@@ -57,8 +56,15 @@ class HomePublicController extends AbstractController
 
         $covers = $this->getCovers($articles);
 
-        if ($format == 'members'){
+        if ($format === 'members'){
             return $this->render('home_public/members.html.twig', [
+                'members' => $articles,
+                'covers' => $covers,
+            ]);
+        }
+
+        if ($format === 'releases') {
+            return $this->render('home_public/releases.html.twig', [
                 'members' => $articles,
                 'covers' => $covers,
             ]);
@@ -76,18 +82,25 @@ class HomePublicController extends AbstractController
      */
     public function article(Request $request)
     {
-        $res = $this->article->findOneBy(['id' => $request->get('id')]);
+        $article = $this->article->findOneBy(['id' => $request->get('id')]);
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $request->get('id')]);
 
-        if ($res->getFormat() === "members"){
+        if ($article->getFormat() === "members"){
             return $this->render('home_public/member.html.twig', [
-                'article' => $res,
+                'article' => $article,
+                'cover' => $imageCover,
+            ]);
+        }
+
+        if ($article->getFormat() === "releases") {
+            return $this->render('home_public/release.html.twig', [
+                'article' => $article,
                 'cover' => $imageCover,
             ]);
         }
         
         return $this->render('home_public/article.html.twig', [
-            'article' => $res,
+            'article' => $article,
             'cover' => $imageCover,
         ]);
     }

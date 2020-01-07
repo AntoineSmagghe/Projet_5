@@ -1,29 +1,31 @@
 {% extends 'base.html.twig' %}
-{% block header %}{% endblock %}
+{% block header %}
+
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/label.css">
 {% endblock %}
 {% block body %}
-<section id="member">
+<section id="release">
     <aside id="member_picture">
         <figure>
             {% if article.imgs.snapshot != [] %}
                 {% if cover != null %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="Photo de l'article : {{article.title}}" >
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="cover : {{article.title}}" >
                 {% else %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="Photo de l'article : {{article.title}}" >
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="cover : {{article.title}}" >
                 {% endif %}
             {% else %}
-            <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+            <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="cover : {{article.title}}">
             {% endif %}
             <figcaption>
             {% if app.user != null %}
-                <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
+                    <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
                 {% if article.modifiedBy != '' %}
                     <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
                 {% endif %}
             {% endif %}
-            <a href="mailto:cdlm-free@gmail.com" class="a_btn btn_more">Booking</a>
+            <a href="mailto:cdlm-free@gmail.com" class="a_btn btn_more">Contact</a>
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
             {% endif %}
