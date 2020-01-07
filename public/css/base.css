@@ -104,7 +104,7 @@ nav{
     height: 70px;
     width: calc(100% - 4rem);
     max-width: 1500px;
-    padding: 0 2rem;
+    padding: 0 12vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -135,7 +135,8 @@ nav ul{
 	height: 70px;
     display: flex;
     justify-content: center;
-    align-items: center;
+	align-items: center;
+	transition: .5s ease;
 }
 
 .item_menu:hover{
@@ -192,19 +193,22 @@ nav ul{
 	color: white;
 	text-shadow: 0 0 5px black;
 	text-align: center;
+	background-color: rgba(0,0,0,0.5);
+	transition: .5s ease;
 }
 
 .link_dropdown_menu:hover{
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(255,255,255,0.3);
 }
 
-.item_menu:last-child .dropdown_menu:last-child{
+#login_btn{
+	padding: 0px;
+	cursor: pointer;
+}
+
+#login_btn .dropdown_menu:last-child{
 	right: 10px;
 	top: 110px;
-}
-
-.item_menu:last-child{
-	padding: 0px;
 }
 
 #background_modal{

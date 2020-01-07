@@ -63,7 +63,7 @@
                         <a class="link_menu" href="#">About</a>
                     </li>
                     {% if app.user == null %}
-                    <li class="item_menu">
+                    <li id="login_btn" class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
                         <div class="sign_in_form">
                             <form action="{{ path('login') }}" method="post">
@@ -83,7 +83,7 @@
                         </div>
                     </li>
                     {% else %}
-                    <li class="item_menu">
+                    <li id="login_btn" class="item_menu">
                         <img src="/img/ellipsis-h-solid.svg" alt="Logo informations admin" class="sign_in_btn">
                         <div class="sign_in_form">
                             {% if is_granted("ROLE_ADMIN") %}
@@ -145,7 +145,7 @@
                     document.getElementsByClassName("sign_in_form")[0],
                     "flex",
                     document.getElementById("background_modal"),
-                    document.getElementsByClassName("sign_in_btn")[0],
+                    document.getElementById("login_btn"),
                 );
                 signinModal.init();
             });
