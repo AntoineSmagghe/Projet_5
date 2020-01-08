@@ -68,11 +68,11 @@
 #txt{
     text-align: justify;
     flex-basis: 52%;
-    background-color: white;
     padding: 20px;
     border-radius: 2px;
     font-size: 1.1rem;
     line-height: 150%;
+    color: white;
 }
 
 #txt h2{

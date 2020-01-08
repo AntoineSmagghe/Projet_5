@@ -15,17 +15,17 @@
     <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
     {% endif %}
     <section id="article_cover">
-    <div class="incover">
-        <div class="article_cover_title">
-            <h1>{{ article.title }}</h1>
-            <div class="date_event">
-                <p>Organisé le {{ article.dateEvent|date("d/m/Y") }}</p>
+        <div class="incover">
+            <div class="article_cover_title">
+                <h1>{{ article.title }}</h1>
+                <div class="date_event">
+                    <p>Organisé le {{ article.dateEvent|date("d/m/Y") }}</p>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+                {% endif %}
             </div>
-            {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
-            {% endif %}
         </div>
-    </div>
     </section>
     <section id="article_body">  
         <article id="txt">

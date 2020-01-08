@@ -18,7 +18,8 @@ footer, hgroup, menu, nav, section {
 
 body {
 	line-height: 1;
-	background-color: slategrey;
+	background-color: #404040;
+	min-height: calc(100vh - 220px);
 }
 
 ol, ul {
@@ -229,11 +230,12 @@ nav ul{
     text-shadow: none;
     z-index: 10;
     background-color: white;
-    padding: 10px;
     right: 14vw;
     top: 30px;
-    opacity: 1;
-    border-radius: 3px;
+}
+
+.sign_in_form form{
+	padding: 10px;
 }
 
 .sign_in_form .btn_more{
@@ -262,7 +264,6 @@ a.admin_menu{
 	text-shadow: none;
 	font-size: 1.2rem;
 	transition: .5s ease;
-	border-radius: 3px;
 }
 
 .admin_menu:hover{
@@ -315,7 +316,7 @@ a.admin_menu{
     width: 300px;
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
-    background-color: lightgrey;
+    background-color: white;
     animation: scaleBlur 1s ease;
 }
 
@@ -490,7 +491,7 @@ a.admin_menu{
 footer{
 	width: 100%;
     max-width: 1500px;
-    margin: 50px auto 0 auto;
+    margin: 100px auto 0 auto;
     padding: 20px 0;
     display: flex;
     justify-content: space-around;
