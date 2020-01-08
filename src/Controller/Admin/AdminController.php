@@ -56,10 +56,19 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
+    public function editPost(Article $article, /*SocialNetwork $socialNetwork = null,*/ Request $request, EntityManagerInterface $manager, Security $security)
     {
+        /*
+        if ($socialNetwork == null){
+            $socialNetwork = new SocialNetwork();
+        }
+        */
+        
         $form = $this->createForm(ArticleType::class, $article);
+        //$socialForm = $this->createForm(SocialNetworkType::class, $socialNetwork);
+
         $form->handleRequest($request);
+        //$socialForm->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
@@ -70,17 +79,17 @@ class AdminController extends AbstractController
             
             $n = $now->format('d/m/Y à H:i:s');
             $this->addFlash("success", 'Article enregistré le ' . $n);
-            
-            /*
-            return $this->redirectToRoute('article', [
-                'format' => $article->getFormat(),
-                'id' => $article->getId(),
-            ]);
-            */
         }
-        
+        /*
+        if ($socialForm->isSubmitted() && $socialForm->isValid()) {
+            $socialNetwork->setArticle($article);
+            $manager->persist($socialNetwork);
+            $manager->flush();
+        }
+        */
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
+            //'socialNetwork' => $socialForm->createView(),
             'article' => $article,
         ]);
     }
@@ -116,19 +125,6 @@ class AdminController extends AbstractController
             }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);
-    }
-
-    /**
-     * @Route("/admin/add-socials", name="socialNetwork", methods={"POST"})
-     */
-    public function socialNetwork(Request $request, EntityManagerInterface $em, SocialNetwork $socialNetwork)
-    {
-        $form = $this->createForm(SocialNetworkType::class, $socialNetwork);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()){
-            $socialNetwork->setArticle();
-        }
     }
 
     /**

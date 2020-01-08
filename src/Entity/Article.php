@@ -91,6 +91,8 @@ class Article
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SocialNetwork", mappedBy="article", cascade={"persist", "remove"})
+     * @Assert\Type(type="App\Entity\SocialNetwork")
+     * @Assert\Valid
      */
     private $socialNetwork;
 

@@ -239,6 +239,10 @@ nav ul{
     top: 30px;
 }
 
+.sign_in_form label{
+	color: black;
+}
+
 .sign_in_form form{
 	padding: 10px;
 }
@@ -372,7 +376,7 @@ a.admin_menu{
 .hes-gallery{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 3px;
@@ -441,6 +445,35 @@ a.admin_menu{
 .btn_del{
 	text-align: center;
     background-color: red;
+}
+
+/********************
+*   SOCIAL NETWORK  *
+*********************/
+.contact_socials{
+	display: flex;
+	justify-content: flex-start;
+    align-items: center;
+}
+
+.socials_logo{
+	padding: 0 10px;
+	transition: .5s ease;
+}
+
+.socials_logo:hover{
+	transform: scale(1.05);
+}
+
+.socials_logo:first-child{
+	padding: 0 10px 0 0;
+}
+
+.socials_logo img{
+	width: 50px;
+	height: 40px;
+	object-fit: scale-down;
+	filter: invert();
 }
 
 /********************
