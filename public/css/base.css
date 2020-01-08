@@ -42,6 +42,11 @@ table {
 a{
 	text-decoration: none;
 	cursor: pointer;
+	color: white;
+}
+
+label{
+	color: white;
 }
 
 a:hover{
@@ -317,7 +322,8 @@ a.admin_menu{
     margin: 0.6rem;
     box-shadow: 0 0 2px var(--black);
     background-color: white;
-    animation: scaleBlur 1s ease;
+	animation: scaleBlur 1s ease;
+	border-radius: 2px;
 }
 
 .in_card_welcome{

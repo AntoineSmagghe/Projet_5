@@ -21,6 +21,11 @@
     max-width: 1500px;
     margin: auto;
     padding: 1.5rem;
+    color: white;
+}
+
+#edit_post label{
+    font-weight: bolder;
 }
 
 .form-group{
@@ -47,6 +52,7 @@
     border-radius: 2px;
     box-shadow: 0 0 2px black;
 }
+
 .sf-toolbar-clearer{
     display: none !important;
 }
@@ -56,6 +62,14 @@
 *****************/
 #edit_text_content{
     flex-basis: 100%;
+}
+
+label[for="article_text"]{
+    margin: 0 0 10px 0;
+}
+
+.ck-content{
+    color: black;
 }
 
 #datetime_article{
@@ -144,6 +158,7 @@ input[name="cover"]{
 
 .hes-gallery{
     margin: 0 5px;
+    justify-content: flex-start;
 }
 
 .edit_image{

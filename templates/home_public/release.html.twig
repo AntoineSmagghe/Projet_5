@@ -18,7 +18,7 @@
             {% else %}
             <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="cover : {{article.title}}">
             {% endif %}
-            <figcaption>
+            <figcaption id="artist_release_figcaption">
             {% if app.user != null %}
                     <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
                 {% if article.modifiedBy != '' %}

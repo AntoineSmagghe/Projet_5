@@ -4,17 +4,30 @@
 {% endblock %}
 {% block body %}
 <section id="articles">
-  <div>
+  <section id="article_cover">
   {% if format == 'news' %}
-    <h1 class="part_title">Les news du chant</h1>
+      <img class="article_image_cover" src="/img/Arthur/DSCF6344.jpg" alt="Cover CDLM members">
+      <div class="incover">
+          <div class="article_cover_title">
+            <h1 class="part_title">Les news du chant</h1>
+          </div>
+      </div>
   {% elseif format == 'publicEvent' %}
-    <h1 class="part_title">Les évènements</h1>
+      <img class="article_image_cover" src="/img/18556493_10158695312680298_6402872989759344248_o.jpg" alt="Cover CDLM members">
+      <div class="incover">
+          <div class="article_cover_title">
+            <h1 class="part_title">Les évènements</h1>
+          </div>
+      </div>
   {% elseif format == 'privateEvent' %}
-    <h1 class="part_title">Les évènements privés</h1>
-  {% elseif format == 'releases' %}
-    <h1 class="part_title">Les dernières sorties</h1>
+      <img class="article_image_cover" src="/img/Arthur/DSCF6310.jpg" alt="Cover CDLM members">
+      <div class="incover">
+          <div class="article_cover_title">
+            <h1 class="part_title">Les évènements privés</h1>
+          </div>
+      </div>
   {% endif %}
-  </div>
+  </section>
   <div id="welcome_cards">
   {% for article in articles %}
     <div class="welcome_card">
@@ -33,7 +46,7 @@
           {% if article.imgs|first != "" %}
           <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
           {% else %}
-          <img src="/img/CDLM_logo.svg" alt="Photo de l'article : {{ article.title }}">
+          <img src="/img/Arthur/DSCF6226.jpg" alt="Photo de l'article : {{ article.title }}">
           {% endif %}
         {% endif %}
         </div>
