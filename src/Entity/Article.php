@@ -89,6 +89,11 @@ class Article
      */
     private $api_data = [];
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SocialNetwork", mappedBy="article", cascade={"persist", "remove"})
+     */
+    private $socialNetwork;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -259,6 +264,24 @@ class Article
     public function setApiData(?array $api_data): self
     {
         $this->api_data = $api_data;
+
+        return $this;
+    }
+
+    public function getSocialNetwork(): ?SocialNetwork
+    {
+        return $this->socialNetwork;
+    }
+
+    public function setSocialNetwork(?SocialNetwork $socialNetwork): self
+    {
+        $this->socialNetwork = $socialNetwork;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newArticle = null === $socialNetwork ? null : $this;
+        if ($socialNetwork->getArticle() !== $newArticle) {
+            $socialNetwork->setArticle($newArticle);
+        }
 
         return $this;
     }

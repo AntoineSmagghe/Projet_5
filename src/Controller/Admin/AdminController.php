@@ -4,7 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Img;
+use App\Entity\SocialNetwork;
 use App\Form\ArticleType;
+use App\Form\SocialNetworkType;
 use App\Repository\ImgRepository;
 use DateTime;
 use DateTimeZone;
@@ -114,6 +116,19 @@ class AdminController extends AbstractController
             }
         }
         return new JsonResponse(['error' => 'Token invalide.'], 400);
+    }
+
+    /**
+     * @Route("/admin/add-socials", name="socialNetwork", methods={"POST"})
+     */
+    public function socialNetwork(Request $request, EntityManagerInterface $em, SocialNetwork $socialNetwork)
+    {
+        $form = $this->createForm(SocialNetworkType::class, $socialNetwork);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $socialNetwork->setArticle();
+        }
     }
 
     /**
