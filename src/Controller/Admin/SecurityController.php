@@ -24,11 +24,12 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authUtils, Security $security, Request $request)
     {
+        /*
         if ($request->get('security.authentication.success')){
             $usr = $security->getUser();
             dump($usr); 
         }
-        
+        */
         $error = $authUtils->getLastAuthenticationError();
         $lastName = $authUtils->getLastUsername();
 

@@ -87,6 +87,7 @@
                         <div class="sign_in_form">
                             {% if is_granted("ROLE_ADMIN") %}
                             <a class="admin_menu" href="{{ path("creatPost") }}">Create post</a>
+                            <a class="admin_menu" href="{{ path("creatArtist") }}">Create artist</a>
                             <a class="admin_menu" href="{{ path("signIn") }}">Create member</a>
                             {% endif %}
                             <a class="admin_menu" href="{{path("account")}}">Account</a>

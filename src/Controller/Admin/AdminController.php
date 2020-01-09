@@ -46,11 +46,20 @@ class AdminController extends AbstractController
                 'id' => $article->getId(),
                 ]);
         }
-        
+
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
-            'article' => $article
+            'article' => $article,
+            'isMember' => $request->get('isMember'),
         ]);
+    }
+
+    /**
+     * @Route("/admin/create-artist", name="creatArtist", methods={"GET"})
+     */
+    public function createArtist()
+    {
+        return $this->redirectToRoute('creatPost', ['isMember' => true]);
     }
 
     /**

@@ -19,14 +19,17 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date_event', DateType::class, ['widget' => 'single_text'])
+            ->add('date_event', DateType::class, [
+                'widget' => 'single_text',
+                'required' => false,
+                ])
             ->add('format', ChoiceType::class, [
                 'choices' => [
                     'Evènement Public' => 'publicEvent',
                     'Evènement Privé' => 'privateEvent',
                     'News' => 'news',
                     'Release' => 'releases',
-                    'Membres' => 'members',
+                    'Artist' => 'members',
                 ]
             ])
             ->add('title', TextType::class)

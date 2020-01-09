@@ -533,7 +533,7 @@ footer{
     margin: 100px auto 0 auto;
     padding: 20px 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 

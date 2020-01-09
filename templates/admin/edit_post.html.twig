@@ -23,8 +23,8 @@
             'attr': {'class': 'a_btn btn_modify'}
         }) }}
         <div class="row">
-            <div class="col-md-2">
-                {{ form_row(form.date_event, {'label' : 'Date de l\'évènement'}) }}
+            <div class="col-md-2 date">
+                {{ form_row(form.date_event, {'label' : 'Date'}) }}
             </div>
             <div class="col-md-2">
             {{ form_row(form.format, {
@@ -192,15 +192,24 @@
             );
         addInput.init();
 
-    //Allow socialnetworks only for the members
+    //Change for the members edition
     const articleFormat = document.getElementById('article_format');
     const socialNet = document.getElementById("socialsNetwork");
+    const dateEvent = document.getElementsByClassName("date")[0];
+    {% if isMember == true %}
+    articleFormat.value = "members";
+    {% endif %}
+    if (articleFormat.value === "members"){
+        socialNet.style.display = "flex";
+        dateEvent.style.display = "none";
+    }
     articleFormat.addEventListener("change", (e)=>{
         if (e.target.value === "members"){
             socialNet.style.display = "flex";
-            socialNet.style.animation = "scaleblur 1s ease";
+            dateEvent.style.display = "none";
         }else{
             socialNet.style.display = "none";
+            dateEvent.style.display = "flex";
         }
     });
     </script>
