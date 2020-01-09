@@ -1,19 +1,48 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{article.text[:200]|striptags }}{% endblock %}
+{% block title %}CDLM.space - {{article.title}}{% endblock %}
+{% block header %}
+{% if article.imgs.snapshot != [] %}
+    {% if cover != null %}
+        {% set coverArticle = "absolute_url(asset('/upload/pictures/' ~ cover.name))" %}
+    {% else %}
+        {% set coverArticle =  "absolute_url(asset('/upload/pictures/' ~ article.imgs|first))" %}
+    {% endif %}
+{% else %}
+    {% set coverArticle = "img/Arthur/DSCF6241.jpg" %}
+{% endif %}
+<!-- Primary Meta Tags -->
+<meta name="title" content="CDLM.space - {{article.title}}">
+<meta name="description" content="{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,350) }}...">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{app.request.uri}}">
+<meta property="og:title" content="CDLM.space - {{article.title}}">
+<meta property="og:description" content="{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,350) }}...">
+<meta property="og:image" content="{{ coverArticle }}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{{app.request.uri}}">
+<meta property="twitter:title" content="CDLM.space - {{article.title}}">
+<meta property="twitter:description" content="{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,145) }}...">
+<meta property="twitter:image" content="{{ coverArticle }}">
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/article.css">
 <link rel="stylesheet" href="/css/home_public_index.css">
 {% endblock %}
 {% block body %}
-    {% if article.imgs.snapshot != [] %}
+   {% if article.imgs.snapshot != [] %}
         {% if cover != null %}
-        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="Photo de l'article : {{article.title}}" >
+            {% set coverArticle = "asset('/upload/pictures' ~ cover.name)" %}
         {% else %}
-        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="Photo de l'article : {{article.title}}" >
+            {% set coverArticle =  "asset('/upload/pictures' ~ article.imgs|first)" %}
         {% endif %}
     {% else %}
-    <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="Photo de l'article : {{article.title}}">
+        {% set coverArticle = "/img/Arthur/DSCF6241.jpg" %}
     {% endif %}
+    <img class="article_image_cover" src="{{ coverArticle }}" alt="Photo de l'article : {{article.title}}" >
     <section id="article_cover">
         <div class="incover">
             <div class="article_cover_title">
@@ -29,6 +58,7 @@
     </section>
     <section id="article_body">  
         <article id="txt">
+            {{dump(coverArticle)}}
             {{ article.text|raw }}
         </article>
         <aside id="music">
