@@ -22,7 +22,9 @@ class ArticleRepository extends ServiceEntityRepository
     public function takeAllExceptPrivateEvent(){
         return $this->createQueryBuilder('a')
             ->andWhere('a.format != :val')
+            ->andWhere('a.format != :val2')
             ->setParameter('val', 'privateEvent')
+            ->setParameter('val2', 'members')
             ->orderBy('a.updated_at', 'DESC')
             ->getQuery()
             ->getResult();
@@ -47,6 +49,8 @@ class ArticleRepository extends ServiceEntityRepository
     public function findAllDESC()
     {
         return $this->createQueryBuilder('a')
+            ->andWhere('a.format != :val')
+            ->setParameter('val', 'members')
             ->orderBy('a.updated_at', 'DESC')
             ->setMaxResults(10)
             ->getQuery()

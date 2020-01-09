@@ -23,7 +23,7 @@ security:
             anonymous: true
             provider: from_database
             form_login:
-                provider: from_database
+                use_referer: true
                 login_path: login
                 check_path: login
 
