@@ -3,9 +3,9 @@
 {% block header %}
 {% if article.imgs.snapshot != [] %}
     {% if cover != null %}
-        {% set coverArticle = "absolute_url(asset('/upload/pictures/' ~ cover.name))" %}
+        {% set coverArticle = "{{ absolute_url(asset('/upload/pictures/' ~ cover.name)) }}" %}
     {% else %}
-        {% set coverArticle =  "absolute_url(asset('/upload/pictures/' ~ article.imgs|first))" %}
+        {% set coverArticle =  "{{ absolute_url(asset('/upload/pictures/' ~ article.imgs|first)) }}" %}
     {% endif %}
 {% else %}
     {% set coverArticle = "img/Arthur/DSCF6241.jpg" %}
@@ -35,14 +35,13 @@
 {% block body %}
    {% if article.imgs.snapshot != [] %}
         {% if cover != null %}
-            {% set coverArticle = "asset('/upload/pictures' ~ cover.name)" %}
+        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name) }}" alt="Photo de l'article : {{article.title}}" >
         {% else %}
-            {% set coverArticle =  "asset('/upload/pictures' ~ article.imgs|first)" %}
+        <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{article.title}}" >
         {% endif %}
     {% else %}
-        {% set coverArticle = "/img/Arthur/DSCF6241.jpg" %}
+    <img class="article_image_cover" src="/img/Arthur/DSCF6241.jpg" alt="Photo de l'article : {{article.title}}" >
     {% endif %}
-    <img class="article_image_cover" src="{{ coverArticle }}" alt="Photo de l'article : {{article.title}}" >
     <section id="article_cover">
         <div class="incover">
             <div class="article_cover_title">
@@ -58,7 +57,6 @@
     </section>
     <section id="article_body">  
         <article id="txt">
-            {{dump(coverArticle)}}
             {{ article.text|raw }}
         </article>
         <aside id="music">
