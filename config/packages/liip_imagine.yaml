@@ -4,6 +4,10 @@ liip_imagine :
         default :
             web_path : ~
     filter_sets :
+        200x150:
+            quality: 100
+            filters:
+                thumbnail: { size: [200, 150], mode: outbound }
         300x300:
             quality: 75
             filters:

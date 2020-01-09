@@ -29,6 +29,7 @@
     width: 52%;
     top: 100px;
     z-index: 2;
+    margin-left: 32px;
 }
 
 .article_cover_title h1{

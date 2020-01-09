@@ -100,7 +100,7 @@
             <div class="hes-gallery">
             {% for image in article.imgs %}
                 <figure class="edit_image" name="{{image.id}}">
-                    <img src="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+                    <img src="{{ vich_uploader_asset(image, 'imgData') | imagine_filter('200x150') }}" data-fullsize="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
                     <figcaptation class="action_image">
                         <label for="Image {{image.id}}"></label>
                         <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">

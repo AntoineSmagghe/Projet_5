@@ -53,7 +53,7 @@
             <h2>Images</h2>
             <div class="hes-gallery member_images">
             {% for image in article.imgs %}
-                    <img src="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
         {% endif %}
