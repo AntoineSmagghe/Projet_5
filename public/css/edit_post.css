@@ -139,12 +139,29 @@ fieldset.form-group{
     display: none;
 }
 
-label[for="article_imgsFile"]
-{
-    padding: 10px;
-    background-color: var(--grey);
+label[for="article_imgsFile"]{
+    padding: 2px;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
+    height: 35px;
+    width: 130px;
+    box-shadow: 0 0 2px black;
+    border-radius: 2px;
     cursor: pointer;
+    transition: .3s ease;
+    text-align: center;
+}
+
+label[for="article_imgsFile"]:hover{
+    transform: scale(1.05);
+}
+
+label[for="article_imgsFile"]:active{
+    transform: scale(1);
 }
 
 input[name="cover"]{

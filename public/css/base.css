@@ -432,6 +432,10 @@ a.admin_menu{
 	box-shadow: initial;
 }
 
+.a_btn:active{
+	transform: scale(1);
+}
+
 .btn_more{
     text-align: center;
     background-color: #3498db;
