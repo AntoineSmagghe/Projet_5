@@ -28,7 +28,7 @@
                 {% endif %}
                 {% if hasCover == false %}
                     {% if member.imgs|first != "" %}
-                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) }}" alt="Cover de la release : {{ member.title }}">
+                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ member.title }}">
                     {% else %}
                     <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
                     {% endif %}
