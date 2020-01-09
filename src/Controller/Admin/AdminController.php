@@ -80,10 +80,14 @@ class AdminController extends AbstractController
             $n = $now->format('d/m/Y à H:i:s');
             $this->addFlash("success", 'Article enregistré le ' . $n);
         }
-
+        $isMember = false;
+        if ($article->getFormat() === "members"){
+            $isMember = true;
+        }
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
+            'isMember' => $isMember,
         ]);
     }
 

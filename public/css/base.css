@@ -388,7 +388,7 @@ a.admin_menu{
 	margin: 10px 5px;
 	box-shadow: 0 0 2px black;
 	transition: .5s ease;
-	filter: sepia(50%);
+	filter: grayscale(60%);
 }
 
 .hes-gallery img:hover{
@@ -475,9 +475,29 @@ a.admin_menu{
 
 .socials_logo img{
 	width: 50px;
-	height: 40px;
+	height: 36px;
 	object-fit: scale-down;
 	filter: invert();
+}
+
+.socials_logo img[alt="logo email"]{
+	width: 40px;
+	height: 36px;
+}
+
+.socials_logo img[alt="logo soundcloud"]{
+	width: 57px;
+    height: 45px;
+}
+
+.socials_logo img[alt="logo facebook"]{
+	width: 42px;
+    height: 42px;
+}
+
+.socials_logo img[alt="logo instagram"]{
+	width: 45px;
+    height: 45px;
 }
 
 /********************

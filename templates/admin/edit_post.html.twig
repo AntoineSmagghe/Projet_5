@@ -122,54 +122,56 @@
     <script type="text/javascript">
     {% if article.id != null %}
     //Input change for select cover image
-        const inputsCover = document.getElementsByTagName("input");
-        for (let i in inputsCover){
-            if (inputsCover[i].type === "radio"){
-                inputsCover[i].addEventListener("change", (e)=>{
-                    let pictureId = JSON.stringify({"pictureId": e.target.value, "articleId": {{ article.id }} });
-                    let req = new Request("{{ path('makeCover') }}", { method: 'POST', body: pictureId });               
-                    fetch(req)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                    })
-                    .catch(e => console.error(e));
-                });
-            }
+    const inputsCover = document.getElementsByTagName("input");
+    for (let i in inputsCover){
+        if (inputsCover[i].type === "radio"){
+            inputsCover[i].addEventListener("change", (e)=>{
+                let pictureId = JSON.stringify({"pictureId": e.target.value, "articleId": {{ article.id }} });
+                let req = new Request("{{ path('makeCover') }}", { method: 'POST', body: pictureId });               
+                fetch(req)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(e => console.error(e));
+            });
         }
+    }
     {% endif %}
 
     //text editor
-        let editor;
-        ClassicEditor
-            .create(document.querySelector('.ckeditor'), {
-                removePlugins: ["ImageUpload", "MediaEmbed"],
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    let editor;
+    ClassicEditor
+        .create(document.querySelector('.ckeditor'), {
+            removePlugins: ["ImageUpload", "MediaEmbed"],
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
     //ajax request for delete pictures
-        let request = new Requests();
-        request.delPictures();
+    let request = new Requests();
+    request.delPictures();
 
     //Replace the real filename in the input download field.
-        ((document)=>{
-            const input = document.getElementById("article_imgsFile");
-            const placeholder = input.parentElement.querySelector(".custom-file-label");
-            input.addEventListener("change", ()=>{
-                    let value = input.value.replace('C:\\fakepath\\', '').trim();
-                    placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
-                });
-        })(document);
+    /*
+    ((document)=>{
+        const input = document.getElementById("article_imgsFile");
+        const placeholder = input.parentElement.querySelector(".custom-file-label");
+        input.addEventListener("change", ()=>{
+                let value = input.value.replace('C:\\fakepath\\', '').trim();
+                placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
+            });
+    })(document);
+    */
 
     //Gallery photo
-        HesGallery.init();
-        HesGallery.setOptions({
-            wrapAround: true,
-            disableScrolling: true,
-            keyboardControl: true
-        });
+    HesGallery.init();
+    HesGallery.setOptions({
+        wrapAround: true,
+        disableScrolling: true,
+        keyboardControl: true
+    });
 
     //Add Soundcloud Field
     const listSc = document.getElementById("list_sc");
@@ -179,18 +181,18 @@
         listSc.style.flexBasis = "25px 20px 20px 20px";
         editTextContent.style.flexBasis = "75%";
     {% endif %}
-        document.getElementById("add_form_field").addEventListener("click", ()=>{
-            listSc.style.flexBasis = "30%";
-            listSc.style.flexBasis = "25px 20px 20px 20px";
-            editTextContent.style.flexBasis = "75%";
-        });
+    document.getElementById("add_form_field").addEventListener("click", ()=>{
+        listSc.style.flexBasis = "30%";
+        listSc.style.flexBasis = "25px 20px 20px 20px";
+        editTextContent.style.flexBasis = "75%";
+    });
 
-        let addInput = new addField(
-            document.getElementById("add_sc_btn"), 
-            document.getElementsByClassName("api_data")[0],
-            document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
-            );
-        addInput.init();
+    let addInput = new addField(
+        document.getElementById("add_sc_btn"), 
+        document.getElementsByClassName("api_data")[0],
+        document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
+        );
+    addInput.init();
 
     //Change for the members edition
     const articleFormat = document.getElementById('article_format');

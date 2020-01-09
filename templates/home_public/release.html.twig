@@ -25,7 +25,9 @@
                     <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
                 {% endif %}
             {% endif %}
-            <a href="mailto:cdlm-free@gmail.com" class="a_btn btn_more">Contact</a>
+            <div class="contact_socials">
+                <a href="mailto:cdlm-free@gmail.com" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
+            </div>
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
             {% endif %}
