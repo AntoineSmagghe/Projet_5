@@ -33,7 +33,7 @@
                 }) }}
             </div>
         </div>
-        <div class="row">
+        <div id="socialsNetwork" class="row">
             <div class="col-md-2">
             {{ form_row(form.socialNetwork.facebook) }}
             </div>
@@ -120,7 +120,7 @@
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
     <script src="/js/addField.js"></script>
     <script type="text/javascript">
-
+    {% if article.id != null %}
     //Input change for select cover image
         const inputsCover = document.getElementsByTagName("input");
         for (let i in inputsCover){
@@ -137,6 +137,7 @@
                 });
             }
         }
+    {% endif %}
 
     //text editor
         let editor;
@@ -190,5 +191,17 @@
             document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
             );
         addInput.init();
+
+    //Allow socialnetworks only for the members
+    const articleFormat = document.getElementById('article_format');
+    const socialNet = document.getElementById("socialsNetwork");
+    articleFormat.addEventListener("change", (e)=>{
+        if (e.target.value === "members"){
+            socialNet.style.display = "flex";
+            socialNet.style.animation = "scaleblur 1s ease";
+        }else{
+            socialNet.style.display = "none";
+        }
+    });
     </script>
 {% endblock %}

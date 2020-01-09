@@ -57,6 +57,11 @@
     display: none !important;
 }
 
+#socialsNetwork{
+    display: none;
+    animation: scaleBlur 1s ease;
+}
+
 /****************
 *   TEXT AREA   *
 *****************/
