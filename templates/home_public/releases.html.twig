@@ -21,16 +21,16 @@
                 {% if covers != [] %}
                     {% for cover in covers %}
                         {% if cover.idArticle == member.id %}
-                        <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Cover de la release : {{ member.title }}">
+                        <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Cover de la release : {{ member.title }}">
                         {% set hasCover = true %}
                         {% endif %}
                     {% endfor %}
                 {% endif %}
                 {% if hasCover == false %}
                     {% if member.imgs|first != "" %}
-                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ member.imgs|first) }}" alt="Cover de la release : {{ member.title }}">
+                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) }}" alt="Cover de la release : {{ member.title }}">
                     {% else %}
-                    <img class="img_release" src="/img/CDLM_logo.svg" alt="Cover de la release {{ member.title }}">
+                    <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
                     {% endif %}
                 {% endif %}
                 <figcaption class="release_figcaption">

@@ -11,12 +11,12 @@
         <figure>
             {% if article.imgs.snapshot != [] %}
                 {% if cover != null %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name ) }}" alt="cover : {{article.title}}" >
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name) | imagine_filter('450x340') }}" alt="cover : {{article.title}}" >
                 {% else %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) }}" alt="cover : {{article.title}}" >
+                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first ) | imagine_filter('450x340') }}" alt="cover : {{article.title}}" >
                 {% endif %}
             {% else %}
-            <img class="article_image_cover" src="/img/CDLM_logo.svg" alt="cover : {{article.title}}">
+            <img class="article_image_cover" src="{{ asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('450x340') }}" alt="cover : {{article.title}}">
             {% endif %}
             <figcaption id="artist_release_figcaption">
             {% if app.user != null %}

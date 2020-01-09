@@ -9,6 +9,7 @@
     <div class="incover">
         <div class="article_cover_title">
             <h1 class="part_title">Les artistes du chant</h1>
+            
         </div>
     </div>
 </section>
@@ -21,16 +22,16 @@
                     {% if covers != [] %}
                         {% for cover in covers %}
                             {% if cover.idArticle == member.id %}
-                            <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l\'artiste : {{ member.title }}">
+                            <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ member.title }}">
                             {% set hasCover = true %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                     {% if hasCover == false %}
                         {% if member.imgs|first != "" %}
-                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ member.imgs|first) }}" alt="Photo de l'artiste : {{ member.title }}">
+                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) }}" alt="Photo de l'artiste : {{ member.title }}">
                         {% else %}
-                        <img class="img_member" src="/img/CDLM_logo.svg" alt="logo pour l'artiste {{ member.title }}">
+                        <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
                         {% endif %}
                     {% endif %}
                     <figcaption>

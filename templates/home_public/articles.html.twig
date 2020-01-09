@@ -37,16 +37,16 @@
         {% if covers != [] %}
           {% for cover in covers %}
             {% if cover.idArticle == article.id %}
-              <img src="{{ asset('/upload/pictures/' ~ cover.covername) }}" alt="Photo de l\'article : {{ article.title }}">
+              <img src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'article : {{ article.title }}">
               {% set hasCover = true %}
             {% endif %}
           {% endfor %}
         {% endif %}
         {% if hasCover == false %}
           {% if article.imgs|first != "" %}
-          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{ article.title }}">
+          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) }}" alt="Photo de l'article : {{ article.title }}">
           {% else %}
-          <img src="/img/Arthur/DSCF6226.jpg" alt="Photo de l'article : {{ article.title }}">
+          <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
           {% endif %}
         {% endif %}
         </div>
