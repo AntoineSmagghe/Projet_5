@@ -21,44 +21,64 @@
 	}
 }
 
-@keyframes textMove{
-    0%, 100%{
-        text-shadow: 5px 0px 0 var(--red), -5px 2px 0 var(--blue);
-    }
-    20%, 40%, 60%, 80%{
-        text-shadow: -10px 0px 0 var(--red), 10px 2px 0 var(--blue);
-    }
-    10%, 30%, 50%, 70%, 90%{
-        text-shadow: 10px 0px 0 var(--red), -15px 2px 0 var(--blue);
-    }
-}
-
 @keyframes slideDown{
     from{
-        transform: translateY(-900px);
-        filter: blur(50px);
+        transform: translateY(-20vh);
     }
     to{
         transform: translateY(0);
-        filter: blur(0);    
     }
 }
 
 @keyframes slideUp{
     from{
-        transform: translateY(900px);
-        filter: blur(50px);
+        transform: translateY(0);
     }
     to{
-        transform: translateY(0);
-        filter: blur(0);    
+        transform: translateY(-20vh);
     }
 
 }
 
+@keyframes slideLeft {
+        from{
+            transform: translateX(-50vw);
+        }
+        to {
+            transform: translateX(0);
+        }
+}
+
+@keyframes miniSlideLeft {
+    from{
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-200px);
+    }
+}
+
+@keyframes miniSlideLeftReverse {
+    from{
+        transform: translateX(-200px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideLeftReverse {
+    from{
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50vw);
+    }
+}
+
 @keyframes slideRight {
         from{
-            transform: translateX(350px);
+            transform: translateX(50vw);
         }
         to {
             transform: translateX(0);
@@ -70,6 +90,6 @@
         transform: translateX(0);
     }
     to {
-        transform: translateX(350px);
+        transform: translateX(50vw);
     }
 }

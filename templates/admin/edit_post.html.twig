@@ -26,7 +26,7 @@
             <div class="col-md-2 date">
                 {{ form_row(form.date_event, {'label' : 'Date'}) }}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 type">
             {{ form_row(form.format, {
                 'label': 'Type de l\'article', 
                 'placeholder': 'Sélectionnez ici'
@@ -196,20 +196,29 @@
     const articleFormat = document.getElementById('article_format');
     const socialNet = document.getElementById("socialsNetwork");
     const dateEvent = document.getElementsByClassName("date")[0];
+    const articleType = document.getElementsByClassName("type")[0];
     {% if isMember == true %}
     articleFormat.value = "members";
+    socialNet.style.display = "flex";
+    dateEvent.style.display = "none";
     {% endif %}
-    if (articleFormat.value === "members"){
-        socialNet.style.display = "flex";
-        dateEvent.style.display = "none";
-    }
     articleFormat.addEventListener("change", (e)=>{
         if (e.target.value === "members"){
             socialNet.style.display = "flex";
-            dateEvent.style.display = "none";
+            socialNet.style.animation = "slideLeft 1s ease";
+            dateEvent.style.animation = "slideLeftReverse 1s ease";
+            articleType.style.animation = "miniSlideLeft 1s ease";
+            setTimeout(()=>{
+                dateEvent.style.display = "none";
+            }, 1000);
         }else{
-            socialNet.style.display = "none";
             dateEvent.style.display = "flex";
+            dateEvent.style.animation = "slideLeft 1s ease";
+            socialNet.style.animation = "slideLeftReverse 1s ease";
+            articleType.style.animation = "miniSlideLeftReverse 1s ease";
+            setTimeout(()=>{
+                socialNet.style.display = "none";
+            }, 1000);
         }
     });
     </script>
