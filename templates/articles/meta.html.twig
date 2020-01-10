@@ -19,23 +19,4 @@
     {% set titleArticle = "CDLM.space - Les artistes" %}
     {% set descriptionArticle = "Les artistes du Chant De La Machine" %}
 {% endif %}
-
-<!-- Primary Meta Tags -->
-<meta name="title" content="{{ titleArticle }}">
-<meta name="description" content="{{ descriptionArticle }}">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{app.request.uri}}">
-<meta property="og:title" content="CDLM.space - {{ titleArticle }}">
-<meta property="og:description" content="{{ descriptionArticle }}">
-<meta property="og:image" content="{{ coverArticle }}">
-<meta property="og:image:width" content="300" />
-<meta property="og:image:height" content="300" />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="{{app.request.uri}}">
-<meta property="twitter:title" content="CDLM.space - {{ titleArticle }}">
-<meta property="twitter:description" content="{{ descriptionArticle }}">
-<meta property="twitter:image" content="{{ coverArticle }}">
+{% include 'include/htmlMeta.html.twig' %}

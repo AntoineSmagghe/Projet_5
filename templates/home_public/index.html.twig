@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block header %}
   <link rel="stylesheet" href="/css/home_public_index.css">
+    {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}
+    {% set titleArticle = "Home" %}
+    {% set descriptionArticle = "Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses." %}
+    {% include 'include/htmlMeta.html.twig' %}
 {% endblock %}
 {% block title %}Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses.{% endblock %}
 {% block body %}
