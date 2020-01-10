@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+{% block head %}
+  {% include 'articles/meta.html.twig' %}
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/articles.css">
 {% endblock %}
@@ -6,26 +9,26 @@
 <section id="articles">
   <section id="article_cover">
   {% if format == 'news' %}
-      <img class="article_image_cover" src="/img/Arthur/DSCF6344.jpg" alt="Cover CDLM members">
-      <div class="incover">
-          <div class="article_cover_title">
-            <h1 class="part_title">Les news du chant</h1>
-          </div>
+  <img class="article_image_cover" src="/img/Arthur/DSCF6344.jpg" alt="Cover CDLM members">
+  <div class="incover">
+      <div class="article_cover_title">
+        <h1 class="part_title">Les news du chant</h1>
       </div>
+  </div>
   {% elseif format == 'publicEvent' %}
-      <img class="article_image_cover" src="/img/18556493_10158695312680298_6402872989759344248_o.jpg" alt="Cover CDLM members">
-      <div class="incover">
-          <div class="article_cover_title">
-            <h1 class="part_title">Les évènements</h1>
-          </div>
+  <img class="article_image_cover" src="/img/18556493_10158695312680298_6402872989759344248_o.jpg" alt="Cover CDLM members">
+  <div class="incover">
+      <div class="article_cover_title">
+        <h1 class="part_title">Les évènements</h1>
       </div>
+  </div>
   {% elseif format == 'privateEvent' %}
-      <img class="article_image_cover" src="/img/Arthur/DSCF6310.jpg" alt="Cover CDLM members">
-      <div class="incover">
-          <div class="article_cover_title">
-            <h1 class="part_title">Les évènements privés</h1>
-          </div>
+  <img class="article_image_cover" src="/img/Arthur/DSCF6310.jpg" alt="Cover CDLM members">
+  <div class="incover">
+      <div class="article_cover_title">
+        <h1 class="part_title">Les évènements privés</h1>
       </div>
+  </div>
   {% endif %}
   </section>
   <div id="welcome_cards">
@@ -33,22 +36,7 @@
     <div class="welcome_card">
       <div class="in_card_welcome">
         <div class="col_wel_img">
-        {% set hasCover = false %}
-        {% if covers != [] %}
-          {% for cover in covers %}
-            {% if cover.idArticle == article.id %}
-              <img src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'article : {{ article.title }}">
-              {% set hasCover = true %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-        {% if hasCover == false %}
-          {% if article.imgs|first != "" %}
-          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) | imagine_filter('300x300') }}" alt="Photo de l'article : {{ article.title }}">
-          {% else %}
-          <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
-          {% endif %}
-        {% endif %}
+        {% include 'articles/cover.html.twig' %}
         </div>
         <div class="col_wel_txt">
           <div class="col_wel_txt_body">

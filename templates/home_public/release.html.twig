@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}{{article.text[:200]|striptags }}{% endblock %}
 {% block header %}
+{% include 'article/meta.html.twig' %}
 {% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/label.css">
@@ -9,15 +10,7 @@
 <section id="release">
     <aside id="member_picture">
         <figure>
-            {% if article.imgs.snapshot != [] %}
-                {% if cover != null %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ cover.name) | imagine_filter('450x340') }}" alt="cover : {{article.title}}" >
-                {% else %}
-                <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first.name ) | imagine_filter('450x340') }}" alt="cover : {{article.title}}" >
-                {% endif %}
-            {% else %}
-            <img class="article_image_cover" src="{{ asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('450x340') }}" alt="cover : {{article.title}}">
-            {% endif %}
+            {% include 'article/cover.html.twig' %}
             <figcaption id="artist_release_figcaption">
             {% if app.user != null %}
                     <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
