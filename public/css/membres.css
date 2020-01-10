@@ -130,9 +130,6 @@ figcaption h3{
 .release_figcaption{
     max-height: 100px;
     width: 100%;
-    position: relative;
-    top: -118px;
-    background-color: rgba(0,0,0,0.7);
     padding: 10px 0;
 }
 

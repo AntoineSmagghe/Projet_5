@@ -13,7 +13,7 @@
         <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-            <button class="a_btn btn_del">Supprimer</button>
+            <button id="del_article" class="a_btn btn_del">Supprimer</button>
         </form>
     </div>
     {% endif %}
@@ -128,6 +128,7 @@
     <script src="/js/Requests.js"></script>
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
     <script src="/js/addField.js"></script>
+    <script src="/js/popupStop.js"></script>
     <script type="text/javascript">
     {% if article.id != null %}
     //Input change for select cover image
@@ -161,18 +162,6 @@
     //ajax request for delete pictures
     let request = new Requests();
     request.delPictures();
-
-    //Replace the real filename in the input download field.
-    /*
-    ((document)=>{
-        const input = document.getElementById("article_imgsFile");
-        const placeholder = input.parentElement.querySelector(".custom-file-label");
-        input.addEventListener("change", ()=>{
-                let value = input.value.replace('C:\\fakepath\\', '').trim();
-                placeholder.textContent = "" !== value ? value : (input.getAttribute('placeholder') || '');
-            });
-    })(document);
-    */
 
     //Gallery photo
     HesGallery.init();
@@ -232,5 +221,9 @@
             }, 1000);
         }
     });
+
+    //Alert before remove the article
+    let popup = new popupStop(document.getElementById("del_article"), "Etes vous sûr de vouloir supprimer l'article?", "L'article a été supprimé");
+    popup.validateAction();
     </script>
 {% endblock %}
