@@ -20,7 +20,8 @@ class ResetMailType extends AbstractType
                 'invalid_message' => "Les deux adresses ne correspondent pas.",
                 'options' => [
                     'attr' => [
-                        'class' => 'field_class'
+                        'class' => 'field_class',
+                        'value' => '',
                     ]
                 ],
                 'first_options'  => ['label' => 'Nouvelle adresse'],
