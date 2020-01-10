@@ -11,7 +11,9 @@
         {{form_row(form.surname, {'label': 'Prénom', 'attr': {'placeholder': 'Prénom'}})}}
         {{form_row(form.name, {'label': 'Nom', 'attr': {'placeholder': 'Nom'}})}}
         {{form_row(form.submit, {'label': 'Valider', 'attr': {'class': 'a_btn btn_modify'}})}}
+        <br>
         <a href="{{ path("resetMail") }}">Changer d'adresse mail</a>
+        <br>
         <br>
         <a href="{{ path("resetPassword") }}">Changer de mot de passe</a>
     {{form_end(form)}}

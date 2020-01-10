@@ -61,6 +61,18 @@
     display: none;
 }
 
+/************
+*   ERRORS  *
+*************/
+label .invalid-feedback.d-block{
+    display: none;
+}
+
+.invalid-feedback.d-block{
+    margin: 0 5px;
+    color: red;
+}
+
 /****************
 *   TEXT AREA   *
 *****************/

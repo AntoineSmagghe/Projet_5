@@ -58,7 +58,7 @@ class Article
 
     /**
      * Assert\All({
-     *      @Assert\Image(mimeTypes="image/")
+     *      @Assert\Image(mimeTypes="image/jpg")
      * })
      */
     private $imgsFile;

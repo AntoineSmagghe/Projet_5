@@ -315,7 +315,7 @@ a.admin_menu{
 	text-align: center;
 	font-size: 2rem;
 	margin: 20px 0;
-	color: var(--blue);
+	color: white;
 }
 
 /************
@@ -449,6 +449,21 @@ a.admin_menu{
 .btn_del{
 	text-align: center;
     background-color: red;
+}
+
+.back_arrow{
+	width: 40px;
+    display: block;
+    padding: 5px;
+	transition: .5s ease;
+}
+
+.back_arrow:hover{
+	transform:scale(1.1);
+}
+
+.back_arrow:focus{
+	transform:scale(1);
 }
 
 /********************

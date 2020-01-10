@@ -5,19 +5,42 @@ Sélectionnez ici:	Sélectionnez ici
 Evènement Public:	Evènement Public
 Evènement Privé:	Evènement Privé
 News:	Nouvelles
-Release:	Release
+Release:	Sortie
 Artist:	Artiste
 Facebook:	Facebook
 Soundcloud:	Soundcloud
 Instagram:	Instagram
-Titre de l'évènement:	Titre de l'évènement
+Titre de l'évènement:	Titre
 Contenu:	Contenu
 Tappez le texte ici:	Tappez le texte ici
 Une url stp:	Une url stp
-Upload images:	Upload
+Imgs file:	Upload
 Api data: Données
 Enregistrer:	Enregistrer
+Valider: Enregistrer 
+
+#Account
+Prénom:	Prénom
+Nom:	Nom
+Email:	Email
+Mot de passe:	Mot de passe
+Confirmation:	Confirmation
+Répéter le mot de passe:	Répéter le mot de passe
+Roles:	Roles
+0:	0
+Administrateur:	Administrateur
+Membre: Membre
+
+Nouvelle adresse:	Nouvelle adresse
+Répétez l'adresse:	Répétez l'adresse
+
+Ancien mot de passe: Ancien mot de passe
+Nouveau mot de passe:	Nouveau mot de passe
+Répétez le mot de passe:	Répétez le mot de passe
+Submit: Enregistrer
+
 
 #Articles
 Les news du chant: Les dernières nouvelles
 Les évènements : 	Les évènements
+Les évènements privés:	Les évènements privés

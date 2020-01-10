@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Editeur d'article pour le Chant de la Machine.{% endblock %}
+{% block title %}<title>Editeur d'article pour le Chant de la Machine.</title>{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/edit_post.css"></link>
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
@@ -18,12 +18,16 @@
     </div>
     {% endif %}
     {{ form_start(form) }}
+        <div class="form_error">
+            {{ form_errors(form) }}
+        </div>
         {{ form_row(form.save, {
             'label': 'Enregistrer',
             'attr': {'class': 'a_btn btn_modify'}
         }) }}
         <div class="row">
             <div class="col-md-2 date">
+                {{ form_errors(form.date_event) }}
                 {{ form_row(form.date_event, {'label' : 'Date'}) }}
             </div>
             <div class="col-md-2 type">
@@ -36,12 +40,15 @@
         <div id="socialsNetwork" class="row">
             <div class="col-md-2">
             {{ form_row(form.socialNetwork.facebook) }}
+            {{ form_errors(form.socialNetwork.facebook) }}
             </div>
             <div class="col-md-2">
             {{ form_row(form.socialNetwork.soundcloud) }}
+            {{ form_errors(form.socialNetwork.soundcloud) }}
             </div>
             <div class="col-md-2">
             {{ form_row(form.socialNetwork.instagram) }}
+            {{ form_errors(form.socialNetwork.instagram) }}
             </div>
         </div>
         <div id="add_form_field" >
@@ -62,6 +69,7 @@
                     }
                 }) }}
             </div>
+            {{ form_errors(form.api_data) }}
             <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
                 {% for sound in form.api_data %}
                 <li>
@@ -88,9 +96,8 @@
         {% endif %}
         <div class="row">
             <div class="col-md-3">
-                {{ form_row(form.imgsFile, {
-                    'label': 'Upload images',
-                }) }}
+                {{ form_errors(form.imgsFile) }}
+                {{ form_row(form.imgsFile) }}
             </div>
         </div>
     {{form_end(form)}}
@@ -99,6 +106,7 @@
         <div id="gallery">
             <div class="hes-gallery">
             {% for image in article.imgs %}
+                {% if image.id != null %}
                 <figure class="edit_image" name="{{image.id}}">
                     <img src="{{ vich_uploader_asset(image, 'imgData') | imagine_filter('200x150') }}" data-fullsize="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
                     <figcaptation class="action_image">
@@ -107,6 +115,7 @@
                         <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">X</a>
                     </figcaptation>
                 </figure>
+                {% endif %}
             {% endfor %}
             </div>
         </div>

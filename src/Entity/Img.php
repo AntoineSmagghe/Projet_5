@@ -31,7 +31,7 @@ class Img
 
     /**
      * @Assert\Image(
-     *      mimeTypes="image/"
+     *      mimeTypes="image/jpg"
      * )
      * @Vich\UploadableField(mapping="images", fileNameProperty="name")
      */
