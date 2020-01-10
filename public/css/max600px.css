@@ -1,0 +1,15 @@
+@media screen and (max-width: 600px){
+    
+    /************************
+    *   HOME PUBLIC INDEX   *
+    *************************/
+    .welcome_view{
+        height: 600px;
+    }
+
+    .moving_title{
+        top: 90px;
+        padding: 0;
+        text-align: center;
+    }
+}

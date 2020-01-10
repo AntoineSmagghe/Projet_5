@@ -20,6 +20,7 @@ body {
 	line-height: 1;
 	background-color: #404040;
 	min-height: calc(100vh - 220px);
+	min-width: 245px;
 }
 
 ol, ul {
@@ -110,7 +111,7 @@ nav{
     height: 70px;
     width: calc(100% - 4rem);
     max-width: 1500px;
-    padding: 0 12vw;
+    padding: 0 20vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -143,6 +144,10 @@ nav ul{
     justify-content: center;
 	align-items: center;
 	transition: .5s ease;
+}
+
+.label_menu_minwidth{
+	display: none;
 }
 
 .item_menu:hover{
@@ -235,7 +240,7 @@ nav ul{
     text-shadow: none;
     z-index: 10;
     background-color: white;
-    right: 14vw;
+    right: 20vw;
     top: 30px;
 }
 

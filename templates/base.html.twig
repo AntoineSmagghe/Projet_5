@@ -21,9 +21,11 @@
 
         <link href="https://fonts.googleapis.com/css?family=Noto+Serif|Open+Sans&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/ef657a2258.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/css/base.css">
-        <link rel="stylesheet" href="/css/keyframes.css">
         {% block header %}{% endblock %}
+        <link rel="stylesheet" href="/css/base.css">
+        <link rel="stylesheet" href="/css/max900px.css">
+        <link rel="stylesheet" href="/css/max600px.css">
+        <link rel="stylesheet" href="/css/keyframes.css">
         {% block style %}{% endblock %}
     </head>
     <body>
@@ -38,24 +40,36 @@
                         <a class="link_menu" href="{{ path("articles", {"format": "news"}) }}">News</a>
                     </li>
                     {% if app.user != null %}
-                    <li class="item_menu">
+                    <li class="item_menu label_menu">
                         <button class="btn_dropdown_menu">Events</button>
                         <div class="dropdown_menu">
                             <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">Public</a>
                             <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">Private</a>
                         </div>
                     </li>
+                    <li class="item_menu label_menu_minwidth">
+                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">Public</a>
+                    </li>
+                    <li class="item_menu label_menu_minwidth">
+                        <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_menu">Private</a>
+                    </li>
                     {% else %}
                     <li class="item_menu">
                         <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">Events</a>
                     </li>
                     {% endif %}
-                    <li class="item_menu">
+                    <li class="item_menu label_menu">
                         <button class="btn_dropdown_menu">Label</button>
                         <div class="dropdown_menu">
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
                             <a class="link_dropdown_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
                         </div>
+                    </li>
+                    <li class="item_menu label_menu_minwidth">
+                        <a class="link_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
+                    </li>
+                    <li class="item_menu label_menu_minwidth">
+                        <a class="link_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
                     </li>
                     <li class="item_menu">
                         <a class="link_menu" href="#">About</a>
@@ -94,7 +108,10 @@
                         </div>
                     </li>
                     {% endif %}
-                </ul>                        
+                </ul>
+                <svg id="ico_burger" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+                </svg>
             </nav>
         </header>
         {# read and display all flash messages #}
@@ -123,20 +140,21 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="/js/menuHidden.js"></script>
         <script src="/js/Modal.js"></script>
+        <script src="/js/openMiniMenu.js"></script>
         <script type="application/javascript">
             window.addEventListener("load", ()=>{
                 //Sub menus dropdown when mouse over.
-                let btn_dropdown_menu = document.getElementsByClassName("btn_dropdown_menu");
-                let dropdown_menu = document.getElementsByClassName("dropdown_menu");
+                const btn_dropdown_menu = document.getElementsByClassName("btn_dropdown_menu");
+                const dropdown_menu = document.getElementsByClassName("dropdown_menu");
                 for (let i = 0; i < btn_dropdown_menu.length; i++){
-                    let burgerMenu = new menuHidden(
+                    let dropdownMenu = new menuHidden(
                         btn_dropdown_menu[i], 
                         dropdown_menu[i], 
                         "flex", 
                         "scaleBlur", 
                         "scaleBlur"
                     );
-                    burgerMenu.listenIco();
+                    dropdownMenu.listenIco();
                 }
 
                 //Form appear when click on icon.
@@ -147,6 +165,12 @@
                     document.getElementById("login_btn"),
                 );
                 signinModal.init();
+                
+                //Burger menu for responsive design
+                const ico_burger = document.getElementById("ico_burger");
+                const nav_ul = document.querySelector("nav ul");
+                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex");
+                menuBurger.listenIco();
             });
         </script>
         {% block javascripts %}{% endblock %}

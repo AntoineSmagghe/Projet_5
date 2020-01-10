@@ -1,0 +1,91 @@
+@media screen and (max-width: 900px){
+    /************
+    *	NAVBAR	*
+    *************/
+    nav{
+        width: calc(100%);
+        padding: 0;
+    }
+
+    nav ul{
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background: var(--black);
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 40%;
+    }
+
+    #ico_burger{
+        padding: 10px;
+        width: 33px;
+        color: white;
+        margin: 0px 10px;
+        cursor: pointer;
+    }
+
+    #logo_header {
+        width: 2.3rem;
+    }
+
+    .item_menu{
+        width: 100%;
+        height: 50px;
+    }
+
+    .item_menu:last-child{
+        margin: 0;
+    }
+
+    .item_menu.label_menu{
+        display: none;
+    }
+
+    .item_menu.label_menu_minwidth{
+        display: flex;
+    }
+
+    #background_modal{
+        z-index: 0;
+    }
+
+    /*************
+    *   FORM    *
+    **************/
+    .sign_in_form{
+        box-shadow: 0 0 10px black;
+        margin: 20px;
+        width: 100%;
+        right: 0;
+        top: 0;
+    }
+
+    a.admin_menu{
+        width: 100%;
+    }
+    /************
+    *	FOOTER	*
+    *************/
+    footer{
+        justify-content: center;
+        align-items: center;
+    }
+
+    /************
+    *	TITLES	*
+    *************/
+    .part_title{
+        font-size: 2rem;
+    }
+
+    /************************
+    *   HOME PUBLIC INDEX   *
+    *************************/
+    .moving_title{
+        font-size: 2rem;
+        top: 100px;
+        padding: 0 0 0 30px;
+    }
+}
