@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block header %}{% endblock %}
+{% block header %}
+    {% include 'articles/meta.html.twig'%}
+{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/membres.css">
 {% endblock %}
@@ -15,7 +17,7 @@
 </section>
 <section id="members">
         <article class="members_picture">
-        {% for member in members %}
+        {% for member in articles %}
             <figure>
                 <a href="{{path('article', {"format" : "members", "id" : member.id})}}">
                     {% set hasCover = false %}

@@ -1,16 +1,25 @@
 {% if format == 'news' %}
     {% set coverArticle %}{{ asset("/img/Arthur/DSCF6344.jpg") | imagine_filter('300x300') }}{% endset %}
-    {% set titleArticle %}"CDLM.space - The news"{% endset %}
-    {% set descriptionArticle %}"Les derniers articles du collectif Le Chant De La Machine"{% endset %}
+    {% set titleArticle = "CDLM.space - The news" %}
+    {% set descriptionArticle = "Les derniers articles du collectif Le Chant De La Machine" %}
 {% elseif format == 'publicEvent' %}
     {% set coverArticle %}{{ asset("/img/18556493_10158695312680298_6402872989759344248_o.jpg") | imagine_filter('300x300')}}{% endset %}
     {% set titleArticle = "CDLM.space - The news" %}
-    {% set descriptionArticle = "Les derniers articles du collectif Le Chant De La Machine" %}
+    {% set descriptionArticle = "Les évènements du Chant De La Machine" %}
 {% elseif format == 'privateEvent' %}
     {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
     {% set titleArticle = "CDLM.space - The news" %}
-    {% set descriptionArticle = "Les derniers articles du collectif Le Chant De La Machine" %}
+    {% set descriptionArticle = "Les évènements privés du Chant De La Machine" %}
+{% elseif format == 'releases' %}
+    {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
+    {% set titleArticle = "CDLM.space - The news" %}
+    {% set descriptionArticle = "Les sorties du label Le Chant De La Machine" %}
+{% elseif format == 'members' %}
+    {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
+    {% set titleArticle = "CDLM.space - Les artistes" %}
+    {% set descriptionArticle = "Les artistes du Chant De La Machine" %}
 {% endif %}
+
 <!-- Primary Meta Tags -->
 <meta name="title" content="{{ titleArticle }}">
 <meta name="description" content="{{ descriptionArticle }}">

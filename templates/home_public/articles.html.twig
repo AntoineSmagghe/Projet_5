@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
-{% block head %}
-  {% include 'articles/meta.html.twig' %}
+{% block header %}
+    {% include 'articles/meta.html.twig'%}
 {% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/articles.css">
@@ -12,21 +12,21 @@
   <img class="article_image_cover" src="/img/Arthur/DSCF6344.jpg" alt="Cover CDLM members">
   <div class="incover">
       <div class="article_cover_title">
-        <h1 class="part_title">Les news du chant</h1>
+        <h1 class="part_title">{% trans %}Les news du chant{% endtrans %}</h1>
       </div>
   </div>
   {% elseif format == 'publicEvent' %}
   <img class="article_image_cover" src="/img/18556493_10158695312680298_6402872989759344248_o.jpg" alt="Cover CDLM members">
   <div class="incover">
       <div class="article_cover_title">
-        <h1 class="part_title">Les évènements</h1>
+        <h1 class="part_title">{% trans %}Les évènements{% endtrans %}</h1>
       </div>
   </div>
   {% elseif format == 'privateEvent' %}
   <img class="article_image_cover" src="/img/Arthur/DSCF6310.jpg" alt="Cover CDLM members">
   <div class="incover">
       <div class="article_cover_title">
-        <h1 class="part_title">Les évènements privés</h1>
+        <h1 class="part_title">{% trans %}Les évènements privés{% endtrans %}</h1>
       </div>
   </div>
   {% endif %}
