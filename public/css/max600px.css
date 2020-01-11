@@ -1,5 +1,17 @@
 @media screen and (max-width: 600px){
-    
+    /*****************
+    *   NAVBAR  *
+    *************/
+    nav ul{
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .sign_in_form{
+        margin: 10px;
+        width: calc(100% - 20px);
+    }
+
     /************************
     *   HOME PUBLIC INDEX   *
     *************************/

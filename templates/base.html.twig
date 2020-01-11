@@ -77,35 +77,10 @@
                     {% if app.user == null %}
                     <li id="login_btn" class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
-                        <div class="sign_in_form">
-                            <form action="{{ path('login') }}" method="post">
-                                <div class="form_row">
-                                    <label for="mail">Email</label>
-                                    <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
-                                </div>
-                                <div class="form_row">
-                                    <label for="password">Mot de passe</label>
-                                    <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
-                                </div>
-                                <div class="form_row">
-                                    <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
-                                    <button type="submit" class=".a_btn a_btn btn_more">Envoyer</button>
-                                </div>
-                            </form>
-                        </div>
                     </li>
                     {% else %}
                     <li id="login_btn" class="item_menu">
                         <img src="/img/ellipsis-h-solid.svg" alt="Logo informations admin" class="sign_in_btn">
-                        <div class="sign_in_form">
-                            {% if is_granted("ROLE_ADMIN") %}
-                            <a class="admin_menu" href="{{ path("creatPost") }}">Create post</a>
-                            <a class="admin_menu" href="{{ path("creatArtist") }}">Create artist</a>
-                            <a class="admin_menu" href="{{ path("signIn") }}">Create member</a>
-                            {% endif %}
-                            <a class="admin_menu" href="{{path("account")}}">Account</a>
-                            <a class="admin_menu" href="{{ path("logout") }}">Logout</a>
-                        </div>
                     </li>
                     {% endif %}
                 </ul>
@@ -113,6 +88,34 @@
                     <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
                 </svg>
             </nav>
+            {% if app.user == null %}
+            <div class="sign_in_form">
+                <form action="{{ path('login') }}" method="post">
+                    <div class="form_row">
+                        <label for="mail">Email</label>
+                        <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
+                    </div>
+                    <div class="form_row">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
+                    </div>
+                    <div class="form_row">
+                        <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
+                        <button type="submit" class=".a_btn a_btn btn_more">Envoyer</button>
+                    </div>
+                </form>
+            </div>
+            {% else %}
+            <div class="sign_in_form">
+                {% if is_granted("ROLE_ADMIN") %}
+                <a class="admin_menu" href="{{ path("creatPost") }}">Create post</a>
+                <a class="admin_menu" href="{{ path("creatArtist") }}">Create artist</a>
+                <a class="admin_menu" href="{{ path("signIn") }}">Create member</a>
+                {% endif %}
+                <a class="admin_menu" href="{{path("account")}}">Account</a>
+                <a class="admin_menu" href="{{ path("logout") }}">Logout</a>
+            </div>
+            {% endif %}
         </header>
         {# read and display all flash messages #}
         {% for label, messages in app.flashes %}
