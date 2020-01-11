@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px){
+    #article_cover {
+        height: 600px;
+    }
+
+    .article_image_cover {
+        height: 600px;
+    }
+}
