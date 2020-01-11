@@ -11,19 +11,28 @@
         height: 600px;
     }
 
-    .members_picture figure{
+    .members_picture figure, .release_figure{
         margin: 50px 20px 0 20px;
     }
     
-    .members_picture figure a{
+    .members_picture figure a, .release_figure a{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
     
-    .img_member {
+    .img_member, .img_release{
         width: 150px;
         height: 150px;
+    }
+
+    .release_picture{
+        justify-content: center;
+    }
+
+    .release_figure{
+        width: 200px;
+        margin: 70px 20px 0 20px;
     }
 }
