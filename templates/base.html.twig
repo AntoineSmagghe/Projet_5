@@ -169,7 +169,8 @@
                 //Burger menu for responsive design
                 const ico_burger = document.getElementById("ico_burger");
                 const nav_ul = document.querySelector("nav ul");
-                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex");
+                const backgroundModal = document.getElementById("background_modal");
+                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex", backgroundModal);
                 menuBurger.listenIco();
             });
         </script>

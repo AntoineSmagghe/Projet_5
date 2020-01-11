@@ -24,6 +24,7 @@
         color: white;
         margin: 0px 10px;
         cursor: pointer;
+        display: block;
     }
 
     #logo_header {

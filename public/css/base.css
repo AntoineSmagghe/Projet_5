@@ -285,6 +285,10 @@ a.admin_menu{
 	color: white;
 }
 
+#ico_burger{
+	display: none;
+}
+
 /***********
 *   BODY   *
 ************/

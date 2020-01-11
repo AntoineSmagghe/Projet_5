@@ -5,10 +5,11 @@
  */
 
 class openMiniMenu {
-    constructor(idListen, idToShow, howToDisplay, animation = null) {
+    constructor(idListen, idToShow, howToDisplay, background, animation = null) {
         this.idListen = idListen;
         this.idToShow = idToShow;
         this.howToDisplay = howToDisplay;
+        this.background = background;
         this.animation = animation;
         this.menuIsOpen = false;
 
@@ -29,9 +30,11 @@ class openMiniMenu {
     }
 
     closeMenu() {
-        this.idToShow.addEventListener("click", (e) => {
-            this.idToShow.style.display = "none";
-            this.idListen.style.visibility = "visible";
+        window.addEventListener("click", (e) => {
+            if (e.target === this.background){
+                this.idToShow.style.display = "none";
+                this.idListen.style.visibility = "visible";
+            }
         });
 
         if (this.isMobile()) {
