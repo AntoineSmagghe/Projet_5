@@ -67,8 +67,15 @@
     /************
     *	TITLES	*
     *************/
-    .part_title{
+    .member_images{
         font-size: 2rem;
+    }
+
+    /***************
+    *   GALLERY *
+    **************/
+    .hes-gallery{
+        justify-content: center;
     }
 
     /************
@@ -86,17 +93,5 @@
         font-size: 2rem;
         top: 100px;
         padding: 0 0 0 30px;
-    }
-
-    /****************
-    *   POST EDIT   *
-    *****************/
-    .row{
-        flex-direction: column !important;
-    }
-    
-    #add_form_field {
-        justify-content: flex-start !important;
-        margin: 0 0 0 7px !important;
     }
 }

@@ -1,0 +1,10 @@
+@media screen and (max-width: 600px){
+    #member, #release {
+        flex-direction: column;
+        padding: 70px 0 0 0;
+    }
+
+    #member_picture{
+        position: unset;
+    }
+}

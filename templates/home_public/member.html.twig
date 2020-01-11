@@ -4,6 +4,8 @@
 {% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/label.css">
+<link rel="stylesheet" href="/css/label900px.css">
+<link rel="stylesheet" href="/css/label600px.css">
 {% endblock %}
 {% block body %}
 <section id="member">
@@ -57,15 +59,9 @@
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
 <script type="text/javascript">
-    SC.initialize({
-            client_id: 'h3reaiIhlDG8GqF3EAhi6mQWjWREp0LQ'
-        });
-
-        {% for sound in article.apiData %}
-            SC.resolve(" {{sound}} ")
-                .then((track)=>{
-                    document.getElementsByClassName("widget_SC")[0].insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
-            });
-        {% endfor %}
+{% include 'include/soundcloudID.js' %}
+{% for sound in article.apiData %}
+{% include 'include/soundcloudResolve.js' %}
+{% endfor %}
 </script>
 {% endblock %}

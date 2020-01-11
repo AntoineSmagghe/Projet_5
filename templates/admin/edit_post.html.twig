@@ -2,6 +2,8 @@
 {% block title %}<title>Editeur d'article pour le Chant de la Machine.</title>{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/edit_post.css"></link>
+<link rel="stylesheet" href="/css/edit_post900px.css"></link>
+<link rel="stylesheet" href="/css/edit_post600px.css"></link>
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
@@ -82,18 +84,6 @@
                 {% endfor %}
             </ul>
         </div>
-        {% if app.request.attributes.get('_route') == 'editPost' %}
-        <div id="datetime_article">
-            <div class="onelinetxt">
-                <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
-            </div>
-            {% if article.modifiedBy != '' %}
-            <div class="onelinetxt">
-                <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
         <div class="row">
             <div id="add_sound_minwidth"></div>
             <div class="col-md-3">
@@ -121,6 +111,18 @@
             </div>
         </div>
         {% endif %}
+    {% endif %}
+    {% if app.request.attributes.get('_route') == 'editPost' %}
+    <div id="datetime_article">
+        <div class="onelinetxt">
+            <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
+        </div>
+        {% if article.modifiedBy != '' %}
+        <div class="onelinetxt">
+            <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
+        </div>
+        {% endif %}
+    </div>
     {% endif %}
 </section>
 {% endblock %}

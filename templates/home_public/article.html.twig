@@ -33,6 +33,8 @@
 {% block style %}
 <link rel="stylesheet" href="/css/article.css">
 <link rel="stylesheet" href="/css/home_public_index.css">
+<link rel="stylesheet" href="/css/article900px.css">
+<link rel="stylesheet" href="/css/article600px.css">
 {% endblock %}
 {% block body %}
    {% if article.imgs.snapshot != [] %}
@@ -64,7 +66,7 @@
         <aside id="music">
             {% if article.apiData != [] %}
             <h2>Musique</h2>
-            <div id="widget_SC"></div>
+            <div class="widget_SC"></div>
             {% endif %}
             {% if article.imgs.snapshot != null %}
             <h2>Image</h2>
@@ -80,38 +82,10 @@
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
-<script>
-    SC.initialize({
-        client_id: 'h3reaiIhlDG8GqF3EAhi6mQWjWREp0LQ'
-    });
-
-    {% for sound in article.apiData %}
-        SC.resolve("{{sound}}")
-            .then((track)=>{
-                document.getElementById("widget_SC").insertAdjacentHTML("beforeend", '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>');
-        });
-    {% endfor %}
-/*
-    SC.oEmbed(track_url, { auto_play: false } )
-        .then((oEmbed)=>{
-                let iframeTrack = oEmbed.html
-                    .replace("visual=true&", "")
-                    .replace("show_artwork=true&", "show_artwork=false&")
-                    .replace("", "")
-                    ;
-                document.getElementsByClassName("widget_SC")[0].innerHTML = iframeTrack;
-            });
-
-    function getComments(track) {
-        SC.get('/tracks/' + track.id + '/comments');
-    };
-
-    function listComments(comments) {
-        comments.forEach((comment)=>{
-            console.log(comment.body);
-        });
-    };
-    SC.resolve(track_url).then(getComments).then(listComments)
-*/
+<script type="text/javascript">
+{% include 'include/soundcloudID.js' %}
+{% for sound in article.apiData %}
+{% include 'include/soundcloudResolve.js' %}
+{% endfor %}
 </script>
 {% endblock %}

@@ -152,7 +152,6 @@ fieldset.form-group{
 }
 
 label[for="article_imgsFile"]{
-    padding: 2px;
     background-color: var(--white);
     display: flex;
     flex-direction: column;
@@ -160,7 +159,7 @@ label[for="article_imgsFile"]{
     align-items: center;
     color: white;
     height: 35px;
-    width: 130px;
+    width: 100px;
     box-shadow: 0 0 2px black;
     border-radius: 2px;
     cursor: pointer;

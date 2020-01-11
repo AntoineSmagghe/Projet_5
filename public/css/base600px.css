@@ -12,6 +12,15 @@
         width: calc(100% - 20px);
     }
 
+    /********************
+    *	FLASH MESSAGES	*
+    *********************/
+    .flash-success, .flash-info, .flash-fail{
+        width: calc(100% - 95px);
+        padding: 0 45px 0 50px;
+        text-align: center;
+    }
+
     /************************
     *   HOME PUBLIC INDEX   *
     *************************/

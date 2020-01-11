@@ -1,0 +1,27 @@
+@media screen and (max-width: 600px){
+    /****************
+    *   POST EDIT   *
+    *****************/
+    .hes-gallery{
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .edit_image{
+        width: 100%;
+        height: 200px;
+    }
+
+    .edit_image img{
+        width: 100%;
+        height: 200px;
+    }
+
+    #datetime_article{
+        margin: 15px 0;
+    }
+
+    .onelinetxt{
+        padding: 5px 0;
+    }
+}
