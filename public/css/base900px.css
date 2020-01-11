@@ -89,6 +89,10 @@
     /************************
     *   HOME PUBLIC INDEX   *
     *************************/
+    .welcome_view {
+        height: 600px;
+    }
+    
     .moving_title{
         font-size: 2rem;
         top: 100px;

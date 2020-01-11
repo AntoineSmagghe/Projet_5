@@ -1,0 +1,42 @@
+@media screen and (max-width: 900px){
+
+    #member_picture {
+        padding: 0px;
+    }
+
+    .socials_logo img[alt="logo email"] {
+        width: 30px;
+        height: 26px;
+    }
+    .socials_logo img[alt="logo soundcloud"] {
+        width: 47px;
+        height: 35px;
+    }
+    .socials_logo img[alt="logo facebook"] {
+        width: 32px;
+        height: 32px;
+    }
+    .socials_logo img[alt="logo instagram"] {
+        width: 35px;
+        height: 35px;
+    }
+
+    .text {
+        font-size: .8rem;
+        line-height: 130%;
+    }
+
+    .widget_SC{
+        width: calc(100% - 10px);
+        background-color: unset;
+        box-shadow: unset;
+    }
+
+    .widget_SC iframe {
+        margin: 7px auto;
+    }
+
+    .onelinetxt {
+        padding: 0;
+    }
+}

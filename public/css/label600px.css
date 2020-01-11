@@ -1,10 +1,41 @@
 @media screen and (max-width: 600px){
     #member, #release {
         flex-direction: column;
-        padding: 70px 0 0 0;
+        padding: 90px 0 0 0;
+    }
+
+    #title_minwidth{
+        color: white;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .text{
+        width: 100%;
+        font-size: .9rem;
+        overflow: hidden;
     }
 
     #member_picture{
         position: unset;
+        padding: 20px 20px 0 20px;
+        width: calc(100% - 40px);
+    }
+
+    #member_text_soundcloud{
+        padding: 0px 20px;
+        width: calc(100% - 40px);
+    }
+
+    .contact_socials{
+        justify-content: center;
+    }
+
+    .socials_logo:first-child{
+        padding: 0;
+    }
+
+    .member_images{
+        justify-content: center;
     }
 }

@@ -5,23 +5,26 @@
 {% endblock %}
 {% block style %}
 <link rel="stylesheet" href="/css/label.css">
+<link rel="stylesheet" href="/css/label900px.css">
+<link rel="stylesheet" href="/css/label600px.css">
 {% endblock %}
 {% block body %}
 <section id="release">
+    <div id="title_minwidth"></div>
     <aside id="member_picture">
         <figure>
             {% include 'article/cover.html.twig' %}
             <figcaption id="artist_release_figcaption">
-            {% if app.user != null %}
-                    <p>Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
-                {% if article.modifiedBy != '' %}
-                    <p>Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
-                {% endif %}
-            {% endif %}
             <div class="contact_socials">
                 <a href="mailto:cdlm-free@gmail.com" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
             </div>
             {% if is_granted('ROLE_ADMIN') %}
+            <div id="datetime_article">
+                <p class="onelinetxt">Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
+                    {% if article.modifiedBy != '' %}
+                    <p class="onelinetxt">Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
+                    {% endif %}
+            </div>
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
             {% endif %}
             </figcaption>
@@ -48,10 +51,24 @@
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
+<script type="text/javascript" src="/js/movingElt.js"></script>
 <script type="text/javascript">
 {% include 'include/soundcloudID.js' %}
 {% for sound in article.apiData %}
 {% include 'include/soundcloudResolve.js' %}
 {% endfor %}
+let moveTitle = new movingElt(
+    document.querySelector("#member_text_soundcloud h1"), 
+    document.getElementById("title_minwidth"), 
+    600
+    );
+moveTitle.init();
+
+let moveDate = new movingElt(
+    document.getElementById("datetime_article"), 
+    document.getElementById("member_text_soundcloud"), 
+    600
+    );
+moveDate.init();
 </script>
 {% endblock %}

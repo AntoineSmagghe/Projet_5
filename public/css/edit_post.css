@@ -50,7 +50,6 @@
     margin: 100px auto;
     padding: 20px;
     border-radius: 2px;
-    box-shadow: 0 0 2px black;
 }
 
 .sf-toolbar-clearer{
@@ -86,15 +85,6 @@ label[for="article_text"]{
 
 .ck-content{
     color: black;
-}
-
-#datetime_article{
-    margin: 5px;
-    display: inline-block;
-}
-
-.onelinetxt{
-    padding: 0 5px;
 }
 
 /************

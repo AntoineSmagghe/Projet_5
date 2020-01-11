@@ -10,6 +10,7 @@ use App\Form\UserIdentityType;
 use App\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -111,6 +112,7 @@ class SecurityController extends AbstractController
                 $this->addFlash('success', 'Votre mot de passe à bien été changé !');
                 return $this->redirectToRoute('account');
             } else {
+                $this->addFlash('fail', 'Ancien mot de passe incorrect');
                 $form->addError(new FormError('Ancien mot de passe incorrect'));
             }
         }
@@ -128,11 +130,15 @@ class SecurityController extends AbstractController
         $user = $this->getUser();
         $form = $this->createForm(ResetMailType::class, $user);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
-            $manager->persist($user);
-            $manager->flush();
-            $this->addFlash('success', 'Votre adresse mail a bien été changée !');
-            return $this->redirectToRoute('account');
+        try{
+            if ($form->isSubmitted() && $form->isValid()){
+                $manager->persist($user);
+                $manager->flush();
+                $this->addFlash('success', 'Votre adresse mail a bien été changée !');
+                return $this->redirectToRoute('account');
+            }
+        } catch(Exception $e){
+            $this->addFlash('fail', $e);
         }
         return $this->render('users/reset_mail.html.twig', [
             'form' => $form->createView(),

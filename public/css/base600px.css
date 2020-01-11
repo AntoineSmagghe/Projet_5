@@ -33,4 +33,20 @@
         padding: 0;
         text-align: center;
     }
+
+    #datetime_article{
+        margin: 15px 0;
+    }
+
+    .onelinetxt{
+        padding: 5px 0;
+    }
+
+    /*************
+    *   GALLERY *
+    *************/
+    .hes-gallery img {
+        width: 100%;
+        height: 200px;
+    }
 }

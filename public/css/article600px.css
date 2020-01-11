@@ -37,13 +37,13 @@
         flex-basis: unset;
     }
 
-    #widget_SC{
+    .widget_SC{
         width: calc(100% - 10px);
         background-color: unset;
         box-shadow: unset;
     }
 
-    #widget_SC iframe {
+    .widget_SC iframe {
         margin: 7px auto;
     }
 

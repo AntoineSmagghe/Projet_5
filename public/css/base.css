@@ -20,7 +20,7 @@ body {
 	line-height: 1;
 	background-color: #404040;
 	min-height: calc(100vh - 220px);
-	min-width: 245px;
+	min-width: 320px;
 }
 
 ol, ul {
@@ -552,6 +552,15 @@ a.admin_menu{
 
 .flash-info{
 	background-color: lightskyblue;
+}
+
+#datetime_article{
+    margin: 5px;
+    display: inline-block;
+}
+
+.onelinetxt{
+    padding: 0 5px;
 }
 
 /************
