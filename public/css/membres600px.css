@@ -11,8 +11,12 @@
         height: 600px;
     }
 
-    .members_picture figure, .release_figure{
+    .members_picture figure{
         margin: 50px 20px 0 20px;
+    }
+    
+    .release_figure{
+        margin: 70px 20px 0 20px;
     }
     
     .members_picture figure a, .release_figure a{
@@ -27,12 +31,12 @@
         height: 150px;
     }
 
-    .release_picture{
-        justify-content: center;
+    .release_figure{
+        width: 150px;
+        height: 150px;
     }
 
-    .release_figure{
-        width: 200px;
-        margin: 70px 20px 0 20px;
+    .img_release{
+        height: 150px;
     }
 }

@@ -10,8 +10,16 @@
         margin: unset;
     }
 
-    .members_picture{
+    .members_picture, .release_picture{
         justify-content: center;
     }
+    
+    .release_figure{
+        width: 200px;
+        height: 200px;
+    }
 
+    .img_release{
+        height: 200px;
+    }
 }
