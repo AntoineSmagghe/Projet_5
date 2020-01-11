@@ -95,6 +95,7 @@
         </div>
         {% endif %}
         <div class="row">
+            <div id="add_sound_minwidth"></div>
             <div class="col-md-3">
                 {{ form_errors(form.imgsFile) }}
                 {{ form_row(form.imgsFile) }}
@@ -129,7 +130,12 @@
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
     <script src="/js/addField.js"></script>
     <script src="/js/popupStop.js"></script>
+    <script src="/js/movingElt.js"></script>
     <script type="text/javascript">
+    //MediaQueries, move some elts for responsive design
+    let moveElt = new movingElt(document.getElementById("add_form_field"), document.getElementById("add_sound_minwidth"), 900);
+    moveElt.init();
+
     {% if article.id != null %}
     //Input change for select cover image
     const inputsCover = document.getElementsByTagName("input");
@@ -176,12 +182,10 @@
     const editTextContent = document.getElementById("edit_text_content");
     {% if form.api_data.children != [] %}
         listSc.style.flexBasis = "30%";
-        listSc.style.flexBasis = "25px 20px 20px 20px";
         editTextContent.style.flexBasis = "75%";
     {% endif %}
     document.getElementById("add_form_field").addEventListener("click", ()=>{
         listSc.style.flexBasis = "30%";
-        listSc.style.flexBasis = "25px 20px 20px 20px";
         editTextContent.style.flexBasis = "75%";
     });
 
@@ -221,9 +225,11 @@
             }, 1000);
         }
     });
-
+    
+    {% if app.request.attributes.get('_route') == 'editPost' %}
     //Alert before remove the article
     let popup = new popupStop(document.getElementById("del_article"), "Etes vous sûr de vouloir supprimer l'article?", "L'article a été supprimé");
     popup.validateAction();
+    {% endif %}
     </script>
 {% endblock %}

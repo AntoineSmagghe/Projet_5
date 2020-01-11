@@ -57,21 +57,11 @@
     **************/
     .sign_in_form{
         box-shadow: 0 0 10px black;
-        margin: 20px;
-        width: 100%;
-        right: 0;
-        top: 0;
+        width: calc(100% - 40px);
     }
 
     a.admin_menu{
         width: 100%;
-    }
-    /************
-    *	FOOTER	*
-    *************/
-    footer{
-        justify-content: center;
-        align-items: center;
     }
 
     /************
@@ -81,6 +71,14 @@
         font-size: 2rem;
     }
 
+    /************
+    *	FOOTER	*
+    *************/
+    footer{
+        justify-content: center;
+        align-items: center;
+    }
+
     /************************
     *   HOME PUBLIC INDEX   *
     *************************/
@@ -88,5 +86,17 @@
         font-size: 2rem;
         top: 100px;
         padding: 0 0 0 30px;
+    }
+
+    /****************
+    *   POST EDIT   *
+    *****************/
+    .row{
+        flex-direction: column !important;
+    }
+    
+    #add_form_field {
+        justify-content: flex-start !important;
+        margin: 0 0 0 7px !important;
     }
 }

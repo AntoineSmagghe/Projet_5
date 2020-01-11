@@ -240,8 +240,9 @@ nav ul{
     text-shadow: none;
     z-index: 10;
     background-color: white;
-    right: 20vw;
-    top: 30px;
+    margin: 20px;
+    right: 0;
+    top: 0;
 }
 
 .sign_in_form label{
