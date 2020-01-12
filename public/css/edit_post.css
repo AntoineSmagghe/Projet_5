@@ -165,10 +165,35 @@ label[for="article_imgsFile"]:active{
     transform: scale(1);
 }
 
-input[name="cover"]{
-    width: 20px;
-    height: 20px;
+
+.select_cover{
+    margin: 10px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+    position: relative;
+}
+
+input[name="cover"]{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.select_cover svg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    color: red;
+}
+
+.select_cover svg[data-icon="check-circle"]{
+    display: none;
 }
 
 /************

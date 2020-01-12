@@ -101,8 +101,17 @@
                 <figure class="edit_image" name="{{image.id}}">
                     <img src="{{ vich_uploader_asset(image, 'imgData') | imagine_filter('200x150') }}" data-fullsize="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
                     <figcaptation class="action_image">
-                        <label for="Image {{image.id}}"></label>
-                        <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
+                        <div class="select_cover">
+                            <label for="Image {{image.id}}">
+                                <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
+                                <svg id="uncheck - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="svg-inline--fa fa-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                                </svg>
+                                <svg id="check - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                </svg>
+                            </label>
+                        </div>
                         <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">X</a>
                     </figcaptation>
                 </figure>
@@ -233,5 +242,24 @@
     let popup = new popupStop(document.getElementById("del_article"), "Etes vous sûr de vouloir supprimer l'article?", "L'article a été supprimé");
     popup.validateAction();
     {% endif %}
+
+    //Check radio button to select the cover.
+    const inputCover = document.getElementsByClassName('select_cover');
+    let oldCover = "";
+
+    for (let i = 0; i < inputCover.length; i++){
+        inputCover[i].addEventListener("change", (e)=>{
+            let oldcheck = "check - " + oldCover;
+            let olduncheck = "uncheck - " + oldCover;
+            document.getElementById(oldcheck).style.display = 'none';
+            document.getElementById(olduncheck).style.display = 'block';
+
+            let check = "check - " + e.target.id;
+            let uncheck = "uncheck - " + e.target.id;
+            document.getElementById(uncheck).style.display = 'none';
+            document.getElementById(check).style.display = 'block';
+            oldCover = e.target.id;
+        });
+    }
     </script>
 {% endblock %}
