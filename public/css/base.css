@@ -247,7 +247,7 @@ nav ul{
 .sign_in_form{
     display: none;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     text-shadow: none;
     z-index: 10;
     background-color: white;
