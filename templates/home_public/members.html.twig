@@ -34,7 +34,7 @@
                         {% if artist.imgs|first != "" %}
                         <img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
                         {% else %}
-                        <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ artist.title }}">
+                        <img class="img_member" src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ artist.title }}">
                         {% endif %}
                     {% endif %}
                     <figcaption>
