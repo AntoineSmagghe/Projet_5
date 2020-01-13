@@ -11,8 +11,8 @@
     }
 
     .article_cover_title{
-        width: calc(100% - 20px);
-        margin: 0 10px;
+        width: calc(100% - 48px);
+        margin: 0;
     }
 
     .article_cover_title h1{
