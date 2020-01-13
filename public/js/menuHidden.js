@@ -73,4 +73,8 @@ class menuHidden{
             return false;
         }
     }
+
+    init(){
+        this.listenIco();
+    }
 }

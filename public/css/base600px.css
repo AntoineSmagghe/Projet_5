@@ -1,5 +1,5 @@
 @media screen and (max-width: 600px){
-    /*****************
+    /************
     *   NAVBAR  *
     *************/
     nav ul{
@@ -7,9 +7,28 @@
         width: calc(100% - 20px);
     }
 
+    .item_menu{
+        height: 13vh;
+        border-top: 2px solid white;
+    }
+
+    /****************
+    *	POPUP MENU	*
+    *****************/
     .sign_in_form{
         margin: 10px;
+        box-shadow: 0 0 10px black;
         width: calc(100% - 20px);
+    }
+
+    a.admin_menu{
+        width: 100%;
+        height: 44px;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     /********************

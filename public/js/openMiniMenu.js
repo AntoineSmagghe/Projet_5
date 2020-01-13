@@ -15,8 +15,13 @@ class openMiniMenu {
 
     }
 
+    noScroll(e){
+        e.preventDefault();
+    }
+
     listenIco() {
         this.idListen.addEventListener("click", () => {
+            window.addEventListener('scroll', this.noScroll);
             this.idListen.style.visibility = "hidden";
             this.idListen.style.animation = "";
             this.idToShow.style.display = this.howToDisplay;
@@ -32,17 +37,11 @@ class openMiniMenu {
     closeMenu() {
         window.addEventListener("click", (e) => {
             if (e.target === this.background){
+                window.removeEventListener('scroll', this.noScroll);
                 this.idToShow.style.display = "none";
                 this.idListen.style.visibility = "visible";
             }
         });
-
-        if (this.isMobile()) {
-            window.addEventListener("scroll", () => {
-                this.idToShow.style.display = "none";
-                this.idListen.style.visibility = "visible";
-            });
-        }
     }
 
     isMobile() {
@@ -58,5 +57,9 @@ class openMiniMenu {
         } else {
             return false;
         }
+    }
+
+    init(){
+        this.listenIco();
     }
 }

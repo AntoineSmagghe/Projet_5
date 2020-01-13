@@ -137,7 +137,6 @@ nav ul{
 }
 
 .item_menu{
-	transition: .2s ease;
 	width: 120px;
 	height: 70px;
     display: flex;
@@ -152,12 +151,6 @@ nav ul{
 
 .item_menu:hover{
 	background-color: rgba(255,255,255,0.3);
-}
-
-.item_menu a{
-	display: block;
-	padding: 1.7rem;
-	font-weight: bolder;
 }
 
 .btn_dropdown_menu{
@@ -194,9 +187,11 @@ nav ul{
 
 .link_menu{
 	display: block;
+	font-weight: bolder;
 	color: white;
 	text-shadow: 0 0 5px black;
 	text-align: center;
+	width: 100%;
 }
 
 .link_dropdown_menu{
@@ -222,6 +217,9 @@ nav ul{
 	top: 110px;
 }
 
+/****************
+*	POPUP MENU	*
+*****************/
 #background_modal{
 	display: none;
 	position: fixed;
@@ -233,10 +231,16 @@ nav ul{
 	width: 100%;
 }
 
+.popup_menu{
+	width: 100%;
+    max-width: 1500px;
+    position: relative;
+}
+
 .sign_in_form{
     display: none;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     text-shadow: none;
     z-index: 10;
     background-color: white;
@@ -279,6 +283,7 @@ a.admin_menu{
 	text-shadow: none;
 	font-size: 1.2rem;
 	transition: .5s ease;
+	border: 1px solid black;
 }
 
 .admin_menu:hover{
