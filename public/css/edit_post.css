@@ -34,10 +34,6 @@
     flex-direction: column;
 }
 
-.form-group a{
-    color: blue;   
-}
-
 .form-group input, .form-group select{
     padding: 10px;
     margin: 10px 0;
@@ -89,6 +85,10 @@ label[for="article_text"]{
 
 .ck-content{
     color: black;
+}
+
+.form-group .ck-content a{
+    color: blue;   
 }
 
 /************
