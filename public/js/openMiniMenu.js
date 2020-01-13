@@ -15,15 +15,12 @@ class openMiniMenu {
 
     }
 
-    noScroll(e){
-        e.preventDefault();
-    }
-
     listenIco() {
         this.idListen.addEventListener("click", () => {
-            window.addEventListener('scroll', this.noScroll);
             this.idListen.style.visibility = "hidden";
             this.idListen.style.animation = "";
+            this.background.style.display = "block";
+            this.background.style.zIndex = "0";
             this.idToShow.style.display = this.howToDisplay;
             this.menuIsOpen = true;
             this.closeMenu();
@@ -37,11 +34,22 @@ class openMiniMenu {
     closeMenu() {
         window.addEventListener("click", (e) => {
             if (e.target === this.background){
-                window.removeEventListener('scroll', this.noScroll);
                 this.idToShow.style.display = "none";
+                this.background.style.display = "none";
+                this.background.style.zIndex = "1";
                 this.idListen.style.visibility = "visible";
             }
         });
+        /*
+        if (this.isMobile()) {
+            window.addEventListener("scroll", () => {
+                this.idToShow.style.display = "none";
+                this.background.style.display = "none";
+                this.background.style.zIndex = "1";
+                this.idListen.style.animation = this.animOut + ".5s";
+            });
+        }
+        */
     }
 
     isMobile() {

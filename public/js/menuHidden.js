@@ -1,5 +1,5 @@
 /**
- *  Listen an icon and open a menu.
+ * Listen an icon and open a menu.
  * idListen = target to the icon.
  * idToShow = target to the dropdown content.
  * howToDisplay = is the display css style. like flex or block.

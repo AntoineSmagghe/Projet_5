@@ -159,6 +159,13 @@
                     );
                     dropdownMenu.init();
                 }
+                
+                //Burger menu for responsive design
+                const ico_burger = document.getElementById("ico_burger");
+                const nav_ul = document.querySelector("nav ul");
+                const backgroundModal = document.getElementById("background_modal");
+                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex", backgroundModal);
+                menuBurger.init();
 
                 //Form appear when click on icon.
                 let signinModal = new Modal(
@@ -168,13 +175,6 @@
                     document.getElementById("login_btn"),
                 );
                 signinModal.init();
-                
-                //Burger menu for responsive design
-                const ico_burger = document.getElementById("ico_burger");
-                const nav_ul = document.querySelector("nav ul");
-                const backgroundModal = document.getElementById("background_modal");
-                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex", backgroundModal);
-                menuBurger.init();
             });
         </script>
         {% block javascripts %}{% endblock %}
