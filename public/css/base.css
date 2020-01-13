@@ -363,7 +363,8 @@ a.admin_menu{
 .col_wel_txt_body{
     display: flex;
     flex-direction: column;
-    padding: 1.25rem;
+    margin: 1.25rem;
+    overflow: hidden;
 }
 
 .col_wel_txt_body h5{

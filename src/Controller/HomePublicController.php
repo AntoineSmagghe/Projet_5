@@ -28,7 +28,7 @@ class HomePublicController extends AbstractController
 
     
     /**
-     * @Route("/", name="home_public")
+     * @Route("/", name="home_public", methods={"GET"})
      */
     public function index()
     {
