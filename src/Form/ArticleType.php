@@ -55,6 +55,16 @@ class ArticleType extends AbstractType
         ;
     }
 
+    /*
+        ->add('text', CollectionType::class, [
+            'entry_type' => TextType::class, 
+            'entry_option' => [
+                'fr' => TextType::class,
+                'en' => TextType::class,
+            ]
+        ])
+    */
+    
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

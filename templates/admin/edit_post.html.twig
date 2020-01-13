@@ -142,6 +142,7 @@
     <script src="/js/addField.js"></script>
     <script src="/js/popupStop.js"></script>
     <script src="/js/movingElt.js"></script>
+    <script src="/js/selectRadio.js"></script>
     <script type="text/javascript">
     //MediaQueries, move some elts for responsive design
     let moveElt = new movingElt(document.getElementById("add_form_field"), document.getElementById("add_sound_minwidth"), 900);
@@ -244,22 +245,7 @@
     {% endif %}
 
     //Check radio button to select the cover.
-    const inputCover = document.getElementsByClassName('select_cover');
-    let oldCover = "";
-
-    for (let i = 0; i < inputCover.length; i++){
-        inputCover[i].addEventListener("change", (e)=>{
-            let oldcheck = "check - " + oldCover;
-            let olduncheck = "uncheck - " + oldCover;
-            document.getElementById(oldcheck).style.display = 'none';
-            document.getElementById(olduncheck).style.display = 'block';
-
-            let check = "check - " + e.target.id;
-            let uncheck = "uncheck - " + e.target.id;
-            document.getElementById(uncheck).style.display = 'none';
-            document.getElementById(check).style.display = 'block';
-            oldCover = e.target.id;
-        });
-    }
+    const inputCover = new selectRadio(document.getElementsByClassName('select_cover'));
+    inputCover.init();
     </script>
 {% endblock %}
