@@ -178,13 +178,6 @@ nav ul{
 	margin-top: 0;
 }
 
-.dropdown_menu{
-	display: none;
-	flex-direction: column;
-	width: 120px;
-	height: 70px;
-}
-
 .link_menu{
 	display: block;
 	font-weight: bolder;
@@ -194,13 +187,27 @@ nav ul{
 	width: 100%;
 }
 
+.dropdown_menu{
+	height: 140px;
+	width: 120px;
+	display: none;
+	flex-direction: column;
+	position: absolute;
+}
+
 .link_dropdown_menu{
+    height: 70px;
 	display: block;
-	color: white;
-	text-shadow: 0 0 5px black;
-	text-align: center;
-	background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-shadow: 0 0 5px black;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 	transition: .5s ease;
+	position: relative;
+	top: 35px;
 }
 
 .link_dropdown_menu:hover{
@@ -240,7 +247,7 @@ nav ul{
 .sign_in_form{
     display: none;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     text-shadow: none;
     z-index: 10;
     background-color: white;
