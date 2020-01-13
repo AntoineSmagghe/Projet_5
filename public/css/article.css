@@ -73,6 +73,7 @@
     font-size: 1.1rem;
     line-height: 150%;
     color: white;
+    overflow: hidden;
 }
 
 #txt h2{

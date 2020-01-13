@@ -34,6 +34,10 @@
     flex-direction: column;
 }
 
+.form-group a{
+    color: blue;   
+}
+
 .form-group input, .form-group select{
     padding: 10px;
     margin: 10px 0;
@@ -203,6 +207,31 @@ input[name="cover"]{
     margin: 0 -5px;
 }
 
+.infoCoverArticle{
+    margin: 0 0 10px 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.icoInfoCoverArticle{
+    display: flex;
+    align-items: center;
+}
+
+.infoCoverArticle svg{
+    width: 20px;
+    margin: 10px;
+    color: red;
+    display: inline-block;
+}
+
+.infoCoverArticle svg[data-icon="long-arrow-alt-right"]{
+    color: white;
+    margin: 0;
+}
+
 .hes-gallery{
     margin: 0 5px;
     justify-content: flex-start;
@@ -222,7 +251,8 @@ input[name="cover"]{
 }
 
 .action_image{
-    display: none;
+    display: flex;
+    transform: translateY(-51px);
     width: 100%;
     height: 50px;
     justify-content: space-between;
@@ -240,9 +270,4 @@ input[name="cover"]{
 
 .btn_del_pictures i:hover{
     transform: scale(1.15);
-}
-
-.edit_image:hover .action_image{
-    display: flex;
-    transform: translateY(-51px);
 }

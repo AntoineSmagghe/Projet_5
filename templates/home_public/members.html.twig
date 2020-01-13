@@ -13,33 +13,32 @@
     <div class="incover">
         <div class="article_cover_title">
             <h1 class="part_title">Les artistes du chant</h1>
-            
         </div>
     </div>
 </section>
 <section id="members">
         <article class="members_picture">
-        {% for member in articles %}
+        {% for artist in articles %}
             <figure>
-                <a href="{{path('article', {"format" : "members", "id" : member.id})}}">
+                <a href="{{path('article', {"format" : "members", "id" : artist.id})}}">
                     {% set hasCover = false %}
                     {% if covers != [] %}
                         {% for cover in covers %}
-                            {% if cover.idArticle == member.id %}
-                            <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ member.title }}">
+                            {% if cover.idArticle == artist.id %}
+                            <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ artist.title }}">
                             {% set hasCover = true %}
                             {% endif %}
                         {% endfor %}
                     {% endif %}
                     {% if hasCover == false %}
-                        {% if member.imgs|first != "" %}
-                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ member.title }}">
+                        {% if artist.imgs|first != "" %}
+                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
                         {% else %}
-                        <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
+                        <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ artist.title }}">
                         {% endif %}
                     {% endif %}
                     <figcaption>
-                        <h3>{{member.title}}</h3>
+                        <h3>{{artist.title}}</h3>
                     </figcaption>
                 </a>
             </figure>

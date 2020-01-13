@@ -18,27 +18,27 @@
 </section>
 <section id="members">
     <article class="release_picture">
-    {% for member in articles %}
+    {% for release in articles %}
         <figure class="release_figure">
-            <a href="{{path('article', {"format" : "releases", "id" : member.id})}}">
+            <a href="{{path('article', {"format" : "releases", "id" : release.id})}}">
                 {% set hasCover = false %}
                 {% if covers != [] %}
                     {% for cover in covers %}
-                        {% if cover.idArticle == member.id %}
-                        <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Cover de la release : {{ member.title }}">
+                        {% if cover.idArticle == release.id %}
+                        <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
                         {% set hasCover = true %}
                         {% endif %}
                     {% endfor %}
                 {% endif %}
                 {% if hasCover == false %}
-                    {% if member.imgs|first != "" %}
-                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ member.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ member.title }}">
+                    {% if release.imgs|first != "" %}
+                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ release.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
                     {% else %}
-                    <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
+                    <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
                     {% endif %}
                 {% endif %}
                 <figcaption class="release_figcaption">
-                    <h3>{{ member.title }}</h3>
+                    <h3>{{ release.title }}</h3>
                 </figcaption>
             </a>
         </figure>

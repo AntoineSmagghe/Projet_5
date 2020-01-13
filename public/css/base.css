@@ -535,7 +535,7 @@ a.admin_menu{
 	position: sticky;
 	top: 0px;
     z-index: 1;
-    margin: 70px auto -70px auto;
+    margin: 70px auto 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;

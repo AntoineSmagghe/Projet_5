@@ -55,6 +55,8 @@ class HomePublicController extends AbstractController
         $articles = $this->article->findAllByformat($format);
         $covers = $this->getCovers($articles);
 
+        dump($articles);
+
         if ($format === 'members'){
             return $this->render('home_public/members.html.twig', [
                 'articles' => $articles,

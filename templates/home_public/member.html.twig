@@ -16,13 +16,13 @@
             <figcaption id="artist_release_figcaption">
             <div class="contact_socials">
                 <a href="mailto:cdlm-free@gmail.com" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
-                {% if article.socialNetwork.soundcloud != "" %}
+                {% if article.socialNetwork.soundcloud is defined and not "" %}
                 <a href="{{ article.socialNetwork.soundcloud }}" target="blank" class="socials_logo"><img src="/img/soundcloud-brands.svg" alt="logo soundcloud"></a>
                 {% endif %}
-                {% if article.socialNetwork.facebook != "" %}
+                {% if article.socialNetwork.facebook is defined and not "" %}
                 <a href="{{ article.socialNetwork.facebook }}" target="blank" class="socials_logo"><img src="/img/facebook-square-brands.svg" alt="logo facebook"></a>
                 {% endif %}
-                {% if article.socialNetwork.instagram != "" %}
+                {% if article.socialNetwork.instagram is defined and not "" %}
                 <a href="{{ article.socialNetwork.instagram }}" target="blank" class="socials_logo"><img src="/img/instagram-brands.svg" alt="logo instagram"></a>
                 {% endif %}
             </div>
