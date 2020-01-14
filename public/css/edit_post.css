@@ -267,7 +267,6 @@ input[name="cover"]{
     font-size: 1.7rem;
     font-weight: bolder;
 }
-
-.btn_del_pictures i:hover{
-    transform: scale(1.15);
+.btn_del_pictures svg{
+    width: 20px;
 }
