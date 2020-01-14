@@ -37,42 +37,42 @@
                 </a>
                 <ul>
                     <li class="item_menu">
-                        <a class="link_menu" href="{{ path("articles", {"format": "news"}) }}">News</a>
+                        <a class="link_menu" href="{{ path("articles", {"format": "news"}) }}">{% trans %}News{% endtrans %}</a>
                     </li>
                     {% if app.user != null %}
                     <li class="item_menu label_menu">
-                        <button class="btn_dropdown_menu">Events</button>
+                        <button class="btn_dropdown_menu">{% trans %}Events{% endtrans %}</button>
                         <div class="dropdown_menu">
-                            <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">Public</a>
-                            <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">Private</a>
+                            <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">{% trans %}Public{% endtrans %}</a>
+                            <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">{% trans %}Private{% endtrans %}</a>
                         </div>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">Public Events</a>
+                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">{% trans %}Public Events{% endtrans %}</a>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_menu">Private Events</a>
+                        <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_menu">{% trans %}Private Events{% endtrans %}</a>
                     </li>
                     {% else %}
                     <li class="item_menu">
-                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">Events</a>
+                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">{% trans %}Events{% endtrans %}</a>
                     </li>
                     {% endif %}
                     <li class="item_menu label_menu">
                         <button class="btn_dropdown_menu">Label</button>
                         <div class="dropdown_menu">
-                            <a class="link_dropdown_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
-                            <a class="link_dropdown_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
+                            <a class="link_dropdown_menu" href="{{ path("articles", {"format": "members"}) }}">{% trans %}Artists{% endtrans %}</a>
+                            <a class="link_dropdown_menu" href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a>
                         </div>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a class="link_menu" href="{{ path("articles", {"format": "members"}) }}">Artistes</a>
+                        <a class="link_menu" href="{{ path("articles", {"format": "members"}) }}">{% trans %}Artists{% endtrans %}</a>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a class="link_menu" href="{{ path("articles", {"format": "releases"}) }}">Releases</a>
+                        <a class="link_menu" href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a>
                     </li>
                     <li class="item_menu">
-                        <a class="link_menu" href="#">About</a>
+                        <a class="link_menu" href="#">{% trans %}About{% endtrans %}</a>
                     </li>
                     {% if app.user == null %}
                     <li id="login_btn" class="item_menu">
@@ -93,26 +93,26 @@
                     {% if app.user == null %}
                     <form action="{{ path('login') }}" method="post">
                         <div class="form_row">
-                            <label for="mail">Email</label>
+                            <label for="mail">{% trans %}Email{% endtrans %}</label>
                             <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
                         </div>
                         <div class="form_row">
-                            <label for="password">Mot de passe</label>
+                            <label for="password">{% trans %}Mot de passe{% endtrans %}</label>
                             <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
                         </div>
                         <div class="form_row">
                             <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
-                            <button type="submit" class=".a_btn a_btn btn_more">Envoyer</button>
+                            <button type="submit" class=".a_btn a_btn btn_more">{% trans %}Envoyer{% endtrans %}</button>
                         </div>
                     </form>
                     {% else %}
                         {% if is_granted("ROLE_ADMIN") %}
-                        <a class="admin_menu" href="{{ path("creatPost") }}">Create post</a>
-                        <a class="admin_menu" href="{{ path("creatArtist") }}">Create artist</a>
-                        <a class="admin_menu" href="{{ path("signIn") }}">Create member</a>
+                        <a class="admin_menu" href="{{ path("creatPost") }}">{% trans %}Create post{% endtrans %}</a>
+                        <a class="admin_menu" href="{{ path("creatArtist") }}">{% trans %}Create artist{% endtrans %}</a>
+                        <a class="admin_menu" href="{{ path("signIn") }}">{% trans %}Create member{% endtrans %}</a>
                         {% endif %}
-                    <a class="admin_menu" href="{{path("account")}}">Account</a>
-                    <a class="admin_menu" href="{{ path("logout") }}">Logout</a>
+                    <a class="admin_menu" href="{{path("account")}}">{% trans %}Account{% endtrans %}</a>
+                    <a class="admin_menu" href="{{ path("logout") }}">{% trans %}Logout{% endtrans %}</a>
                     {% endif %}
                 </div>
             </div>
@@ -128,16 +128,16 @@
         {% block body %}{% endblock %}
         <footer>
             <div class="footer_card">
-                <h1>Copyright</h1>
+                <h1>{% trans %}Copyright{% endtrans %}</h1>
             </div>
             <div class="footer_card">
-                <h1>Contact</h1>
+                <h1>{% trans %}Contact{% endtrans %}</h1>
             </div>
             <div class="footer_card">
-                <h1>Legals</h1>
+                <h1>{% trans %}Legals{% endtrans %}</h1>
             </div>
             <div class="footer_card">
-                <h1>Menu</h1>
+                <h1>{% trans %}Menu{% endtrans %}</h1>
             </div>
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

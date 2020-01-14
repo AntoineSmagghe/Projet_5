@@ -19,6 +19,27 @@ Api data: Données
 Enregistrer:	Enregistrer
 Valider: Enregistrer 
 
+#menu
+Events:	Evènements
+Artists: Artistes
+Releases:	Sorties
+About:	A propos
+Envoyer:	Envoyer
+Copyright:	Copyright
+Contact:	Contact
+Legals:	Mentions legales
+Menu:	Menu
+
+Public: Publique
+Private: Privé
+Public Events:  Evènement Publique
+Private Events: Evènement Privé
+Create post: Page article
+Create artist: Page artiste
+Create member: Inscrire un membre
+Account:	Compte
+Logout:	Déconnexion
+
 #Account
 Prénom:	Prénom
 Nom:	Nom
@@ -39,8 +60,13 @@ Nouveau mot de passe:	Nouveau mot de passe
 Répétez le mot de passe:	Répétez le mot de passe
 Submit: Enregistrer
 
+#Home page
+Hello: Hello
+What's new on CDLM?: Les dernières nouvelles
 
 #Articles
 Les news du chant: Les dernières nouvelles
 Les évènements : 	Les évènements
 Les évènements privés:	Les évènements privés
+Les artistes : Les artistes
+Les sorties: Les sorties
