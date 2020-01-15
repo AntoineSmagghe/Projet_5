@@ -74,6 +74,19 @@
                     <li class="item_menu">
                         <a class="link_menu" href="#">{% trans %}About{% endtrans %}</a>
                     </li>
+                    {% if app.request.get("_locale") == "en" %}
+                    <li class="item_menu btn_locale">
+                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="link_menu">
+                            <img src="/img/Flag_of_France.svg" alt="French flag">
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="item_menu btn_locale">
+                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="link_menu">
+                            <img src="/img/Flag_of_the_United_Kingdom.svg" alt="UK flag">
+                        </a>
+                    </li>
+                    {% endif %}
                     {% if app.user == null %}
                     <li id="login_btn" class="item_menu">
                         <img class="sign_in_btn" alt="Logo de connexion" src="/img/user-circle-regular.svg">
@@ -94,15 +107,15 @@
                     <form action="{{ path('login') }}" method="post">
                         <div class="form_row">
                             <label for="mail">{% trans %}Email{% endtrans %}</label>
-                            <input type="text" id='mail' name="_username" placeholder="Adresse mail" class="form-control">
+                            <input type="text" id='mail' name="_username" class="form-control">
                         </div>
                         <div class="form_row">
                             <label for="password">{% trans %}Mot de passe{% endtrans %}</label>
-                            <input type="password" id="password" name="_password" placeholder="Mot de passe" class="form-control">
+                            <input type="password" id="password" name="_password" class="form-control">
                         </div>
                         <div class="form_row">
                             <input type="hidden" name="_token" value="{{ csrf_token('submitLogin') }}">
-                            <button type="submit" class=".a_btn a_btn btn_more">{% trans %}Envoyer{% endtrans %}</button>
+                            <button type="submit" class="a_btn a_btn btn_more">{% trans %}Envoyer{% endtrans %}</button>
                         </div>
                     </form>
                     {% else %}
@@ -113,11 +126,6 @@
                         {% endif %}
                     <a class="admin_menu" href="{{ path("account") }}">{% trans %}Account{% endtrans %}</a>
                     <a class="admin_menu" href="{{ path("logout") }}">{% trans %}Logout{% endtrans %}</a>
-                    {% endif %}
-                    {% if app.request.get("_locale") == "en" %}
-                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="a_btn btn_del">FR</a>
-                    {% else %}
-                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="a_btn btn_del">EN</a>
                     {% endif %}
                 </div>
             </div>
