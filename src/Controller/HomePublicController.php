@@ -31,7 +31,7 @@ class HomePublicController extends AbstractController
      * @Route("/", name="home_public", methods={"GET"})
      * @Route("/{_locale}/", requirements={"_locale": "fr|en"})
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->security->getUser() !== null) {
             $articles = $this->article->findAllDESC();
@@ -39,7 +39,7 @@ class HomePublicController extends AbstractController
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         $covers = $this->getCovers($articles);
-
+        dump($request->getSession());
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,
             'covers' => $covers,
@@ -47,8 +47,7 @@ class HomePublicController extends AbstractController
     }
 
     /**
-     * @Route("/article/{format}", name="articles", methods={"GET"})
-     * @Route("/{_locale}/article/{format}", requirements={"_locale": "fr|en"})
+     * @Route("/{_locale}/article/{format}", requirements={"_locale": "fr|en"}, name="articles", methods={"GET"})
      */
     public function articles(Request $request)
     {
@@ -77,9 +76,9 @@ class HomePublicController extends AbstractController
             'covers' => $covers,
         ]);
     }
-    
+
     /**
-     * @Route("/article/{format}/{id}", name="article", methods={"GET"})
+     * @Route("/{_locale}/article/{format}/{id}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
      */
     public function article(Request $request)
     {
@@ -125,5 +124,20 @@ class HomePublicController extends AbstractController
         }
         
         return $covers;
+    }
+
+    /**
+     * @Route("/", name="changeLocale")
+     */
+    public function changeLocale(Request $request)
+    {
+        if ($request->getLocale() == "en"){
+            $locale = "fr";
+        }else{
+            $locale = "en";
+        }
+        $request->getSession()->set('_locale', $locale);
+
+        return $this->redirect($request->getRequestUri());
     }
 }

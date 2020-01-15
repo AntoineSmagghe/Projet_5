@@ -114,6 +114,7 @@
                     <a class="admin_menu" href="{{path("account")}}">{% trans %}Account{% endtrans %}</a>
                     <a class="admin_menu" href="{{ path("logout") }}">{% trans %}Logout{% endtrans %}</a>
                     {% endif %}
+        <a href="{{ path("changeLocale", {"uri": app.request.uri}) }}" class="a_btn btn_del">Changer la locale</a>
                 </div>
             </div>
         </header>
