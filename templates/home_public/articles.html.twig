@@ -45,9 +45,9 @@
             <h5>{{ article.title }}</h5>
             <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,150) }} ...</p>
             <div class="buttons">
-              <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="a_btn a_btn btn_more">More...</a>
+              <a href="{{ path("article", {"format" : article.format, "id" : article.id }) }}" class="a_btn a_btn btn_more">{% trans %}More{% endtrans %}...</a>
               {% if is_granted('ROLE_ADMIN') %}
-              <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+              <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
               {% endif %}
             </div>
           </div>

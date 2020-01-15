@@ -51,7 +51,7 @@
             <div class="article_cover_title">
                 <h1>{{ article.title }}</h1>
                 <div class="date_event">
-                    <p>Organisé le {{ article.dateEvent|date("d/m/Y") }}</p>
+                    <p>{% trans %}Organisé le {% endtrans %}{{ article.dateEvent|date("d/m/Y") }}</p>
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
@@ -65,11 +65,11 @@
         </article>
         <aside id="music">
             {% if article.apiData != [] %}
-            <h2>Musique</h2>
+            <h2>{% trans %}Musique{% endtrans %}</h2>
             <div class="widget_SC"></div>
             {% endif %}
             {% if article.imgs.snapshot != null %}
-            <h2>Image</h2>
+            <h2>{% trans %}Image{% endtrans %}</h2>
             <div class="hes-gallery">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">

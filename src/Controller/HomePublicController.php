@@ -28,8 +28,15 @@ class HomePublicController extends AbstractController
 
 
     /**
-     * @Route("/", name="home_public", methods={"GET"})
-     * @Route("/{_locale}/", requirements={"_locale": "fr|en"})
+     * @Route("/")
+     */
+    public function localRedirect()
+    {
+        return $this->redirectToRoute('home_public');
+    }
+
+    /**
+     * @Route("/{_locale}/", name="home_public", requirements={"_locale": "fr|en"})
      */
     public function index(Request $request)
     {
@@ -105,6 +112,12 @@ class HomePublicController extends AbstractController
         ]);
     }
 
+
+    public function changeLocale(Request $request)
+    {
+        
+    }
+
     private function getCovers($articles)
     {
         $covers = [];
@@ -124,20 +137,5 @@ class HomePublicController extends AbstractController
         }
         
         return $covers;
-    }
-
-    /**
-     * @Route("/", name="changeLocale")
-     */
-    public function changeLocale(Request $request)
-    {
-        if ($request->getLocale() == "en"){
-            $locale = "fr";
-        }else{
-            $locale = "en";
-        }
-        $request->getSession()->set('_locale', $locale);
-
-        return $this->redirect($request->getRequestUri());
     }
 }

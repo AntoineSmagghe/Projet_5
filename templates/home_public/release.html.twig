@@ -20,9 +20,9 @@
             </div>
             {% if is_granted('ROLE_ADMIN') %}
             <div id="datetime_article">
-                <p class="onelinetxt">Créé le {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.user.surname }}</p>
+                <p class="onelinetxt">{% trans %}Créé le{% endtrans %} {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %}{{ article.user.surname }}</p>
                     {% if article.modifiedBy != '' %}
-                    <p class="onelinetxt">Modifié le {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} par {{ article.modifiedBy.surname }}</p>
+                    <p class="onelinetxt">{% trans %}Modifié le{% endtrans %} {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %}{{ article.modifiedBy.surname }}</p>
                     {% endif %}
             </div>
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
@@ -34,11 +34,11 @@
         <h1>{{article.title}}</h1>
         <div class="text">{{article.text|raw}}</div>
         {% if article.apiData != null %}
-            <h2>Sets</h2>
+            <h2>{% trans %}Musique{% endtrans %}</h2>
             <div class="widget_SC"></div>
         {% endif %}
         {% if article.imgs.snapshot != null %}
-            <h2>Images</h2>
+            <h2>{% trans %}Images{% endtrans %}</h2>
             <div class="hes-gallery member_images">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
