@@ -111,8 +111,13 @@
                         <a class="admin_menu" href="{{ path("creatArtist") }}">{% trans %}Create artist{% endtrans %}</a>
                         <a class="admin_menu" href="{{ path("signIn") }}">{% trans %}Create member{% endtrans %}</a>
                         {% endif %}
-                    <a class="admin_menu" href="{{path("account")}}">{% trans %}Account{% endtrans %}</a>
+                    <a class="admin_menu" href="{{ path("account") }}">{% trans %}Account{% endtrans %}</a>
                     <a class="admin_menu" href="{{ path("logout") }}">{% trans %}Logout{% endtrans %}</a>
+                    {% endif %}
+                    {% if app.request.get("_locale") == "en" %}
+                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="a_btn btn_del">FR</a>
+                    {% else %}
+                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="a_btn btn_del">EN</a>
                     {% endif %}
                 </div>
             </div>
