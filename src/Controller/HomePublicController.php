@@ -26,9 +26,10 @@ class HomePublicController extends AbstractController
         $this->imgRepo = $imgRepo;
     }
 
-    
+
     /**
      * @Route("/", name="home_public", methods={"GET"})
+     * @Route("/{_locale}/", requirements={"_locale": "fr|en"})
      */
     public function index()
     {
@@ -38,7 +39,7 @@ class HomePublicController extends AbstractController
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         $covers = $this->getCovers($articles);
-        
+
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,
             'covers' => $covers,
@@ -47,13 +48,13 @@ class HomePublicController extends AbstractController
 
     /**
      * @Route("/article/{format}", name="articles", methods={"GET"})
+     * @Route("/{_locale}/article/{format}", requirements={"_locale": "fr|en"})
      */
     public function articles(Request $request)
     {
         $format = $request->get('format');
         $articles = $this->article->findAllByformat($format);
         $covers = $this->getCovers($articles);
-
         if ($format === 'members'){
             return $this->render('home_public/members.html.twig', [
                 'articles' => $articles,
