@@ -2,8 +2,6 @@
 Date:	Date
 Type de l'article:	Type de l'article
 Sélectionnez ici:	Sélectionnez ici
-Evènement Public:	Evènement Public
-Evènement Privé:	Evènement Privé
 News:	Nouvelles
 Release:	Sortie
 Artist:	Artiste
@@ -17,23 +15,25 @@ Une url stp:	Une url stp
 Imgs file:	Upload
 Api data: Données
 Enregistrer:	Enregistrer
-Valider: Enregistrer 
+submit: Enregistrer
 
 #menu
-Events:	Evènements
+Events:	Évènements
 Artists: Artistes
 Releases:	Sorties
-About:	A propos
-Envoyer:	Envoyer
-Copyright:	Copyright
-Contact:	Contact
+About: A propos
+Envoyer: Envoyer
+Copyright: Copyright
+Contact: Contact
 Legals:	Mentions legales
 Menu:	Menu
 
 Public: Publique
 Private: Privé
-Public Events:  Evènement Publique
-Private Events: Evènement Privé
+Public Events:  Évènements publique
+Public event: Évènement publique
+Private Events: Évènements privé
+Private event: Évènement privé
 Create post: Page article
 Create artist: Page artiste
 Create member: Inscrire un membre
@@ -61,8 +61,15 @@ Répétez le mot de passe:	Répétez le mot de passe
 Submit: Enregistrer
 
 #Home page
-Hello: Hello
+Hello: Bienvenue
 What's new on CDLM?: Les dernières nouvelles
+
+#Cards
+privateEvent: Évènement privé
+publicEvent: Évènement publique
+news: Nouvelle
+releases: Sortie
+members: Artiste
 
 #Articles
 Les news du chant: Les dernières nouvelles

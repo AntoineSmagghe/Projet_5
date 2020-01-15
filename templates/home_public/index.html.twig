@@ -34,13 +34,12 @@
         {% endif %}
       {% endif %}
       </div>
+      <p class="format_event_card">{{article.format|trans }}</p>
       <div class="col_wel_txt">
         <div class="col_wel_txt_body">
           <h5>{{ article.title }}</h5>
           <p>Le {{ article.dateEvent|date("m/d/Y") }}
-          {% autoescape 'html' %}
-          <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,150) }} ...</p>
-          {% endautoescape %}
+          <p>{{ article.text|replace({'<p>&nbsp;</p>': '', '&nbsp;': ''})|striptags|slice(0,100) }}...</p>  
           <div class="buttons">
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn a_btn btn_modify">Modifier</a>

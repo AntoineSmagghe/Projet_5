@@ -14,8 +14,8 @@ use Faker\Factory;
 class AppFixtures extends Fixture
 {
     private $formats = [
-        'publicEvent'=> 'Evènement Public',
-        'privateEvent' => 'Evènement Privé', 
+        'publicEvent'=> 'Public event',
+        'privateEvent' => 'Private event', 
         'news' => 'News', 
         'releases' => 'Release', 
         'members' => 'Membres' 

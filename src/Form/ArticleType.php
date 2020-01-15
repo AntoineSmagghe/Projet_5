@@ -25,8 +25,8 @@ class ArticleType extends AbstractType
                 ])
             ->add('format', ChoiceType::class, [
                 'choices' => [
-                    'Evènement Public' => 'publicEvent',
-                    'Evènement Privé' => 'privateEvent',
+                    'Public event' => 'publicEvent',
+                    'Private event' => 'privateEvent',
                     'News' => 'news',
                     'Release' => 'releases',
                     'Artist' => 'members',
