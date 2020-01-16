@@ -112,12 +112,6 @@ class HomePublicController extends AbstractController
         ]);
     }
 
-
-    public function changeLocale(Request $request)
-    {
-        
-    }
-
     private function getCovers($articles)
     {
         $covers = [];

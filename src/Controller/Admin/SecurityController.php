@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="login", methods={"POST", "GET"})
+     * @Route("/{_locale}/connexion", requirements={"_locale": "fr|en"}, name="login", methods={"POST", "GET"})
      */
     public function login(AuthenticationUtils $authUtils, Security $security, Request $request)
     {
@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
     public function logout(){}
 
     /**
-     * @Route("/admin/signin", name="signIn", methods={"POST", "GET"})
+     * @Route("/{_locale}/admin/signin", requirements={"_locale": "fr|en"}, name="signIn", methods={"POST", "GET"})
      */
     public function signIn(EntityManagerInterface $manager, Request $request)
     {
@@ -73,7 +73,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/users/account", name="account", methods={"POST", "GET"})
+     * @Route("/{_locale}/users/account", requirements={"_locale": "fr|en"}, name="account", methods={"POST", "GET"})
      */
     public function account(EntityManagerInterface $manager, Request $request)
     {
@@ -95,7 +95,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/users/reset-password", name="resetPassword", methods={"POST", "GET"})
+     * @Route("/{_locale}/users/reset-password", requirements={"_locale": "fr|en"}, name="resetPassword", methods={"POST", "GET"})
      */
     public function resetPassword(UserPasswordEncoderInterface $passwordEncoder, Request $request, EntityManagerInterface $em)
     {
@@ -123,7 +123,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("users/reset-email", name="resetMail", methods={"POST", "GET"})
+     * @Route("/{_locale}/users/reset-email", requirements={"_locale": "fr|en"}, name="resetMail", methods={"POST", "GET"})
      */
     public function resetMail(Request $request, EntityManagerInterface $manager)
     {

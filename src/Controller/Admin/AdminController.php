@@ -4,9 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Entity\Img;
-use App\Entity\SocialNetwork;
 use App\Form\ArticleType;
-use App\Form\SocialNetworkType;
 use App\Repository\ImgRepository;
 use DateTime;
 use DateTimeZone;
@@ -21,7 +19,7 @@ use Symfony\Component\Security\Core\Security;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin/edit", name="creatPost", methods={"POST", "GET"})
+     * @Route("/{_locale}/admin/edit", requirements={"_locale": "fr|en"}, name="creatPost", methods={"POST", "GET"})
      */
     public function createPost(Article $article = null, Request $request, EntityManagerInterface $manager, Security $security)
     {
@@ -55,7 +53,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/create-artist", name="creatArtist", methods={"GET"})
+     * @Route("/{_locale}/admin/create-artist", requirements={"_locale": "fr|en"}, name="creatArtist", methods={"GET"})
      */
     public function createArtist()
     {
@@ -63,7 +61,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/edit/{id}", name="editPost", methods={"POST", "GET"})
+     * @Route("/{_locale}/admin/edit/{id}", requirements={"_locale": "fr|en"}, name="editPost", methods={"POST", "GET"})
      */
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
     {     
