@@ -20,23 +20,26 @@ class Modal
         });
     }
 
-    closeModal(){
-        window.addEventListener("click", (e)=>{
-            if (e.target == this.background){
-                if (window.innerWidth > 600){
-                    this.modal.style.animation = "slideRightReverse .5s ease";
-                    setTimeout(()=>{
-                        this.modal.style.display = "none";
-                        this.background.style.display = "none";
-                    }, 400);
-                }else {
+    closeAction(e){
+        if (e.target == this.background) {
+            if (window.innerWidth > 600) {
+                this.modal.style.animation = "slideRightReverse .5s ease";
+                setTimeout(() => {
                     this.modal.style.display = "none";
                     this.background.style.display = "none";
-                }
-
-                this.openModal();
+                }, 400);
+            } else {
+                this.modal.style.display = "none";
+                this.background.style.display = "none";
             }
-        });
+
+            this.openModal();
+        }
+    }
+
+    closeModal(){
+        window.addEventListener("click", (e)=>{this.closeAction(e)});
+        window.addEventListener("touch", (e)=>{this.closeAction(e)});
         
         if (this.closeBtn != null){
             this.closeBtn.addEventListener("click", (e)=>{

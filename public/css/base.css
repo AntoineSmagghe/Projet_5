@@ -268,10 +268,11 @@ nav ul{
 .sign_in_form{
     display: none;
     flex-direction: column;
-    position: fixed;
+	position: fixed;
     text-shadow: none;
     z-index: 10;
     background-color: white;
+	border-radius: 3px;
     margin: 20px;
     right: 0;
     top: 0;
