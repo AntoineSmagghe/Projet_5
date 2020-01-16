@@ -38,7 +38,7 @@ class HomePublicController extends AbstractController
     /**
      * @Route("/{_locale}/", name="home_public", requirements={"_locale": "fr|en"})
      */
-    public function index(Request $request)
+    public function index()
     {
         if ($this->security->getUser() !== null) {
             $articles = $this->article->findAllDESC();
@@ -46,7 +46,6 @@ class HomePublicController extends AbstractController
             $articles = $this->article->takeAllExceptPrivateEvent();
         }
         $covers = $this->getCovers($articles);
-        dump($request->getSession());
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,
             'covers' => $covers,

@@ -19,12 +19,7 @@
                 <a href="mailto:cdlm-free@gmail.com" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
             </div>
             {% if is_granted('ROLE_ADMIN') %}
-            <div id="datetime_article">
-                <p class="onelinetxt">{% trans %}Créé le{% endtrans %} {{ article.createdAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %}{{ article.user.surname }}</p>
-                    {% if article.modifiedBy != '' %}
-                    <p class="onelinetxt">{% trans %}Modifié le{% endtrans %} {{ article.updatedAt|date("d/m/Y \à H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %}{{ article.modifiedBy.surname }}</p>
-                    {% endif %}
-            </div>
+            {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
             {% endif %}
             </figcaption>

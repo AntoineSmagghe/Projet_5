@@ -1,23 +1,4 @@
-
-Date:	Date
-Type de l'article:	Type de l'article
-Sélectionnez ici:	Sélectionnez ici
-News:	Nouvelles
-Release:	Sortie
-Artist:	Artiste
-Facebook:	Facebook
-Soundcloud:	Soundcloud
-Instagram:	Instagram
-Titre de l'évènement:	Titre
-Contenu:	Contenu
-Tappez le texte ici:	Tappez le texte ici
-Une url stp:	Une url stp
-Imgs file:	Upload
-Api data: Données
-Enregistrer:	Enregistrer
-submit: Enregistrer
-
-#menu
+#Menu
 Events:	Évènements
 Artists: Artistes
 Releases:	Sorties
@@ -30,8 +11,8 @@ Menu:	Menu
 
 Public: Publique
 Private: Privé
-Public Events:  Évènements publique
-Public event: Évènement publique
+Public Events:  Évènements public
+Public event: Évènement public
 Private Events: Évènements privé
 Private event: Évènement privé
 Create post: Page article
@@ -48,10 +29,9 @@ Mot de passe:	Mot de passe
 Confirmation:	Confirmation
 Répéter le mot de passe:	Répéter le mot de passe
 Roles:	Roles
-0:	0
 Administrateur:	Administrateur
 Membre: Membre
-
+Enregistrer un nouveau membre: Enregistrer un nouveau membre
 Nouvelle adresse:	Nouvelle adresse
 Répétez l'adresse:	Répétez l'adresse
 
@@ -60,16 +40,47 @@ Nouveau mot de passe:	Nouveau mot de passe
 Répétez le mot de passe:	Répétez le mot de passe
 Submit: Enregistrer
 
+Bonjour: Bonjour
+Changer d'adresse mail: Changer d'adresse mail
+Changer de mot de passe: Changer de mot de passe
+Changement de mot de passe: Changement de mot de passe
+Changement d'adresse mail: Changement d'adresse mail
+
+#Edit page
+Date:	Date
+Type de l'article:	Type de l'article
+Sélectionnez ici:	Sélectionnez ici
+News:	Nouvelles
+Release:	Sortie
+Artist:	Artiste
+Facebook:	Facebook
+Soundcloud:	Soundcloud
+Instagram:	Instagram
+Titre de l'évènement: Titre
+Contenu: Contenu
+Tappez le texte ici:	Tappez le texte ici
+Une url stp:	Une url stp
+Imgs file:	Télécharger
+Api data: Données
+Enregistrer:	Enregistrer
+submit: Enregistrer
+Add sound: Soundcloud
+Sélectionnez la couverture de l'article: Sélectionnez la couverture de l'article
+Supprimer: Supprimer
+Voir: Voir
+
 #Home page
 Hello: Bienvenue
 What's new on CDLM?: Les dernières nouvelles
 
 #Cards
 privateEvent: Évènement privé
-publicEvent: Évènement publique
+publicEvent: Évènement public
 news: Nouvelle
 releases: Sortie
 members: Artiste
+Modifier: Modifier
+More: Voir
 
 #Articles
 Les news du chant: Les dernières nouvelles
@@ -77,3 +88,14 @@ Les évènements : 	Les évènements
 Les évènements privés:	Les évènements privés
 Les artistes : Les artistes
 Les sorties: Les sorties
+
+#Article
+Images: Images
+Image: Image 
+Musique: Musique
+
+#Include
+Organisé le: Organisé le
+Modifié le: Modifié le
+par: par
+Créé le: Créé le

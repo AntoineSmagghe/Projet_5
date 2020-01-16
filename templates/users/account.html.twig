@@ -6,16 +6,16 @@
 {% endblock %}
 {% block body %}
 <section id="account_form" class="form-group">
-    <h1 class="subtitle">Bonjour {{ user.surname }}</h1>
+    <h1 class="subtitle">{% trans %}Bonjour{% endtrans %} {{ user.surname }}</h1>
     {{form_start(form)}}
         {{form_row(form.surname, {'label': 'Prénom', 'attr': {'placeholder': 'Prénom'}})}}
         {{form_row(form.name, {'label': 'Nom', 'attr': {'placeholder': 'Nom'}})}}
         {{form_row(form.submit, {'attr': {'class': 'a_btn btn_modify'}})}}
         <br>
-        <a href="{{ path("resetMail") }}">Changer d'adresse mail</a>
+        <a href="{{ path("resetMail") }}">{% trans %}Changer d'adresse mail{% endtrans %}</a>
         <br>
         <br>
-        <a href="{{ path("resetPassword") }}">Changer de mot de passe</a>
+        <a href="{{ path("resetPassword") }}">{% trans %}Changer de mot de passe{% endtrans %}</a>
     {{form_end(form)}}
 </section>
 {% endblock %}

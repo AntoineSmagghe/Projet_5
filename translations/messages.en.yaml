@@ -1,22 +1,4 @@
 
-Date:	Date
-Type de l'article:	Article type
-Sélectionnez ici:	Select
-News:	News
-Release:	Release
-Artist:	Artist
-Facebook:	Facebook
-Soundcloud:	Soundcloud
-Instagram:	Instagram
-Titre de l'évènement:	Title
-Contenu:	Content
-Tappez le texte ici:	Text here
-Une url stp:	Url please
-Imgs file:	Upload
-Api data: Data
-Enregistrer:	Save
-submit: Save
-
 #menu
 Events:	Event
 Artists: Artists
@@ -48,17 +30,45 @@ Mot de passe:	Password
 Confirmation:	Confirm
 Répéter le mot de passe:	Password repeat
 Roles:	Roles
-0:	0
+Enregistrer un nouveau membre: Add a new member
 Administrateur:	Admin
 Membre: Member
 
 Nouvelle adresse:	New address
 Répétez l'adresse:	Repeat
-
 Ancien mot de passe: Old password
 Nouveau mot de passe:	New password
 Répétez le mot de passe:	Repeat
 Submit: Save
+
+Bonjour: Hi
+Changer d'adresse mail: Change email
+Changer de mot de passe:  Change password
+Changement de mot de passe: Password change
+Changement d'adresse mail: Email change
+
+#Edit page
+Date:	Date
+Type de l'article:	Article type
+Sélectionnez ici:	Select
+News:	News
+Release:	Release
+Artist:	Artist
+Facebook:	Facebook
+Soundcloud:	Soundcloud
+Instagram:	Instagram
+Titre de l'évènement:	Title
+Contenu:	Content
+Tappez le texte ici:	Text here
+Une url stp:	Url please
+Imgs file:	Upload
+Api data: Data
+Enregistrer:	Save
+submit: Save
+Add sound: Soundcloud
+Sélectionnez la couverture de l'article: Select the article's cover
+Supprimer: Delete
+Voir: 
 
 #Home page
 Hello: Hello
@@ -71,9 +81,23 @@ news: News
 releases: Release
 members: Artist
 
+Modifier: Modify
+More: More
+
 #Articles
 Les news du chant: News
 Les évènements : 	Events
 Les évènements privés:	Private events
 Les artistes : Artists
 Les sorties: Releases
+
+#Article
+Images: Pictures
+Image: Picture
+Musique: Music
+
+#Include
+Organisé le: Organised on
+Modifié le: Modified the
+par: by
+Créé le: Created the

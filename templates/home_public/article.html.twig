@@ -54,7 +54,8 @@
                     <p>{% trans %}Organisé le {% endtrans %}{{ article.dateEvent|date("d/m/Y") }}</p>
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+                {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
+                <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
                 {% endif %}
             </div>
         </div>

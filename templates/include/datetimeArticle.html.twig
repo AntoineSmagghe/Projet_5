@@ -1,0 +1,6 @@
+<div id="datetime_article">
+    <p class="onelinetxt">{% trans %}Créé le{% endtrans %} {{ article.createdAt|date("d/m/Y - H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %} {{ article.user.surname }}</p>
+    {% if article.modifiedBy != '' %}
+    <p class="onelinetxt">{% trans %}Modifié le{% endtrans %} {{ article.updatedAt|date("d/m/Y - H:i:s", "Europe/Paris") }} {% trans %}par{% endtrans %} {{ article.modifiedBy.surname }}</p>
+    {% endif %}
+</div>
