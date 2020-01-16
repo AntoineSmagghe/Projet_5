@@ -1,7 +1,4 @@
 {
-    "behat/transliterator": {
-        "version": "v1.2.0"
-    },
     "cocur/slugify": {
         "version": "v3.2"
     },
@@ -107,9 +104,6 @@
         "files": [
             "./config/packages/dev/easy_log_handler.yaml"
         ]
-    },
-    "fig/link-util": {
-        "version": "1.0.0"
     },
     "fzaninotto/faker": {
         "version": "v1.8.0"
@@ -260,6 +254,9 @@
     "symfony/dotenv": {
         "version": "v4.3.5"
     },
+    "symfony/error-handler": {
+        "version": "v4.4.2"
+    },
     "symfony/event-dispatcher": {
         "version": "v4.3.5"
     },
@@ -378,11 +375,17 @@
             "./tests/.gitignore"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.13.1"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.12.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.12.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.13.1"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.12.0"
@@ -455,6 +458,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.3.5"
+    },
+    "symfony/string": {
+        "version": "v5.0.2"
     },
     "symfony/templating": {
         "version": "v4.3.6"
