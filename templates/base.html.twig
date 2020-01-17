@@ -130,11 +130,11 @@
                 </div>
             </div>
         </header>
-        {# read and display all flash messages #}
+        {# Read and display all flash messages #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div class="flash-{{ label }}">
-                    {{ message }}
+                <div id="flash_message">
+                   <p class="flash-{{ label }}">{{ message }}</p>
                 </div>
             {% endfor %}
         {% endfor %}
@@ -157,6 +157,7 @@
         <script src="/js/menuHidden.js"></script>
         <script src="/js/Modal.js"></script>
         <script src="/js/openMiniMenu.js"></script>
+        <script src="/js/Flash.js"></script>
         <script type="application/javascript">
             window.addEventListener("load", ()=>{
                 //Sub menus dropdown when mouse over.
@@ -188,6 +189,12 @@
                     document.getElementById("login_btn"),
                 );
                 signinModal.init();
+
+                //Flash messages
+                if (document.getElementById("flash_message")){
+                    const flash = new Flash(document.getElementById("flash_message"), "blurOut");
+                    flash.init();
+                }
             });
         </script>
         {% block javascripts %}{% endblock %}

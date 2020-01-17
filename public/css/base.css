@@ -574,22 +574,25 @@ a.admin_menu{
 /********************
 *	FLASH MESSAGES	*
 *********************/
-.flash-success, .flash-fail, .flash-info{
-	width: 100%;
-	max-width: 1500px;
-	height: 70px;
-	position: sticky;
-	top: 0px;
-    z-index: 1;
-    margin: 70px auto 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#flash_message{
+	position: fixed;
+	top: 70px;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	font-weight: bold;
+	width: 100%;
+	animation: slideDownBlur 1s ease-out;
+}	
+
+.flash-success, .flash-fail, .flash-info{
+	border-radius: 3px;
+	padding: 20px;
 }
 
 .flash-success{
-    background-color: lightgreen;
+	background-color: lightgreen;
 }
 
 .flash-fail{
@@ -600,8 +603,11 @@ a.admin_menu{
 	background-color: lightskyblue;
 }
 
+/************
+*	DATE	*
+*************/
+
 #datetime_article{
-    margin: 5px;
     display: inline-block;
 }
 
