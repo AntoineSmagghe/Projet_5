@@ -51,10 +51,9 @@
             <div class="article_cover_title">
                 <h1>{{ article.title }}</h1>
                 <div class="date_event">
-                    <p>{% trans %}Organisé le {% endtrans %}{{ article.dateEvent|date("d/m/Y") }}</p>
+                    <p>{% trans %}Organisé le{% endtrans %} {{ article.dateEvent|date("d/m/Y") }}</p>
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}
-                {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
                 <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
                 {% endif %}
             </div>
@@ -78,7 +77,10 @@
             </div>
             {% endif %}
         </aside>
+        {% if is_granted('ROLE_ADMIN') %}
     </section>
+    {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>

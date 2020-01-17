@@ -4,8 +4,8 @@
 {% endblock %}
 {% block body %}
     {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey }}
+        <div class="flash_message">
+            <p class="flash-fail">{{ error.messageKey }}</p>
         </div>
     {% endif %}
     <section class="login_form form-group">
