@@ -12,8 +12,6 @@ use Symfony\Component\Security\Core\Security;
 
 class HomePublicController extends AbstractController
 {
-    
-    private $users;
     private $article;
     private $security;
     private $imgRepo;

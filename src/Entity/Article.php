@@ -29,7 +29,7 @@ class Article
      * )
      */
     private $title;
-    
+
     /**
      * @ORM\Column(type="text", nullable=true)
      */

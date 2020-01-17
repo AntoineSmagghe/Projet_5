@@ -77,10 +77,7 @@
             </div>
             {% endif %}
         </aside>
-        {% if is_granted('ROLE_ADMIN') %}
     </section>
-    {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
-    {% endif %}
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>

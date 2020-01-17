@@ -29,7 +29,7 @@ class AdminController extends AbstractController
         
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-                
+        
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
             $article->setUser($security->getUser())
@@ -75,8 +75,8 @@ class AdminController extends AbstractController
             $manager->persist($article);
             $manager->flush();
             
-            $n = $now->format('d/m/Y à H:i:s');
-            $this->addFlash("success", 'Article enregistré le ' . $n);
+            $n = $now->format("d/m/Y - H:i:s");
+            $this->addFlash("success", "Article enregistré le " . $n);
         }
         $isMember = false;
         if ($article->getFormat() === "members"){
