@@ -165,8 +165,9 @@
                 let req = new Request("{{ path('makeCover') }}", { method: 'POST', body: pictureId });               
                 fetch(req)
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data);
+                .then(() => {
+                    let addflash = new AddFlashMessage();
+                    addflash.init();
                 })
                 .catch(e => console.error(e));
             });

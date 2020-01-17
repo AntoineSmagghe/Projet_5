@@ -15,13 +15,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdminController extends AbstractController
 {
     /**
      * @Route("/{_locale}/admin/edit", requirements={"_locale": "fr|en"}, name="creatPost", methods={"POST", "GET"})
      */
-    public function createPost(Article $article = null, Request $request, EntityManagerInterface $manager, Security $security)
+    public function createPost(Article $article = null, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {
         if ($article == null){
             $article = new Article();
@@ -36,8 +37,8 @@ class AdminController extends AbstractController
                     ->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
-            $n = $now->format('d/m/Y à H:i:s');
-            $this->addFlash("success", 'Article crée le ' . $n);
+            
+            $this->addFlash("success", $translator->trans("Article created at") . " " . $now->format('d/m/Y - H:i:s'));
                         
             return $this->redirectToRoute('editPost', [
                 'format' => $article->getFormat(),
@@ -63,7 +64,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/{_locale}/admin/edit/{id}", requirements={"_locale": "fr|en"}, name="editPost", methods={"POST", "GET"})
      */
-    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security)
+    public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {     
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -74,10 +75,12 @@ class AdminController extends AbstractController
                     ->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
-            
-            $n = $now->format("d/m/Y - H:i:s");
-            $this->addFlash("success", "Article enregistré le " . $n);
+
+            $this->addFlash("success", $translator->trans("Article record at") . " " . $now->format('d/m/Y - H:i:s'));
+        }else{
+            $this->addFlash("fail", $translator->trans("form is unvalid"));
         }
+
         $isMember = false;
         if ($article->getFormat() === "members"){
             $isMember = true;

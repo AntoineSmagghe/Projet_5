@@ -27,7 +27,6 @@ class ArticleType extends AbstractType
                 'choices' => [
                     'Public event' => 'publicEvent',
                     'Private event' => 'privateEvent',
-                    'News' => 'news',
                     'Release' => 'releases',
                     'Artist' => 'members',
                 ]
