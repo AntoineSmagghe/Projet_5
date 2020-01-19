@@ -166,7 +166,7 @@
                 fetch(req)
                 .then(response => response.json())
                 .then(() => {
-                    let addflash = new AddFlashMessage("{% trans %}cover updated{% endtrans %}", "info", document.getElementById("flash_messages"));
+                    let addflash = new AddFlashMessage("{% trans %}cover updated{% endtrans %}", "success", document.getElementById("flash_messages"));
                     addflash.init();
                 })
                 .catch(e => console.error(e));
@@ -253,8 +253,15 @@
     
     {% if app.request.attributes.get('_route') == 'editPost' %}
     //Alert before remove the article
-    let popup = new popupStop(document.getElementById("del_article"), "Etes vous sûr de vouloir supprimer l'article?", "L'article a été supprimé");
+    let popup = new popupStop(document.getElementById("del_article"), "{% trans %}Étes vous sûr de vouloir supprimer l'article?{% endtrans %}", "{% trans %}L'article a été supprimé.{% endtrans %}");
     popup.validateAction();
+
+    //Alert before remove picture
+    for (let i in document.getElementsByClassName("btn_del_pictures")){
+        let popupImg = new popupStop(document.getElementsByClassName("btn_del_pictures")[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
+        popupImg.validateAction();
+    }
+
     {% endif %}
     </script>
 {% endblock %}

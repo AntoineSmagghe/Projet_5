@@ -190,10 +190,10 @@
             signinModal.init();
 
             //Flash messages
-            if (document.getElementsByClassName("flash_message")){
+            if (document.getElementsByClassName("flash_message") != undefined){
                 const flashMessage = document.getElementsByClassName("flash_message");
                 let a;
-                for (let i in flashMessage){
+                for (let i=0; i < flashMessage.length; i++){
                     a = new Flash(flashMessage[i], "blurOut");
                     a.init();
                 }

@@ -15,9 +15,7 @@ class AddFlashMessage
         let p = document.createElement('p');
         p.setAttribute("class", "flash-" + this.label)
         p.textContent = this.message;
-        
-        let divElt = this.insertElt.appendChild(div);
-        divElt.appendChild(p);
+        this.insertElt.appendChild(div).appendChild(p);
         this.addListener();
     }
 

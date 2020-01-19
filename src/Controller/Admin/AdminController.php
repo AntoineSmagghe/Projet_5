@@ -77,8 +77,6 @@ class AdminController extends AbstractController
             $manager->flush();
 
             $this->addFlash("success", $translator->trans("Article record at") . " " . $now->format('d/m/Y - H:i:s'));
-        }else{
-            $this->addFlash("fail", $translator->trans("form is unvalid"));
         }
 
         $isMember = false;
