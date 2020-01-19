@@ -574,7 +574,7 @@ a.admin_menu{
 /********************
 *	FLASH MESSAGES	*
 *********************/
-#flash_message{
+.flash_message{
 	position: fixed;
 	top: 70px;
 	z-index: 1;

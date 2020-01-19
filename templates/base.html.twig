@@ -128,13 +128,15 @@
             </div>
         </header>
         {# Read and display all flash messages #}
+        <div id="flash_messages">
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div id="flash_message">
+                <div class="flash_message">
                    <p class="flash-{{ label }}">{{ message }}</p>
                 </div>
             {% endfor %}
         {% endfor %}
+        </div>
         {% block body %}{% endblock %}
         <footer>
             <div class="footer_card">
@@ -155,44 +157,47 @@
         <script src="/js/Modal.js"></script>
         <script src="/js/openMiniMenu.js"></script>
         <script src="/js/Flash.js"></script>
+        <script src="/js/AddFlashMessage.js"></script>
         <script type="application/javascript">
-            window.addEventListener("load", ()=>{
-                //Sub menus dropdown when mouse over.
-                const btn_dropdown_menu = document.getElementsByClassName("btn_dropdown_menu");
-                const dropdown_menu = document.getElementsByClassName("dropdown_menu");
-                for (let i = 0; i < btn_dropdown_menu.length; i++){
-                    let dropdownMenu = new menuHidden(
-                        btn_dropdown_menu[i], 
-                        dropdown_menu[i], 
-                        "flex", 
-                        "scaleBlur", 
-                        "scaleBlur"
-                    );
-                    dropdownMenu.init();
-                }
-                
-                //Burger menu for responsive design
-                const ico_burger = document.getElementById("ico_burger");
-                const nav_ul = document.querySelector("nav ul");
-                const backgroundModal = document.getElementById("background_modal");
-                let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex", backgroundModal);
-                menuBurger.init();
-
-                //Form appear when click on icon.
-                let signinModal = new Modal(
-                    document.getElementsByClassName("sign_in_form")[0],
-                    "flex",
-                    document.getElementById("background_modal"),
-                    document.getElementById("login_btn"),
+            //Sub menus dropdown when mouse over.
+            const btn_dropdown_menu = document.getElementsByClassName("btn_dropdown_menu");
+            const dropdown_menu = document.getElementsByClassName("dropdown_menu");
+            for (let i = 0; i < btn_dropdown_menu.length; i++){
+                let dropdownMenu = new menuHidden(
+                    btn_dropdown_menu[i], 
+                    dropdown_menu[i], 
+                    "flex", 
+                    "scaleBlur", 
+                    "scaleBlur"
                 );
-                signinModal.init();
+                dropdownMenu.init();
+            }
+            
+            //Burger menu for responsive design
+            const ico_burger = document.getElementById("ico_burger");
+            const nav_ul = document.querySelector("nav ul");
+            const backgroundModal = document.getElementById("background_modal");
+            let menuBurger = new openMiniMenu(ico_burger, nav_ul, "flex", backgroundModal);
+            menuBurger.init();
 
-                //Flash messages
-                if (document.getElementById("flash_message")){
-                    const flash = new Flash(document.getElementById("flash_message"), "blurOut");
-                    flash.init();
+            //Form appear when click on icon.
+            let signinModal = new Modal(
+                document.getElementsByClassName("sign_in_form")[0],
+                "flex",
+                document.getElementById("background_modal"),
+                document.getElementById("login_btn"),
+            );
+            signinModal.init();
+
+            //Flash messages
+            if (document.getElementsByClassName("flash_message")){
+                const flashMessage = document.getElementsByClassName("flash_message");
+                let a;
+                for (let i in flashMessage){
+                    a = new Flash(flashMessage[i], "blurOut");
+                    a.init();
                 }
-            });
+            }
         </script>
         {% block javascripts %}{% endblock %}
     </body>

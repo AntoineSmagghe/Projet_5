@@ -166,7 +166,7 @@
                 fetch(req)
                 .then(response => response.json())
                 .then(() => {
-                    let addflash = new AddFlashMessage();
+                    let addflash = new AddFlashMessage("{% trans %}cover updated{% endtrans %}", "info", document.getElementById("flash_messages"));
                     addflash.init();
                 })
                 .catch(e => console.error(e));

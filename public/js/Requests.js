@@ -2,6 +2,7 @@
 class Requests
 {
     //Record Article
+    /*
     saveArticle()
     {
         document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
@@ -18,7 +19,7 @@ class Requests
             .catch(e => alert(e));
         });
     }
-
+*/
     //Delete pictures
     delPictures()
     {
