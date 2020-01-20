@@ -271,7 +271,7 @@ nav ul{
 	position: fixed;
     text-shadow: none;
     z-index: 10;
-    background-color: white;
+    background-color: var(--blue);
 	border-radius: 3px;
     margin: 20px;
     right: 0;
@@ -279,7 +279,7 @@ nav ul{
 }
 
 .sign_in_form label{
-	color: black;
+	color: white;
 }
 
 .sign_in_form form{
@@ -300,24 +300,25 @@ nav ul{
 .form_row input{
 	padding: 5px;
     margin: 7px 0 0 0;
-    background-color: var(--grey);
+    background-color: white;
 }
 
 a.admin_menu{
 	height: 20px;
 	width: 200px;
 	padding: 10px 0;
-	color: var(--blue);
+	color: white;
 	text-align: center;
 	text-shadow: none;
 	font-size: 1.2rem;
-	transition: .5s ease;
+	font-weight: bolder;
 	border: 1px solid black;
+	transition: .5s ease;
 }
 
 .admin_menu:hover{
-	background-color: var(--blue);
-	color: white;
+	background-color: white;
+	color: var(--blue);
 }
 
 #ico_burger{

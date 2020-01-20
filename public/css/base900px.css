@@ -11,7 +11,7 @@
         display: none;
         flex-direction: column;
         align-items: center;
-        background: var(--black);
+        background: var(--blue);
         position: fixed;
         top: 0;
         right: 0;
