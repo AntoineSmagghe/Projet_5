@@ -13,7 +13,7 @@ class addField
 
     reIndexValue(){
         if (this.index > 0){
-            let inputs = document.getElementsByClassName("soundcloud_url");
+            let inputs = document.getElementsByClassName("url_SC");
             for (let i = 0; i < inputs.length; i++){
                 inputs[i].setAttribute("id", "article_api_data_" + i);
                 inputs[i].setAttribute("name", "article[api_data][" + i + "]");

@@ -57,6 +57,10 @@
     color: white;
 }
 
+.text a{
+    color:#78d3f0;   
+}
+
 .widget_SC{
     background-color: rgba(0,0,0,0.5);
     box-shadow: 0 0 4px black;
