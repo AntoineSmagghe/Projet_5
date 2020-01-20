@@ -75,6 +75,10 @@
     overflow: hidden;
 }
 
+#txt a{
+    color:#78d3f0;
+}
+
 #txt h2{
     font-weight: bolder;
     text-align: center;
