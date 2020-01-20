@@ -15,22 +15,16 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/{_locale}/connexion", requirements={"_locale": "fr|en"}, name="login", methods={"POST", "GET"})
      */
-    public function login(AuthenticationUtils $authUtils, Security $security, Request $request)
+    public function login(AuthenticationUtils $authUtils)
     {
-        /*
-        if ($request->get('security.authentication.success')){
-            $usr = $security->getUser();
-            dump($usr); 
-        }
-        */
         $error = $authUtils->getLastAuthenticationError();
         $lastName = $authUtils->getLastUsername();
 
@@ -48,7 +42,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/admin/signin", requirements={"_locale": "fr|en"}, name="signIn", methods={"POST", "GET"})
      */
-    public function signIn(EntityManagerInterface $manager, Request $request)
+    public function signIn(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans)
     {
         $newUser = new Users();
         $form = $this->createForm(UsersType::class, $newUser);
@@ -62,7 +56,7 @@ class SecurityController extends AbstractController
 
             $manager->persist($newUser);
             $manager->flush();
-            $this->addFlash('success', "Le membre a bien été enregistré en base de données.");
+            $this->addFlash('success', $trans->trans("Le membre a bien été enregistré en base de données."));
 
             return $this->redirectToRoute("signIn");
         }
@@ -75,7 +69,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/users/account", requirements={"_locale": "fr|en"}, name="account", methods={"POST", "GET"})
      */
-    public function account(EntityManagerInterface $manager, Request $request)
+    public function account(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserIdentityType::class, $user);
@@ -84,7 +78,7 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user);
             $manager->flush();
-            $this->addFlash('success', "Les changements ont bien été enregistrés en base de données.");
+            $this->addFlash('success', $trans->trans("Les changements ont bien été enregistrés en base de données."));
             return $this->redirectToRoute("account");
         }
 
@@ -97,7 +91,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/users/reset-password", requirements={"_locale": "fr|en"}, name="resetPassword", methods={"POST", "GET"})
      */
-    public function resetPassword(UserPasswordEncoderInterface $passwordEncoder, Request $request, EntityManagerInterface $em)
+    public function resetPassword(UserPasswordEncoderInterface $passwordEncoder, Request $request, EntityManagerInterface $em, TranslatorInterface $trans)
     {
         $user = $this->getUser();
         $form = $this->createForm(ResetPasswordType::class, $user);
@@ -109,10 +103,10 @@ class SecurityController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success', 'Votre mot de passe à bien été changé !');
+                $this->addFlash('success', $trans->trans("Votre mot de passe à bien été changé !"));
                 return $this->redirectToRoute('account');
             } else {
-                $this->addFlash('fail', 'Ancien mot de passe incorrect');
+                $this->addFlash('fail', $trans->trans('Ancien mot de passe incorrect'));
                 $form->addError(new FormError('Ancien mot de passe incorrect'));
             }
         }
@@ -125,7 +119,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/users/reset-email", requirements={"_locale": "fr|en"}, name="resetMail", methods={"POST", "GET"})
      */
-    public function resetMail(Request $request, EntityManagerInterface $manager)
+    public function resetMail(Request $request, EntityManagerInterface $manager, TranslatorInterface $trans)
     {
         $user = $this->getUser();
         $form = $this->createForm(ResetMailType::class, $user);
@@ -134,7 +128,7 @@ class SecurityController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()){
                 $manager->persist($user);
                 $manager->flush();
-                $this->addFlash('success', 'Votre adresse mail a bien été changée !');
+                $this->addFlash('success', $trans->trans('Votre adresse mail a bien été changée !'));
                 return $this->redirectToRoute('account');
             }
         } catch(Exception $e){

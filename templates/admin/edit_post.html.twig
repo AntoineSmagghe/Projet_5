@@ -257,10 +257,14 @@
     popup.validateAction();
 
     //Alert before remove picture
-    for (let i in document.getElementsByClassName("btn_del_pictures")){
-        let popupImg = new popupStop(document.getElementsByClassName("btn_del_pictures")[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
-        popupImg.validateAction();
+    const btnDelPictures = document.getElementsByClassName("btn_del_pictures");
+    if (document.body.contains(btnDelPictures[0])){
+        for (let i=0; i < btnDelPictures.length; i++){
+            let popupImg = new popupStop(btnDelPictures[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
+            popupImg.validateAction();
+        }
     }
+
 
     {% endif %}
     </script>
