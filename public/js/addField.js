@@ -9,9 +9,6 @@ class addField
 
     indexValue(){
         this.index = this.ulElement.children.length;
-    }
-
-    reIndexValue(){
         if (this.index > 0){
             let inputs = document.getElementsByClassName("url_SC");
             for (let i = 0; i < inputs.length; i++){
@@ -28,14 +25,6 @@ class addField
             let newDiv = document.createElement("div");
             newDiv.setAttribute("class", "form-group");
             newDiv.insertAdjacentHTML('beforeend', indexedPrototype);
-    
-            /*
-            let node = new DOMParser().parseFromString(indexedPrototype, "text/html");
-            let nodeInput = node.getElementsByTagName('input')[0];
-            nodeInput.id = "article_api_data_" + this.index;
-            nodeInput.name = "article[api_data][" + this.index + "]";
-            newLi.appendChild(nodeInput);
-            */
     
             newLi.appendChild(newDiv);
             this.ulElement.appendChild(newLi);
@@ -70,7 +59,6 @@ class addField
     
     init(){
         this.indexValue();
-        this.reIndexValue();
         this.remover();
         this.builder();
     }

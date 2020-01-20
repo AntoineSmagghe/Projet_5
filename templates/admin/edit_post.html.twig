@@ -11,7 +11,7 @@
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
     <div class="see_and_delete">
-        <a href="{{path("article", {"id": article.id, "format": article.format})}}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
+        <a href="{{ path("article", {"id": article.id, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
         <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
@@ -79,7 +79,7 @@
                         'label': false,
                         'attr': {'class': 'url_SC'}
                     })}}
-                    <button class="btn_del_sets" type="button">X</button>
+                    <button class="btn_del_sets" name="{{sound.vars.name}}" type="button">X</button>
                 </li>
                 {% endfor %}
             </ul>
@@ -220,6 +220,9 @@
         document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
         );
     addInput.init();
+    document.querySelector('form[name="article"]').addEventListener("submit", ()=>{
+        addInput.indexValue();
+    });
 
     //Changes for the members edition page
     const articleFormat = document.getElementById('article_format');
@@ -264,8 +267,6 @@
             popupImg.validateAction();
         }
     }
-
-
     {% endif %}
     </script>
 {% endblock %}
