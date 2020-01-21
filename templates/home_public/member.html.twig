@@ -53,12 +53,9 @@
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
 <script type="text/javascript" src="/js/movingElt.js"></script>
+{% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 <script type="text/javascript">
-{% include 'include/soundcloudID.js' %}
-{% for sound in article.apiData %}
-{% include 'include/soundcloudResolve.js' %}
 {% endfor %}
 let moveTitle = new movingElt(
     document.querySelector("#member_text_soundcloud h1"), 

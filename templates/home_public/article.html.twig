@@ -66,7 +66,11 @@
         <aside id="music">
             {% if article.apiData != [] %}
             <h2>{% trans %}Musique{% endtrans %}</h2>
-            <div class="widget_SC"></div>
+            <div class="widget_SC">
+                {% for sound in article.apiData %}
+                <div id="sound[{{loop.index0}}]"></div>
+                {% endfor %}
+            </div>
             {% endif %}
             {% if article.imgs.snapshot != null %}
             <h2>{% trans %}Image{% endtrans %}</h2>
@@ -79,14 +83,7 @@
         </aside>
     </section>
 {% endblock %}
-
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-<script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
-<script type="text/javascript">
-{% include 'include/soundcloudID.js' %}
-{% for sound in article.apiData %}
-{% include 'include/soundcloudResolve.js' %}
-{% endfor %}
-</script>
+{% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 {% endblock %}
