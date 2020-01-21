@@ -30,7 +30,11 @@
         <div class="text">{{article.text|raw}}</div>
         {% if article.apiData != null %}
             <h2>{% trans %}Musique{% endtrans %}</h2>
-            <div class="widget_SC"></div>
+            <div class="widget_SC">
+                {% for sound in article.apiData %}
+                <div id="sound[{{loop.index0}}]"></div>
+                {% endfor %}
+            </div>
         {% endif %}
         {% if article.imgs.snapshot != null %}
             <h2>{% trans %}Images{% endtrans %}</h2>
