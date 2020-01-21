@@ -56,7 +56,6 @@
 <script type="text/javascript" src="/js/movingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 <script type="text/javascript">
-{% endfor %}
 let moveTitle = new movingElt(
     document.querySelector("#member_text_soundcloud h1"), 
     document.getElementById("title_minwidth"), 
