@@ -82,12 +82,12 @@ class HomePublicController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/article/{format}/{id}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
+     * @Route("/{_locale}/article/{format}/{slug}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
      */
     public function article(Request $request)
     {
-        $article = $this->article->findOneBy(['id' => $request->get('id')]);
-        $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $request->get('id')]);
+        $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
+        $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
             return $this->render('home_public/member.html.twig', [
