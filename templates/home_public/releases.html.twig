@@ -20,7 +20,7 @@
     <article class="release_picture">
     {% for release in articles %}
         <figure class="release_figure">
-            <a href="{{path('article', {"format" : "releases", "id" : release.id})}}">
+            <a href="{{path('article', {"format" : "releases", "slug" : release.slug})}}">
                 {% set hasCover = false %}
                 {% if covers != [] %}
                     {% for cover in covers %}

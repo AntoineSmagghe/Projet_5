@@ -20,7 +20,7 @@
         <article class="members_picture">
         {% for artist in articles %}
             <figure>
-                <a href="{{path('article', {"format" : "members", "id" : artist.id})}}">
+                <a href="{{path('article', {"format" : "members", "slug" : artist.slug})}}">
                     {% set hasCover = false %}
                     {% if covers != [] %}
                         {% for cover in covers %}
