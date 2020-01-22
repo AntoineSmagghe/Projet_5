@@ -9,7 +9,10 @@
 {% block title %}<title>Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses.</title>{% endblock %}
 {% block body %}
 <div class="welcome_view">
-    <h1 class="moving_title">{% trans %}Hello{% endtrans %} {% if app.user != null %}{{ app.user.surname }} {% endif %}!</h1>
+  <div class="moving_title">
+    <h1>{% trans %}Hello{% endtrans %}</h1>
+    <p>{% trans %}Collectif d’exploration urbaine et musical dans Paris et ses environs{% endtrans %}</p>
+  </div>
 </div>
 <h2 class="part_title">{% trans %}What's new on CDLM?{% endtrans %}</h2>
 <section id="welcome_cards">

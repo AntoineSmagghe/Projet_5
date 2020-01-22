@@ -18,8 +18,16 @@
     padding: 0 0 0 50px;
     color: whitesmoke;
     text-shadow: 0 0 5px black;
-    font-size: 3rem;
-    font-weight: bold;
     position: sticky;
     top: 150px;
+}
+
+.moving_title h1{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.moving_title p{
+    font-size: 1.5rem;
+    margin: 20px 0 0 0;
 }
