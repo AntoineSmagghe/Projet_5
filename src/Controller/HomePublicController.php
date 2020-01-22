@@ -41,7 +41,7 @@ class HomePublicController extends AbstractController
         if ($this->security->getUser() !== null) {
             $articles = $this->article->findAllDESC();
         } else {
-            $articles = $this->article->takeAllExceptPrivateEvent();
+            $articles = $this->article->takeAllExceptprivateEvent();
         }
         $covers = $this->getCovers($articles);
         return $this->render('home_public/index.html.twig', [

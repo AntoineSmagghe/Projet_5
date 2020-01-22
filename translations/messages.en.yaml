@@ -78,8 +78,8 @@ Hello: Welcome to our world of sound & spirit
 What's new on CDLM?: What's new on CDLM?
 
 #Cards
-privateEvent: Private event
-publicEvent: Public event
+private-event: Private event
+public-event: Public event
 news: News
 releases: Release
 members: Artist

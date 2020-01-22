@@ -40,19 +40,19 @@
                     <li class="item_menu label_menu">
                         <button class="btn_dropdown_menu">{% trans %}Events{% endtrans %}</button>
                         <div class="dropdown_menu">
-                            <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_dropdown_menu">{% trans %}Public{% endtrans %}</a>
-                            <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_dropdown_menu">{% trans %}Private{% endtrans %}</a>
+                            <a href="{{ path("articles", {"format": "public-event"}) }}" class="link_dropdown_menu">{% trans %}Public{% endtrans %}</a>
+                            <a href="{{ path("articles", {"format": "private-event"}) }}" class="link_dropdown_menu">{% trans %}Private{% endtrans %}</a>
                         </div>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">{% trans %}Public Events{% endtrans %}</a>
+                        <a href="{{ path("articles", {"format": "public-event"}) }}" class="link_menu">{% trans %}Public Events{% endtrans %}</a>
                     </li>
                     <li class="item_menu label_menu_minwidth">
-                        <a href="{{ path("articles", {"format": "privateEvent"}) }}" class="link_menu">{% trans %}Private Events{% endtrans %}</a>
+                        <a href="{{ path("articles", {"format": "private-event"}) }}" class="link_menu">{% trans %}Private Events{% endtrans %}</a>
                     </li>
                     {% else %}
                     <li class="item_menu">
-                        <a href="{{ path("articles", {"format": "publicEvent"}) }}" class="link_menu">{% trans %}Events{% endtrans %}</a>
+                        <a href="{{ path("articles", {"format": "public-event"}) }}" class="link_menu">{% trans %}Events{% endtrans %}</a>
                     </li>
                     {% endif %}
                     <li class="item_menu label_menu">

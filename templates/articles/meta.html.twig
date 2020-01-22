@@ -2,11 +2,11 @@
     {% set coverArticle %}{{ asset("/img/Arthur/DSCF6344.jpg") | imagine_filter('300x300') }}{% endset %}
     {% set titleArticle = "CDLM.space - The news" %}
     {% set descriptionArticle = "Les derniers articles du collectif Le Chant De La Machine" %}
-{% elseif format == 'publicEvent' %}
+{% elseif format == 'public-event' %}
     {% set coverArticle %}{{ asset("/img/18556493_10158695312680298_6402872989759344248_o.jpg") | imagine_filter('300x300')}}{% endset %}
     {% set titleArticle = "CDLM.space - The news" %}
     {% set descriptionArticle = "Les évènements du Chant De La Machine" %}
-{% elseif format == 'privateEvent' %}
+{% elseif format == 'private-event' %}
     {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
     {% set titleArticle = "CDLM.space - The news" %}
     {% set descriptionArticle = "Les évènements privés du Chant De La Machine" %}

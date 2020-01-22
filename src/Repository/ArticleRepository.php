@@ -19,11 +19,11 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function takeAllExceptPrivateEvent(){
+    public function takeAllExceptprivateEvent(){
         return $this->createQueryBuilder('a')
             ->andWhere('a.format != :val')
             ->andWhere('a.format != :val2')
-            ->setParameter('val', 'privateEvent')
+            ->setParameter('val', 'private-event')
             ->setParameter('val2', 'members')
             ->orderBy('a.updated_at', 'DESC')
             ->getQuery()

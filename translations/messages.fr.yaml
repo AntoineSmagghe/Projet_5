@@ -77,8 +77,8 @@ Hello: Bienvenue dans notre univers musical
 What's new on CDLM?: Les dernières nouvelles
 
 #Cards
-privateEvent: Évènement privé
-publicEvent: Évènement public
+private-event: Évènement privé
+public-event: Évènement public
 news: Nouvelle
 releases: Sortie
 members: Artiste
