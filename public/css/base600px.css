@@ -33,9 +33,14 @@
     }
 
     .personal_info_menu{
-        display: none;
+        width: calc(100% - 30px);
     }
 
+    .personal_info_menu p{
+        font-size: 1.3rem;
+        line-height: 30px;
+    }
+    
     /********************
     *	FLASH MESSAGES	*
     *********************/
