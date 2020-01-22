@@ -358,7 +358,8 @@ a.admin_menu{
 
 .personal_info_menu_logo svg:hover{
     background-color: unset;
-    color: #404040;
+	color: #404040;
+	transform: scale(1.15);
 }
 
 /***********
@@ -443,7 +444,7 @@ a.admin_menu{
 
 .col_wel_txt_body h5{
     margin-bottom: .75rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: bold;
 }
 

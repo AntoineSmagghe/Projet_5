@@ -36,6 +36,7 @@
         <div class="col_wel_txt">
           <div class="col_wel_txt_body">
             <h5>{{ article.title }}</h5>
+            <p>Le {{ article.dateEvent|date("m/d/Y") }}
             <div class="buttons">
               <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}" class="a_btn a_btn btn_more">{% trans %}More{% endtrans %}...</a>
               {% if is_granted('ROLE_ADMIN') %}
