@@ -11,8 +11,11 @@ use App\Form\UsersType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address as MimeAddress;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -42,7 +45,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/admin/signin", requirements={"_locale": "fr|en"}, name="signIn", methods={"POST", "GET"})
      */
-    public function signIn(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans)
+    public function signIn(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans, MailerInterface $mi)
     {
         $newUser = new Users();
         $form = $this->createForm(UsersType::class, $newUser);
@@ -57,6 +60,16 @@ class SecurityController extends AbstractController
             $manager->persist($newUser);
             $manager->flush();
             $this->addFlash('success', $trans->trans("Le membre a bien été enregistré en base de données."));
+
+            $email = (new TemplatedEmail())
+                ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                ->to($newUser->getMail())
+                ->subject('Hello !')
+                ->htmlTemplate('mailer/signin.html.twig')
+                ->context([
+                    'user' => $newUser,
+                ]);
+            $mi->send($email);
 
             return $this->redirectToRoute("signIn");
         }

@@ -102,7 +102,7 @@ class HomePublicController extends AbstractController
                 'cover' => $imageCover,
             ]);
         }
-        
+
         return $this->render('home_public/article.html.twig', [
             'article' => $article,
             'cover' => $imageCover,

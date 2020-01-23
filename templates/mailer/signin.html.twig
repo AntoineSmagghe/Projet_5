@@ -1,0 +1,8 @@
+<h1>Welcome to the CDLM family {{ user.surname }} !</h1>
+<p>You signed up as {{ user.surname ~ ' ' ~ user.name }} whith the following email:</p>
+<p>
+    <code>{{ user.mail }}</code>
+</p>
+<p>
+    <a href="{{ path('home_public') }}">Click here to go to the website</a>
+</p>
