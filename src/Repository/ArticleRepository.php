@@ -25,7 +25,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->andWhere('a.format != :val2')
             ->setParameter('val', 'private-event')
             ->setParameter('val2', 'members')
-            ->orderBy('a.updated_at', 'DESC')
+            ->orderBy('a.date_event', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -38,7 +38,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('article')
             ->andWhere('article.format = :val')
             ->setParameter('val', $value)
-            ->orderBy('article.updated_at', 'DESC')
+            ->orderBy('article.date_event', 'DESC')
             ->getQuery()
             ->getResult();
     }
@@ -51,7 +51,7 @@ class ArticleRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('a')
             ->andWhere('a.format != :val')
             ->setParameter('val', 'members')
-            ->orderBy('a.updated_at', 'DESC')
+            ->orderBy('a.date_event', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult();
