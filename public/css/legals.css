@@ -1,0 +1,26 @@
+#legals{
+    color: white;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    margin: 150px auto;
+}
+
+#legals h1{
+    margin: 20px 0;
+    font-size: 3rem;
+}
+
+#legals h3{
+    margin: 15px 0 5px 0;
+    font-size: 1.5rem;
+}
+
+#legals p{
+    line-height: 25px;
+    text-align: justify;
+}
+
+#legals a{
+    color:#78d3f0;
+}

@@ -659,21 +659,45 @@ a.admin_menu{
 *************/
 footer{
 	width: 100%;
-    max-width: 1500px;
-    margin: 100px auto 0 auto;
-    padding: 20px 0;
-    display: flex;
+	padding: 60px 0;
+	margin: 150px 0 0 0;
+	background-color: rgba(255,255,255,0.2);
+}
+
+.footer{
+	width: 100%;
+	max-width: 1500px;
+	margin: 0 auto;
+	display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .footer_card{
-	height: 150px;
 	width: 200px;
 	padding: 20px;
 	margin: 30px 10px;
-	background-color: rgba(255,255,255,0.2);
 	color: white;
 	text-shadow: 0 0 3px black;
 	border-radius: 3px;
+}
+
+.footer h3{
+	margin: 12px 0 5px 0;
+	font-size: 0.9rem;
+    font-weight: 100;
+}
+
+.footer li{
+	margin: 5px 0 0 5px;
+}
+
+.footer_card p{
+	font-size: 0.8rem;
+	line-height: 15px;
+}
+
+.footer_card a{
+	color:#78d3f0;
+    font-size: 0.8rem;
 }

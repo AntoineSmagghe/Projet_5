@@ -22,6 +22,9 @@ Create artist: Create artist
 Create member: Add member
 Account:	Account
 Logout:	Logout
+Address: Address
+Personal informations: Personal informations
+Read: Read
 
 #Account
 Prénom:	Surname
@@ -73,6 +76,12 @@ Voir: Show
 Article record at: Article recorded at
 form is unvalid: Informations are not valid.
 cover updated: Cover updated
+
+#Confirmation messages
+Étes vous sûr de vouloir supprimer l'article?: Are you sure you want to delete this article?
+L'article a été supprimé.: Article deleted.
+Étes vous sûr de vouloir supprimer cette image?: Are you sure you want to delete this picture?
+Image supprimée.: Picture deleted.
 
 #Home page
 Hello: Le Chant de la Machine

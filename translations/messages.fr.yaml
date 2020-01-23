@@ -16,11 +16,14 @@ Public Events:  Évènements public
 Public event: Évènement public
 Private Events: Évènements privé
 Private event: Évènement privé
-Create post: Page article
-Create artist: Page artiste
+Create post: Publier un article
+Create artist: Publier un artiste
 Create member: Inscrire un membre
 Account:	Compte
 Logout:	Déconnexion
+Address: Adresse
+Personal informations: Informations personnelles
+Read: Lire
 
 #Account
 Prénom:	Prénom
@@ -71,7 +74,13 @@ Sélectionnez la couverture de l'article: Sélectionnez la couverture de l'artic
 Supprimer: Supprimer
 Voir: Voir
 Article record at: Article enregistré à
-form is unvalid: Les informations de sont pas valides. 
+form is unvalid: Les informations de sont pas valides.
+
+#Confirmation messages
+Étes vous sûr de vouloir supprimer l'article?:
+L'article a été supprimé.:
+Étes vous sûr de vouloir supprimer cette image?:
+Image supprimée.:
 
 #Home page
 Hello: Le Chant de la Machine

@@ -149,17 +149,52 @@
         </div>
         {% block body %}{% endblock %}
         <footer>
-            <div class="footer_card">
-                <h1>{% trans %}Copyright{% endtrans %}</h1>
-            </div>
-            <div class="footer_card">
-                <h1>{% trans %}Contact{% endtrans %}</h1>
-            </div>
-            <div class="footer_card">
-                <h1>{% trans %}Legals{% endtrans %}</h1>
-            </div>
-            <div class="footer_card">
-                <h1>{% trans %}Menu{% endtrans %}</h1>
+            <div class="footer">
+                <div class="footer_card">
+                    <h1>{% trans %}Copyright{% endtrans %}</h1>
+                    <h3>Website</h3>
+                    <a href="mailto:antoine@smagghe.me">Antoine</a>
+                </div>
+                <div class="footer_card">
+                    <h1>{% trans %}Contact{% endtrans %}</h1>
+                    <h3>Email</h3>
+                    <a href="mailto:cdlm.free@gmail.com">cdlm.free@gmail.com</a>
+                </div>
+                <div class="footer_card">
+                    <h1>{% trans %}Legals{% endtrans %}</h1>
+                    <h3></h3>
+                    <a href="{{ path('legals') }}">{% trans %}Read{% endtrans %}</a>
+                </div>
+                <div class="footer_card">
+                    <h1>Menu</h1>
+                    <h3>Site</h3>
+                    <ul>
+                        <li><a href="{{ path("articles", {"format": "public-event"}) }}">{% trans %}Events{% endtrans %}</a></li>
+                        {% if app.user != null %}
+                        <li><a href="{{ path("articles", {"format": "private-event"}) }}">{% trans %}private-event{% endtrans %}</a></li>
+                        {% endif %}
+                        <li><a href="{{ path("articles", {"format": "members"}) }}">{% trans %}Artists{% endtrans %}</a></li>
+                        <li><a href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a></li>
+                        <li><a href="#">{% trans %}About{% endtrans %}</a></li>
+                    </ul>
+                    <h3>{% trans %}Account{% endtrans %}</h3>
+                    <ul>
+                    {% if app.user != null %}
+                        <li><a href="{{path("account")}}">{% trans %}Personal informations{% endtrans %}</a></li>
+                        <li><a href="{{path("logout")}}">{% trans %}Logout{% endtrans %}</a></li>
+                    {% else %}
+                        <li><a href="{{path("login")}}">{% trans %}login{% endtrans %}</a></li>
+                    {% endif %}
+                    </ul>
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <h3>Admin</h3>
+                    <ul>
+                        <li><a href="{{ path("creatPost") }}">{% trans %}Create post{% endtrans %}</a></li>
+                        <li><a href="{{ path("creatArtist") }}">{% trans %}Create artist{% endtrans %}</a></li>
+                        <li><a href="{{ path("signIn") }}">{% trans %}Create member{% endtrans %}</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
             </div>
         </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

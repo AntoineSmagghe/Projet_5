@@ -109,6 +109,14 @@ class HomePublicController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{_locale}/legals", requirements={"_locale": "fr|en"}, name="legals", methods={"GET"})
+     */
+    public function showLegals()
+    {
+        return $this->render("legals/legals.html.twig");
+    }
+
     private function getCovers($articles)
     {
         $covers = [];
