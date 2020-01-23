@@ -1,0 +1,18 @@
+@media screen and (max-width: 600px){
+    #legals{
+        width: calc(100% - 20px);
+        padding: 10px;
+    }
+
+    #legals h1{
+        font-size: 2rem;
+    }
+
+    #legals h3{
+        font-size: 1.2rem;
+    }
+    #legals p{
+        font-size: 0.9rem;
+        line-height: 20px;
+    }
+}

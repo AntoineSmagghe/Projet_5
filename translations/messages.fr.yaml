@@ -1,7 +1,7 @@
 #Menu
 Events:	Évènements
 Artists: Artistes
-Releases:	Sorties
+Releases:	Albums
 About: À propos
 Envoyer: Envoyer
 Copyright: Copyright
@@ -57,7 +57,7 @@ Date:	Date
 Type de l'article:	Type de l'article
 Sélectionnez ici:	Sélectionnez ici
 News:	Nouvelles
-Release:	Sortie
+Release:	Album
 Artist:	Artiste
 Facebook:	Facebook
 Soundcloud:	Soundcloud
@@ -92,7 +92,7 @@ Collectif d’exploration urbaine et musical dans Paris et ses environs: Collect
 private-event: Évènement privé
 public-event: Évènement public
 news: Nouvelle
-releases: Sortie
+releases: Album
 members: Artiste
 Modifier: Modifier
 More: Voir
@@ -102,7 +102,7 @@ Les news du chant: Les dernières nouvelles
 Les évènements : 	Les évènements
 Les évènements privés:	Les évènements privés
 Les artistes : Les artistes
-Les sorties: Les sorties
+Les sorties: Les albums
 
 #Article
 Images: Images
