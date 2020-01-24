@@ -24,7 +24,6 @@ class HomePublicController extends AbstractController
         $this->imgRepo = $imgRepo;
     }
 
-
     /**
      * @Route("/")
      */
@@ -59,7 +58,7 @@ class HomePublicController extends AbstractController
         $articles = $this->article->findAllByformat($format);
         $covers = $this->getCovers($articles);
         if ($format === 'members'){
-            return $this->render('home_public/members.html.twig', [
+            return $this->render('articles/members.html.twig', [
                 'articles' => $articles,
                 'format' => $format,
                 'covers' => $covers,
@@ -67,14 +66,14 @@ class HomePublicController extends AbstractController
         }
 
         if ($format === 'releases') {
-            return $this->render('home_public/releases.html.twig', [
+            return $this->render('articles/releases.html.twig', [
                 'articles' => $articles,
                 'format' => $format,
                 'covers' => $covers,
             ]);
         }
 
-        return $this->render('home_public/articles.html.twig', [
+        return $this->render('articles/articles.html.twig', [
             'articles' => $articles,
             'format' => $format,
             'covers' => $covers,
@@ -90,20 +89,20 @@ class HomePublicController extends AbstractController
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
-            return $this->render('home_public/member.html.twig', [
+            return $this->render('article/member.html.twig', [
                 'article' => $article,
                 'cover' => $imageCover,
             ]);
         }
 
         if ($article->getFormat() === "releases") {
-            return $this->render('home_public/release.html.twig', [
+            return $this->render('article/release.html.twig', [
                 'article' => $article,
                 'cover' => $imageCover,
             ]);
         }
 
-        return $this->render('home_public/article.html.twig', [
+        return $this->render('article/article.html.twig', [
             'article' => $article,
             'cover' => $imageCover,
         ]);

@@ -7,10 +7,10 @@
  * animOut = animation when user get out of the submenu.
  * hideIco = boolean, icone must be hide?
  * 
- * @class menuHidden
+ * @class MenuHidden
  */
 
-class menuHidden{
+class MenuHidden{
     constructor(idListen, idToShow, howToDisplay, animIn, animOut, hideIco = true){
         this.idListen = idListen;
         this.idToShow = idToShow;

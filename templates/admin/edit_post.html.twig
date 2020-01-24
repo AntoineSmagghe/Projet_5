@@ -146,13 +146,13 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
     <script src="/js/Requests.js"></script>
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-    <script src="/js/addField.js"></script>
-    <script src="/js/popupStop.js"></script>
-    <script src="/js/movingElt.js"></script>
-    <script src="/js/selectRadio.js"></script>
+    <script src="/js/AddField.js"></script>
+    <script src="/js/PopupStop.js"></script>
+    <script src="/js/MovingElt.js"></script>
+    <script src="/js/SelectRadio.js"></script>
     <script type="text/javascript">
     //MediaQueries, move some elts for responsive design
-    let moveElt = new movingElt(document.getElementById("add_form_field"), document.getElementById("add_sound_minwidth"), 900);
+    let moveElt = new MovingElt(document.getElementById("add_form_field"), document.getElementById("add_sound_minwidth"), 900);
     moveElt.init();
 
     {% if article.id != null %}
@@ -175,7 +175,7 @@
     }
 
     //The move of radio button for select the covers.
-    const inputCover = new selectRadio(document.getElementsByClassName('select_cover'));
+    const inputCover = new SelectRadio(document.getElementsByClassName('select_cover'));
     inputCover.init();
 
     {% endif %}
@@ -214,7 +214,7 @@
         editTextContent.style.flexBasis = "75%";
     });
 
-    let addInput = new addField(
+    let addInput = new AddField(
         document.getElementById("add_sc_btn"), 
         document.getElementsByClassName("api_data")[0],
         document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
@@ -256,14 +256,14 @@
     
     {% if app.request.attributes.get('_route') == 'editPost' %}
     //Alert before remove the article
-    let popup = new popupStop(document.getElementById("del_article"), "{% trans %}Étes vous sûr de vouloir supprimer l'article?{% endtrans %}", "{% trans %}L'article a été supprimé.{% endtrans %}");
+    let popup = new PopupStop(document.getElementById("del_article"), "{% trans %}Étes vous sûr de vouloir supprimer l'article?{% endtrans %}", "{% trans %}L'article a été supprimé.{% endtrans %}");
     popup.validateAction();
 
     //Alert before remove picture
     const btnDelPictures = document.getElementsByClassName("btn_del_pictures");
     if (document.body.contains(btnDelPictures[0])){
         for (let i=0; i < btnDelPictures.length; i++){
-            let popupImg = new popupStop(btnDelPictures[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
+            let popupImg = new PopupStop(btnDelPictures[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
             popupImg.validateAction();
         }
     }

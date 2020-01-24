@@ -1,4 +1,4 @@
-class selectRadio
+class SelectRadio
 {
     constructor(inputElt){
         this.inputElt = inputElt;

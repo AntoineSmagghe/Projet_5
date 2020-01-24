@@ -10,7 +10,7 @@ class Modal
 
     openModal(){
         this.openBtn.addEventListener("click", ()=>{
-            if (window.innerWidth > 600) {
+            if (!this.isMobile()) {
                 this.modal.style.animation = "slideRight .5s ease";
             }
             this.background.style.display = "block";
@@ -22,7 +22,7 @@ class Modal
 
     closeAction(e){
         if (e.target == this.background) {
-            if (window.innerWidth > 600) {
+            if (!this.isMobile()) {
                 this.modal.style.animation = "slideRightReverse .5s ease";
                 setTimeout(() => {
                     this.modal.style.display = "none";
@@ -39,7 +39,7 @@ class Modal
 
     closeModal(){
         window.addEventListener("click", (e)=>{this.closeAction(e)});
-        window.addEventListener("touch", (e)=>{this.closeAction(e)});
+        this.closeBtn.addEventListener("click", (e)=>{this.closeAction(e)});
         
         if (this.closeBtn != null){
             this.closeBtn.addEventListener("click", (e)=>{
@@ -48,6 +48,21 @@ class Modal
                 this.background.style.display = "none";
                 this.openModal()
             });
+        }
+    }
+
+    isMobile() {
+        let whatUser = navigator.userAgent;
+        if (whatUser.match(/Android/i)
+            || whatUser.match(/Iphone/i)
+            || whatUser.match(/webOS/i)
+            || whatUser.match(/Ipad/i)
+            || whatUser.match(/Ipod/i)
+            || whatUser.match(/BlackBerry/i)
+            || whatUser.match(/Windows Phone/i)) {
+            return true;
+        } else {
+            return false;
         }
     }
 

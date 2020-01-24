@@ -57,17 +57,17 @@
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-<script type="text/javascript" src="/js/movingElt.js"></script>
+<script type="text/javascript" src="/js/MovingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 <script type="text/javascript">
-let moveTitle = new movingElt(
+let moveTitle = new MovingElt(
     document.querySelector("#member_text_soundcloud h1"), 
     document.getElementById("title_minwidth"), 
     600
     );
 moveTitle.init();
 
-let moveDate = new movingElt(
+let moveDate = new MovingElt(
     document.getElementById("datetime_article"), 
     document.getElementById("member_text_soundcloud"), 
     600

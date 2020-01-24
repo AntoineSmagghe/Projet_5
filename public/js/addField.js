@@ -1,4 +1,4 @@
-class addField
+class AddField
 {
     constructor(addBtn, ulElement, data_prototype){
         this.addBtn = addBtn;

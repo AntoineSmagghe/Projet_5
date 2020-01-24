@@ -362,6 +362,25 @@ a.admin_menu{
 	transform: scale(1.15);
 }
 
+.close_modal_btn{
+	cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    position: absolute;
+    width: calc(100% - 5px);
+    padding: 5px 5px 0 0;
+}
+
+.close_modal_btn svg{
+	width: 15px;
+    color: white;
+    background-color: #404040;
+    border-radius: 50%;
+    height: 15px;
+    padding: 5px;
+}
+
 /***********
 *   BODY   *
 ************/

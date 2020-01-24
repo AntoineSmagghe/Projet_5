@@ -3,10 +3,10 @@
  * return a popup validation with a specific message.
  * If false = action is stopped.
  * 
- * @class popupStop
+ * @class PopupStop
  */
 
-class popupStop{
+class PopupStop{
     constructor(domTarget, message, messageIfValidate){
         this.domTarget = domTarget;
         this.message = message;

@@ -1,10 +1,10 @@
 /**
  *  Listen an icon and open a menu.
  *
- * @class openMiniMenu
+ * @class OpenMiniMenu
  */
 
-class openMiniMenu {
+class OpenMiniMenu {
     constructor(idListen, idToShow, howToDisplay, background, animation = null) {
         this.idListen = idListen;
         this.idToShow = idToShow;
@@ -40,16 +40,15 @@ class openMiniMenu {
                 this.idListen.style.visibility = "visible";
             }
         });
-        /*
+
         if (this.isMobile()) {
             window.addEventListener("scroll", () => {
                 this.idToShow.style.display = "none";
                 this.background.style.display = "none";
                 this.background.style.zIndex = "1";
-                this.idListen.style.animation = this.animOut + ".5s";
+                this.idListen.style.visibility = "visible";
             });
         }
-        */
     }
 
     isMobile() {

@@ -1,25 +1,6 @@
 
 class Requests
 {
-    //Record Article
-    /*
-    saveArticle()
-    {
-        document.getElementsByName("article")[0].addEventListener("submit", (e)=>{
-            fetch(e.target.action, {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                },
-                body: e.submit,
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(e => alert(e));
-        });
-    }
-*/
     //Delete pictures
     delPictures()
     {
