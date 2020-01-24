@@ -37,10 +37,10 @@
                     <img class="img_member" src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ artist.title }}">
                     {% endif %}
                 {% endif %}
-                <figcaption>
-                    <h3>{{artist.title}}</h3>
-                </figcaption>
             </a>
+            <figcaption>
+                <h3>{{artist.title}}</h3>
+            </figcaption>
         </figure>
     {% endfor %}
     </article>

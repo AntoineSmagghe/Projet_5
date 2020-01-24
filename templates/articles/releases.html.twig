@@ -37,10 +37,10 @@
                     <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
                     {% endif %}
                 {% endif %}
-                <figcaption class="release_figcaption">
-                    <h3>{{ release.title }}</h3>
-                </figcaption>
             </a>
+            <figcaption class="release_figcaption">
+                <h3>{{ release.title }}</h3>
+            </figcaption>
         </figure>
     {% endfor %}
     </article>
