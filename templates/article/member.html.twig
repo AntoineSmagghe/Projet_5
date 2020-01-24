@@ -57,9 +57,9 @@
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-<script type="text/javascript" src="/js/MovingElt.js"></script>
+<script src="/js/MovingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
-<script type="text/javascript">
+<script>
 let moveTitle = new MovingElt(
     document.querySelector("#member_text_soundcloud h1"), 
     document.getElementById("title_minwidth"), 
