@@ -2,7 +2,7 @@
  * Moving elts in the DOM with media screen width
  */
 
-class movingElt
+class MovingElt
 {
     constructor(eltToMove, where, maxScreenSize)
     {
