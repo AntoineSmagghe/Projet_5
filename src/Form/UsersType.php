@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Users;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -32,6 +33,10 @@ class UsersType extends AbstractType
                     ],
                     'label' => "Role",
                 ]
+            ])
+            ->add('rgpd', CheckboxType::class, [
+                'label' => 'rgpd',
+                'required' => true,
             ])
             ->add('submit', SubmitType::class)
         ;

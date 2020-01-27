@@ -25,6 +25,8 @@ Login: Connexion
 Address: Adresse
 Personal informations: Informations personnelles
 Read: Lire
+rgpdlink: RGPD
+website: Site
 
 #Account
 Prénom:	Prénom
@@ -114,3 +116,7 @@ Organisé le: Organisé le
 Modifié le: Modifié le
 par: par
 Créé le: Créé le
+
+#RGPD text
+rgpd: J'accepte que mes informations soient enregistrées en conformité avec le réglement RGPD *
+Read the GRPD text: Lire la réglementation RGPD

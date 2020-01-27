@@ -26,6 +26,8 @@ Login: Login
 Address: Address
 Personal informations: Personal informations
 Read: Read
+rgpdlink: GRPD
+website: Website
 
 #Account
 Prénom:	Surname
@@ -117,3 +119,7 @@ Organisé le: Organised on
 Modifié le: Modified the
 par: by
 Créé le: Created the
+
+#RGPD text
+rgpd: I'm agree with data saving policy GDPR *
+Read the GRPD text: Read the GRPD

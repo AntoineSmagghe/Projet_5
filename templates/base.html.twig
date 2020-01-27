@@ -169,7 +169,12 @@
                 </div>
                 <div class="footer_card">
                     <h1>{% trans %}Legals{% endtrans %}</h1>
-                    <a href="{{ path('legals') }}">{% trans %}Read{% endtrans %}</a>
+                    <ul>
+                        <li><a href="{{ path('legals') }}">{% trans %}website{% endtrans %}</a></li>
+                        {% if app.user != null %}
+                        <li><a href="{{ path('rgpd') }}">{% trans %}rgpdlink{% endtrans %}</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
                 {# Site map for footer #}
                 <div class="footer_card">

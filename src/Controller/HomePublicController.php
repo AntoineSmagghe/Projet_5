@@ -116,6 +116,14 @@ class HomePublicController extends AbstractController
         return $this->render("legals/legals.html.twig");
     }
 
+    /**
+     * @Route("/{_locale}/rgpd", requirements={"_locale": "fr|en"}, name="rgpd", methods={"GET"})
+     */
+    public function showRGPD()
+    {
+        return $this->render("legals/rgpd.html.twig");
+    }
+
     private function getCovers($articles)
     {
         $covers = [];

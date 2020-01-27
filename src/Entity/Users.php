@@ -81,6 +81,8 @@ class Users implements UserInterface
      */
     private $last_log;
 
+    private $rgpd;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -254,6 +256,18 @@ class Users implements UserInterface
     public function setSurname(string $surname): self
     {
         $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getRgpd()
+    {
+        return $this->rgpd;
+    }
+
+    public function setRgpd($rgpd): self
+    {
+        $this->rgpd = $rgpd;
 
         return $this;
     }

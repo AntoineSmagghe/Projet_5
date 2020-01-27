@@ -22,7 +22,12 @@
         {{form_row(form.confirm_password, {'label': 'Confirmation', 'attr': {'placeholder': 'Répéter le mot de passe'}})}}
         {{form_errors(form.roles)}}
         {{form_row(form.roles)}}
+        {{form_errors(form.rgpd)}}
+        {{form_row(form.rgpd)}}
         {{form_row(form.submit, {'label': 'Enregistrer', 'attr': {'class': 'a_btn btn_modify'}})}}
     {{form_end(form)}}
+    <p>*
+        <a href="{{path('rgpd')}}"> {% trans %}Read the GRPD text{% endtrans %}</a>
+    </p>
 </section>
 {% endblock %}
