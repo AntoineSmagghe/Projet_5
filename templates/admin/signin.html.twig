@@ -26,8 +26,8 @@
         {{form_row(form.rgpd)}}
         {{form_row(form.submit, {'label': 'Enregistrer', 'attr': {'class': 'a_btn btn_modify'}})}}
     {{form_end(form)}}
-    <p>*
-        <a href="{{path('rgpd')}}"> {% trans %}Read the GRPD text{% endtrans %}</a>
+    <p class="white_text">*
+        <a class="blue-link" href="{{path('rgpd')}}"> {% trans %}Read the GRPD text{% endtrans %}</a>
     </p>
 </section>
 {% endblock %}
