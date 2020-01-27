@@ -135,6 +135,10 @@ label[for="article_text"]{
 }
 
 fieldset.form-group{
+    margin: unset;
+}
+
+legend.col-form-label.required{
     display: none;
 }
 

@@ -29,7 +29,8 @@ class UsersType extends AbstractType
                     'choices' => [
                         'Administrateur' => 'ROLE_ADMIN',
                         'Membre' => 'ROLE_MEMBRE'
-                    ]
+                    ],
+                    'label' => "Role",
                 ]
             ])
             ->add('submit', SubmitType::class)
