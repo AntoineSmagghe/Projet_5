@@ -80,10 +80,10 @@ Article record at: Article enregistré à
 form is unvalid: Les informations de sont pas valides.
 
 #Confirmation messages
-Étes vous sûr de vouloir supprimer l'article?:
-L'article a été supprimé.:
-Étes vous sûr de vouloir supprimer cette image?:
-Image supprimée.:
+Étes vous sûr de vouloir supprimer l'article?: Étes vous sûr de vouloir supprimer l'article?
+L'article a été supprimé.: L'article a été supprimé.
+Étes vous sûr de vouloir supprimer cette image?: Étes vous sûr de vouloir supprimer cette image?
+Image supprimée.: Image supprimée.
 
 #Home page
 Hello: Le Chant de la Machine
