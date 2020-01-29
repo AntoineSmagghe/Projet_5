@@ -1,16 +1,18 @@
 <style>
-.rules{
-    font-size: 10px;
+#rules{
+    font-size: 13px;
     background-color: lightgrey;
+    padding: 10px 20px;
+    margin: 20px 0;
 }
 </style>
-
-<h1>Welcome to the CDLM family {{ user.surname }} !</h1>
-<p>You signed up as {{ user.surname ~ ' ' ~ user.name }} whith the following email:</p>
+<h1>Bienvenue dans la famille CDLM {{ user.surname }} !</h1>
+<p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec cette adresse email :</p>
 <p>
     <code>{{ user.mail }}</code>
 </p>
-<p>Click here to go to the website: 
+<p>Ces informations peuvent être modifiées sur ton profil</p>
+<p>Click ici pour aller sur le site: 
     <a href="{{ path('home_public') }}">cdlm.space</a>
 </p>
 <div id="rules">
