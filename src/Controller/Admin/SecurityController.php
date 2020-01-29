@@ -14,6 +14,8 @@ use Exception;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address as MimeAddress;
 use Symfony\Component\Routing\Annotation\Route;
@@ -157,8 +159,11 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/send_mail")
      */
-    public function sendTestMail(Security $security, MailerInterface $mi)
+    public function sendTestMail(Security $security)
     {
+        $gmail = new GmailSmtpTransport('cdlm.free@gmail.com', 'Saperlipopette01');
+        $mailer = new Mailer($gmail);
+
         $user = $security->getUser();
         $email = (new TemplatedEmail())
             ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
@@ -168,7 +173,7 @@ class SecurityController extends AbstractController
             ->context([
                 'user' => $user,
             ]);
-        $mi->send($email);
+        $mailer->send($email);
         return $this->render("Mail Sended");
     }
 }
