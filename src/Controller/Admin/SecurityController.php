@@ -18,6 +18,7 @@ use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address as MimeAddress;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -157,7 +158,7 @@ class SecurityController extends AbstractController
 
 
     /**
-     * @Route("/admin/send_mail")
+     * @Route("/admin/send_mail", name="sendmail")
      */
     public function sendTestMail(Security $security)
     {
@@ -165,14 +166,13 @@ class SecurityController extends AbstractController
         $mailer = new Mailer($gmail);
 
         $user = $security->getUser();
-        $email = (new TemplatedEmail())
+        $email = (new Email())
             ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
             ->to($user->getMail())
             ->subject('Hello !')
-            ->htmlTemplate('mailer/signin.html.twig')
-            ->context([
-                'user' => $user,
-            ]);
+            ->html("hello");
+            
+        dump($email);
         $mailer->send($email);
         return $this->render("Mail Sended");
     }
