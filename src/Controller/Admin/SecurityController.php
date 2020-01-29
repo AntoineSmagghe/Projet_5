@@ -18,6 +18,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address as MimeAddress;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -150,5 +151,24 @@ class SecurityController extends AbstractController
         return $this->render('users/reset_mail.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+     * @Route("/admin/send_mail")
+     */
+    public function sendTestMail(Security $security, MailerInterface $mi)
+    {
+        $user = $security->getUser();
+        $email = (new TemplatedEmail())
+            ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+            ->to($user->getMail())
+            ->subject('Hello !')
+            ->htmlTemplate('mailer/signin.html.twig')
+            ->context([
+                'user' => $user,
+            ]);
+        $mi->send($email);
+        return $this->render("Mail Sended");
     }
 }
