@@ -22,12 +22,9 @@ class AdminController extends AbstractController
     /**
      * @Route("/{_locale}/admin/edit", requirements={"_locale": "fr|en"}, name="creatPost", methods={"POST", "GET"})
      */
-    public function createPost(Article $article = null, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
+    public function createPost(Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {
-        if ($article == null){
-            $article = new Article();
-        }
-        
+        $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         

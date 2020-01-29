@@ -134,10 +134,9 @@ class HomePublicController extends AbstractController
                 ]);
 
             if ($cover != null){
-                $cover = $cover->getName();
                 $covers[$i] = [
                     "idArticle" => $articles[$i]->getId(),
-                    "covername" => $cover,
+                    "covername" => $cover->getName(),
                 ];
             }
         }

@@ -171,7 +171,7 @@ class SecurityController extends AbstractController
             ->to($user->getMail())
             ->subject('Hello !')
             ->html("hello");
-            
+
         dump($email);
         $mailer->send($email);
         return $this->render("Mail Sended");
