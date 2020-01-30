@@ -1,30 +1,37 @@
-<style>
-#rules{
+{% extends 'mailer/base.html.twig' %}
+{% block title %}Mail de bienvenue au Chant de la Machine{% endblock %}
+{% block body %}
+<div style="
+    text-align: center;
+">    
+    <h1>Bienvenue dans la famille CDLM {{ user.surname }} !</h1>
+    <p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec cette adresse email :</p>
+    <p>
+        <code>{{ user.mail }}</code>
+    </p>
+    <p>Ces informations peuvent être modifiées sur ton profil</p>
+    <p>Clique ici pour aller sur le site: 
+        <a href="{{ path('home_public') }}">cdlm.space</a>
+    </p>
+</div>
+<div style="
+    margin-top: 100px;
     font-size: 13px;
     background-color: lightgrey;
     padding: 10px 20px;
     margin: 20px 0;
-}
-</style>
-<h1>Bienvenue dans la famille CDLM {{ user.surname }} !</h1>
-<p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec cette adresse email :</p>
-<p>
-    <code>{{ user.mail }}</code>
-</p>
-<p>Ces informations peuvent être modifiées sur ton profil</p>
-<p>Cliquez ici pour aller sur le site: 
-    <a href="{{ path('home_public') }}">cdlm.space</a>
-</p>
-<div id="rules">
-    <h3>Règlement pour la protection de vos données</h3>
+    border-radius: 5px;
+    ">
+    <h3 style="
+        text-decoration: underline;
+    ">Règlement pour la protection de vos données</h3>
     <p>Les informations recueillies sont enregistrées dans un fichier informatisé par l'association Le Chant de la Machine pour vous tenir informé et vous donner accès à certaines informations.
-    La base légale est l’article 6.1.a du règlement européen en matière de protection des données personnelles (consentement).</p>
-    <p>Les données collectées seront communiquées aux seuls destinataires suivants : l'association Le Chant de la Machine. Les données sont conservées pendant une durée de dix ans maximum. 
-    Vous pouvez accéder aux données vous concernant, les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de vos données. Vous pouvez retirer à tout moment votre consentement au traitement de vos données.</p>
-    <p>Pour exercer ces droits ou pour toute question sur le traitement de vos données dans ce dispositif, vous pouvez contacter (le cas échéant, notre délégué à la protection des données ou le service chargé de l’exercice de ces droits) : </p>
+    La base légale est l’article 6.1.a du règlement européen en matière de protection des données personnelles (consentement). Les données collectées seront communiquées aux seuls destinataires suivants : l'association Le Chant de la Machine. Les données sont conservées pendant une durée de dix ans maximum. 
+    Vous pouvez accéder aux données vous concernant, les rectifier, demander leur effacement ou exercer votre droit à la limitation du traitement de vos données. Vous pouvez retirer à tout moment votre consentement au traitement de vos données. Pour exercer ces droits ou pour toute question sur le traitement de vos données dans ce dispositif, vous pouvez contacter (le cas échéant, notre délégué à la protection des données ou le service chargé de l’exercice de ces droits) :</p>
     <p>Email : <a href="mailto:cdlm.free@gmail.com">cdlm.free@gmail.com</a>,</p>
     <p>Adresse : 91, rue Sedaine 75011 Paris, </p>
-    <p>Téléphone : 06 32 13 43 36.</p>
+    <p>Téléphone : <a href="tel:+33632134336">06 32 13 43 36</a></p>
     <p>Si vous estimez, après nous avoir contactés, que vos droits « Informatique et Libertés » ne sont pas respectés, vous pouvez adresser une réclamation à la CNIL.
     Consultez le site cnil.fr pour plus d’informations sur vos droits.</p>
 </div>
+{% endblock %}

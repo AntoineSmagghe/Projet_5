@@ -172,7 +172,6 @@ class SecurityController extends AbstractController
                 'user' => $user,
             ]);
 
-        dump($email);
         $mailerInterface->send($email);
         return $this->render('mailer/signin.html.twig', [
             'user' => $user,
