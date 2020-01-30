@@ -18,24 +18,26 @@
 {% for article in articles %}
   <div class="welcome_card">
     <div class="in_card_welcome">
-      <div class="col_wel_img">
-      {% set hasCover = false %}
-      {% if covers != [] %}
-        {% for cover in covers %}
-          {% if cover.idArticle == article.id %}
-            <img src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'article : {{ article.title }}">
-            {% set hasCover = true %}
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-      {% if hasCover == false %}
-        {% if article.imgs|first != "" %}
-        <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) | imagine_filter('300x300') }}" alt="Photo de l'article : {{ article.title }}">
-        {% else %}
-        <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
+      <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
+        <div class="col_wel_img">
+        {% set hasCover = false %}
+        {% if covers != [] %}
+          {% for cover in covers %}
+            {% if cover.idArticle == article.id %}
+              <img src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'article : {{ article.title }}">
+              {% set hasCover = true %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
-      {% endif %}
-      </div>
+        {% if hasCover == false %}
+          {% if article.imgs|first != "" %}
+          <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) | imagine_filter('300x300') }}" alt="Photo de l'article : {{ article.title }}">
+          {% else %}
+          <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
+          {% endif %}
+        {% endif %}
+        </div>
+      </a>
       <p class="format_event_card">{{article.format|trans }}</p>
       <div class="col_wel_txt">
         <div class="col_wel_txt_body">
@@ -45,7 +47,6 @@
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
             {% endif %}
-            <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}" class="a_btn a_btn btn_more">{% trans %}More{% endtrans %}...</a>
           </div>
         </div>
       </div>

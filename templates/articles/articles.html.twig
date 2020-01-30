@@ -30,15 +30,16 @@
   {% for article in articles %}
     <div class="welcome_card">
       <div class="in_card_welcome">
-        <div class="col_wel_img">
-        {% include 'articles/cover.html.twig' %}
-        </div>
+        <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
+          <div class="col_wel_img">
+          {% include 'articles/cover.html.twig' %}
+          </div>
+        </a>
         <div class="col_wel_txt">
           <div class="col_wel_txt_body">
             <h5>{{ article.title }}</h5>
             <p>Le {{ article.dateEvent|date("m/d/Y") }}
             <div class="buttons">
-              <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}" class="a_btn a_btn btn_more">{% trans %}More{% endtrans %}...</a>
               {% if is_granted('ROLE_ADMIN') %}
               <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
               {% endif %}
