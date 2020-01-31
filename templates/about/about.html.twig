@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title>{% trans %}A propos de l'association Le Chant de la Machine{% endtrans %}</title>{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/edit_post.css"></link>
+<link rel="stylesheet" href="/css/account.css"></link>
+<link rel="stylesheet" href="/css/account600px.css"></link>
+{% endblock %}
+{% block body %}
+
+<div id="contact_form" class="form-group">
+<h1 class="subtitle">{% trans %}Formulaire de contact{% endtrans %}</h1>
+    {{ form(form) }}
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
+<script>
+    //Text editor
+    let editor;
+    ClassicEditor
+        .create(document.querySelector('.ckeditor'), {
+            removePlugins: ["ImageUpload", "MediaEmbed"],
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+{% endblock %}

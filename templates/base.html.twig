@@ -70,7 +70,7 @@
                         <a class="link_menu" href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a>
                     </li>
                     <li class="item_menu">
-                        <a class="link_menu" href="#">{% trans %}About{% endtrans %}</a>
+                        <a class="link_menu" href="{{ path("about") }}">{% trans %}About{% endtrans %}</a>
                     </li>
                     {# Change le locale language #}
                     {% if app.request.get("_locale") == "en" %}
@@ -187,7 +187,7 @@
                         {% endif %}
                         <li><a href="{{ path("articles", {"format": "members"}) }}">{% trans %}Artists{% endtrans %}</a></li>
                         <li><a href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a></li>
-                        <li><a href="#">{% trans %}About{% endtrans %}</a></li>
+                        <li><a href="{{ path("about") }}">{% trans %}About{% endtrans %}</a></li>
                     </ul>
                     <h3>{% trans %}Account{% endtrans %}</h3>
                     <ul>

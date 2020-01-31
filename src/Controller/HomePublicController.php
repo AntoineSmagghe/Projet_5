@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
@@ -109,6 +111,24 @@ class HomePublicController extends AbstractController
     }
 
     /**
+     * @Route("/{_locale}/about", name="about", requirements={"_locale": "fr|en"}, methods={"POST", "GET"})
+     */
+    public function about(Request $request)
+    {
+        $contact = new Contact();
+        $contactForm = $this->createForm(ContactType::class, $contact);
+        $contactForm->handleRequest($request);
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()){
+
+        }
+        
+        return $this->render('about/about.html.twig', [
+            'form' => $contactForm->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{_locale}/legals", requirements={"_locale": "fr|en"}, name="legals", methods={"GET"})
      */
     public function showLegals()
@@ -140,7 +160,7 @@ class HomePublicController extends AbstractController
                 ];
             }
         }
-        
+
         return $covers;
     }
 }
