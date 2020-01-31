@@ -120,7 +120,7 @@ class HomePublicController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
-
+            
         }
         
         return $this->render('about/about.html.twig', [

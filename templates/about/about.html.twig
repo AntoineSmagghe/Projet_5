@@ -12,14 +12,14 @@
     {{ form(form) }}
 </div>
 {% endblock %}
-{% block javascript %}
+{% block javascripts %}
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <script>
     //Text editor
-    let editor;
     ClassicEditor
         .create(document.querySelector('.ckeditor'), {
-            removePlugins: ["ImageUpload", "MediaEmbed"],
+            toolbar: ['bold', 'italic', 'link'],
+            /*removePlugins: ["ImageUpload", "MediaEmbed"],*/
         })
         .catch(error => {
             console.error(error);
