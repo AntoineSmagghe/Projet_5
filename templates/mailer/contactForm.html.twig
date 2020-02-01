@@ -1,0 +1,9 @@
+{% extends 'mailer/base.html.twig' %}
+{% block title %}Message du formulaire de contact envoyé du site CDLM.space{% endblock %}
+{% block body %}
+    <h1>Mail de la part de {{ contact.surname }} {{ contact.name }}</h1>
+    <p>Ayant l'adresse email <code>{{contact.email}}</code></p>
+    <div class="message">
+        <p>{{contact.text}}</p>
+    </div>
+{% endblock %}

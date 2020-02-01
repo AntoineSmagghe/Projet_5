@@ -7,8 +7,11 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 
@@ -113,14 +116,23 @@ class HomePublicController extends AbstractController
     /**
      * @Route("/{_locale}/about", name="about", requirements={"_locale": "fr|en"}, methods={"POST", "GET"})
      */
-    public function about(Request $request)
+    public function about(Request $request, MailerInterface $mailerInterface)
     {
         $contact = new Contact();
         $contactForm = $this->createForm(ContactType::class, $contact);
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
-            
+            $email = (new TemplatedEmail())
+                ->from(new Address('cdlm.free@gmail.com', 'Website contact form'))
+                ->to(new Address('cdlm.free@gmail.com'))
+                ->htmlTemplate('mailer/contactForm.html.twig')
+                ->context([
+                    'contact' => $contact,
+                ])
+                ;
+            $mailerInterface->send($email);
+            $this->addFlash('info', 'Email envoyé! Nous reviendrons vers toi au plus vite.');
         }
         
         return $this->render('about/about.html.twig', [
