@@ -125,9 +125,9 @@ class HomePublicController extends AbstractController
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
             $email = (new TemplatedEmail())
-                ->from(new Address('cdlm.free@gmail.com', 'Website contact form'))
+                ->from(new Address('cdlm.free@gmail.com', $contact->getEmail()))
                 ->to(new Address('cdlm.free@gmail.com'))
-                ->subject('TEST TEST TEST')
+                ->subject("Message de " . $contact->getSurname() . " " . $contact->getName())
                 ->htmlTemplate('mailer/contactForm.html.twig')
                 ->context([
                     'contact' => $contact,
