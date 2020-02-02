@@ -7,8 +7,10 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
+use Symfony\Bridge\Monolog\Handler\SwiftMailerHandler;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
@@ -124,6 +126,7 @@ class HomePublicController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
+/*    
             $email = (new TemplatedEmail())
                 ->from(new Address('cdlm.free@gmail.com', $contact->getEmail()))
                 ->to(new Address('cdlm.free@gmail.com'))
@@ -134,6 +137,8 @@ class HomePublicController extends AbstractController
                 ])
                 ;
             $mailerInterface->send($email);
+*/
+
             $this->addFlash('info', 'Email envoyé! Nous reviendrons vers toi au plus vite.');
         }
         
