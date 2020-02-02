@@ -27,8 +27,7 @@ class ContactType extends AbstractType
             ])
             ->add('text', TextareaType::class, [
                 'attr' => [
-                    'class' => 'ckeditor',
-                    'placeholder' => 'Tappez le texte ici',
+                    'placeholder' => 'Tappez votre message ici',
                     ]
                 ])
             ->add('send', SubmitType::class, [

@@ -1,26 +1,45 @@
 {% extends 'base.html.twig' %}
-{% block title %}<title>{% trans %}A propos de l'association Le Chant de la Machine{% endtrans %}</title>{% endblock %}
+{% block title %}<title>{% trans %}A propos du Chant de la Machine{% endtrans %}</title>{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="/css/edit_post.css"></link>
-<link rel="stylesheet" href="/css/account.css"></link>
-<link rel="stylesheet" href="/css/account600px.css"></link>
+<link rel="stylesheet" href="/css/edit_post.css">
+<link rel="stylesheet" href="/css/account.css">
+<link rel="stylesheet" href="/css/account600px.css">
+<link rel="stylesheet" href="/css/about.css">
+<link rel="stylesheet" href="/css/about600px.css">
 {% endblock %}
 {% block body %}
 <section class="about">
-    <p>
-        Suspendisse vel ornare leo. Phasellus et molestie arcu, sed porttitor mauris. Donec hendrerit ex vel lectus ullamcorper dignissim. Nullam ut volutpat augue. 
-        Pellentesque porta lectus vitae metus aliquam fermentum. Nullam eget ipsum auctor, ultricies sem eu, vehicula sapien. Proin nec porta nulla, eget viverra ante. 
-        Nulla sodales faucibus dolor vitae maximus. Etiam feugiat est diam, eu varius justo commodo at. Proin eget malesuada nibh. Aliquam erat volutpat. 
-        Nullam pharetra quis tortor at ultricies. Nunc lobortis ullamcorper nisi, eu rutrum purus eleifend vitae. Donec sollicitudin fringilla magna, quis porta lacus volutpat commodo. 
-        Nullam mollis velit eu elit vestibulum eleifend. Cras sed eros nunc. Nulla volutpat turpis eu quam pellentesque fringilla sit amet blandit risus. Nunc et posuere diam.
-    </p>
+    <div class="text_about">
+        <h1 class="subtitle">{% trans %}A propos du Chant de la Machine{% endtrans %}</h1>
+        <p>
+            Suspendisse vel ornare leo. Phasellus et molestie arcu, sed porttitor mauris. Donec hendrerit ex vel lectus ullamcorper dignissim. Nullam ut volutpat augue. 
+            Pellentesque porta lectus vitae metus aliquam fermentum. Nullam eget ipsum auctor, ultricies sem eu, vehicula sapien. Proin nec porta nulla, eget viverra ante. 
+            Nulla sodales faucibus dolor vitae maximus. Etiam feugiat est diam, eu varius justo commodo at. Proin eget malesuada nibh. Aliquam erat volutpat. 
+            Nullam pharetra quis tortor at ultricies. Nunc lobortis ullamcorper nisi, eu rutrum purus eleifend vitae. Donec sollicitudin fringilla magna, quis porta lacus volutpat commodo. 
+            Nullam mollis velit eu elit vestibulum eleifend. Cras sed eros nunc. Nulla volutpat turpis eu quam pellentesque fringilla sit amet blandit risus. Nunc et posuere diam.
+        </p>
+    </div>
     <div id="contact_form" class="form-group">
-    <h1 class="subtitle">{% trans %}Formulaire de contact{% endtrans %}</h1>
-        {{ form(form) }}
+    <h2 class="subtitle">{% trans %}contact form{% endtrans %}</h2>
+        {{ form_start(form) }}
+            {{ form_errors(form.surname) }}
+            {{ form_row(form.surname) }}
+            
+            {{ form_errors(form.name) }}
+            {{ form_row(form.name) }}
+
+            {{ form_errors(form.email) }}
+            {{ form_row(form.email) }}
+            
+            {{ form_errors(form.text) }}
+            {{ form_row(form.text) }}
+            
+            {{ form_row(form.send) }}
+        {{ form_end(form) }}
     </div>
 </section>
 {% endblock %}
-{% block javascripts %}
+{#% block javascripts %}
 <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
 <script>
     //Text editor
@@ -32,4 +51,4 @@
             console.error(error);
         });
 </script>
-{% endblock %}
+{% endblock %#}  

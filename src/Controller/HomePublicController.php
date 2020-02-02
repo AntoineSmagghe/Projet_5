@@ -11,6 +11,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -126,6 +127,7 @@ class HomePublicController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from(new Address('cdlm.free@gmail.com', 'Website contact form'))
                 ->to(new Address('cdlm.free@gmail.com'))
+                ->subject('TEST TEST TEST')
                 ->htmlTemplate('mailer/contactForm.html.twig')
                 ->context([
                     'contact' => $contact,

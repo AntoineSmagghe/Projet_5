@@ -1,0 +1,33 @@
+.about{
+    margin: 100px 0px;
+    color: white;
+    max-width: 1500px;
+}
+
+.text_about{
+    max-width: 480px;
+    margin: auto;
+    padding: 0 10px;
+}
+
+.text_about h1{
+    width: 100%;
+}
+
+.text_about p{
+    line-height: 20px;
+    text-align: justify;
+    margin: 40px 0 0 0;
+}
+
+#contact_text{
+    padding: 10px;
+}
+
+form[name="contact"]{
+    margin: 0 5px;
+}
+
+label[for="contact_text"]{
+    display: none;
+}
