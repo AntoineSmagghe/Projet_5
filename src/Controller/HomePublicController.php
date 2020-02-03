@@ -7,13 +7,10 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
-use Symfony\Bridge\Monolog\Handler\SwiftMailerHandler;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
@@ -137,8 +134,7 @@ class HomePublicController extends AbstractController
                 ])
                 ;
             $mailerInterface->send($email);
-
-
+            
             $this->addFlash('info', 'Email envoyé! Nous reviendrons vers toi au plus vite.');
         }
         
