@@ -160,12 +160,11 @@
                 <div class="footer_card">
                     <h1>{% trans %}Copyright{% endtrans %}</h1>
                     <h3>Website</h3>
-                    <a href="mailto:antoine@smagghe.me">Antoine</a>
+                    <a href="{{path("contact")}}">Antoine</a>
                 </div>
                 <div class="footer_card">
                     <h1>{% trans %}Contact{% endtrans %}</h1>
-                    <h3>Email</h3>
-                    <a href="mailto:cdlm.free@gmail.com">cdlm.free@gmail.com</a>
+                    <a href="{{path("contact")}}">{% trans %}send us a message{% endtrans %}</a>
                 </div>
                 <div class="footer_card">
                     <h1>{% trans %}Legals{% endtrans %}</h1>

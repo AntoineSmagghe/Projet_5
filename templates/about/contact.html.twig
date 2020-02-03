@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title>{% trans %}Contacter le Chant de la Machine{% endtrans %}</title>{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/edit_post.css">
+<link rel="stylesheet" href="/css/account.css">
+<link rel="stylesheet" href="/css/account600px.css">
+<link rel="stylesheet" href="/css/about.css">
+<link rel="stylesheet" href="/css/about600px.css">
+{% endblock %}
+{% block body %}
+{% include 'include/contactForm.html.twig' with {'form': form} %}
+{% endblock %}

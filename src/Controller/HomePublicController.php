@@ -115,6 +115,7 @@ class HomePublicController extends AbstractController
 
     /**
      * @Route("/{_locale}/about", name="about", requirements={"_locale": "fr|en"}, methods={"POST", "GET"})
+     * @Route("/{_locale}/contact", name="contact", requirements={"_locale": "fr|en"}, methods={"POST", "GET"})
      */
     public function about(Request $request, MailerInterface $mailerInterface)
     {
@@ -123,7 +124,6 @@ class HomePublicController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
-    
             $email = (new TemplatedEmail())
                 ->from(new Address('cdlm.free@gmail.com', $contact->getEmail()))
                 ->to(new Address('cdlm.free@gmail.com'))
@@ -138,9 +138,15 @@ class HomePublicController extends AbstractController
             $this->addFlash('info', 'Email envoyé! Nous reviendrons vers toi au plus vite.');
         }
         
-        return $this->render('about/about.html.twig', [
-            'form' => $contactForm->createView(),
-        ]);
+        if ($request->get('_route') == 'about'){
+            return $this->render('about/about.html.twig', [
+                'form' => $contactForm->createView(),
+            ]);
+        }else if ($request->get('_route') == "contact"){
+            return $this->render('about/contact.html.twig', [
+                'form' => $contactForm->createView(),
+            ]);
+        }
     }
 
     /**

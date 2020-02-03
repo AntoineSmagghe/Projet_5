@@ -19,36 +19,6 @@
             Nullam mollis velit eu elit vestibulum eleifend. Cras sed eros nunc. Nulla volutpat turpis eu quam pellentesque fringilla sit amet blandit risus. Nunc et posuere diam.
         </p>
     </div>
-    <div id="contact_form" class="form-group">
-    <h2 class="subtitle">{% trans %}contact form{% endtrans %}</h2>
-        {{ form_start(form) }}
-            {{ form_errors(form.surname) }}
-            {{ form_row(form.surname) }}
-            
-            {{ form_errors(form.name) }}
-            {{ form_row(form.name) }}
-
-            {{ form_errors(form.email) }}
-            {{ form_row(form.email) }}
-            
-            {{ form_errors(form.text) }}
-            {{ form_row(form.text) }}
-            
-            {{ form_row(form.send) }}
-        {{ form_end(form) }}
-    </div>
+    {% include 'include/contactForm.html.twig' with {'form': form} %}
 </section>
 {% endblock %}
-{#% block javascripts %}
-<script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
-<script>
-    //Text editor
-    ClassicEditor
-        .create(document.querySelector('.ckeditor'), {
-            toolbar: ['bold', 'italic', 'link'],
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-{% endblock %#}  
