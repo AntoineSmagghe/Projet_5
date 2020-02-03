@@ -126,7 +126,7 @@ class HomePublicController extends AbstractController
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()){
-/*    
+    
             $email = (new TemplatedEmail())
                 ->from(new Address('cdlm.free@gmail.com', $contact->getEmail()))
                 ->to(new Address('cdlm.free@gmail.com'))
@@ -137,7 +137,7 @@ class HomePublicController extends AbstractController
                 ])
                 ;
             $mailerInterface->send($email);
-*/
+
 
             $this->addFlash('info', 'Email envoyé! Nous reviendrons vers toi au plus vite.');
         }
