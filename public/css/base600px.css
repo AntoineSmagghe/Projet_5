@@ -77,4 +77,30 @@
         width: 100%;
         height: 200px;
     }
+
+    /*************
+    *   FOOTER   *
+    *************/
+
+    .footer{
+        flex-direction: column;
+    }
+
+    .logo_footer{
+        align-items: flex-start;
+        margin: 30px;
+    }
+
+    #logo_footer{
+        width: 115px;
+        object-fit: cover;
+    }
+
+    .footer_element{
+        flex-direction: column;
+    }
+    
+    .footer_element{
+        flex-direction: column;
+    }
 }
