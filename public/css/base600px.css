@@ -86,21 +86,39 @@
         flex-direction: column;
     }
 
-    .logo_footer{
-        align-items: flex-start;
+    .footer_element.logo_footer{
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
         margin: 30px;
     }
 
     #logo_footer{
-        width: 115px;
+        width: 100px;
         object-fit: cover;
+    }
+
+    #logo_footer_name{
+        font-size: 1.2rem;
+        margin-left: 23px;
+        width: 100px;
     }
 
     .footer_element{
         flex-direction: column;
     }
-    
-    .footer_element{
+
+    .footer_card{
+        margin: 10px auto;
+        display: flex;
         flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer_card_contact{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }

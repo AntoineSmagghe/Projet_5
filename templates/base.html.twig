@@ -164,14 +164,13 @@
                 <div class="footer_element">    
                     <div class="footer_card">
                         <div class="footer_card_contact">
-                            <h3>{% trans %}Contact{% endtrans %}</h3>
+                            <h2>{% trans %}Contact{% endtrans %}</h2>
                             <ul>
-                                <li><a href="{{path("contact")}}">{% trans %}send us a message{% endtrans %}</a></li>
+                                <li><a href="{{path("contact")}}">{% trans %}The crew{% endtrans %}</a></li>
                             </ul>
                         </div>
                         <div class="footer_card_contact">
                             <h2>{% trans %}terms of use{% endtrans %}</h2>
-                            <h3>{% trans %}Legals{% endtrans %}</h3>
                             <ul>
                                 <li><a href="{{ path('legals') }}">{% trans %}website{% endtrans %}</a></li>
                                 {% if app.user != null %}

@@ -82,6 +82,22 @@
         align-items: center;
     }
 
+    .footer_card{
+        width: 170px;
+    }
+
+    #logo_footer {
+        height: 100px;
+    }
+
+    .logo_footer{
+        align-items: flex-end;
+    }
+
+    #logo_footer_name{
+        font-size: 1.3rem;
+    }
+
     /************************
     *   HOME PUBLIC INDEX   *
     *************************/

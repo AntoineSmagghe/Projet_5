@@ -708,21 +708,20 @@ footer{
 
 .footer_card{
 	width: 200px;
-	padding: 20px;
-	margin: 30px 10px;
-	color: white;
-	text-shadow: 0 0 3px black;
-	border-radius: 3px;
+    margin: 30px 0;
+    color: black;
+    border-radius: 3px;
 }
 
 #logo_footer{
-	width: 20%;
-	object-fit: scale-down;
+	object-fit: cover;
+	height: 175px;
 }
 
 #logo_footer_name{
 	font-size: 2.2rem;
 	width: 38%;
+	margin-left: 30px;
 }
 
 .footer h2{
@@ -745,6 +744,11 @@ footer{
 }
 
 .footer_card a{
-	color:#78d3f0;
-    font-size: 0.8rem;
+	color:#b3bcbf;
+	font-size: 0.8rem;
+	transition: .5s ease;
+}
+
+.footer_card a:hover{
+	color: white;
 }
