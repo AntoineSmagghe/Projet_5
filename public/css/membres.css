@@ -42,7 +42,7 @@
 *   MEMBERS *
 *************/
 #members{
-    max-width: 1500px;
+    max-width: 960px;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
@@ -116,7 +116,8 @@ figcaption{
 
 figcaption h3{
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-family: var(--font_title);
 }
 
 /****************
