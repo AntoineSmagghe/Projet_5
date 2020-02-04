@@ -49,7 +49,7 @@
             <h2>{% trans %}Image{% endtrans %}</h2>
             <div class="hes-gallery">
             {% for image in article.imgs %}
-                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="flip-up" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
             {% endif %}
