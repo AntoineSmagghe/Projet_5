@@ -62,15 +62,13 @@
 }
 
 .widget_SC{
-    background-color: rgba(0,0,0,0.5);
-    box-shadow: 0 0 4px black;
     border-radius: 6px;
     animation: scaleBlur 1s;
     margin: 10px 0 0 0;
 }
 
 .widget_SC iframe{
-    margin: auto;
+    margin: 5px 0;
     padding: 10px;
     width: calc(100% - 20px);
     background-color: rgba(126,126,126,1);

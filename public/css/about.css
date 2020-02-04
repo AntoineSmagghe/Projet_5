@@ -1,7 +1,8 @@
 .about{
-    margin: 100px 0px;
+    margin: auto;
     color: white;
     max-width: 1500px;
+    padding: 100px 0;
 }
 
 .text_about{

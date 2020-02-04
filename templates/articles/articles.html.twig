@@ -28,7 +28,7 @@
   </section>
   <div id="welcome_cards">
   {% for article in articles %}
-    <div class="welcome_card">
+    <div class="welcome_card" data-aos="zoom-in">
       <div class="in_card_welcome">
         <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
           <div class="col_wel_img">

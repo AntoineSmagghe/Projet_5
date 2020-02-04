@@ -5,8 +5,7 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font-family: 'Noto Sans TC', sans-serif;
+	font-size: 100%;	
 	vertical-align: baseline;
 }
 
@@ -21,6 +20,7 @@ body {
 	background-color: #404040;
 	min-height: calc(100vh - 220px);
 	min-width: 320px;
+	font-family: var(--font_text);
 }
 
 ol, ul {
@@ -57,6 +57,7 @@ a:hover{
 button{
 	cursor: pointer;
 	background: none;
+	font-style: var(--font_text);
 }
 
 img{
@@ -95,6 +96,8 @@ img{
 	--white: #F2B279;
 	--blue:#404040;
 	--black: #0D0D0D;
+	--font_title: 'Teko', sans-serif;
+	--font_text: 'Noto Sans TC', sans-serif;
 }
 
 /************
@@ -125,6 +128,7 @@ nav{
 	margin: auto;
 	text-shadow: 0 0 5px black;
 	background-color: rgba(0,0,0,0.5);
+	font-family: var(--font_text);
 }
 
 #logo_header{
@@ -411,7 +415,8 @@ a.admin_menu{
 	text-align: center;
 	font-size: 3rem;
 	color: white;
-    text-shadow: 0 0 5px black;
+	text-shadow: 0 0 5px black;
+	font-family: var(--font_title);
 }
 
 .subtitle{
@@ -421,6 +426,7 @@ a.admin_menu{
 	font-size: 2rem;
 	margin: 20px 0;
 	color: white;
+	font-family: var(--font_title);
 }
 
 /************
@@ -462,7 +468,8 @@ a.admin_menu{
     flex-direction: column;
     justify-content: flex-end;
     margin: 1.25rem;
-    overflow: hidden;
+	overflow: hidden;
+	text-align: center;
 }
 
 .col_wel_txt_body h5{
@@ -519,7 +526,7 @@ a.admin_menu{
 .buttons{
     display: flex;
     flex-basis: 45%;
-	justify-content: space-between;
+	justify-content: center;
 	font-weight: bold;
 }
 
@@ -720,6 +727,8 @@ footer{
 
 #logo_footer_name{
 	font-size: 2.2rem;
+	font-family: var(--font_title);
+    font-weight: 700;
 	width: 38%;
 	margin-left: 30px;
 }
