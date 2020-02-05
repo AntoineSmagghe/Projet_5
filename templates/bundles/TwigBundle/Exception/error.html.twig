@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+<link rel="stylesheet" href="/css/error.css">
+{% endblock %}
+{% block body %}
+<div class="error_page">
+    <h1>Oops!! Error {{ status_code }}</h1>
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('home_public') }}">return to the homepage</a>.
+    </p>
+    <img src="/img/police_attack.jpg" alt="error police attack">
+</div>
+{% endblock %}
