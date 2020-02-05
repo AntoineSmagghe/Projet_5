@@ -15,8 +15,7 @@ class PopupStop{
 
     validateAction(){
         this.domTarget.addEventListener("click", (e)=>{
-            let isConfirmed = window.confirm(this.message);
-            if (isConfirmed){
+            if (window.confirm(this.message)){
                 alert(this.messageIfValidate);
             } else {
                 e.preventDefault();

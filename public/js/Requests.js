@@ -19,7 +19,7 @@ class Requests
                 .then(data => {
                     if(data.success){
                         document.getElementsByName(data.idImg)[0].remove();
-                        let addFlash = new AddFlashMessage("Image deleted", "fail", document.getElementById("flash_messages"));
+                        let addFlash = new AddFlashMessage("{% trans %}Image deleted{% endtrans %}", "fail", document.getElementById("flash_messages"));
                         addFlash.init();
                     }else{
                         alert(data.error);

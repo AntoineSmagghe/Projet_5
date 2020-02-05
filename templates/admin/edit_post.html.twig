@@ -257,15 +257,6 @@
     //Alert before remove the article
     let popup = new PopupStop(document.getElementById("del_article"), "{% trans %}Étes vous sûr de vouloir supprimer l'article?{% endtrans %}", "{% trans %}L'article a été supprimé.{% endtrans %}");
     popup.validateAction();
-
-    //Alert before remove picture
-    const btnDelPictures = document.getElementsByClassName("btn_del_pictures");
-    if (document.body.contains(btnDelPictures[0])){
-        for (let i=0; i < btnDelPictures.length; i++){
-            let popupImg = new PopupStop(btnDelPictures[i], "{% trans %}Étes vous sûr de vouloir supprimer cette image?{% endtrans %}", "{% trans %}Image supprimée.{% endtrans %}");
-            popupImg.validateAction();
-        }
-    }
     {% endif %}
     </script>
 {% endblock %}
