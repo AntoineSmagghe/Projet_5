@@ -5,7 +5,7 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;	
+	font-size: 100%;
 	vertical-align: baseline;
 }
 
@@ -347,6 +347,7 @@ a.admin_menu{
 	border: 1px solid black;
 	line-height: 20px;
 	text-align:center;
+	border-radius: 3px;
 }
 
 .personal_info_menu_logo{

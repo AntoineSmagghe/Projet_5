@@ -34,6 +34,7 @@ class HomePublicController extends AbstractController
      */
     public function localRedirect()
     {
+        dump("hello");
         return $this->redirectToRoute('home_public');
     }
 
@@ -47,6 +48,7 @@ class HomePublicController extends AbstractController
         } else {
             $articles = $this->article->takeAllExceptprivateEvent();
         }
+
         $covers = $this->getCovers($articles);
         return $this->render('home_public/index.html.twig', [
             'articles' => $articles,

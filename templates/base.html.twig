@@ -79,18 +79,20 @@
                         <a class="link_menu" href="{{ path("about") }}">{% trans %}About{% endtrans %}</a>
                     </li>
                     {# Change le locale language #}
-                    {% if app.request.get("_locale") == "en" %}
-                    <li class="item_menu btn_locale">
-                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="link_menu">
-                            <img src="/img/Flag_of_France.svg" alt="French flag">
-                        </a>
-                    </li>
-                    {% else %}
-                    <li class="item_menu btn_locale">
-                        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="link_menu">
-                            <img src="/img/Flag_of_the_United_Kingdom.svg" alt="UK flag">
-                        </a>
-                    </li>
+                    {% if app.request.get('_route_params') != null %}
+                        {% if app.request.get("_locale") == "en" %}
+                        <li class="item_menu btn_locale">
+                            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="link_menu">
+                                <img src="/img/Flag_of_France.svg" alt="French flag">
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="item_menu btn_locale">
+                            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="link_menu">
+                                <img src="/img/Flag_of_the_United_Kingdom.svg" alt="UK flag">
+                            </a>
+                        </li>
+                        {% endif %}
                     {% endif %}
                     {% if app.user == null %}
                     <li id="login_btn" class="item_menu">

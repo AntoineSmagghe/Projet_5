@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+<link rel="stylesheet" href="/css/error.css">
+{% endblock %}
+{% block body %}
+<div class="error_page">
+    <h1>Whaaat ! Erreur : {{ status_code }}</h1>
+    <p>Que souhaites tu faire :
+        Appeler un <a href="{{ path('contact')}}">orga</a> ou remettre de l'essence dans le <a href="{{ path('home_public') }}">générateur</a>.
+    </p>
+    <img src="/img/police_attack.jpg" alt="error police attack">
+</div>
+{% endblock %}
