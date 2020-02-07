@@ -8,155 +8,162 @@
 {% endblock %}
 {% block body %}
 <div class="undernav"></div>
-<section id="edit_post">
-    {% if app.request.attributes.get('_route') == 'editPost' %}
+{% if app.request.attributes.get('_route') == 'editPost' %}
+<div id="delete_article_btn">
     <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
         <input type="hidden" name="_method" value="DELETE">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
         <button id="del_article" class="a_btn btn_del">{% trans %}Supprimer{% endtrans %}</button>
     </form>
-    {% endif %}
+</div>
+{% endif %}
+<section id="edit_post">
     {{ form_start(form) }}
-    {% if app.request.attributes.get('_route') == 'editPost' %}
-    <div class="see_and_delete">
-        <a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
-    </div>
-    {% endif %}
     <div class="form_error">
         {{ form_errors(form) }}
     </div>
-    {{ form_row(form.save, {
-        'label': 'Enregistrer',
-        'attr': {'class': 'a_btn btn_modify'}
-    }) }}
-    <div class="row">
-        <div class="col-md-2 date">
-        {{ form_errors(form.date_event) }}
-        {{ form_row(form.date_event, {'label' : 'Date'}) }}
-        </div>
-        <div class="col-md-2 type">
-        {{ form_row(form.format, {
-            'label': 'Type de l\'article', 
-            'placeholder': 'Sélectionnez ici'
-            }) }}
-        </div>
-    </div>
-    <div id="socialsNetwork" class="row">
-        <div class="col-md-2">
-        {{ form_row(form.socialNetwork.facebook) }}
-        {{ form_errors(form.socialNetwork.facebook) }}
-        </div>
-        <div class="col-md-2">
-        {{ form_row(form.socialNetwork.soundcloud) }}
-        {{ form_errors(form.socialNetwork.soundcloud) }}
-        </div>
-        <div class="col-md-2">
-        {{ form_row(form.socialNetwork.instagram) }}
-        {{ form_errors(form.socialNetwork.instagram) }}
-        </div>
-    </div>
-    <div class="row">
-        <div id="edit_text_content">
-        {{ form_row(form.title, {
-            'label': 'Titre de l\'évènement',
-            'attr': {'placeholder': 'Titre de l\'évènement'}
-        }) }}
-        {{ form_row(form.text, {
-            'label': 'Contenu',
-            'attr': {
-                'id': "text_editor",
-                'class': 'ckeditor',
-                'placeholder': 'Tappez le texte ici'
-            }
-        }) }}
-        </div>
-    </div>
-    <div id="add_sc_field" >
-            <a id="add_sc_btn" class="a_btn btn_modify">{% trans %}Add sound{% endtrans %}</a>
-        </div>
-        {{ form_errors(form.api_data) }}
-        <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
-            {% for sound in form.api_data %}
-            <li>
-                {{form_row(sound, {
-                    'label': false,
-                    'attr': {'class': 'url_SC'}
-                })}}
-                <button class="btn_del_sets" name="{{sound.vars.name}}" type="button">X</button>
-            </li>
-            {% endfor %}
-        </ul>
-        <div id="add_yt_field" >
-            <a id="add_yt_btn" class="a_btn btn_modify">Youtube</a>
-        </div>
-        <ul id="list_yt" class="youtube" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
-            {% for video in form.youtube %}
-            <li>
-                {{form_row(video, {
-                    'label': false,
-                    'attr': {'class': 'url_YT'}
-                })}}
-                <button class="btn_del_video" name="{{video.vars.name}}" type="button">X</button>
-            </li>
-            {% endfor %}
-        </ul>
-    <div class="row">
-        <div id="add_sound_minwidth"></div>
-        <div class="col-md-3">
-        {{ form_errors(form.imgsFile) }}
-        {{ form_row(form.imgsFile) }}
-        </div>
-    </div>
-    {{form_end(form)}}
-    {% if app.request.attributes.get('_route') == 'editPost' %}
-        {% if article.imgs.snapshot != null %}
-        <div id="gallery">
-            <div class="infoCoverArticle">
-                <div class="icoInfoCoverArticle">
-                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="svg-inline--fa fa-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                    </svg>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="long-arrow-alt-right" class="svg-inline--fa fa-long-arrow-alt-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z"></path></svg>
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
-                    </svg>
-                </div>
-                <p>{% trans %}Sélectionnez la couverture de l'article{% endtrans %}</p>
-            </div>
-            <div class="hes-gallery">
-            {% for image in article.imgs %}
-                {% if image.id != null %}
-                <figure class="edit_image" name="{{image.id}}">
-                    <img src="{{ vich_uploader_asset(image, 'imgData') | imagine_filter('200x150') }}" data-fullsize="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
-                    <figcaptation class="action_image">
-                        <div class="select_cover">
-                            <label for="Image {{image.id}}">
-                                <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
-                                <svg id="uncheck - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="svg-inline--fa fa-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                                </svg>
-                                <svg id="check - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
-                                </svg>
-                            </label>
-                        </div>
-                        <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
-                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" class="svg-inline--fa fa-trash-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                <path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path>
-                            </svg>
-                        </a>
-                    </figcaptation>
-                </figure>
-                {% endif %}
-            {% endfor %}
-            </div>
-        </div>
+    <div class="sticky_edit_menu">
+        <div class="see_and_delete">
+        {% if app.request.attributes.get('_route') == 'editPost' %}
+            <a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
         {% endif %}
-    {% endif %}
-
-    {% if app.request.attributes.get('_route') == 'editPost' %}
-    {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
-    {% endif %}
+        {{ form_row(form.save, {
+            'label': 'Enregistrer',
+            'attr': {'class': 'a_btn btn_modify'}
+        }) }}
+        </div>
+    </div>
+    <div class="main_form">
+    
+        <div class="row">
+            <div class="col-md-2 date">
+            {{ form_errors(form.date_event) }}
+            {{ form_row(form.date_event, {'label' : 'Date'}) }}
+            </div>
+            <div class="col-md-2 type">
+            {{ form_row(form.format, {
+                'label': 'Type de l\'article', 
+                'placeholder': 'Sélectionnez ici'
+                }) }}
+            </div>
+        </div>
+        <div id="socialsNetwork" class="row">
+            <div class="col-md-2">
+            {{ form_row(form.socialNetwork.facebook) }}
+            {{ form_errors(form.socialNetwork.facebook) }}
+            </div>
+            <div class="col-md-2">
+            {{ form_row(form.socialNetwork.soundcloud) }}
+            {{ form_errors(form.socialNetwork.soundcloud) }}
+            </div>
+            <div class="col-md-2">
+            {{ form_row(form.socialNetwork.instagram) }}
+            {{ form_errors(form.socialNetwork.instagram) }}
+            </div>
+        </div>
+        <div class="row">
+            <div id="edit_text_content">
+            {{ form_row(form.title, {
+                'label': 'Titre de l\'évènement',
+                'attr': {'placeholder': 'Titre de l\'évènement'}
+            }) }}
+            {{ form_row(form.text, {
+                'label': 'Contenu',
+                'attr': {
+                    'id': "text_editor",
+                    'class': 'ckeditor',
+                    'placeholder': 'Tappez le texte ici'
+                }
+            }) }}
+            </div>
+        </div>
+        <div class="urls">
+            <div id="add_sc_field" >
+                <a id="add_sc_btn" class="a_btn btn_modify">{% trans %}Add sound{% endtrans %}</a>
+            </div>
+            {{ form_errors(form.api_data) }}
+            <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+                {% for sound in form.api_data %}
+                <li>
+                    {{form_row(sound, {
+                        'label': false,
+                        'attr': {'class': 'url_SC'}
+                    })}}
+                    <button class="btn_del_sets" name="{{sound.vars.name}}" type="button">X</button>
+                </li>
+                {% endfor %}
+            </ul>
+            <div id="add_yt_field" >
+                <a id="add_yt_btn" class="a_btn btn_modify">Youtube</a>
+            </div>
+            <ul id="list_yt" class="youtube" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
+                {% for video in form.youtube %}
+                <li>
+                    {{form_row(video, {
+                        'label': false,
+                        'attr': {'class': 'url_YT'}
+                    })}}
+                    <button class="btn_del_video" name="{{video.vars.name}}" type="button">X</button>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+            {{ form_errors(form.imgsFile) }}
+            {{ form_row(form.imgsFile) }}
+            </div>
+        </div>
+        {{form_end(form)}}
+        {% if app.request.attributes.get('_route') == 'editPost' %}
+            {% if article.imgs.snapshot != null %}
+            <div id="gallery">
+                <div class="infoCoverArticle">
+                    <div class="icoInfoCoverArticle">
+                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="svg-inline--fa fa-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                        </svg>
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="long-arrow-alt-right" class="svg-inline--fa fa-long-arrow-alt-right fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M313.941 216H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h301.941v46.059c0 21.382 25.851 32.09 40.971 16.971l86.059-86.059c9.373-9.373 9.373-24.569 0-33.941l-86.059-86.059c-15.119-15.119-40.971-4.411-40.971 16.971V216z"></path></svg>
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                        </svg>
+                    </div>
+                    <p>{% trans %}Sélectionnez la couverture de l'article{% endtrans %}</p>
+                </div>
+                <div class="hes-gallery">
+                {% for image in article.imgs %}
+                    {% if image.id != null %}
+                    <figure class="edit_image" name="{{image.id}}">
+                        <img src="{{ vich_uploader_asset(image, 'imgData') | imagine_filter('200x150') }}" data-fullsize="{{ vich_uploader_asset(image, 'imgData') }}" alt="Image {{image.id ~ " - De l'article : " ~ article.title}}">
+                        <figcaptation class="action_image">
+                            <div class="select_cover">
+                                <label for="Image {{image.id}}">
+                                    <input type="radio" id="Image {{image.id}}" name="cover" value="{{image.id}}">
+                                    <svg id="uncheck - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" class="svg-inline--fa fa-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+                                    </svg>
+                                    <svg id="check - Image {{image.id}}" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" class="svg-inline--fa fa-check-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path>
+                                    </svg>
+                                </label>
+                            </div>
+                            <a href="{{ path('delImg', { 'id' : image.id }) }}" data-delete data-token="{{ csrf_token('delete.picture' ~ image.id) }}" class="btn_del_pictures">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash-alt" class="svg-inline--fa fa-trash-alt fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                    <path fill="currentColor" d="M32 464a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128H32zm272-256a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zm-96 0a16 16 0 0 1 32 0v224a16 16 0 0 1-32 0zM432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16z"></path>
+                                </svg>
+                            </a>
+                        </figcaptation>
+                    </figure>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+        {% if app.request.attributes.get('_route') == 'editPost' %}
+        {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
+        {% endif %}
+    </div>
 </section>
 {% endblock %}
 {% block javascripts %}
@@ -167,10 +174,15 @@
     <script src="/js/PopupStop.js"></script>
     <script src="/js/MovingElt.js"></script>
     <script src="/js/SelectRadio.js"></script>
-    <script>
-    //MediaQueries, move some elts for responsive design
-    let moveElt = new MovingElt(document.getElementById("add_form_field"), document.getElementById("add_sound_minwidth"), 900);
-    moveElt.init();
+    <script>    
+    //Text editor
+    ClassicEditor
+        .create(document.querySelector('.ckeditor'), {
+            removePlugins: ["ImageUpload", "MediaEmbed"],
+        })
+        .catch(error => {
+            console.error(error);
+        });
 
     {% if article.id != null %}
     //Select the cover image in AJAX
@@ -194,17 +206,7 @@
     //The move of radio button for select the covers.
     const inputCover = new SelectRadio(document.getElementsByClassName('select_cover'));
     inputCover.init();
-
     {% endif %}
-
-    //Text editor
-    ClassicEditor
-        .create(document.querySelector('.ckeditor'), {
-            removePlugins: ["ImageUpload", "MediaEmbed"],
-        })
-        .catch(error => {
-            console.error(error);
-        });
 
     //Ajax request to delete pictures
     let request = new Requests();
@@ -219,6 +221,7 @@
     });
 
     //Add Soundcloud Field
+    /*
     const listSc = document.getElementById("list_sc");
     const editTextContent = document.getElementById("edit_text_content");
     {% if form.api_data.children != [] %}
@@ -229,7 +232,7 @@
         listSc.style.flexBasis = "30%";
         editTextContent.style.flexBasis = "75%";
     });
-
+*/
     let addScInput = new AddField(
         document.getElementById("add_sc_btn"), 
         document.getElementsByClassName("api_data")[0],
@@ -242,6 +245,7 @@
     addScInput.init();
 
     //Add Youtube Field
+    /*
     const listYt = document.getElementById("list_yt");
     {% if form.youtube.children != [] %}
         listYt.style.flexBasis = "30%";
@@ -251,6 +255,7 @@
         listYt.style.flexBasis = "30%";
         editTextContent.style.flexBasis = "75%";
     });
+    */
     let addYtInput = new AddField(
         document.getElementById("add_yt_btn"), 
         document.getElementsByClassName("youtube")[0],

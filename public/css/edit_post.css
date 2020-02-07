@@ -5,23 +5,58 @@
     top: 0;
 }
 
-/************
-*   BUTTON  *
-*************/
-.see_and_delete{
-    display: flex;
-    justify-content: space-between;
-    margin: 0 5px;
-}
 
 /************
-*   FORM    *
+*   BODY    *
 *************/
 #edit_post{
     max-width: 1500px;
     margin: auto;
     padding: 1.5rem;
     color: white;
+}
+
+/************
+*   BUTTON  *
+*************/
+#delete_article_btn{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1010px;
+    margin: auto;
+}
+.sticky_edit_menu{
+    width: 120px;
+    height: 100%;
+    position: sticky;
+    top: 100px;
+}
+
+.see_and_delete{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 0 5px;
+}
+
+.see_and_delete a.btn_more{
+    margin: 0 5px;
+}
+
+/************
+*   FORM    *
+*************/
+
+form[name="article"]{
+    display: flex;
+    justify-content: center;
+}
+
+.main_form{
+    width: 80%;
+    max-width: 900px;
 }
 
 #edit_post label{
@@ -92,42 +127,41 @@ label[for="article_text"]{
 }
 
 /************
-*   URL SC  *
+*   URLS    *
 *************/
-.api_data{
+.urls{
+    padding: 5px;
+}
+
+.api_data, .youtube{
     flex-basis: 0;
-    margin-top: 25px;
+    margin: 0 0 15px;
     transition: .5s ease;
 }
 
-.api_data li{
+.api_data li, .youtube li{
     display: flex;
     justify-content: flex-end;
     margin: auto;
     animation: scaleBlur .5s ease;
 }
 
-.api_data .form-group{
+.api_data .form-group, .youtube .form-group{
     width: 100%;
+    margin: 5px 0;
 }
 
-.api_data li input{
+.api_data li input, .youtube li input{
     width: calc(100% - 20px);
     margin: auto;
 }
 
-.btn_del_sets{
+.btn_del_sets, .btn_del_video{
     font-size: 20px;
     margin: 0 0 0 15px;
     font-weight: 900;
     font-family: 'Quicksand', sans-serif;
     color: red;
-}
-
-#add_form_field{
-    display:flex;
-    justify-content: flex-end;
-    margin: 0 5px 0 0;
 }
 
 .form-group.soundcloud_url{
