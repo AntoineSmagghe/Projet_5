@@ -1,19 +1,22 @@
 class AddField
 {
-    constructor(addBtn, ulElement, data_prototype){
+    constructor(addBtn, ulElement, data_prototype, inputs, inputAttributeId, inputAttributeName, delBtnClassName){
         this.addBtn = addBtn;
         this.ulElement = ulElement;
         this.data_prototype = data_prototype;
+        this.inputs = inputs;
+        this.inputAttributeId = inputAttributeId;
+        this.inputAttributeName = inputAttributeName;
+        this.delBtnClassName = delBtnClassName;
         this.index = 0;
     }
 
     indexValue(){
         this.index = this.ulElement.children.length;
         if (this.index > 0){
-            let inputs = document.getElementsByClassName("url_SC");
-            for (let i = 0; i < inputs.length; i++){
-                inputs[i].setAttribute("id", "article_api_data_" + i);
-                inputs[i].setAttribute("name", "article[api_data][" + i + "]");
+            for (let i = 0; i < this.inputs.length; i++){
+                this.inputs[i].setAttribute("id", this.inputAttributeId + "_" + i);
+                this.inputs[i].setAttribute("name", this.inputAttributeName + "[" + i + "]");
             }
         }
     }
@@ -35,21 +38,20 @@ class AddField
 
     createDelBtn(){
         let delBtn = document.createElement("button");
-        delBtn.setAttribute("class", "btn_del_sets");
-        delBtn.setAttribute("name", this.index);
+        delBtn.setAttribute("class", this.delBtnClassName);
         delBtn.setAttribute("type", "button");
         delBtn.textContent = "X";
         return delBtn;
     }
 
     addRemover(){
-        let input = document.getElementById("article_api_data_" + this.index);
+        let input = document.getElementById(this.inputAttributeId + "_" + this.index);
         input.parentElement.parentElement.appendChild(this.createDelBtn());
         this.remover();
     }
 
     remover(){
-        let removeBtn = document.getElementsByClassName("btn_del_sets");
+        let removeBtn = document.getElementsByClassName(this.delBtnClassName);
         for (let i = 0; i < removeBtn.length; i++){
             removeBtn[i].addEventListener("click", (e)=>{
                 e.target.parentElement.remove();

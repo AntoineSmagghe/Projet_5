@@ -53,7 +53,7 @@
             {{ form_errors(form.socialNetwork.instagram) }}
             </div>
         </div>
-        <div id="add_form_field" >
+        <div id="add_sc_field" >
             <a id="add_sc_btn" class="a_btn btn_modify">{% trans %}Add sound{% endtrans %}</a>
         </div>
         <div class="row">
@@ -83,7 +83,22 @@
                 </li>
                 {% endfor %}
             </ul>
+            <div id="add_yt_field" >
+                <a id="add_yt_btn" class="a_btn btn_modify">Youtube</a>
+            </div>
+            <ul id="list_yt" class="youtube" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
+                {% for video in form.youtube %}
+                <li>
+                    {{form_row(video, {
+                        'label': false,
+                        'attr': {'class': 'url_YT'}
+                    })}}
+                    <button class="btn_del_sets" name="{{video.vars.name}}" type="button">X</button>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
+        
         <div class="row">
             <div id="add_sound_minwidth"></div>
             <div class="col-md-3">
@@ -208,19 +223,47 @@
         listSc.style.flexBasis = "30%";
         editTextContent.style.flexBasis = "75%";
     {% endif %}
-    document.getElementById("add_form_field").addEventListener("click", ()=>{
+    document.getElementById("add_sc_field").addEventListener("click", ()=>{
         listSc.style.flexBasis = "30%";
         editTextContent.style.flexBasis = "75%";
     });
 
-    let addInput = new AddField(
+    let addScInput = new AddField(
         document.getElementById("add_sc_btn"), 
         document.getElementsByClassName("api_data")[0],
-        document.getElementsByClassName("api_data")[0].getAttribute("data-prototype")
+        document.getElementsByClassName("api_data")[0].getAttribute("data-prototype"),
+        document.getElementsByClassName("url_SC"),
+        "article_api_data",
+        "article[api_data]",
+        "btn_del_sets"
         );
-    addInput.init();
+    addScInput.init();
+
+    //Add Youtube Field
+    const listYt = document.getElementById("list_yt");
+    {% if form.youtube.children != [] %}
+        listYt.style.flexBasis = "30%";
+        editTextContent.style.flexBasis = "75%";
+    {% endif %}
+    document.getElementById("add_yt_field").addEventListener("click", ()=>{
+        listYt.style.flexBasis = "30%";
+        editTextContent.style.flexBasis = "75%";
+    });
+    let addYtInput = new AddField(
+        document.getElementById("add_yt_btn"), 
+        document.getElementsByClassName("youtube")[0],
+        document.getElementsByClassName("youtube")[0].getAttribute("data-prototype"),
+        document.getElementsByClassName("url_YT"),
+        "article_youtube",
+        "article[youtube]",
+        "btn_del_video"
+        );
+    addYtInput.init();
+
+    //Reindex all the array at the good order for soundcloud and youtube urls
     document.querySelector('form[name="article"]').addEventListener("submit", ()=>{
-        addInput.indexValue();
+        addScInput.indexValue();
+        addYtInput.indexValue();
     });
 
     //Changes for the members edition page

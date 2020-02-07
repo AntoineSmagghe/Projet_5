@@ -103,6 +103,16 @@ class Article
      */
     private $socialNetwork;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     * @Assert\All({
+     *      @Assert\Url(
+     *          message = "l'url {{ value }} n'est pas valide",
+     *      )
+     * })
+     */
+    private $youtube = [];
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -303,6 +313,18 @@ class Article
         if ($socialNetwork->getArticle() !== $newArticle) {
             $socialNetwork->setArticle($newArticle);
         }
+
+        return $this;
+    }
+
+    public function getYoutube(): ?array
+    {
+        return $this->youtube;
+    }
+
+    public function setYoutube(?array $youtube): self
+    {
+        $this->youtube = $youtube;
 
         return $this;
     }
