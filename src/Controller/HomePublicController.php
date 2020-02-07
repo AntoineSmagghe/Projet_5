@@ -34,7 +34,6 @@ class HomePublicController extends AbstractController
      */
     public function localRedirect()
     {
-        dump("hello");
         return $this->redirectToRoute('home_public');
     }
 
