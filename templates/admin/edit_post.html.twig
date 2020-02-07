@@ -10,102 +10,103 @@
 <div class="undernav"></div>
 <section id="edit_post">
     {% if app.request.attributes.get('_route') == 'editPost' %}
-    <div class="see_and_delete">
-        <a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
-        <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-            <button id="del_article" class="a_btn btn_del">{% trans %}Supprimer{% endtrans %}</button>
-        </form>
-    </div>
+    <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+        <button id="del_article" class="a_btn btn_del">{% trans %}Supprimer{% endtrans %}</button>
+    </form>
     {% endif %}
     {{ form_start(form) }}
-        <div class="form_error">
-            {{ form_errors(form) }}
+    {% if app.request.attributes.get('_route') == 'editPost' %}
+    <div class="see_and_delete">
+        <a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
+    </div>
+    {% endif %}
+    <div class="form_error">
+        {{ form_errors(form) }}
+    </div>
+    {{ form_row(form.save, {
+        'label': 'Enregistrer',
+        'attr': {'class': 'a_btn btn_modify'}
+    }) }}
+    <div class="row">
+        <div class="col-md-2 date">
+        {{ form_errors(form.date_event) }}
+        {{ form_row(form.date_event, {'label' : 'Date'}) }}
         </div>
-        {{ form_row(form.save, {
-            'label': 'Enregistrer',
-            'attr': {'class': 'a_btn btn_modify'}
+        <div class="col-md-2 type">
+        {{ form_row(form.format, {
+            'label': 'Type de l\'article', 
+            'placeholder': 'Sélectionnez ici'
+            }) }}
+        </div>
+    </div>
+    <div id="socialsNetwork" class="row">
+        <div class="col-md-2">
+        {{ form_row(form.socialNetwork.facebook) }}
+        {{ form_errors(form.socialNetwork.facebook) }}
+        </div>
+        <div class="col-md-2">
+        {{ form_row(form.socialNetwork.soundcloud) }}
+        {{ form_errors(form.socialNetwork.soundcloud) }}
+        </div>
+        <div class="col-md-2">
+        {{ form_row(form.socialNetwork.instagram) }}
+        {{ form_errors(form.socialNetwork.instagram) }}
+        </div>
+    </div>
+    <div class="row">
+        <div id="edit_text_content">
+        {{ form_row(form.title, {
+            'label': 'Titre de l\'évènement',
+            'attr': {'placeholder': 'Titre de l\'évènement'}
         }) }}
-        <div class="row">
-            <div class="col-md-2 date">
-                {{ form_errors(form.date_event) }}
-                {{ form_row(form.date_event, {'label' : 'Date'}) }}
-            </div>
-            <div class="col-md-2 type">
-            {{ form_row(form.format, {
-                'label': 'Type de l\'article', 
-                'placeholder': 'Sélectionnez ici'
-                }) }}
-            </div>
+        {{ form_row(form.text, {
+            'label': 'Contenu',
+            'attr': {
+                'id': "text_editor",
+                'class': 'ckeditor',
+                'placeholder': 'Tappez le texte ici'
+            }
+        }) }}
         </div>
-        <div id="socialsNetwork" class="row">
-            <div class="col-md-2">
-            {{ form_row(form.socialNetwork.facebook) }}
-            {{ form_errors(form.socialNetwork.facebook) }}
-            </div>
-            <div class="col-md-2">
-            {{ form_row(form.socialNetwork.soundcloud) }}
-            {{ form_errors(form.socialNetwork.soundcloud) }}
-            </div>
-            <div class="col-md-2">
-            {{ form_row(form.socialNetwork.instagram) }}
-            {{ form_errors(form.socialNetwork.instagram) }}
-            </div>
-        </div>
-        <div id="add_sc_field" >
+    </div>
+    <div id="add_sc_field" >
             <a id="add_sc_btn" class="a_btn btn_modify">{% trans %}Add sound{% endtrans %}</a>
         </div>
-        <div class="row">
-            <div id="edit_text_content">
-                {{ form_row(form.title, {
-                    'label': 'Titre de l\'évènement',
-                    'attr': {'placeholder': 'Titre de l\'évènement'}
-                }) }}
-                {{ form_row(form.text, {
-                    'label': 'Contenu',
-                    'attr': {
-                        'id': "text_editor",
-                        'class': 'ckeditor',
-                        'placeholder': 'Tappez le texte ici'
-                    }
-                }) }}
-            </div>
-            {{ form_errors(form.api_data) }}
-            <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
-                {% for sound in form.api_data %}
-                <li>
-                    {{form_row(sound, {
-                        'label': false,
-                        'attr': {'class': 'url_SC'}
-                    })}}
-                    <button class="btn_del_sets" name="{{sound.vars.name}}" type="button">X</button>
-                </li>
-                {% endfor %}
-            </ul>
-            <div id="add_yt_field" >
-                <a id="add_yt_btn" class="a_btn btn_modify">Youtube</a>
-            </div>
-            <ul id="list_yt" class="youtube" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
-                {% for video in form.youtube %}
-                <li>
-                    {{form_row(video, {
-                        'label': false,
-                        'attr': {'class': 'url_YT'}
-                    })}}
-                    <button class="btn_del_sets" name="{{video.vars.name}}" type="button">X</button>
-                </li>
-                {% endfor %}
-            </ul>
+        {{ form_errors(form.api_data) }}
+        <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
+            {% for sound in form.api_data %}
+            <li>
+                {{form_row(sound, {
+                    'label': false,
+                    'attr': {'class': 'url_SC'}
+                })}}
+                <button class="btn_del_sets" name="{{sound.vars.name}}" type="button">X</button>
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="add_yt_field" >
+            <a id="add_yt_btn" class="a_btn btn_modify">Youtube</a>
         </div>
-        
-        <div class="row">
-            <div id="add_sound_minwidth"></div>
-            <div class="col-md-3">
-                {{ form_errors(form.imgsFile) }}
-                {{ form_row(form.imgsFile) }}
-            </div>
+        <ul id="list_yt" class="youtube" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
+            {% for video in form.youtube %}
+            <li>
+                {{form_row(video, {
+                    'label': false,
+                    'attr': {'class': 'url_YT'}
+                })}}
+                <button class="btn_del_video" name="{{video.vars.name}}" type="button">X</button>
+            </li>
+            {% endfor %}
+        </ul>
+    <div class="row">
+        <div id="add_sound_minwidth"></div>
+        <div class="col-md-3">
+        {{ form_errors(form.imgsFile) }}
+        {{ form_row(form.imgsFile) }}
         </div>
+    </div>
     {{form_end(form)}}
     {% if app.request.attributes.get('_route') == 'editPost' %}
         {% if article.imgs.snapshot != null %}
@@ -152,6 +153,7 @@
         </div>
         {% endif %}
     {% endif %}
+
     {% if app.request.attributes.get('_route') == 'editPost' %}
     {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
     {% endif %}
