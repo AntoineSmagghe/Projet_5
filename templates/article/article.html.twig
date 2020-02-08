@@ -45,6 +45,14 @@
                 {% endfor %}
             </div>
             {% endif %}
+            {% if article.youtube != [] %}
+            <h2>{% trans %}Vidéos{% endtrans %}</h2>
+            <div class="youtube_videos">
+                {% for video in article.youtube %}
+                <div id="player[{{loop.index0}}]"></div>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% if article.imgs.snapshot != null %}
             <h2>{% trans %}Image{% endtrans %}</h2>
             <div class="hes-gallery">
@@ -59,4 +67,5 @@
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
+{% include 'include/youtubePlayer.html.twig' with {"videos": article.youtube} %}
 {% endblock %}

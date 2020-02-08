@@ -36,13 +36,21 @@
     <article id="member_text_soundcloud">
         <h1>{{article.title}}</h1>
         <div class="text">{{article.text|raw}}</div>
-        {% if article.apiData != null %}
+        {% if article.apiData != [] %}
             <h2>{% trans %}Musique{% endtrans %}</h2>
             <div class="widget_SC">
                 {% for sound in article.apiData %}
                 <div id="sound[{{loop.index0}}]"></div>
                 {% endfor %}
             </div>
+        {% endif %}
+        {% if article.youtube != [] %}
+        <h2>{% trans %}Vidéos{% endtrans %}</h2>
+        <div class="youtube_videos">
+            {% for video in article.youtube %}
+            <div id="player[{{loop.index0}}]"></div>
+            {% endfor %}
+        </div>
         {% endif %}
         {% if article.imgs.snapshot != null %}
             <h2>{% trans %}Images{% endtrans %}</h2>
@@ -51,14 +59,6 @@
                 <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
-        {% endif %}
-        {% if article.youtube != null %}
-        <h2>{% trans %}Vidéos{% endtrans %}</h2>
-        <div class="youtube_videos">
-            {% for video in article.youtube %}
-            <div id="player[{{loop.index0}}]"></div>
-            {% endfor %}
-        </div>
         {% endif %}
     </article>
 </section>

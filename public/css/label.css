@@ -53,12 +53,6 @@
     font-family: var(--font_title);
 }
 
-.youtube_videos iframe{
-    margin: 5px 0;
-    width: 100%;
-    border-radius: 5px;
-}
-
 .text{
     font-size: 1.1rem;
     line-height: 150%;

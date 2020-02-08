@@ -673,6 +673,15 @@ a.admin_menu{
 }
 
 /************
+*	VIDEO	*
+*************/
+.youtube_videos iframe{
+    width: calc(100% - 30px);
+    margin: 5px 15px;
+    border-radius: 5px;
+}
+
+/************
 *	DATE	*
 *************/
 
