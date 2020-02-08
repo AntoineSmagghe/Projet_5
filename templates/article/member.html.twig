@@ -52,6 +52,14 @@
             {% endfor %}
             </div>
         {% endif %}
+        {% if article.youtube != null %}
+        <h2>{% trans %}Vidéos{% endtrans %}</h2>
+        <div class="youtube_videos">
+            {% for video in article.youtube %}
+            <div id="player[{{loop.index0}}]"></div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </article>
 </section>
 {% endblock %}
@@ -59,6 +67,7 @@
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 <script src="/js/MovingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
+{% include 'include/youtubePlayer.html.twig' with {"videos": article.youtube} %}
 <script>
 let moveTitle = new MovingElt(
     document.querySelector("#member_text_soundcloud h1"), 

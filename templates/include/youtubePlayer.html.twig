@@ -1,0 +1,28 @@
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+    let videos = [];
+    {% for video in videos %}
+    videos.push("{{video}}");
+    {% endfor %}
+    let youtubePlayer;
+    function onYouTubeIframeAPIReady() {
+        for (let i=0; i < videos.length; i++){
+            youtubePlayer = new YT.Player('player[' + i + ']', {
+                videoId: youtube_parser(videos[i]),
+                playerVars: {
+                    'autoplay': (i<=0) ? true : false,
+                    'rel': 0,
+                    'showinfo': 0,
+                    'color': 'white',
+                    'cc_load_policy': 0,
+                },
+            });
+        }
+    }
+
+    function youtube_parser(url) {
+        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        let match = url.match(regExp);
+        return (match && match[7].length == 11) ? match[7] : false;
+    }   
+</script>
