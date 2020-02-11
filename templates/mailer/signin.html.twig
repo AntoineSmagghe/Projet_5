@@ -10,10 +10,10 @@
     <h1>Bienvenue dans la famille CDLM {{ user.surname }} !</h1>
     <p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec ces identifiants :</p>
     <p>Email : <code>{{ user.mail }}</code></p>
-    <p>Mot de passe : <code>{{ clearPassword }}</code></p>
+    <p>Mot de passe : <code>{{ plainPassword }}</code></p>
     <p>Ces informations peuvent être modifiées sur ton profil</p>
     <p>Clique ici pour te connecter au site: 
-        <a href="{{ path('home_index') }}">cdlm.space</a>
+        <a href="{{ path('home_public') }}">cdlm.space</a>
     </p>
 </div>
 <div style="
