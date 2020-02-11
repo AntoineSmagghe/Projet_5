@@ -12,7 +12,7 @@
     }
 
     .members_picture figure{
-        margin: 50px 20px 0 20px;
+        margin: 50px 0 0 0;
     }
     
     .release_figure{
@@ -27,13 +27,11 @@
     }
     
     .img_member, .img_release{
-        width: 150px;
-        height: 150px;
+        width: 100%;
     }
 
     .release_figure{
-        width: 150px;
-        height: 150px;
+        width: 100%;
     }
 
     .img_release{

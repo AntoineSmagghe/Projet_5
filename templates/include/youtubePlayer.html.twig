@@ -10,7 +10,7 @@
             youtubePlayer = new YT.Player('player[' + i + ']', {
                 videoId: youtube_parser(videos[i]),
                 playerVars: {
-                    'autoplay': (i<=0) ? true : false,
+                    'autoplay': false,
                     'rel': 0,
                     'showinfo': 0,
                     'color': 'white',
