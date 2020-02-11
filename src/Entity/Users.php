@@ -56,9 +56,6 @@ class Users implements UserInterface
      */
     public $confirm_password;
 
-    /**
-     * 
-     */
     public $reset_password;
 
     /**
@@ -152,6 +149,11 @@ class Users implements UserInterface
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getConfirmPassword(): string
+    {
+        return (string) $this->confirm_password;
     }
     
     public function getResetPassword(): string

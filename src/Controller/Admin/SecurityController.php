@@ -53,7 +53,6 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $clearPassword = $newUser->getPassword();
             $bcryptPass = password_hash($newUser->getPassword(), PASSWORD_BCRYPT);
             $newUser->setPassword($bcryptPass)
                     ->setLastLog(new DateTime())
@@ -62,7 +61,7 @@ class SecurityController extends AbstractController
             $manager->persist($newUser);
             $manager->flush();
             $this->addFlash('success', $trans->trans("Le membre a bien été enregistré en base de données."));
-
+            
             $email = (new TemplatedEmail())
                 ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
                 ->to($newUser->getMail())
@@ -70,10 +69,10 @@ class SecurityController extends AbstractController
                 ->htmlTemplate('mailer/signin.html.twig')
                 ->context([
                     'user' => $newUser,
-                    'clearPassword' => $clearPassword,
                 ]);
             $mi->send($email);
-
+            $this->addFlash('success', $trans->trans("Un mail lui a été envoyé."));
+            
             return $this->redirectToRoute("signIn");
         }
 
