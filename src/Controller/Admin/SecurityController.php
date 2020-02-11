@@ -152,26 +152,4 @@ class SecurityController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
-    /**
-     * @Route("/admin/testemail", name="sendmail")
-     */
-    public function sendTestMail(Security $security, MailerInterface $mailerInterface)
-    {
-        $user = $security->getUser();
-        $email = (new TemplatedEmail())
-            ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
-            ->to($user->getMail())
-            ->subject('Hello !')
-            ->htmlTemplate('mailer/signin.html.twig')
-            ->context([
-                'user' => $user,
-            ]);
-
-        $mailerInterface->send($email);
-        return $this->render('mailer/signin.html.twig', [
-            'user' => $user,
-        ]);
-    }
 }

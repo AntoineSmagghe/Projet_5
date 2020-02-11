@@ -3,15 +3,17 @@
 {% block body %}
 <div style="
     text-align: center;
+    max-width: 520px;
+    padding: 10px;
+    margin: auto;
 ">
     <h1>Bienvenue dans la famille CDLM {{ user.surname }} !</h1>
-    <p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec cette adresse email :</p>
-    <p>
-        <code>{{ user.mail }}</code>
-    </p>
+    <p>Tu es enregistré en tant que {{ user.surname ~ ' ' ~ user.name }} avec ces identifiants :</p>
+    <p>Email : <code>{{ user.mail }}</code></p>
+    <p>Mot de passe : <code>{{ user.password }}</code></p>
     <p>Ces informations peuvent être modifiées sur ton profil</p>
-    <p>Clique ici pour aller sur le site: 
-        <a href="{{ path('home_public') }}">cdlm.space</a>
+    <p>Clique ici pour te connecter au site: 
+        <a href="{{ path('login') }}">cdlm.space</a>
     </p>
 </div>
 <div style="
