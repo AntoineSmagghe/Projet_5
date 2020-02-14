@@ -261,6 +261,10 @@ nav ul{
 	top: 110px;
 }
 
+img[alt="Soundcloud ico"]{
+	filter:invert(1);
+}
+
 /****************
 *	POPUP MENU	*
 *****************/
@@ -488,14 +492,16 @@ a.admin_menu{
     justify-content: flex-end;
     margin: 1.25rem;
 	overflow: hidden;
-	text-align: center;
+	align-items: flex-start;
+    width: 100%;
 }
 
 .col_wel_txt_body h5{
     margin-bottom: .75rem;
 	font-weight: bold;
 	font-family: var(--font_title);
-    font-size: 1.5rem;
+	font-size: 1.5rem;
+	text-align: start;
 }
 
 .col_wel_txt_body p{

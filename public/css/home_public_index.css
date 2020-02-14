@@ -33,3 +33,17 @@
     margin: 20px 0 0 0;
     font-family: var(--font_title);
 }
+
+.format_article{
+    position: absolute;
+    top: 0;
+    color: lightgray;
+    padding: 7px 10px;
+    background-color: rgba(0,0,0,0.5);
+    width: calc(100% - 20px);
+    transition: 1s ease;
+}
+
+.welcome_card:hover .format_article{
+    transform: translateY(-30px);
+}
