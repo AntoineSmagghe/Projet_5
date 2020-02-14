@@ -123,12 +123,11 @@ nav{
     align-items: center;
     justify-content: space-between;
     font-size: 1.12rem;
-    font-weight: bold;
+    font-weight: thin;
     z-index: 5;
 	margin: auto;
 	text-shadow: 0 0 5px black;
 	background-color: rgba(0,0,0,0.5);
-	font-family: var(--font_text);
 }
 
 #logo_header{
@@ -173,8 +172,8 @@ nav ul{
 	color: white;
 	text-shadow: 0 0 5px black;
 	text-align: center;
-	font-size: 1.2rem;
-    font-weight: bold;
+	font-size: 1.12rem;
+    font-weight: thin;
 }
 
 .item_menu img{
@@ -209,7 +208,6 @@ nav ul{
 }
 
 .link_menu{
-	font-weight: bolder;
 	color: white;
 	text-shadow: 0 0 5px black;
 	text-align: center;
