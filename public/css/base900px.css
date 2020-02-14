@@ -49,6 +49,10 @@
         display: flex;
     }
 
+    #login_btn{
+        width: 100%;
+    }
+
     #background_modal{
         z-index: 1;
     }
