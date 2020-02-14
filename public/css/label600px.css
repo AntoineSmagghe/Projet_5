@@ -38,4 +38,13 @@
     .member_images{
         justify-content: center;
     }
+
+    .youtube_videos iframe{
+        width: 100%;
+        height: 200px;
+    }
+
+    .widget_SC iframe, .youtube_videos iframe{
+        margin: 7px auto;
+    }
 }

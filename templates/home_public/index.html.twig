@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block header %}
   <link rel="stylesheet" href="/css/home_public_index.css">
+  <link rel="stylesheet" href="/css/home_public_index600px.css">
     {% set coverArticle %}{{ asset("/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}
     {% set titleArticle = "Home" %}
     {% set descriptionArticle = "Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses." %}
@@ -37,19 +38,13 @@
           {% endif %}
         {% endif %}
         </div>
-      </a>
-      <p class="format_event_card">{{article.format|trans }}</p>
-      <div class="col_wel_txt">
-        <div class="col_wel_txt_body">
-          <h5>{{ article.title }}</h5>
-          <p>{{ article.dateEvent|date("m/d/Y") }}
-          <div class="buttons">
-            {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn a_btn btn_modify">{% trans %}Modifier{% endtrans %}</a>
-            {% endif %}
+        <div class="col_wel_txt">
+          <div class="col_wel_txt_body">
+            <h5>{{ article.title }}</h5>
+            <p>{{ article.dateEvent|date("m/d/Y") }}
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 {% endfor %}

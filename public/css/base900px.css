@@ -66,6 +66,13 @@
     .member_images{
         font-size: 2rem;
     }
+    
+    /************
+    *	VIDEO	*
+    *************/
+    .youtube_videos iframe {
+        height: 250px;
+    }
 
     /***************
     *   GALLERY *

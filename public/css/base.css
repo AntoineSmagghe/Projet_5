@@ -151,7 +151,7 @@ nav ul{
 }
 
 .item_menu{
-	width: 120px;
+	width: 140px;
     display: flex;
     justify-content: center;
 	align-items: center;
@@ -170,10 +170,11 @@ nav ul{
 	display: block;
 	width: 100%;
 	height: 70px;
-	font-weight: bolder;
 	color: white;
 	text-shadow: 0 0 5px black;
 	text-align: center;
+	font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .item_menu img{
@@ -201,9 +202,10 @@ nav ul{
 }
 
 .item_menu:last-child{
-	margin: 0 15px 0 0;
+	margin: 0;
 	font-size: 1.5rem;
 	margin-top: 0;
+	width: 80px;
 }
 
 .link_menu{
@@ -220,7 +222,7 @@ nav ul{
 
 .dropdown_menu{
 	height: 140px;
-	width: 120px;
+	width: 140px;
 	display: none;
 	flex-direction: column;
 	position: absolute;
@@ -436,10 +438,10 @@ a.admin_menu{
 .welcome_card{
     width: 300px;
     margin: 0.6rem;
-    box-shadow: 0 0 2px var(--black);
+    box-shadow: 0 0 5px black;
     background-color: white;
-	animation: scaleBlur 1s ease;
-	border-radius: 5px;
+    animation: scaleBlur 1s ease;
+    border-radius: 2px;
     overflow: hidden;
 }
 
@@ -450,18 +452,34 @@ a.admin_menu{
 
 .col_wel_img{
 	width: 100%;
-	height: 220px;
-    overflow: hidden;
+	height: 240px;
+	overflow: hidden;
+	position: relative;
 }
 
 .col_wel_img img{
 	width: 100%;
-	height: 220px;
+	height: 240px;
 }
 
 .col_wel_txt{
-    flex-basis: auto;
-    text-align: justify;
+	flex-basis: auto;
+	display: flex;
+    align-items: flex-end;
+    justify-content: center;
+	text-align: justify;
+	position: absolute;
+    background: rgba(0,0,0,.5);
+    color: white;
+    width: 100%;
+    bottom: 0;
+	top: 0;
+	transition: 1s ease;
+}
+
+.in_card_welcome:hover .col_wel_txt {
+	transform: translateY(250px);
+	opacity: 0;
 }
 
 .col_wel_txt_body{
@@ -475,8 +493,9 @@ a.admin_menu{
 
 .col_wel_txt_body h5{
     margin-bottom: .75rem;
-    font-size: 1rem;
-    font-weight: bold;
+	font-weight: bold;
+	font-family: var(--font_title);
+    font-size: 1.5rem;
 }
 
 .col_wel_txt_body p{
@@ -485,14 +504,6 @@ a.admin_menu{
 
 .col_wel_txt_body button{
     display: inline;
-}
-
-.format_event_card{
-	background-color: var(--blue);
-    padding: 10px 10px 10px 1.25rem;
-    display: inline-block;
-    color: white;
-    font-weight: bolder;
 }
 
 /************
@@ -676,8 +687,8 @@ a.admin_menu{
 *	VIDEO	*
 *************/
 .youtube_videos iframe{
-    width: calc(100% - 30px);
-    margin: 5px 15px;
+    width: 100%;
+    margin: 5px 0;
     border-radius: 5px;
 }
 
