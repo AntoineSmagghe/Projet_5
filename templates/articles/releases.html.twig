@@ -21,22 +21,22 @@
     {% for release in articles %}
         <figure class="release_figure">
             <a href="{{path('article', {"format" : "releases", "slug" : release.slug})}}">
-                {% set hasCover = false %}
-                {% if covers != [] %}
-                    {% for cover in covers %}
-                        {% if cover.idArticle == release.id %}
-                        <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
-                        {% set hasCover = true %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if hasCover == false %}
-                    {% if release.imgs|first != "" %}
-                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ release.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
-                    {% else %}
-                    <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
+            {% set hasCover = false %}
+            {% if covers != [] %}
+                {% for cover in covers %}
+                    {% if cover.idArticle == release.id %}
+                    <img class="img_release" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
+                    {% set hasCover = true %}
                     {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if hasCover == false %}
+                {% if release.imgs|first != "" %}
+                <img class="img_release" src="{{ asset('/upload/pictures/' ~ release.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
+                {% else %}
+                <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
                 {% endif %}
+            {% endif %}
             </a>
             <figcaption class="release_figcaption">
                 <h3>{{ release.title }}</h3>
