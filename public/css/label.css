@@ -64,21 +64,44 @@
 }
 
 .widget_SC{
-    border-radius: 6px;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
+    margin: auto;
+    width: calc(100% - 30px);
+    padding: 15px;
     animation: scaleBlur 1s;
-    margin: 10px 0 0 0;
+    box-shadow: 0 0 4px black;
+
+    margin: 15px 0;
+}
+
+.widget_track{
+    display: flex;
+    padding: 5px 0;
+}
+
+.cover_track{
+    width: 90px;
+    border-radius: 50%;
+    transition: .5s ease;
+}
+
+.cover_track:hover{
+    transform: scale(1.05);
+}
+
+.info_track{
+    margin-left: 10px;
+    width: 100%;
 }
 
 .widget_SC iframe{
     margin: 5px 0;
     padding: 10px;
     width: calc(100% - 20px);
-    background-color: rgba(126,126,126,1);
+    background-color: rgb(64,64,64);
     opacity: 0.9;
-    border-radius: 2px;
+    border-radius: 15px;
     transition: .5s ease;
-}
-
-.member_images{
-    justify-content: flex-start;
 }

@@ -67,7 +67,7 @@
 
 #txt{
     text-align: justify;
-    flex-basis: 52%;
+    flex-basis: 55%;
     padding: 20px 0;
     border-radius: 2px;
     font-size: 1.1rem;
@@ -93,6 +93,7 @@
     position: sticky;
     top: 100px;
     color: white;
+    padding: 20px 0 0 0;
 }
 
 #music h2{
@@ -103,18 +104,42 @@
 }
 
 .widget_SC{
-    border-radius: 6px;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
     margin: auto;
-    width: 100%;
+    width: calc(100% - 30px);
+    padding: 15px;
     animation: scaleBlur 1s;
+    box-shadow: 0 0 4px black;
+}
+
+.widget_track{
+    display: flex;
+    padding: 5px 0;
+}
+
+.cover_track{
+    width: 90px;
+    border-radius: 50%;
+    transition: .5s ease;
+}
+
+.cover_track:hover{
+    transform: scale(1.05);
+}
+
+.info_track{
+    margin-left: 10px;
+    width: 100%;
 }
 
 .widget_SC iframe{
     margin: 5px 0;
     padding: 10px;
     width: calc(100% - 20px);
-    background-color: rgba(126,126,126,1);
+    background-color: rgb(64,64,64);
     opacity: 0.9;
-    border-radius: 2px;
+    border-radius: 15px;
     transition: .5s ease;
 }

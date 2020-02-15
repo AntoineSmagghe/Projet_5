@@ -43,8 +43,34 @@
         width: 100%;
         height: 200px;
     }
-
+    
     .widget_SC iframe, .youtube_videos iframe{
         margin: 7px auto;
+    }
+
+    .widget_SC{
+        width: 100%;
+        padding: unset;    
+        background-color: unset;
+        box-shadow: unset;
+    }
+    
+    .widget_SC iframe{
+        background-color: rgb(126,126,126);
+    }
+    
+    .cover_track{
+        display: none;
+    }
+    .info_track{
+        margin: unset;
+    }
+
+    .info_track p{
+        display:none;
+    }
+
+    .info_track h3{
+        display: none;
     }
 }

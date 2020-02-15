@@ -526,13 +526,14 @@ a.admin_menu{
     height: 140px;
 	margin: 10px 5px;
 	box-shadow: 0 0 2px black;
+	filter: grayscale(100%);
+	border-radius: 4px;
 	transition: .5s ease;
-	filter: grayscale(60%);
 }
 
 .hes-gallery img:hover{
 	transform: translateY(-5px);
-	filter: inherit;
+	filter: unset;
 }
 
 /************

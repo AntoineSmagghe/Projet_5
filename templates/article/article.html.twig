@@ -38,15 +38,13 @@
         </article>
         <aside id="music">
             {% if article.apiData != [] %}
-            <h2>{% trans %}Musique{% endtrans %}</h2>
-            <div class="widget_SC">
+            <div class="widget_SC" data-aos="fade-left">
                 {% for sound in article.apiData %}
-                <div id="sound[{{loop.index0}}]"></div>
+                <div id="sound[{{loop.index0}}]" class="widget_track"></div>
                 {% endfor %}
             </div>
             {% endif %}
             {% if article.youtube != [] %}
-            <h2>{% trans %}Vidéos{% endtrans %}</h2>
             <div class="youtube_videos">
                 {% for video in article.youtube %}
                 <div id="player[{{loop.index0}}]"></div>
@@ -54,7 +52,6 @@
             </div>
             {% endif %}
             {% if article.imgs.snapshot != null %}
-            <h2>{% trans %}Image{% endtrans %}</h2>
             <div class="hes-gallery">
             {% for image in article.imgs %}
                     <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="flip-up" alt="Photo {{image.id}} de l'article : {{ article.title }}">
