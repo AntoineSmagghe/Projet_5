@@ -7,3 +7,33 @@
 a.blue-link{
     color:#78d3f0;
 }
+
+.account_panel{
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+svg{
+    width: 30px;
+    color:rgb(64,64,64);
+}
+
+.name_surname, .mail, .password, .status{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
+.can_modify{
+    margin: 0 15px;
+    background-color: rgb(64,64,64);
+    display: inline-block;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

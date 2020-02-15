@@ -86,12 +86,23 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/users/account", requirements={"_locale": "fr|en"}, name="account", methods={"POST", "GET"})
      */
-    public function account(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans)
+    public function account()
+    {
+        return $this->render('users/account.html.twig', [
+            'user' => $this->getUser(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/{_locale}/users/reset-name", requirements={"_locale": "fr|en"}, name="resetName", methods={"POST", "GET"})
+     */
+    public function resetName(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans)
     {
         $user = $this->getUser();
         $form = $this->createForm(UserIdentityType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user);
             $manager->flush();
@@ -99,8 +110,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute("account");
         }
 
-        return $this->render('users/account.html.twig', [
-            'user' => $this->getUser(),
+        return $this->render('users/reset_name.html.twig', [
             'form' => $form->createView(),
         ]);
     }
