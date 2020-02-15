@@ -116,9 +116,8 @@ header{
 nav{
 	position: fixed;
     height: 70px;
-    width: calc(100% - 4rem);
+    width: 100%;
     max-width: 1500px;
-    padding: 0 20vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -140,7 +139,7 @@ nav{
 	width: 2.8rem;
 	filter: invert();
 	animation: rotate360 2s linear;
-	margin: 0 15px;
+	margin: 0px 20px;
 }
 
 nav ul{
