@@ -1,4 +1,7 @@
 {% extends 'mailer/base.html.twig' %}
 {% block title %}Token d'inscription au site CDLM.space{% endblock %}
 {% block body %}
+<h1>Cliquez sur ce lien pour vous inscrire au site en tant que membre : </h1>
+<p><a href="https://cdlm.space{{url}}">Inscription</a></p>
+<p>Ce lien contient un Token unique qui est rattaché à votre adresse email. Il ne peut servir que pour une inscription.</p>
 {% endblock %}

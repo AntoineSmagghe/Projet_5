@@ -9,6 +9,7 @@ use App\Entity\Token;
 use App\Entity\Users;
 use App\Form\ResetMailType;
 use App\Form\ResetPasswordType;
+use App\Form\TokenSinginType;
 use App\Form\UserIdentityType;
 use App\Form\UsersType;
 use App\Repository\TokenRepository;
@@ -30,11 +31,13 @@ class SecurityController extends AbstractController
 {
     private $em;
     private $trans;
+    private $mi;
 
-    public function __construct(EntityManagerInterface $em, TranslatorInterface $trans)
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $trans, MailerInterface $mi)
     {
         $this->em = $em;
         $this->trans = $trans;
+        $this->mi = $mi;
     }
     
     /**
@@ -85,8 +88,8 @@ class SecurityController extends AbstractController
                     'user' => $newUser,
                     'plainPassword' => $plainPassword,
                 ]);
-            $mi->send($email);
-            $this->addFlash('success', $trans->trans("Un mail lui a été envoyé."));
+            $this->mi->send($email);
+            $this->addFlash('success', $this->trans->trans("Un mail lui a été envoyé."));
             
             return $this->redirectToRoute("signIn");
         }
@@ -101,9 +104,43 @@ class SecurityController extends AbstractController
      */
     public function signin(TokenRepository $tokenRepository, Request $request)
     {
-        if ($tokenRepository->findOneBy(["token" => $request->get("t"), "sended" => true]) != null){
+        $token = $tokenRepository->findOneBy(["token" => $request->get("t"), "used" => false]);
+        if ($token != null){
+            $user = new Users();
+            $form = $this->createForm(TokenSinginType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $plainPassword = $user->getConfirmPassword();
+                $bcryptPass = password_hash($user->getPassword(), PASSWORD_BCRYPT);
+
+                $user->setPassword($bcryptPass)
+                    ->setLastLog(new DateTime('now'))
+                    ->setCreatedAt(new DateTime('now'));
+
+                $this->em->persist($user);
+                $this->addFlash('success', $this->trans->trans("Welcome! You are now registred as a member on CDLM.space"));
+
+                $email = (new TemplatedEmail())
+                    ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                    ->to($user->getMail())
+                    ->subject('Hello !')
+                    ->htmlTemplate('mailer/signin.html.twig')
+                    ->context([
+                        'user' => $user,
+                        'plainPassword' => $plainPassword,
+                    ]);
+                $this->mi->send($email);
+
+                $token->setUsed(true);
+                $this->em->persist($token);
+                $this->em->flush();
+            }
+
+            return $this->render("security/tokenSignin.html.twig");
         }
-        $this->attributeTokenToEmails(["antoine@smagghe.me"]);
+
+        $this->addFlash("fail", $this->trans->trans("Wrong token or already use"));
         return $this->redirectToRoute("home_public");
     }
 
@@ -190,7 +227,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    private function attributeTokenToEmails($emails, MailerInterface $mi = null)
+    private function attributeTokenToEmails($emails)
     {
         for ($i=0; $i < count($emails); $i++){
             $tokenEntity = new Token();
@@ -212,11 +249,12 @@ class SecurityController extends AbstractController
                 ->htmlTemplate('mailer/sendTokenForSignin.html.twig')
                 ->context([
                     'url' => $url,
-                    'email' => $emails[$i],
+                    'personalEmail' => $emails[$i],
                 ]);
 
-            $mi->send($email);
+            $this->mi->send($email);
         }
+        
         $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés."));
 
         return true;

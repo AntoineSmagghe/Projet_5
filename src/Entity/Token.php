@@ -34,7 +34,7 @@ class Token
     /**
      * @ORM\Column(type="boolean")
      */
-    private $sended;
+    private $used;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -43,7 +43,7 @@ class Token
 
     public function __construct()
     {
-        $this->sended = false;
+        $this->used = false;
     }
 
     public function getId(): ?int
@@ -87,12 +87,12 @@ class Token
         return $this;
     }
 
-    public function getSended(): ?bool
+    public function getUsed(): ?bool
     {
         return $this->sended;
     }
 
-    public function setSended(bool $sended): self
+    public function setUsed(bool $sended): self
     {
         $this->sended = $sended;
 
