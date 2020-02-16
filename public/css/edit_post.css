@@ -73,6 +73,7 @@ form[name="article"]{
     padding: 10px;
     margin: 10px 0;
     background-color: LightGrey;
+    border-radius: 5px;
 }
 
 .row{

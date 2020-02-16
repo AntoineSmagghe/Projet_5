@@ -15,12 +15,16 @@ a.blue-link{
     border-radius: 10px;
 }
 
+svg[data-icon="long-arrow-alt-left"]{
+    color: white;
+}
+
 svg{
     width: 30px;
     color:rgb(64,64,64);
 }
 
-.name_surname, .mail, .password, .status{
+.name_surname, .mail, .password{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -28,12 +32,23 @@ svg{
     margin: 5px 0;
 }
 
+.status{
+    display: flex;
+    padding: 5px 0;
+    margin: 5px 0;
+}
+
 .can_modify{
     margin: 0 15px;
-    background-color: rgb(64,64,64);
+    background-color: rgb(211,211,211);
     display: inline-block;
     width: 100%;
-    color: white;
+    color: #404040;
     padding: 10px;
     border-radius: 5px;
+}
+
+.account_status{
+    margin: 10px;
+    font-weight: bolder;
 }
