@@ -84,6 +84,7 @@ form[name="article"]{
 .login_form{
     max-width: 480px;
     padding: 20px;
+    margin: 0 auto;
     border-radius: 2px;
 }
 
