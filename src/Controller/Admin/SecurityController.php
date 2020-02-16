@@ -124,20 +124,24 @@ class SecurityController extends AbstractController
                 $email = (new TemplatedEmail())
                     ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
                     ->to($user->getMail())
-                    ->subject('Hello !')
+                    ->subject('Welcome !')
                     ->htmlTemplate('mailer/signin.html.twig')
                     ->context([
                         'user' => $user,
                         'plainPassword' => $plainPassword,
-                    ]);
+                    ])
+                    ;
                 $this->mi->send($email);
-
                 $token->setUsed(true);
                 $this->em->persist($token);
                 $this->em->flush();
+
+                return $this->redirectToRoute("login");
             }
 
-            return $this->render("security/tokenSignin.html.twig");
+            return $this->render("security/tokenSignin.html.twig", [
+                'form' => $form->createView(),
+            ]);
         }
 
         $this->addFlash("fail", $this->trans->trans("Wrong token or already use"));
@@ -254,8 +258,8 @@ class SecurityController extends AbstractController
 
             $this->mi->send($email);
         }
-        
-        $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés."));
+
+        $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés"));
 
         return true;
     }
