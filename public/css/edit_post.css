@@ -83,7 +83,6 @@ form[name="article"]{
 
 .login_form{
     max-width: 480px;
-    margin: 100px auto;
     padding: 20px;
     border-radius: 2px;
 }
@@ -134,30 +133,30 @@ label[for="article_text"]{
     padding: 5px;
 }
 
-.api_data, .youtube{
+.api_data, .youtube, .emailMember{
     flex-basis: 0;
     margin: 0 0 15px;
     transition: .5s ease;
 }
 
-.api_data li, .youtube li{
+.api_data li, .youtube li, .emailMember li{
     display: flex;
     justify-content: flex-end;
     margin: auto;
     animation: scaleBlur .5s ease;
 }
 
-.api_data .form-group, .youtube .form-group{
+.api_data .form-group, .youtube .form-group, .emailMember .form-group{
     width: 100%;
     margin: 5px 0;
 }
 
-.api_data li input, .youtube li input{
+.api_data li input, .youtube li input, .emailMember li input{
     width: calc(100% - 20px);
     margin: auto;
 }
 
-.btn_del_sets, .btn_del_video{
+.btn_del_sets, .btn_del_video, .btn_del_email{
     font-size: 20px;
     margin: 0 0 0 15px;
     font-weight: 900;
@@ -175,6 +174,11 @@ fieldset.form-group{
 
 legend.col-form-label.required{
     display: none;
+}
+
+.sendingInscriptionsForm{
+    max-width: 530px;
+    margin: auto;
 }
 
 /****************

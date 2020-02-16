@@ -4,10 +4,14 @@
 <link rel="stylesheet" href="/css/edit_post.css"></link>
 <link rel="stylesheet" href="/css/edit_post900px.css"></link>
 <link rel="stylesheet" href="/css/edit_post600px.css"></link>
+<link rel="stylesheet" href="/css/account.css"></link>
+<link rel="stylesheet" href="/css/account600px.css"></link>
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
 <div class="undernav"></div>
+<div class="sendingInscriptionsForm">
+<h1 class="subtitle">{% trans %}Send inscription link to emails{% endtrans %}</h1>
     {{form_start(form)}}
         <div id="add_em_field" >
             <a id="add_em_btn" class="a_btn btn_modify">{% trans %}add address{% endtrans %}</a>
@@ -23,8 +27,9 @@
             </li>
             {% endfor %}
         </ul>
-        {{form_row(form.submit)}}
+        {{form_row(form.submit, {"attr": {"class": "a_btn btn_more"}, "label": "Send"} )}}
     {{form_end(form)}}
+</div>
 {% endblock %}
 {% block javascripts %}
 <script src="/js/AddField.js"></script>
