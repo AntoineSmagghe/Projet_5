@@ -39,13 +39,15 @@ svg{
 }
 
 .can_modify{
-    margin: 0 15px;
+    margin: 0px 15px;
     background-color: rgb(211,211,211);
     display: inline-block;
-    width: 100%;
+    width: calc(100% - 20px);
     color: #404040;
     padding: 10px;
     border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
 }
 
 .account_status{
