@@ -119,22 +119,24 @@ class SecurityController extends AbstractController
                     ->setCreatedAt(new DateTime('now'));
 
                 $this->em->persist($user);
-                $this->addFlash('success', $this->trans->trans("Welcome! You are now registred as a member on CDLM.space"));
-
-                $email = (new TemplatedEmail())
-                    ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
-                    ->to($user->getMail())
-                    ->subject('Welcome !')
-                    ->htmlTemplate('mailer/signin.html.twig')
-                    ->context([
-                        'user' => $user,
-                        'plainPassword' => $plainPassword,
-                    ])
-                    ;
-                $this->mi->send($email);
+                
                 $token->setUsed(true);
                 $this->em->persist($token);
                 $this->em->flush();
+                
+                $email = (new TemplatedEmail())
+                ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                ->to($user->getMail())
+                ->subject('Welcome !')
+                ->htmlTemplate('mailer/signin.html.twig')
+                ->context([
+                    'user' => $user,
+                    'plainPassword' => $plainPassword,
+                    ])
+                    ;
+                $this->mi->send($email);
+                    
+                $this->addFlash('success', $this->trans->trans("Welcome! You are now registred as a member on CDLM.space"));
 
                 return $this->redirectToRoute("login");
             }
@@ -229,38 +231,5 @@ class SecurityController extends AbstractController
         return $this->render('users/reset_mail.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-
-    private function attributeTokenToEmails($emails)
-    {
-        for ($i=0; $i < count($emails); $i++){
-            $tokenEntity = new Token();
-            $token = bin2hex(random_bytes(26));
-            $url = $this->generateUrl("tokenSignin", ["t" => $token]);
-
-            $tokenEntity->setEmail($emails[$i])
-                        ->setToken($token)
-                        ->setDate(new DateTime('now'))
-                        ->setLink($url)
-                        ;
-            $this->em->persist($tokenEntity);
-            $this->em->flush();
-
-            $email = (new TemplatedEmail())
-                ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
-                ->to($emails[$i])
-                ->subject('Hello !')
-                ->htmlTemplate('mailer/sendTokenForSignin.html.twig')
-                ->context([
-                    'url' => $url,
-                    'personalEmail' => $emails[$i],
-                ]);
-
-            $this->mi->send($email);
-        }
-
-        $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés"));
-
-        return true;
     }
 }

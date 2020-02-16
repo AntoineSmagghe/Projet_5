@@ -2,23 +2,41 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Article;
-use App\Entity\Img;
-use App\Form\ArticleType;
-use App\Repository\ImgRepository;
 use DateTime;
 use DateTimeZone;
-use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use App\Entity\Article;
+use App\Entity\Img;
+use App\Entity\Token;
+use App\Form\ArticleType;
+use App\Repository\ImgRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AdminController extends AbstractController
 {
+    private $em;
+    private $mi;
+    private $trans;
+
+    public function __construct(EntityManagerInterface $em, MailerInterface $mi, TranslatorInterface $trans)
+    {
+        $this->em = $em;
+        $this->mi = $mi;
+        $this->trans = $trans;
+    }
+
     /**
      * @Route("/{_locale}/admin/edit", requirements={"_locale": "fr|en"}, name="creatPost", methods={"POST", "GET"})
      */
@@ -141,5 +159,67 @@ class AdminController extends AbstractController
         }catch(Exception $e){
             return new JsonResponse(['error' => 'Erreur lors du dialogue avec la base de donnée.' . $e], 500);
         }
+    }
+
+    /**
+     * @Route("{_locale}/admin/sending-inscriptions", name="sendInscriptions", requirements={"_locale": "fr|en"})
+     */
+    public function sendingInscriptions(Request $request)
+    {
+        $formBuilder = $this->createFormBuilder();
+        $formBuilder->add('emails', CollectionType::class, [
+                'allow_delete' => true,
+                'delete_empty' => true,
+                'allow_add' => true,
+                'entry_type' => EmailType::class,
+                'entry_options' => [
+                    'attr' => [
+                        'class' => 'adresse membre',
+                        'placeholder' => 'Une adresse mail',
+                    ]
+                ]
+            ])
+            ->add('submit', SubmitType::class);
+
+        $form = $formBuilder->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->attributeTokenToEmails($form->getData()["emails"]);
+        }
+        
+        return $this->render("admin/sendingInscriptions.html.twig", [
+            "form" => $form->createView(),
+        ]);
+    }
+    
+    private function attributeTokenToEmails($emails)
+    {
+        for ($i = 0; $i < count($emails); $i++) {
+            $tokenEntity = new Token();
+            $token = bin2hex(random_bytes(26));
+            $url = $this->generateUrl("tokenSignin", ["t" => $token]);
+
+            $tokenEntity->setEmail($emails[$i])
+                ->setToken($token)
+                ->setDate(new DateTime('now'))
+                ->setLink($url);
+            $this->em->persist($tokenEntity);
+            $this->em->flush();
+
+            $email = (new TemplatedEmail())
+                ->from(new Address('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                ->to($emails[$i])
+                ->subject('Hello !')
+                ->htmlTemplate('mailer/sendTokenForSignin.html.twig')
+                ->context([
+                    'url' => $url,
+                    'personalEmail' => $emails[$i],
+                ]);
+
+            $this->mi->send($email);
+        }
+
+        return $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés"));
     }
 }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title %}<title>Envoi de demandes d'inscriptions au site CDLM.space</title>{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/edit_post.css"></link>
+<link rel="stylesheet" href="/css/edit_post900px.css"></link>
+<link rel="stylesheet" href="/css/edit_post600px.css"></link>
+<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div class="undernav"></div>
+    {{form_start(form)}}
+        <div id="add_em_field" >
+            <a id="add_em_btn" class="a_btn btn_modify">{% trans %}add address{% endtrans %}</a>
+        </div>
+        <ul id="list_em" class="emailMember" data-prototype="{{ form_widget(form.emails.vars.prototype)|e('html_attr') }}">
+            {% for email in form.emails %}
+            <li>
+                {{form_row(email, {
+                    'label': false,
+                    'attr': {'class': 'url_EM'}
+                })}}
+                <button class="btn_del_email" name="{{email.vars.name}}" type="button">X</button>
+            </li>
+            {% endfor %}
+        </ul>
+        {{form_row(form.submit)}}
+    {{form_end(form)}}
+{% endblock %}
+{% block javascripts %}
+<script src="/js/AddField.js"></script>
+<script>
+let addEmailMember = new AddField(
+        document.getElementById("add_em_btn"), 
+        document.getElementsByClassName("emailMember")[0],
+        document.getElementsByClassName("emailMember")[0].getAttribute("data-prototype"),
+        document.getElementsByClassName("url_EM"),
+        "form_emails",
+        "form[emails]",
+        "btn_del_email"
+        );
+    addEmailMember.init();
+</script>
+{% endblock %}
