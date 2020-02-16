@@ -19,6 +19,7 @@ class HomePublicController extends AbstractController
 {
     private $article;
     private $security;
+    private $users;
     private $imgRepo;
     
     public function __construct(Security $security, UsersRepository $users, ArticleRepository $article, ImgRepository $imgRepo)

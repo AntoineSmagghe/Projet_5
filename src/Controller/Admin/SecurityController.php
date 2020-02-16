@@ -2,15 +2,20 @@
 
 namespace App\Controller\Admin;
 
+use Exception;
 use DateTime;
+
+use App\Entity\Token;
 use App\Entity\Users;
 use App\Form\ResetMailType;
 use App\Form\ResetPasswordType;
 use App\Form\UserIdentityType;
 use App\Form\UsersType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\TokenRepository;
+
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
+
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,12 +23,20 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address as MimeAddress;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
+    private $em;
+    private $trans;
+
+    public function __construct(EntityManagerInterface $em, TranslatorInterface $trans)
+    {
+        $this->em = $em;
+        $this->trans = $trans;
+    }
+    
     /**
      * @Route("/{_locale}/connexion", requirements={"_locale": "fr|en"}, name="login", methods={"POST", "GET"})
      */
@@ -46,7 +59,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/admin/signin", requirements={"_locale": "fr|en"}, name="signIn", methods={"POST", "GET"})
      */
-    public function signIn(EntityManagerInterface $manager, Request $request, TranslatorInterface $trans, MailerInterface $mi)
+    public function adminSignin(Request $request, TranslatorInterface $trans, MailerInterface $mi)
     {
         $newUser = new Users();
         $form = $this->createForm(UsersType::class, $newUser);
@@ -59,8 +72,8 @@ class SecurityController extends AbstractController
                     ->setLastLog(new DateTime())
                     ->setCreatedAt(new DateTime());
 
-            $manager->persist($newUser);
-            $manager->flush();
+            $this->em->persist($newUser);
+            $this->em->flush();
             $this->addFlash('success', $trans->trans("Le membre a bien été enregistré en base de données."));
             
             $email = (new TemplatedEmail())
@@ -81,6 +94,17 @@ class SecurityController extends AbstractController
         return $this->render('admin/signin.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/{_locale}/signin/", requirements={"_locale": "fr|en"}, name="tokenSignin", methods={"POST", "GET"})
+     */
+    public function signin(TokenRepository $tokenRepository, Request $request)
+    {
+        if ($tokenRepository->findOneBy(["token" => $request->get("t"), "sended" => true]) != null){
+        }
+        $this->attributeTokenToEmails(["antoine@smagghe.me"]);
+        return $this->redirectToRoute("home_public");
     }
 
     /**
@@ -164,5 +188,37 @@ class SecurityController extends AbstractController
         return $this->render('users/reset_mail.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    private function attributeTokenToEmails($emails, MailerInterface $mi = null)
+    {
+        for ($i=0; $i < count($emails); $i++){
+            $tokenEntity = new Token();
+            $token = bin2hex(random_bytes(26));
+            $url = $this->generateUrl("tokenSignin", ["t" => $token]);
+
+            $tokenEntity->setEmail($emails[$i])
+                        ->setToken($token)
+                        ->setDate(new DateTime('now'))
+                        ->setLink($url)
+                        ;
+            $this->em->persist($tokenEntity);
+            $this->em->flush();
+
+            $email = (new TemplatedEmail())
+                ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                ->to($emails[$i])
+                ->subject('Hello !')
+                ->htmlTemplate('mailer/sendTokenForSignin.html.twig')
+                ->context([
+                    'url' => $url,
+                    'email' => $emails[$i],
+                ]);
+
+            $mi->send($email);
+        }
+        $this->addFlash('success', $this->trans->trans("Les mails ont été envoyés."));
+
+        return true;
     }
 }
