@@ -116,10 +116,10 @@ class SecurityController extends AbstractController
 
                 $user->setPassword($bcryptPass)
                     ->setLastLog(new DateTime('now'))
-                    ->setCreatedAt(new DateTime('now'));
-
+                    ->setCreatedAt(new DateTime('now'))
+                    ->setRoles(["ROLE_MEMBER"])
+                    ;
                 $this->em->persist($user);
-                
                 $token->setUsed(true);
                 $this->em->persist($token);
                 $this->em->flush();

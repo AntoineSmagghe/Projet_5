@@ -89,12 +89,12 @@ class Token
 
     public function getUsed(): ?bool
     {
-        return $this->sended;
+        return $this->used;
     }
 
-    public function setUsed(bool $sended): self
+    public function setUsed(bool $used): self
     {
-        $this->sended = $sended;
+        $this->used = $used;
 
         return $this;
     }
