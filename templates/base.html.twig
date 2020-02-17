@@ -151,6 +151,7 @@
                         <a class="admin_menu" href="{{ path("creatPost") }}">{% trans %}Create post{% endtrans %}</a>
                         <a class="admin_menu" href="{{ path("creatArtist") }}">{% trans %}Create artist{% endtrans %}</a>
                         <a class="admin_menu" href="{{ path("signIn") }}">{% trans %}Create member{% endtrans %}</a>
+                        <a class="admin_menu" href="{{ path("sendInscriptions") }}">{% trans %}inscription link{% endtrans %}</a>
                         {% endif %}
                     {% endif %}
                 </div>
@@ -205,7 +206,7 @@
                         <ul>
                             <li><a href="{{ path("articles", {"format": "public-event"}) }}">{% trans %}Events{% endtrans %}</a></li>
                             {% if app.user != null %}
-                            <li><a href="{{ path("articles", {"format": "private-event"}) }}">{% trans %}private-event{% endtrans %}</a></li>
+                            <li><a href="{{ path("articles", {"format": "private-event"}) }}">{% trans %}Private Events{% endtrans %}</a></li>
                             {% endif %}
                             <li><a href="{{ path("articles", {"format": "members"}) }}">{% trans %}Artists{% endtrans %}</a></li>
                             <li><a href="{{ path("articles", {"format": "releases"}) }}">{% trans %}Releases{% endtrans %}</a></li>

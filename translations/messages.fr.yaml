@@ -11,13 +11,14 @@ hello: Bonjour
 
 Public: PUBLIC
 Private: PRIVÉ
-Public Events:  ÉVENEMENTS PUBLIC
+Public Events:  ÉVÈNEMENTS PUBLIC
 Public event: Évènement public
-Private Events: ÉVENEMENTS PRIVE
+Private Events: ÉVÈNEMENTS PRIVE
 Private event: Évènement privé
 Create post: Publier un article
 Create artist: Publier un artiste
 Create member: Inscrire un membre
+inscription link: Lien d'inscription
 Account:	Compte
 Logout:	Déconnexion
 Login: Connexion
@@ -83,6 +84,12 @@ Image deleted: Image effacée
 Voir: Voir
 Article record at: Article enregistré à
 form is unvalid: Les informations de sont pas valides.
+
+#Inscriptions
+Send an inscription link: Envoyer un lien d'inscription
+add address: Ajouter
+Une adresse mail: Une adresse mail
+Emails: Emails
 
 #Confirmation messages
 Étes vous sûr de vouloir supprimer l'article?: Étes vous sûr de vouloir supprimer l'article?
