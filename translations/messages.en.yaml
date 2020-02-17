@@ -92,6 +92,9 @@ add address: Add
 Une adresse mail: A mail address
 Emails: Emails
 
+#Connection
+connect: Connection
+
 #Confirmation messages
 Étes vous sûr de vouloir supprimer l'article?: Are you sure you want to delete this article?
 L'article a été supprimé.: Article deleted.
