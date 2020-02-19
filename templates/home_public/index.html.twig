@@ -9,7 +9,7 @@
 {% endblock %}
 {% block body %}
 <div class="welcome_view">
-  <div class="moving_title">
+  <div class="moving_title" data-aos="fade-down">
     <h1>{% trans %}Hello{% endtrans %}</h1>
     <p>{% trans %}Collectif d’exploration urbaine et musical dans Paris et ses environs{% endtrans %}</p>
   </div>
@@ -17,7 +17,7 @@
 <h2 class="part_title">{% trans %}What's new on CDLM?{% endtrans %}</h2>
 <section id="welcome_cards">
 {% for article in articles %}
-  <div class="welcome_card pulse" data-aos="zoom-in">
+  <div class="welcome_card pulse" data-aos="fade-down">
     <div class="in_card_welcome">
       <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
         <div class="col_wel_img">

@@ -21,7 +21,7 @@
     {% endif %}
     <section id="article_cover">
         <div class="incover">
-            <div class="article_cover_title">
+            <div class="article_cover_title" data-aos="fade-right">
                 <h1>{{ article.title }}</h1>
                 <div class="date_event">
                     <p>{% trans %}Organisé le{% endtrans %} {{ article.dateEvent|date("d/m/Y") }}</p>
@@ -54,7 +54,7 @@
             {% if article.imgs.snapshot != null %}
             <div class="hes-gallery">
             {% for image in article.imgs %}
-                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="flip-up" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="fade-left" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
             {% endif %}

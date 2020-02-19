@@ -13,23 +13,23 @@
     <div id="title_minwidth"></div>
     <aside id="member_picture">
         <figure>
-            {% include 'article/cover.html.twig' %}
-            <figcaption id="artist_release_figcaption">
-            <div class="contact_socials">
-                <a href="{{path("contact")}}" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
-            </div>
-            {% if is_granted('ROLE_ADMIN') %}
-            {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
-            <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
-            {% endif %}
+            <figcaption id="artist_release_figcaption" data-aos="fade-right">
+                {% include 'article/cover.html.twig' %}
+                <div class="contact_socials">
+                    <a href="{{path("contact")}}" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                {% include 'include/datetimeArticle.html.twig' with { "article": article }%}
+                <a href="{{ path("editPost", { "id" : article.id }) }}" class="a_btn btn_modify">Modifier</a>
+                {% endif %}
             </figcaption>
         </figure>
     </aside>
     <article id="member_text_soundcloud">
-        <h1>{{article.title}}</h1>
-        <div class="text">{{article.text|raw}}</div>
+        <h1 data-aos="fade-left">{{article.title}}</h1>
+        <div class="text" data-aos="fade-left">{{article.text|raw}}</div>
         {% if article.apiData != null %}
-            <div class="widget_SC">
+            <div class="widget_SC" data-aos="fade-left">
                 {% for sound in article.apiData %}
                 <div class="widget_track" id="sound[{{loop.index0}}]"></div>
                 {% endfor %}
@@ -38,7 +38,7 @@
         {% if article.imgs.snapshot != null %}
             <div class="hes-gallery member_images">
             {% for image in article.imgs %}
-                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}" data-aos="fade-left" alt="Photo {{image.id}} de l'article : {{ article.title }}">
             {% endfor %}
             </div>
         {% endif %}
