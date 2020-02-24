@@ -9,7 +9,7 @@
 {% endblock %}
 {% block body %}
 <section id="article_cover">
-    <img class="article_image_cover" src="/img/Arthur/DSCF6179.jpg" alt="Cover CDLM members">
+    <img class="article_image_cover" src="{{ asset('/img/Arthur/DSCF6179.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
     <div class="incover">
         <div class="article_cover_title" data-aos="fade-right">
             <h1 class="part_title">{% trans %}Les artistes{% endtrans %}</h1>
