@@ -290,7 +290,6 @@ img[alt="Soundcloud ico"]{
     text-shadow: none;
     z-index: 10;
     background-color: var(--blue);
-	border-radius: 3px;
     margin: 20px;
     right: 0;
     top: 0;
@@ -558,36 +557,46 @@ a.admin_menu{
 	justify-content: center;
 	align-items: center;
 	color: white;
+	background-color: rgba(0,0,0,0.8);
 	height: 35px;
 	width: 100px;
 	font-weight: bold;
-    box-shadow: 0 0 2px black;
-	border-radius: 2px;
 	cursor:pointer;
 	transition: .3s ease;
 }
 
 .a_btn:hover{
-	transform: scale(1.05);
-	color: white;
-	box-shadow: initial;
+	border: 2px solid white;
+	box-shadow: 0 0 3px white;
 }
 
-.a_btn:active{
-	transform: scale(1);
+.a_btn:active {
+	transform: scale(0.95);
 }
 
-.btn_more{
-    text-align: center;
-    background-color: #3498db;
+.btn_more {
+    border: 2px solid #4694EB;
 }
 
-.btn_modify{
-    text-align: center;
-    background-color: var(--white);
+.btn_modify {
+	border: 2px solid khaki;
 }
 
 .btn_del{
+	border: 2px solid red;
+}
+
+.btn_more:hover{
+    text-align: center;
+    background-color: #4694EB;
+}
+
+.btn_modify:hover{
+    text-align: center;
+    background-color: khaki;
+}
+
+.btn_del:hover{
 	text-align: center;
     background-color: red;
 }
