@@ -559,7 +559,7 @@ a.admin_menu{
 	color: white;
 	background-color: rgba(0,0,0,0.8);
 	height: 35px;
-	width: 100px;
+	width: 110px;
 	font-weight: bold;
 	cursor:pointer;
 	transition: .3s ease;
@@ -588,17 +588,14 @@ a.admin_menu{
 
 .btn_more:hover{
     text-align: center;
-    background-color: #4694EB;
 }
 
 .btn_modify:hover{
     text-align: center;
-    background-color: khaki;
 }
 
 .btn_del:hover{
 	text-align: center;
-    background-color: red;
 }
 
 .back_arrow{

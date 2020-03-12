@@ -10,10 +10,9 @@ a.blue-link{
 
 .account_panel{
     width: calc(100% - 20px);
-    height: 210px;
     padding: 10px;
     background-color: white;
-    border-radius: 10px;
+    border: 2px solid black;
 }
 
 svg[data-icon="long-arrow-alt-left"]{
@@ -46,9 +45,9 @@ svg{
     width: calc(100% - 20px);
     color: #404040;
     padding: 10px;
-    border-radius: 5px;
     overflow: hidden;
     height: 20px;
+    border: 2px solid black;
 }
 
 .account_status{
