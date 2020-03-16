@@ -1,8 +1,35 @@
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
 <script>
+
+const getTodosAsync = async function () {
+    const response = await fetch("https://api-v2.soundcloud.com/resolve?url=https://soundcloud.com/bassiani/bassiani-invites-dj-nobu-podcast-68&client_id=Uz4aPhG7GAl1VYGOnvOPW1wQ0M6xKtA9", 
+    {
+        method: 'GET',
+        headers: {
+            'Content-Type':'application/json',
+        }
+    });
+    const jsonData = await response.json();
+    console.log(jsonData);
+}
+getTodosAsync();
+
+/*
+fetch("https://api-v2.soundcloud.com/resolve?url=https://soundcloud.com/bassiani/bassiani-invites-dj-nobu-podcast-68&client_id=Uz4aPhG7GAl1VYGOnvOPW1wQ0M6xKtA9", {
+    method: 'GET',
+    mode: 'no-cors'
+})
+.then(response => {
+        response.json()
+            .then(console.log);
+    });
+
+*/
+
+/*
 //Soundcloud ID
 SC.initialize({
-        client_id: 'uY5YAJMT1mVRQtgKBoNbJqlVGILaYI0p'
+        client_id: 'Uz4aPhG7GAl1VYGOnvOPW1wQ0M6xKtA9'
     });
 
 let date;
@@ -13,4 +40,5 @@ SC.resolve("{{sound}}")
         document.getElementById("sound[{{ loop.index0 }}]").innerHTML = '<a href="'+ track.permalink_url +'"><img class="cover_track" src="'+ track.artwork_url +'"/></a><div class="info_track"><h3>'+ track.title +'</h3><p>'+ date +'</p><iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe></div>';
     });
 {% endfor %}
+*/
 </script>
