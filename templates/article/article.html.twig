@@ -51,15 +51,15 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% if article.imgs.snapshot != null %}
-            <div class="hes-gallery">
-            {% for image in article.imgs %}
-                    <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="fade-left" alt="Photo {{image.id}} de l'article : {{ article.title }}">
-            {% endfor %}
-            </div>
-            {% endif %}
         </aside>
     </section>
+    {% if article.imgs.snapshot != null %}
+    <section id="gallery" class="hes-gallery">
+    {% for image in article.imgs %}
+        <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="fade-left" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+    {% endfor %}
+    </section>
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
