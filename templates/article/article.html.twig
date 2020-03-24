@@ -56,7 +56,7 @@
     {% if article.imgs.snapshot != null %}
     <section id="gallery" class="hes-gallery">
     {% for image in article.imgs %}
-        <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="fade-left" alt="Photo {{image.id}} de l'article : {{ article.title }}">
+        <img src="{{ asset('/upload/pictures/' ~ image.name) | imagine_filter('200x150') }}" data-fullsize="{{ asset('/upload/pictures/' ~ image.name) }}"  data-aos="fade-up" alt="Photo {{image.id}} de l'article : {{ article.title }}">
     {% endfor %}
     </section>
     {% endif %}
