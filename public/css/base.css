@@ -392,6 +392,11 @@ a.admin_menu{
     background-color: #404040;
 }
 
+.close_modal_btn_form svg{
+	color: #404040;
+	background-color: white;
+}
+
 /***********
 *   BODY   *
 ************/
@@ -404,6 +409,27 @@ a.admin_menu{
 	height: auto;
 	max-width: 1500px;
 	margin: auto;
+}
+
+/***********
+*   FORM   *
+************/
+.moving-label{
+    position: relative;
+    pointer-events: none;
+    bottom: 40px;
+    left: 20px;
+    color: black;
+    font-weight: 900;
+    transition: .5s ease;
+}
+
+input:focus ~ .moving-label,
+input:not(:focus):valid ~ .moving-label{
+    bottom: 70px;
+    left: 10px;
+    color: white;
+    font-weight: 100;
 }
 
 /************
