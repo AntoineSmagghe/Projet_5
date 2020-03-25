@@ -514,7 +514,7 @@ a.admin_menu{
 .hes-gallery{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-start;
     flex-wrap: wrap;
     border-radius: 3px;
@@ -527,12 +527,17 @@ a.admin_menu{
 	box-shadow: 0 0 2px black;
 	filter: grayscale(100%);
 	border-radius: 4px;
-	transition: .5s ease;
+	transition: 1s ease;
 }
 
 .hes-gallery img:hover{
 	transform: translateY(-5px);
 	filter: unset;
+}
+
+#gallery{
+	max-width: 1500px;
+	margin: auto;
 }
 
 /************
