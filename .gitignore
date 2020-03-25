@@ -30,4 +30,5 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
+/status
 ###< phpunit/phpunit ###
