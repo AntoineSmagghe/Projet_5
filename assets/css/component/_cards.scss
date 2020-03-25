@@ -1,0 +1,75 @@
+/************
+*   CARDS   *
+*************/
+.welcome_card{
+    width: 300px;
+    margin: 0.6rem;
+    box-shadow: 0 0 5px black;
+    background-color: white;
+    animation: scaleBlur 1s ease;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.in_card_welcome{
+    display: flex;
+    flex-direction: column;
+}
+
+.col_wel_img{
+	width: 100%;
+	height: 240px;
+	overflow: hidden;
+	position: relative;
+}
+
+.col_wel_img img{
+	width: 100%;
+	height: 240px;
+}
+
+.col_wel_txt{
+	flex-basis: auto;
+	display: flex;
+    align-items: flex-end;
+    justify-content: center;
+	text-align: justify;
+	position: absolute;
+    background: rgba(0,0,0,.5);
+    color: white;
+    width: 100%;
+    bottom: 0;
+	top: 0;
+	transition: 1s ease;
+}
+
+.in_card_welcome:hover .col_wel_txt {
+	transform: translateY(250px);
+	opacity: 0;
+}
+
+.col_wel_txt_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 1.25rem;
+	overflow: hidden;
+	align-items: flex-start;
+    width: 100%;
+}
+
+.col_wel_txt_body h5{
+    margin-bottom: .75rem;
+	font-weight: bold;
+	font-family: var(--font_title);
+	font-size: 1.5rem;
+	text-align: start;
+}
+
+.col_wel_txt_body p{
+    margin-bottom: 1rem;
+}
+
+.col_wel_txt_body button{
+    display: inline;
+}

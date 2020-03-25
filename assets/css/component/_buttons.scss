@@ -1,0 +1,125 @@
+/************
+*   BUTTON  *
+*************/
+.buttons{
+    display: flex;
+    flex-basis: 45%;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.buttons a:hover{
+	background-color: var(--grey);
+	color: white;
+}
+
+.a_btn{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+	height: 35px;
+	width: 110px;
+	font-weight: bold;
+	cursor:pointer;
+	transition: .3s ease;
+}
+
+.a_btn:hover{
+	border: 2px solid white;
+	box-shadow: 0 0 3px white;
+}
+
+.a_btn:active {
+	transform: scale(0.95);
+}
+
+.btn_more {
+    border: 2px solid #4694EB;
+}
+
+.btn_modify {
+	border: 2px solid khaki;
+}
+
+.btn_del{
+	border: 2px solid red;
+}
+
+.btn_more:hover{
+    text-align: center;
+}
+
+.btn_modify:hover{
+    text-align: center;
+}
+
+.btn_del:hover{
+	text-align: center;
+}
+
+.back_arrow{
+	width: 40px;
+    display: block;
+    padding: 5px;
+	transition: .5s ease;
+}
+
+.back_arrow:hover{
+	transform:scale(1.1);
+}
+
+.back_arrow:focus{
+	transform:scale(1);
+}
+
+/********************
+*   SOCIAL NETWORK  *
+*********************/
+.contact_socials{
+	display: flex;
+	justify-content: flex-start;
+    align-items: center;
+}
+
+.socials_logo{
+	padding: 0 10px;
+	transition: .5s ease;
+}
+
+.socials_logo:hover{
+	transform: scale(1.05);
+}
+
+.socials_logo:first-child{
+	padding: 0 10px 0 0;
+}
+
+.socials_logo img{
+	width: 50px;
+	height: 36px;
+	object-fit: scale-down;
+	filter: invert(1);
+}
+
+.socials_logo img[alt="logo email"]{
+	width: 40px;
+	height: 36px;
+}
+
+.socials_logo img[alt="logo soundcloud"]{
+	width: 57px;
+    height: 45px;
+}
+
+.socials_logo img[alt="logo facebook"]{
+	width: 42px;
+    height: 42px;
+}
+
+.socials_logo img[alt="logo instagram"]{
+	width: 45px;
+    height: 45px;
+}

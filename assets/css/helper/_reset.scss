@@ -1,0 +1,70 @@
+/************
+* CSS RESET *
+*************/
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+	background-color: #404040;
+	min-height: calc(100vh - 220px);
+	min-width: 320px;
+	font-family: var(--font_text);
+}
+
+ol, ul {
+	list-style: none;
+	margin: 0;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: white;
+}
+
+label{
+	color: white;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+button{
+	cursor: pointer;
+	background: none;
+	font-style: var(--font_text);
+}
+
+img{
+	cursor: pointer;
+	object-fit: cover;
+}
+
+.white_text{
+	color: white;
+}

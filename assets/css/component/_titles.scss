@@ -1,0 +1,25 @@
+/************
+*	TITLES	*
+*************/
+.part_title{
+	padding: 1.5rem;
+	height: auto;
+	max-width: 1500px;
+	margin: 35px auto 20px auto;
+	font-weight: bold;
+	text-align: center;
+	font-size: 3rem;
+	color: white;
+	text-shadow: 0 0 5px black;
+	font-family: var(--font_title);
+}
+
+.subtitle{
+	font-weight: bold;
+	display: inline-block;
+	text-align: center;
+	font-size: 2rem;
+	margin: 20px 0;
+	color: white;
+	font-family: var(--font_title);
+}

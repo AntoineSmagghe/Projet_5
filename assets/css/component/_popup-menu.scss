@@ -1,0 +1,133 @@
+/****************
+*	POPUP MENU	*
+*****************/
+#background_modal{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 6;
+	background-color: rgba(0,0,0,0.5);
+	height: 100%;
+	width: 100%;
+}
+
+.popup_menu{
+	width: 100%;
+    max-width: 1500px;
+    position: relative;
+}
+
+.sign_in_form{
+    display: none;
+    flex-direction: column;
+	position: fixed;
+    text-shadow: none;
+    z-index: 10;
+    background-color: var(--blue);
+    margin: 20px;
+    right: 0;
+    top: 0;
+}
+
+.sign_in_form label{
+	color: white;
+}
+
+.sign_in_form form{
+	padding: 10px;
+}
+
+.sign_in_form .btn_more{
+	padding: 5px;
+}
+
+.form_row{
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	margin: 10px;
+}
+
+.form_row input{
+	padding: 5px;
+    margin: 7px 0 0 0;
+    background-color: white;
+}
+
+a.admin_menu{
+	height: 20px;
+	width: 200px;
+	padding: 10px 0;
+	color: white;
+	text-align: center;
+	text-shadow: none;
+	font-size: 1.2rem;
+	font-weight: bolder;
+	border: 1px solid black;
+	transition: .5s ease;
+}
+
+.admin_menu:hover{
+	background-color: white;
+	color: var(--blue);
+}
+
+#ico_burger{
+	display: none;
+}
+
+.personal_info_menu{
+	color: #404040;
+    padding: 15px;
+    background-color: white;
+    width: 170px;
+	border: 1px solid black;
+	line-height: 20px;
+	text-align:center;
+}
+
+.personal_info_menu_logo{
+	display: flex;
+	justify-content: space-around;
+}
+
+.personal_info_menu_logo svg{
+    width: 30px;
+    margin: 15px 0 0 0;
+    color: #404040;
+    padding: 7px;
+    transition: .5s ease;
+}
+
+.personal_info_menu_logo svg:hover{
+	color: white;
+    background-color: #404040;
+}
+
+.close_modal_btn{
+	cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    position: absolute;
+    width: calc(100% - 5px);
+    padding: 5px 5px 0 0;
+}
+
+.close_modal_btn svg{
+	width: 15px;
+    color: #404040;
+    height: 15px;
+    padding: 5px;
+}
+
+.close_modal_btn svg:hover{
+	color: white;
+    background-color: #404040;
+}
+
+.close_modal_btn_form svg{
+	color: #404040;
+	background-color: white;
+}

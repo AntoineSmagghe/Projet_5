@@ -1,0 +1,13 @@
+/***********
+*   BODY   *
+************/
+#welcome_cards{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+	height: auto;
+	max-width: 1500px;
+	margin: auto;
+}

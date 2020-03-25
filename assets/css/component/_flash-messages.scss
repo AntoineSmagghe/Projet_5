@@ -1,0 +1,31 @@
+/********************
+*	FLASH MESSAGES	*
+*********************/
+.flash_message{
+	position: fixed;
+	top: 70px;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	width: 100%;
+	animation: slideDownBlur 1s ease-out;
+}	
+
+.flash-success, .flash-fail, .flash-info{
+	border-radius: 3px;
+	padding: 20px;
+}
+
+.flash-success{
+	background-color: lightgreen;
+}
+
+.flash-fail{
+	background-color: lightcoral;
+}
+
+.flash-info{
+	background-color: lightskyblue;
+}
