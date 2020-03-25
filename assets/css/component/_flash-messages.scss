@@ -16,6 +16,9 @@
 .flash-success, .flash-fail, .flash-info{
 	border-radius: 3px;
 	padding: 20px;
+	@media #{$phone-width}{
+		text-align: center;
+	}
 }
 
 .flash-success{

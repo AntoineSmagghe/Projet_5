@@ -3,13 +3,22 @@
 *************/
 .welcome_view{
     height: 900px;
-    background: url("../img/cover.JPG") no-repeat center;
+    background: url("/public/img/cover.JPG") no-repeat center;
     background-size: cover;
     box-shadow: 0 0 5px var(--black);
     position: static;
     z-index: 5;
     margin: auto;
     padding: 150px 0 0 0;
+
+    @media #{$tablet-width}{
+        height: 600px;
+    }
+
+    @media #{$phone-width}{
+        padding: 110px 0 0 0;
+        height: 600px;
+    }
 }
 
 .moving_title{
@@ -20,6 +29,27 @@
     position: sticky;
     top: 150px;
     text-align: center;
+
+    @media #{$tablet-width}{
+        font-size: 2rem;
+        top: 100px;
+        padding: 0 0 0 30px;
+    }
+
+    @media #{$phone-width}{
+        top: 90px;
+        padding: 0;
+        text-align: center;
+        
+        & h1{
+            font-size: 4rem;
+        }
+
+        & p{
+            font-size: 2rem;
+            margin: 15px 0 0 0;
+        }
+    }
 }
 
 .moving_title h1{

@@ -2,10 +2,17 @@
 *	DATE	*
 *************/
 #datetime_article{
-    display: inline-block;
+	display: inline-block;
+	@media #{$phone-width}{
+		margin: 15px 0;
+	}
 }
 
 .onelinetxt{
 	padding: 0 5px;
 	color:white;
+	@media #{$phone-width}{
+		padding: 5px 0;
+        color: white;
+	}
 }

@@ -23,3 +23,9 @@
 	color: white;
 	font-family: var(--font_title);
 }
+
+@media #{$tablet-width}{
+	.member_images{
+        font-size: 2rem;
+    }
+}

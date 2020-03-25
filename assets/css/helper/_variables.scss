@@ -7,3 +7,9 @@
 	--font_title: 'Teko', sans-serif;
 	--font_text: 'Noto Sans TC', sans-serif;
 }
+
+/**
+ * Media queries
+ */
+$tablet-width: "screen and (max-width: 900px)";
+$phone-width: "screen and (max-width: 600px)"
