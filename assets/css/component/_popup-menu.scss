@@ -29,6 +29,18 @@
     right: 0;
 	top: 0;
 
+	& label{
+		color: white;
+	}
+
+	& form{
+		padding: 10px;
+	}
+
+	& .btn_more{
+		padding: 5px;
+	}
+
 	@media #{$tablet-width}{
 		width: 200px;
 	}
@@ -40,29 +52,17 @@
 	}
 }
 
-.sign_in_form label{
-	color: white;
-}
-
-.sign_in_form form{
-	padding: 10px;
-}
-
-.sign_in_form .btn_more{
-	padding: 5px;
-}
-
 .form_row{
 	display: flex;
 	flex-direction: column;
 	font-size: 1rem;
 	margin: 10px;
-}
 
-.form_row input{
-	padding: 5px;
-    margin: 7px 0 0 0;
-    background-color: white;
+	& input{
+		padding: 5px;
+		margin: 7px 0 0 0;
+		background-color: white;
+	}
 }
 
 a.admin_menu{
@@ -93,10 +93,6 @@ a.admin_menu{
 	color: var(--blue);
 }
 
-#ico_burger{
-	display: none;
-}
-
 .personal_info_menu{
 	color: #404040;
     padding: 15px;
@@ -106,8 +102,9 @@ a.admin_menu{
 	line-height: 20px;
 	text-align:center;
 
-	@media #{$phone-width}{
+	@media #{$phone-width} {
 		width: calc(100% - 30px);
+
 		& p{
 			font-size: 1.3rem;
         	line-height: 30px;
@@ -118,19 +115,19 @@ a.admin_menu{
 .personal_info_menu_logo{
 	display: flex;
 	justify-content: space-around;
-}
 
-.personal_info_menu_logo svg{
-    width: 30px;
-    margin: 15px 0 0 0;
-    color: #404040;
-    padding: 7px;
-    transition: .5s ease;
-}
+	& svg{
+		width: 30px;
+		margin: 15px 0 0 0;
+		color: #404040;
+		padding: 7px;
+		transition: .5s ease;
 
-.personal_info_menu_logo svg:hover{
-	color: white;
-    background-color: #404040;
+		&:hover{
+			color: white;
+			background-color: #404040;
+		}
+	}
 }
 
 .close_modal_btn{
@@ -140,19 +137,19 @@ a.admin_menu{
     background-color: transparent;
     position: absolute;
     width: calc(100% - 5px);
-    padding: 5px 5px 0 0;
-}
+	padding: 5px 5px 0 0;
+	
+	& svg{
+		width: 15px;
+		color: #404040;
+		height: 15px;
+		padding: 5px;
 
-.close_modal_btn svg{
-	width: 15px;
-    color: #404040;
-    height: 15px;
-    padding: 5px;
-}
-
-.close_modal_btn svg:hover{
-	color: white;
-    background-color: #404040;
+		&:hover{
+			color: white;
+			background-color: #404040;
+		}
+	}
 }
 
 .close_modal_btn_form svg{

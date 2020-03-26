@@ -19,6 +19,20 @@ footer{
 	margin: 0 auto;
 	display: flex;
 
+	& h2{
+		margin: 10px 0 0 0;
+	}
+
+	& h3{
+		margin: 12px 0 5px 0;
+		font-size: 0.9rem;
+		font-weight: 100;
+	}
+
+	& li{
+		margin: 5px 0 0 5px;
+	}
+
 	@media #{$phone-width}{
 		flex-direction: column;
 	}
@@ -58,6 +72,21 @@ footer{
     margin: 30px 0;
     color: black;
 	border-radius: 3px;
+
+	& p{
+		font-size: 0.8rem;
+		line-height: 15px;
+	}
+	
+	& a{
+		color:#b3bcbf;
+		font-size: 0.8rem;
+		transition: .5s ease;
+		
+		&:hover{
+			color: white;
+		}
+	}
 	
 	@media #{$tablet-width}{
 		width: 170px;
@@ -110,33 +139,4 @@ footer{
         margin-left: 23px;
         width: 100px;
 	}
-}
-
-.footer h2{
-	margin: 10px 0 0 0;
-}
-
-.footer h3{
-	margin: 12px 0 5px 0;
-	font-size: 0.9rem;
-    font-weight: 100;
-}
-
-.footer li{
-	margin: 5px 0 0 5px;
-}
-
-.footer_card p{
-	font-size: 0.8rem;
-	line-height: 15px;
-}
-
-.footer_card a{
-	color:#b3bcbf;
-	font-size: 0.8rem;
-	transition: .5s ease;
-}
-
-.footer_card a:hover{
-	color: white;
 }

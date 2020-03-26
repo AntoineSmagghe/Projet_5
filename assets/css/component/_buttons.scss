@@ -6,11 +6,11 @@
     flex-basis: 45%;
 	justify-content: center;
 	font-weight: bold;
-}
 
-.buttons a:hover{
-	background-color: var(--grey);
-	color: white;
+	& a:hover{
+		background-color: var(--grey);
+		color: white;
+	}
 }
 
 .a_btn{
@@ -25,15 +25,15 @@
 	font-weight: bold;
 	cursor:pointer;
 	transition: .3s ease;
-}
 
-.a_btn:hover{
-	border: 2px solid white;
-	box-shadow: 0 0 3px white;
-}
+	&:hover {
+		border: 2px solid white;
+		box-shadow: 0 0 3px white;
+	}
 
-.a_btn:active {
-	transform: scale(0.95);
+	&:active {
+		transform: scale(0.95);
+	}
 }
 
 .btn_more {

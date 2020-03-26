@@ -17,7 +17,7 @@
 
     @media #{$phone-width}{
         padding: 110px 0 0 0;
-        height: 600px;
+        height: 500px;
     }
 }
 
@@ -30,9 +30,21 @@
     top: 150px;
     text-align: center;
 
+    & h1{
+        font-size: 5rem;
+        font-weight: bold;
+        font-family: var(--font_title);
+    }
+
+    & p{
+        font-size: 3rem;
+        margin: 20px 0 0 0;
+        font-family: var(--font_title);
+    }
+
     @media #{$tablet-width}{
-        font-size: 2rem;
         top: 100px;
+        /*font-size: 2rem;*/
         padding: 0 0 0 30px;
     }
 
@@ -50,18 +62,6 @@
             margin: 15px 0 0 0;
         }
     }
-}
-
-.moving_title h1{
-    font-size: 5rem;
-    font-weight: bold;
-    font-family: var(--font_title);
-}
-
-.moving_title p{
-    font-size: 3rem;
-    margin: 20px 0 0 0;
-    font-family: var(--font_title);
 }
 
 .format_article{
