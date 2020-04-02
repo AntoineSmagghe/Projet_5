@@ -29,7 +29,7 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
-/status
+/status/
 ###< phpunit/phpunit ###
 
 ###> symfony/webpack-encore-bundle ###
