@@ -75,6 +75,54 @@
 	transform:scale(1);
 }
 
+#delete_article_btn{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 1010px;
+	margin: auto;
+	
+	@media #{$phone-width}{
+		justify-content: flex-start;
+        margin: 0 10px 10px 10px;
+        width: calc(100% - 20px);
+	}
+}
+.sticky_edit_menu{
+    width: 120px;
+    height: 100%;
+    position: sticky;
+	top: 100px;
+	
+	@media #{$phone-width}{
+		width: 100%;
+        top: 80px;
+	}
+}
+
+.see_and_delete{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+	flex-direction: column;
+	
+	& a{
+		width: 106px;
+		height: 30px;
+		margin: 0 5px;
+	}
+
+	@media #{$phone-width}{
+		flex-direction: row;
+        justify-content: flex-start;
+		margin: 0;
+		
+		& .form-group{
+			margin: 0;
+		}
+	}
+}
+
 /********************
 *   SOCIAL NETWORK  *
 *********************/
