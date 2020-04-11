@@ -19,6 +19,6 @@
         "build": "encore production --progress"
     },
     "browserslist": [
-        "cover 5% in FR"
+        "cover 98% in FR"
     ]
 }
