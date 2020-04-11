@@ -1,4 +1,4 @@
-class AddField
+export default class AddField
 {
     constructor(addBtn, ulElement, data_prototype, inputs, inputAttributeId, inputAttributeName, delBtnClassName){
         this.addBtn = addBtn;

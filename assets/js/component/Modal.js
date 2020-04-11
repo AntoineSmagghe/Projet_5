@@ -1,4 +1,4 @@
-class Modal
+export default class Modal
 {
     constructor(modal, modalDisplay, background, openBtn, closeBtn = null){
         this.modal = modal;

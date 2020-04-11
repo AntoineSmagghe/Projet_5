@@ -170,11 +170,9 @@
 {% block javascripts %}
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script>
     <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
-    <script src="/js/Requests.js"></script>
-    <script src="/js/AddField.js"></script>
-    <script src="/js/PopupStop.js"></script>
-    <script src="/js/MovingElt.js"></script>
-    <script src="/js/SelectRadio.js"></script>
+    {{ encore_entry_script_tags("app") }}
+
+    {{ encore_entry_script_tags("admin") }}
     <script>    
     //Text editor
     ClassicEditor

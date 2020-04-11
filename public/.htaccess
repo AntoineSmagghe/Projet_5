@@ -82,13 +82,13 @@ DirectoryIndex index.php
 ## EXPIRES CACHING ##
 
 ## CACHE CONTROL ##
-<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
-    Header set Cache-Control "public, max-age=172800"
-</FilesMatch>
+#<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+#    Header set Cache-Control "public, max-age=172800"
+#</FilesMatch>
 
-<FilesMatch "\.(xml|txt)$">
-    Header set Cache-Control "public, max-age=172800, must-revalidate"
-</FilesMatch>
+#<FilesMatch "\.(xml|txt)$">
+#    Header set Cache-Control "public, max-age=172800, must-revalidate"
+#</FilesMatch>
 ## CACHE CONTROL ##
 
 ## BEGIN Cache-Control Headers

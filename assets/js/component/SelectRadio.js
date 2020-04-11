@@ -1,4 +1,4 @@
-class SelectRadio
+export default class SelectRadio
 {
     constructor(inputElt){
         this.inputElt = inputElt;

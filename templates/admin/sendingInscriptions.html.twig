@@ -35,7 +35,7 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-<script src="/js/AddField.js"></script>
+{{ encore_entry_script_tag("admin") }}
 <script>
 let addEmailMember = new AddField(
         document.getElementById("add_em_btn"), 
