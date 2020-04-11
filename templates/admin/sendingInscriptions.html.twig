@@ -1,14 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}<title>Envoi de demandes d'inscriptions au site CDLM.space</title>{% endblock %}
 {% block style %}
-<!--link rel="stylesheet" href="/css/edit_post.css"></link>
-<link rel="stylesheet" href="/css/edit_post900px.css"></link>
-<link rel="stylesheet" href="/css/edit_post600px.css"></link-->
-
 {{ encore_entry_link_tags("admin") }}
-
-<link rel="stylesheet" href="/css/account.css"></link>
-<link rel="stylesheet" href="/css/account600px.css"></link>
+{{ encore_entry_link_tags("account") }}
 <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
@@ -35,7 +29,7 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-{{ encore_entry_script_tag("admin") }}
+{{ encore_entry_script_tags("admin") }}
 <script>
 let addEmailMember = new AddField(
         document.getElementById("add_em_btn"), 

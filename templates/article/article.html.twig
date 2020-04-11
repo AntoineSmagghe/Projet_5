@@ -4,7 +4,7 @@
 {% include 'article/meta.html.twig' with {'article': article} %}
 {% endblock %}
 {% block style %}
-{{ encore_entry_link_tags("public") }}
+{{ encore_entry_link_tags("article") }}
 {% endblock %}
 {% block body %}
    {% if article.imgs.snapshot != [] %}

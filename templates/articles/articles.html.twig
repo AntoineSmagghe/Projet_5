@@ -7,11 +7,11 @@
 {% endblock %}
 {% block body %}
 <section id="articles">
-  <section id="article_cover">
+  <section id="articles_cover">
   {% if format == 'public-event' %}
-  <img class="article_image_cover" src="{{ asset('/img/18556493_10158695312680298_6402872989759344248_o.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
+  <img class="articles_image_cover" src="{{ asset('/img/18556493_10158695312680298_6402872989759344248_o.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
   <div class="incover">
-      <div class="article_cover_title" data-aos="fade-right">
+      <div class="articles_cover_title" data-aos="fade-right">
         <h1 class="part_title">{% trans %}Les évènements{% endtrans %}</h1>
       </div>
   </div>
