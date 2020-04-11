@@ -27,5 +27,11 @@
 @media #{$tablet-width}{
 	.member_images{
         font-size: 2rem;
-    }
+	}
+}
+
+@media #{$phone-width}{
+	.member_images{
+		justify-content: center;
+	}
 }

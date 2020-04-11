@@ -129,7 +129,11 @@
 .contact_socials{
 	display: flex;
 	justify-content: flex-start;
-    align-items: center;
+	align-items: center;
+	
+	@media #{$phone-width}{
+		justify-content: center;
+	}
 }
 
 .socials_logo{
@@ -143,6 +147,10 @@
 
 .socials_logo:first-child{
 	padding: 0 10px 0 0;
+
+	@media #{$phone-width}{
+		padding: 0;
+	}
 }
 
 .socials_logo img{
@@ -155,19 +163,35 @@
 .socials_logo img[alt="logo email"]{
 	width: 40px;
 	height: 36px;
+	@media #{$tablet-width}{
+		width: 30px;
+		height: 26px;
+	}
 }
 
 .socials_logo img[alt="logo soundcloud"]{
 	width: 57px;
-    height: 45px;
+	height: 45px;
+	@media #{$tablet-width}{
+        width: 47px;
+        height: 35px;
+    }
 }
 
 .socials_logo img[alt="logo facebook"]{
 	width: 42px;
-    height: 42px;
+	height: 42px;
+	@media #{$tablet-width}{
+		width: 32px;
+        height: 32px;
+    }
 }
 
 .socials_logo img[alt="logo instagram"]{
 	width: 45px;
-    height: 45px;
+	height: 45px;
+	@media #{$tablet-width}{
+		width: 35px;
+        height: 35px;
+    }
 }

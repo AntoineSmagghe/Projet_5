@@ -4,9 +4,7 @@
 {% include 'article/meta.html.twig' with {'article': article} %}
 {% endblock %}
 {% block style %}
-<link rel="stylesheet" href="/css/article.css">
-<link rel="stylesheet" href="/css/article900px.css">
-<link rel="stylesheet" href="/css/article600px.css">
+{{ encore_entry_link_tags("public") }}
 {% endblock %}
 {% block body %}
    {% if article.imgs.snapshot != [] %}

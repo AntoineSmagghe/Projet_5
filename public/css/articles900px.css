@@ -1,9 +1,0 @@
-@media screen and (max-width: 900px){
-    .article_cover_title {
-        width: 80%;
-    }
-    
-    .article_cover_title h1{
-        font-size: 2.5rem;
-    }
-}

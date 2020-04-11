@@ -1,0 +1,44 @@
+#legals{
+    color: white;
+    width: calc(100% - 40px);
+    max-width: 900px;
+    padding: 20px;
+    margin: 150px auto;
+
+    & h1{
+        margin: 20px 0;
+        font-size: 3rem;
+    }
+
+    & h3{
+        margin: 15px 0 5px 0;
+        font-size: 1.5rem;
+    }
+
+    & p{
+        line-height: 25px;
+        text-align: justify;
+    }
+
+    & a{
+        color:#78d3f0;
+    }
+
+    @media #{$phone-width}{
+        width: calc(100% - 20px);
+        padding: 10px;
+
+        & h1{
+            font-size: 2rem;
+        }
+
+        & h3{
+            font-size: 1.2rem;
+        }
+
+        & p{
+            font-size: 0.9rem;
+            line-height: 20px;            
+        }
+    }
+}

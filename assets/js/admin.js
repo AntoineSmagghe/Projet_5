@@ -11,8 +11,8 @@ import '../css/admin.scss';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
-import Request from "./component/Requests";
-global.Request = Request;
+import Requests from "./component/Requests";
+global.Requests = Requests;
 
 import AddField from "./component/AddField";
 global.AddField = AddField;

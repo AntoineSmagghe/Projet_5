@@ -4,9 +4,7 @@
 {% include 'article/meta.html.twig' %}
 {% endblock %}
 {% block style %}
-<link rel="stylesheet" href="/css/label.css">
-<link rel="stylesheet" href="/css/label900px.css">
-<link rel="stylesheet" href="/css/label600px.css">
+{{ encore_entry_link_tags("public") }}
 {% endblock %}
 {% block body %}
 <section id="member">

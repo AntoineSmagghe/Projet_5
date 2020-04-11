@@ -9,3 +9,37 @@ label .invalid-feedback.d-block{
     margin: 0 5px;
     color: red;
 }
+
+/****************
+*   ERROR PAGE  *
+*****************/
+.error_page{
+    max-width: 500px;
+    margin: auto;
+    padding: 150px 10px 0 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    & h1{
+        color: red;
+        font-size: 3rem;
+        font-family: var(--font_title);
+    }
+
+    & p{
+        text-align: center;
+    }
+
+    & a{
+        color: #78d3f0;
+    }
+
+    & img{
+        margin: 20px auto;
+        width: 100%;
+        border-radius: 5px;
+    }
+}
