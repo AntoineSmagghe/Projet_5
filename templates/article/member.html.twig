@@ -14,15 +14,15 @@
             <figcaption id="artist_release_figcaption" data-aos="fade-right">
             {% include 'article/cover.html.twig' %}
                 <div class="contact_socials">
-                    <a href="{{path("contact")}}" class="socials_logo"><img src="/img/envelope-open-text-solid.svg" alt="logo email"></a>
+                    <a href="{{path("contact")}}" class="socials_logo"><img src="/build/img/////envelope-open-text-solid.svg" alt="logo email"></a>
                     {% if article.socialNetwork.soundcloud != null %}
-                    <a href="{{ article.socialNetwork.soundcloud }}" target="blank" class="socials_logo"><img src="/img/soundcloud-brands.svg" alt="logo soundcloud"></a>
+                    <a href="{{ article.socialNetwork.soundcloud }}" target="blank" class="socials_logo"><img src="/build/img/////soundcloud-brands.svg" alt="logo soundcloud"></a>
                     {% endif %}
                     {% if article.socialNetwork.facebook != null %}
-                    <a href="{{ article.socialNetwork.facebook }}" target="blank" class="socials_logo"><img src="/img/facebook-square-brands.svg" alt="logo facebook"></a>
+                    <a href="{{ article.socialNetwork.facebook }}" target="blank" class="socials_logo"><img src="/build/img/////facebook-square-brands.svg" alt="logo facebook"></a>
                     {% endif %}
                     {% if article.socialNetwork.instagram != null %}
-                    <a href="{{ article.socialNetwork.instagram }}" target="blank" class="socials_logo"><img src="/img/instagram-brands.svg" alt="logo instagram"></a>
+                    <a href="{{ article.socialNetwork.instagram }}" target="blank" class="socials_logo"><img src="/build/img/////instagram-brands.svg" alt="logo instagram"></a>
                     {% endif %}
                 </div>
                 {% if is_granted('ROLE_ADMIN') %}

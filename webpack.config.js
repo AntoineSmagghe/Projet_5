@@ -38,8 +38,13 @@ Encore
   // but, you probably want this, unless you're building a single-page app
   .enableSingleRuntimeChunk()
 
+  .enableVersioning()
+
   // Copy all files from assets directory
-  .copyFiles({ from: './assets/images' })
+  .copyFiles({ 
+    from: './assets/images',
+    to: 'img/[path][name].[ext]' 
+  })
 
   /*
    * FEATURE CONFIG

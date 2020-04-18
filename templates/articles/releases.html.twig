@@ -7,7 +7,7 @@
 {% endblock %}
 {% block body %}
 <section id="articles_cover">
-    <img class="articles_image_cover" src="{{ asset('/img/Arthur/DSCF6337.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
+    <img class="articles_image_cover" src="{{ asset('/build/img/////Arthur/DSCF6337.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
     <div class="incover">
         <div class="articles_cover_title" data-aos="fade-right">
             <h1 class="part_title">{% trans %}Les sorties{% endtrans %}</h1>
@@ -32,7 +32,7 @@
                 {% if release.imgs|first != "" %}
                 <img class="img_release" src="{{ asset('/upload/pictures/' ~ release.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
                 {% else %}
-                <img src="{{asset('/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
+                <img src="{{asset('/build/img/////Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
                 {% endif %}
             {% endif %}
             </a>
