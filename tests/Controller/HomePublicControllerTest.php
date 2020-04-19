@@ -23,4 +23,22 @@ class HomePublicControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+    /**
+     * @dataProvider websiteUrls
+     */
+    public function testUrls($url)
+    {
+        $client = static::createClient();
+
+        $client->request('GET', $url);
+
+        $this->assertTrue($client->getResponse()->isSuccessful());
+    }
+
+    public function websiteUrls(){
+        return [
+            ['/fr/about'],
+        ];
+    }
 }
