@@ -8,19 +8,19 @@
 
         {% block title %}{% endblock %}
         <!-- FAVICONS -->
-        <link rel="apple-touch-icon" sizes="57x57" href="/build/img/////favicons/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/build/img/////favicons/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/build/img/////favicons/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/build/img/////favicons/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/build/img/////favicons/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/build/img/////favicons/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/build/img/////favicons/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/build/img/////favicons/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/build/img/////favicons/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/build/img/////favicons/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/build/img/////favicons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/build/img/////favicons/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/build/img/////favicons/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{  asset('build/img/favicons/apple-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('build/img/favicons/apple-icon-60x60.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('build/img/favicons/apple-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('build/img/favicons/apple-icon-76x76.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{  asset('build/img/favicons/apple-icon-114x114.png') }}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{  asset('build/img/favicons/apple-icon-120x120.png') }}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{  asset('build/img/favicons/apple-icon-144x144.png') }}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{  asset('build/img/favicons/apple-icon-152x152.png') }}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{  asset('build/img/favicons/apple-icon-180x180.png') }}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{  asset('build/img/favicons/android-icon-192x192.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{  asset('build/img/favicons/favicon-32x32.png') }}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{  asset('build/img/favicons/favicon-96x96.png') }}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{  asset('build/img/favicons/favicon-16x16.png') }}">
 
         <!-- FONT -->
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:400,700&display=swap" rel="stylesheet">
@@ -49,7 +49,7 @@
             <nav>
                 <div id="background_modal"></div>
                 <a id="logo_header" href="/">
-                    <img src="/build/img/////CDLM_logo.svg" alt="Logo CDLM">
+                    <img src="{{ asset('build/img/CDLM_logo.svg') }}" alt="Logo CDLM">
                     <p>CDLM</p>
                 </a>
                 <ul>
@@ -93,29 +93,29 @@
                         {% if app.request.get("_locale") == "en" %}
                         <li class="item_menu btn_locale">
                             <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" class="link_menu">
-                                <img src="/build/img/////Flag_of_France.svg" alt="French flag">
+                                <img src="{{ asset('build/img/Flag_of_France.svg') }}" alt="French flag">
                             </a>
                         </li>
                         {% else %}
                         <li class="item_menu btn_locale">
                             <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" class="link_menu">
-                                <img src="/build/img/////Flag_of_the_United_Kingdom.svg" alt="UK flag">
+                                <img src="{{ asset('build/img/Flag_of_the_United_Kingdom.svg') }}" alt="UK flag">
                             </a>
                         </li>
                         {% endif %}
                     {% endif %}
                     <li class="item_menu btn_locale">
                         <a class="link_menu" href="https://soundcloud.com/cdlm-free">
-                            <img src="/build/img/////soundcloud-brands.svg" alt="Soundcloud ico">
+                            <img src="{{ asset('build/img/soundcloud-brands.svg') }}" alt="Soundcloud ico">
                         </a>
                     </li>
                     {% if app.user == null %}
                     <li id="login_btn" class="item_menu">
-                        <img src="/build/img/////sign-in-alt-solid.svg" alt="Logo de connexion" class="sign_in_btn">
+                        <img src="{{ asset('build/img/sign-in-alt-solid.svg') }}" alt="Logo de connexion" class="sign_in_btn">
                     </li>
                     {% else %}
                     <li id="login_btn" class="item_menu">
-                        <img src="/build/img/////ellipsis-h-solid.svg" alt="Logo informations admin" class="sign_in_btn">
+                        <img src="{{ asset('build/img/ellipsis-h-solid.svg') }}" alt="Logo informations admin" class="sign_in_btn">
                     </li>
                     {% endif %}
                 </ul>
@@ -182,7 +182,7 @@
             {#Basic informations for footer #}
             <div class="footer">
                 <div class="footer_element logo_footer">
-                    <img id="logo_footer" src="/build/img/////CDLM_logo.svg" alt="logo CDLM">
+                    <img id="logo_footer" src="{{ asset('build/img/CDLM_logo.svg') }}" alt="logo CDLM">
                     <h1 id="logo_footer_name">LE<br> CHANT<br> DE<br> LA<br> MACHINE</h1>
                 </div>
                 <div class="footer_element">    

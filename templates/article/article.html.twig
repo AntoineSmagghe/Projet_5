@@ -14,7 +14,7 @@
         <img class="article_image_cover" src="{{ asset('/upload/pictures/' ~ article.imgs|first) }}" alt="Photo de l'article : {{article.title}}" >
         {% endif %}
     {% else %}
-    <img class="article_image_cover" src="/build/img/////Arthur/DSCF6241.jpg" alt="Photo de l'article : {{article.title}}" >
+    <img class="article_image_cover" src="{{ asset('build/img/Arthur/DSCF6241.jpg') }}" alt="Photo de l'article : {{article.title}}" >
     {% endif %}
     <section id="article_cover">
         <div class="incover">

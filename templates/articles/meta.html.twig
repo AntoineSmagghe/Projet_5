@@ -1,17 +1,17 @@
 {% if format == 'public-event' %}
-    {% set coverArticle %}{{ asset("/build/img/////18556493_10158695312680298_6402872989759344248_o.jpg") | imagine_filter('300x300')}}{% endset %}
+    {% set coverArticle %}{{ asset("build/img/18556493_10158695312680298_6402872989759344248_o.jpg") | imagine_filter('300x300')}}{% endset %}
     {% set titleArticle = "Public events" %}
     {% set descriptionArticle = "Les évènements du Chant De La Machine" %}
 {% elseif format == 'private-event' %}
-    {% set coverArticle %}{{ asset("/build/img/////Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
+    {% set coverArticle %}{{ asset("build/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
     {% set titleArticle = "Private events" %}
     {% set descriptionArticle = "Les évènements privés du Chant De La Machine" %}
 {% elseif format == 'releases' %}
-    {% set coverArticle %}{{ asset("/build/img/////Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
+    {% set coverArticle %}{{ asset("build/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
     {% set titleArticle = "Releases" %}
     {% set descriptionArticle = "Les sorties du label Le Chant De La Machine" %}
 {% elseif format == 'members' %}
-    {% set coverArticle %}{{ asset("/build/img/////Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
+    {% set coverArticle %}{{ asset("build/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}      
     {% set titleArticle = "Artists" %}
     {% set descriptionArticle = "Les artistes du Chant De La Machine" %}
 {% endif %}

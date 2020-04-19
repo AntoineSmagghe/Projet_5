@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    {% set coverArticle %}{{ asset("/build/img/////Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}
+    {% set coverArticle %}{{ asset("build/img/Arthur/DSCF6310.jpg") | imagine_filter('300x300') }}{% endset %}
     {% set titleArticle = "Home" %}
     {% set descriptionArticle = "Bienvenue au Chant de la Machine, ce site rassemble l'association organisatrice d'évènements, le label de musique et bien d'autre choses." %}
     {% include 'include/htmlMeta.html.twig' %}
@@ -32,7 +32,7 @@
           {% if article.imgs|first != "" %}
           <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) | imagine_filter('300x300') }}" alt="Photo de l'article : {{ article.title }}">
           {% else %}
-          <img src="{{asset('/build/img/////Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
+          <img src="{{asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ article.title }}">
           {% endif %}
         {% endif %}
         </div>
