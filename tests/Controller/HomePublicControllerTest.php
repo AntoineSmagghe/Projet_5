@@ -15,15 +15,6 @@ class HomePublicControllerTest extends WebTestCase
         $this->assertEquals(302, $client->getResponse()->getStatusCode());
     }
 
-    public function testIndex()
-    {
-        $client = static::createClient();
-
-        $client->request('GET', '/fr/');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
     /**
      * @dataProvider websiteUrls
      */
@@ -33,17 +24,20 @@ class HomePublicControllerTest extends WebTestCase
 
         $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function websiteUrls(){
         return [
+            ['/fr'],
             ['/fr/about'],
-            ['/fr/about'],
-            ['/fr/about'],
-            ['/fr/about'],
-            ['/fr/about'],
-            ['/fr/about'],
+            ['/fr/contact'],
+            ['/fr/legals'],
+            ['/fr/rgpd'],
+            ['/fr/article/{format}'],
+            ['/fr/article/releases'],
+            ['/fr/article/public-event'],
+            ['/fr/article/private-event'],
         ];
     }
 }
