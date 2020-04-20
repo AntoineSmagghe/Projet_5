@@ -39,6 +39,11 @@ class HomePublicControllerTest extends WebTestCase
     public function websiteUrls(){
         return [
             ['/fr/about'],
+            ['/fr/about'],
+            ['/fr/about'],
+            ['/fr/about'],
+            ['/fr/about'],
+            ['/fr/about'],
         ];
     }
 }

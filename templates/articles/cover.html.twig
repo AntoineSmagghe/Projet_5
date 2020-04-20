@@ -11,6 +11,6 @@
     {% if article.imgs|first != "" %}
         <img src="{{ asset('/upload/pictures/' ~ article.imgs|first.name) | imagine_filter('300x300') }}" alt="Photo : {{ article.title }}">
     {% else %}
-        <img src="{{asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo : {{ article.title }}">
+        <img src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo : {{ article.title }}">
     {% endif %}
 {% endif %}

@@ -41,7 +41,7 @@ Encore
   // Copy all files from assets directory
   .copyFiles({ 
     from: './assets/images',
-    to: 'img/[hash:8].[ext]' 
+    to: 'img/[path][hash:8].[ext]' 
   })
 
   /*

@@ -32,7 +32,7 @@
                 {% if release.imgs|first != "" %}
                 <img class="img_release" src="{{ asset('/upload/pictures/' ~ release.imgs|first.name) | imagine_filter('300x300') }}" alt="Cover de la release : {{ release.title }}">
                 {% else %}
-                <img src="{{asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300')}}" alt="Photo de l'article : {{ release.title }}">
+                <img src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300') }}" alt="Photo de l'article : {{ release.title }}">
                 {% endif %}
             {% endif %}
             </a>
