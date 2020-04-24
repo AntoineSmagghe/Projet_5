@@ -18,26 +18,26 @@ class HomePublicControllerTest extends WebTestCase
     /**
      * @dataProvider websiteUrls
      */
-    public function testUrls($url)
+    public function testUrls($method, $url, $parameter)
     {
         $client = static::createClient();
 
-        $client->request('GET', $url);
+        $client->request($method, $url, [$parameter]);
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
     public function websiteUrls(){
         return [
-            ['/fr'],
-            ['/fr/about'],
-            ['/fr/contact'],
-            ['/fr/legals'],
-            ['/fr/rgpd'],
-            ['/fr/article/{format}'],
-            ['/fr/article/releases'],
-            ['/fr/article/public-event'],
-            ['/fr/article/private-event'],
+            ['GET', '/{_locale}/', 'fr'],
+            ['GET', '/fr/about', null],
+            ['GET', '/fr/contact', null],
+            ['GET', '/fr/legals', null],
+            ['GET', '/fr/rgpd', null],
+            ['GET', '/fr/article/{format}', 'members'],
+            ['GET', '/fr/article/releases/', null],
+            ['GET', '/fr/article/public-event/', null],
+            ['GET', '/fr/article/private-event/', null],
         ];
     }
 }
