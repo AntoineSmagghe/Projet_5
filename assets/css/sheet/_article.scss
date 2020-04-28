@@ -63,21 +63,17 @@
 }
 
 .widget_SC{
-    border-radius: 7px;
-    background-color: white;
     color: black;
     margin: auto;
     width: calc(100% - 30px);
-    padding: 15px;
+    padding: 0 0 15px 0;
     animation: scaleBlur 1s;
-    box-shadow: 0 0 4px black;
 
     & iframe {
         margin: 5px 0;
         padding: 10px;
         width: calc(100% - 20px);
-        background-color: rgb(64,64,64);
-        opacity: 0.9;
+        background-color: rgb(126,126,126);
         border-radius: 15px;
         transition: .5s ease;
     }
@@ -87,10 +83,6 @@
         padding: unset;    
         background-color: unset;
         box-shadow: unset;
-
-        & iframe{
-            background-color: rgb(126,126,126);
-        }
     }
 }
 
