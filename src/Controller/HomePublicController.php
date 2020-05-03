@@ -7,7 +7,8 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
-use Gedmo\Translatable\Entity\Repository\TranslationRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Translatable\Entity\Translation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,19 +92,18 @@ class HomePublicController extends AbstractController
     /**
      * @Route("/{_locale}/article/{format}/{slug}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
      */
-    public function article(Request $request, TranslationRepository $translationRepository)
+    public function article(Request $request, EntityManagerInterface $em)
     {
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
-
-        $translations = $translationRepository->findTranslations($article);
-
-        dump($translations);
+        $repo = $em->getRepository(Translation::class);
+        $translations = $repo->findTranslations($article);
 
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
             return $this->render('article/member.html.twig', [
                 'article' => $article,
+                'translation' => $translations[$request->getLocale()],
                 'cover' => $imageCover,
             ]);
         }
@@ -111,12 +111,14 @@ class HomePublicController extends AbstractController
         if ($article->getFormat() === "releases") {
             return $this->render('article/release.html.twig', [
                 'article' => $article,
+                'translation' => $translations[$request->getLocale()],
                 'cover' => $imageCover,
             ]);
         }
 
         return $this->render('article/article.html.twig', [
             'article' => $article,
+            'translation' => $translations[$request->getLocale()],
             'cover' => $imageCover,
         ]);
     }
