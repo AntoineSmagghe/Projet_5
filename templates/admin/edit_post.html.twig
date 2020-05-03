@@ -175,7 +175,7 @@
             removePlugins: ["ImageUpload", "MediaEmbed"],
         })
         .then(editor =>{
-            editor.setData("{{ translation.text|raw }}");
+            editor.setData("{{ text|raw }}");
         })
         .catch(error => {
             console.error(error);

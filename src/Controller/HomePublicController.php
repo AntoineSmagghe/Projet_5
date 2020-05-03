@@ -97,15 +97,25 @@ class HomePublicController extends AbstractController
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
         $repo = $em->getRepository(Translation::class);
         $translations = $repo->findTranslations($article);
-        
-        // if ($translations[$request->getLocale()]["text"] == "")
+
+        if (isset($translations[$request->getLocale()])){
+            if (!empty($translations[$request->getLocale()]["text"])){
+                $text = $translations[$request->getLocale()]["text"];
+            } else{
+                $text = $translations['fr']["text"];
+            }
+        } else {
+            $text = $article->getText();
+        }
+
+        dump($text);
 
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
             return $this->render('article/member.html.twig', [
                 'article' => $article,
-                'translation' => $translations[$request->getLocale()],
+                'text' => $text,
                 'cover' => $imageCover,
             ]);
         }
@@ -113,14 +123,14 @@ class HomePublicController extends AbstractController
         if ($article->getFormat() === "releases") {
             return $this->render('article/release.html.twig', [
                 'article' => $article,
-                'translation' => $translations[$request->getLocale()],
+                'text' => $text,
                 'cover' => $imageCover,
             ]);
         }
 
         return $this->render('article/article.html.twig', [
             'article' => $article,
-            'translation' => $translations[$request->getLocale()],
+            'text' => $text,
             'cover' => $imageCover,
         ]);
     }

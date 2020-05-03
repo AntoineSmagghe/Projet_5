@@ -84,8 +84,6 @@ class AdminController extends AbstractController
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {     
         $form = $this->createForm(ArticleType::class, $article);
-        $repo = $manager->getRepository(Translation::class);
-        $translation = $repo->findTranslations($article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
@@ -104,10 +102,24 @@ class AdminController extends AbstractController
         if ($article->getFormat() === "members"){
             $isMember = true;
         }
+
+        $repo = $manager->getRepository(Translation::class);
+        $translation = $repo->findTranslations($article);
+
+        if (isset($translation[$request->getLocale()])) {
+            if (!empty($translation[$request->getLocale()]["text"])) {
+                $text = $translation[$request->getLocale()]["text"];
+            } else {
+                $text = $translation['fr']["text"];
+            }
+        } else {
+            $text = $article->getText();
+        }
+
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
-            'translation' => $translation[$request->getLocale()],
+            'text' => $text,
             'isMember' => $isMember,
         ]);
     }
