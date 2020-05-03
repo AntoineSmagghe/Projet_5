@@ -48,13 +48,14 @@ class AdminController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
-            $article->setUser($security->getUser())
+            $article->setTranslatableLocale($request->getLocale())
+                    ->setUser($security->getUser())
                     ->setUpdatedAt($now);
             $manager->persist($article);
             $manager->flush();
             
             $this->addFlash("success", $translator->trans("Article created at") . " " . $now->format('d/m/Y - H:i:s'));
-                        
+            
             return $this->redirectToRoute('editPost', [
                 'format' => $article->getFormat(),
                 'id' => $article->getId(),
@@ -86,8 +87,11 @@ class AdminController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
-            $article->setModifiedBy($security->getUser())
-                    ->setUpdatedAt($now);
+            $article
+                ->setTranslatableLocale($request->getLocale())
+                ->setModifiedBy($security->getUser())
+                ->setUpdatedAt($now)
+                ;
             $manager->persist($article);
             $manager->flush();
 

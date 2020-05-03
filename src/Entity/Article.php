@@ -9,11 +9,12 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  */
-class Article
+class Article implements Translatable
 {
     /**
      * @ORM\Id()
@@ -39,8 +40,14 @@ class Article
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Gedmo\Translatable
      */
     private $text;
+
+    /**
+     * @Gedmo\Locale
+     */
+    private $locale;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -64,8 +71,8 @@ class Article
     private $imgs;
 
     /**
-     * Assert\All({
-     *      @Assert\Image(mimeTypes="image/jpg")
+     * @Assert\All({
+     *      @Assert\Image(mimeTypes="image/*")
      * })
      */
     private $imgsFile;
@@ -161,6 +168,13 @@ class Article
     public function setText(?string $text): self
     {
         $this->text = $text;
+
+        return $this;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
 
         return $this;
     }

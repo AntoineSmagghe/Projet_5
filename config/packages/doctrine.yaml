@@ -20,11 +20,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
-            # translatable:
-            #     type: annotation
-            #     alias: Gedmo
-            #     prefix: Gedmo\Translatable\Entity
-            #     dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+            translatable:
+                type: annotation
+                alias: Gedmo
+                prefix: Gedmo\Translatable\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+
             # loggable:
             #     type: annotation
             #     alias: Gedmo
@@ -35,3 +36,12 @@ doctrine:
             #     alias: Gedmo
             #     prefix: Gedmo\Tree\Entity
             #     dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+
+        # default_entity_manager:
+        #     mappings:
+        #         gedmo_translatable:
+        #             type: annotation
+        #             prefix: Gedmo\Translatable\Entity
+        #             dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+        #             alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+        #             is_bundle: false

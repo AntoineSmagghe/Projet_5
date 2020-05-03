@@ -7,6 +7,7 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
+use Gedmo\Translatable\Entity\Repository\TranslationRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,9 +91,14 @@ class HomePublicController extends AbstractController
     /**
      * @Route("/{_locale}/article/{format}/{slug}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
      */
-    public function article(Request $request)
+    public function article(Request $request, TranslationRepository $translationRepository)
     {
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
+
+        $translations = $translationRepository->findTranslations($article);
+
+        dump($translations);
+
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
