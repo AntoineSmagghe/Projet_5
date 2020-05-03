@@ -97,6 +97,8 @@ class HomePublicController extends AbstractController
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
         $repo = $em->getRepository(Translation::class);
         $translations = $repo->findTranslations($article);
+        
+        // if ($translations[$request->getLocale()]["text"] == "")
 
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 

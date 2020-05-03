@@ -11,6 +11,7 @@ use App\Entity\Token;
 use App\Form\ArticleType;
 use App\Repository\ImgRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Translatable\Entity\Translation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -83,12 +84,13 @@ class AdminController extends AbstractController
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {     
         $form = $this->createForm(ArticleType::class, $article);
+        $repo = $manager->getRepository(Translation::class);
+        $translation = $repo->findTranslations($article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
-            $article
-                ->setTranslatableLocale($request->getLocale())
+            $article->setTranslatableLocale($request->getLocale())
                 ->setModifiedBy($security->getUser())
                 ->setUpdatedAt($now)
                 ;
@@ -105,6 +107,7 @@ class AdminController extends AbstractController
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
+            'translation' => $translation[$request->getLocale()],
             'isMember' => $isMember,
         ]);
     }
