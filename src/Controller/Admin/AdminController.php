@@ -82,14 +82,14 @@ class AdminController extends AbstractController
      * @Route("/{_locale}/admin/edit/{id}", requirements={"_locale": "fr|en"}, name="editPost", methods={"POST", "GET"})
      */
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
-    {     
+    {
+        $article->setTranslatableLocale($request->getLocale());
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
-            $article->setTranslatableLocale($request->getLocale())
-                ->setModifiedBy($security->getUser())
+            $article->setModifiedBy($security->getUser())
                 ->setUpdatedAt($now)
                 ;
             $manager->persist($article);
