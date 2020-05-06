@@ -7,8 +7,6 @@ use App\Form\ContactType;
 use App\Repository\ArticleRepository;
 use App\Repository\ImgRepository;
 use App\Repository\UsersRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Translatable\Entity\Translation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -92,32 +90,14 @@ class HomePublicController extends AbstractController
     /**
      * @Route("/{_locale}/article/{format}/{slug}", requirements={"_locale": "fr|en"}, name="article", methods={"GET"})
      */
-    public function article(Request $request, EntityManagerInterface $em)
+    public function article(Request $request)
     {
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
-        $article->setTranslatableLocale($request->getLocale());
-
-        $repo = $em->getRepository(Translation::class);
-        $translations = $repo->findTranslations($article);
-
-        if (isset($translations[$request->getLocale()])){
-            if (!empty($translations[$request->getLocale()]["text"])){
-                $text = $translations[$request->getLocale()]["text"];
-            } else{
-                $text = $translations['fr']["text"];
-            }
-        }else{
-            $text = $article->getText();
-        }
-        
-        dump($translations);
-
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 
         if ($article->getFormat() === "members"){
             return $this->render('article/member.html.twig', [
                 'article' => $article,
-                'text' => $text,
                 'cover' => $imageCover,
             ]);
         }
@@ -125,14 +105,12 @@ class HomePublicController extends AbstractController
         if ($article->getFormat() === "releases") {
             return $this->render('article/release.html.twig', [
                 'article' => $article,
-                'text' => $text,
                 'cover' => $imageCover,
             ]);
         }
 
         return $this->render('article/article.html.twig', [
             'article' => $article,
-            'text' => $text,
             'cover' => $imageCover,
         ]);
     }
