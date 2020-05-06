@@ -110,12 +110,11 @@ class AdminController extends AbstractController
             if (!empty($translation[$request->getLocale()]["text"])) {
                 $text = $translation[$request->getLocale()]["text"];
             } else {
-                $text = $translation['fr']["text"];
+                //$text = $translation['fr']["text"];
+                $text = $article->getText();
             }
-        } else {
-            $text = $article->getText();
         }
-
+        
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article,

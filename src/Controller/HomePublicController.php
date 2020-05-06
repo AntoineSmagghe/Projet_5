@@ -95,7 +95,8 @@ class HomePublicController extends AbstractController
     public function article(Request $request, EntityManagerInterface $em)
     {
         $article = $this->article->findOneBy(['slug' => $request->get('slug')]);
-        dump($article);
+        $article->setTranslatableLocale($request->getLocale());
+
         $repo = $em->getRepository(Translation::class);
         $translations = $repo->findTranslations($article);
 
@@ -105,11 +106,11 @@ class HomePublicController extends AbstractController
             } else{
                 $text = $translations['fr']["text"];
             }
-        } else {
+        }else{
             $text = $article->getText();
         }
-
-        dump($article);
+        
+        dump($translations);
 
         $imageCover = $this->imgRepo->findOneBy(["cover" => true, "article" => $article->getId()]);
 

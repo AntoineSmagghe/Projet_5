@@ -27,7 +27,6 @@ liip_imagine :
                 relative_resize:
                     widen: 1920
 
-
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 #background : { size : [124, 94], position : center, color : '#000000' }
