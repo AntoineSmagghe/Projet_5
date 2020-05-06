@@ -174,9 +174,6 @@
         .create(document.querySelector('.ckeditor'), {
             removePlugins: ["ImageUpload", "MediaEmbed"],
         })
-        .then(editor =>{
-            editor.setData("{{ text|raw }}");
-        })
         .catch(error => {
             console.error(error);
         });

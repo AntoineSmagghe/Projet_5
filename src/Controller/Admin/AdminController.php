@@ -11,7 +11,6 @@ use App\Entity\Token;
 use App\Form\ArticleType;
 use App\Repository\ImgRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Gedmo\Translatable\Entity\Translation;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -83,13 +82,13 @@ class AdminController extends AbstractController
      */
     public function editPost(Article $article, Request $request, EntityManagerInterface $manager, Security $security, TranslatorInterface $translator)
     {
-        $article->setTranslatableLocale($request->getLocale());
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $now = new DateTime("now", new DateTimeZone("europe/rome"));
-            $article->setModifiedBy($security->getUser())
+            $article->setTranslatableLocale($request->getLocale())
+                ->setModifiedBy($security->getUser())
                 ->setUpdatedAt($now)
                 ;
             $manager->persist($article);
@@ -102,23 +101,10 @@ class AdminController extends AbstractController
         if ($article->getFormat() === "members"){
             $isMember = true;
         }
-
-        $repo = $manager->getRepository(Translation::class);
-        $translation = $repo->findTranslations($article);
-
-        if (isset($translation[$request->getLocale()])) {
-            if (!empty($translation[$request->getLocale()]["text"])) {
-                $text = $translation[$request->getLocale()]["text"];
-            } else {
-                //$text = $translation['fr']["text"];
-                $text = $article->getText();
-            }
-        }
         
         return $this->render('admin/edit_post.html.twig', [
             'form' => $form->createView(),
             'article' => $article,
-            'text' => $text,
             'isMember' => $isMember,
         ]);
     }

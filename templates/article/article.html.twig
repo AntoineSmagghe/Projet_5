@@ -31,8 +31,7 @@
     </section>
     <section id="article_body">  
         <article id="txt">
-            {{ dump(text) }}
-            {{ text|raw }}
+            {{ article.text|raw }}
         </article>
         <aside id="music">
             {% if article.apiData != [] %}
