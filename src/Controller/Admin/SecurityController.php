@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use Exception;
 use DateTime;
 
-use App\Entity\Token;
 use App\Entity\Users;
 use App\Form\ResetMailType;
 use App\Form\ResetPasswordType;
@@ -62,7 +61,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/{_locale}/admin/signin", requirements={"_locale": "fr|en"}, name="signIn", methods={"POST", "GET"})
      */
-    public function adminSignin(Request $request, TranslatorInterface $trans, MailerInterface $mi)
+    public function adminSignin(Request $request, TranslatorInterface $trans)
     {
         $newUser = new Users();
         $form = $this->createForm(UsersType::class, $newUser);
