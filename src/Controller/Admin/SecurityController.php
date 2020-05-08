@@ -2,17 +2,20 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ResetPassword;
 use Exception;
 use DateTime;
 
 use App\Entity\Users;
+use App\Form\AnonymeMailType;
 use App\Form\ResetMailType;
 use App\Form\ResetPasswordType;
 use App\Form\TokenSinginType;
 use App\Form\UserIdentityType;
 use App\Form\UsersType;
+use App\Repository\ResetPasswordRepository;
 use App\Repository\TokenRepository;
-
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -230,5 +233,78 @@ class SecurityController extends AbstractController
         return $this->render('users/reset_mail.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{_locale}/reset-password", requirements={"_locale": "fr|en"}, name="anonymeResetPassword", methods={"POST", "GET"})
+     */
+    public function anonymeResetPassword(Request $request, UsersRepository $users){
+        
+        $form = $this->createForm(AnonymeMailType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = $form->getData("email")["email"];
+            $user = $users->findOneBy(["mail" => $email]);
+            
+            if (!empty($user)){
+                $link = new ResetPassword();
+                $token = bin2hex(random_bytes(26));
+                $url = $this->generateUrl("resetPasswordFromMail", ["t" => $token]);
+
+                $link->setEmail($email)
+                    ->setToken($token);
+
+                $this->em->persist($link);
+                $this->em->flush();
+
+                $send = (new TemplatedEmail())
+                    ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
+                    ->to($email)
+                    ->subject('Hello !')
+                    ->htmlTemplate('mailer/resetPasswordFromMail.html.twig')
+                    ->context([
+                        'url' => $url,
+                    ]);
+
+                $this->mi->send($send);
+
+                $this->addFlash('success', $this->trans->trans("An email has been send to your address ;)"));
+                return $this->redirectToRoute('home_public');
+            }else{
+                $this->addFlash('fail', $this->trans->trans("This email dosen't exist in the CDLM database"));
+            }
+        }
+
+        return $this->render("security/resetPassword.html.twig",[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{_locale}/user-reset-password", requirements={"_locale": "fr|en"}, name="resetPasswordFromMail", methods={"POST", "GET")
+     */
+    public function resetPasswordFromMail(Request $request, ResetPasswordRepository $resetRepository, UsersRepository $users){
+        $link = $resetRepository->findOneBy(["token" => $request->get("t")]);
+        
+        if (!empty($link)){
+            $user = $users->findOneBy(["mail" => $link->getEmail()]);
+            $form = $this->createForm(ResetPasswordType::class, $user);
+            $form->handleRequest($request);
+            
+            if($form->isSubmitted() && $form->isValid()){
+                
+                $this->em->persist($user);
+                $this->em->remove($link);
+                $this->em->flush();
+
+                $this->addFlash('success', $this->trans->trans("Your password has been updated"));
+                $this->redirectToRoute("home_public");
+            }
+
+            return $this->render("users/reset_password.html.twig", [
+                'form' => $form->createView(),
+            ]);
+        }
     }
 }
