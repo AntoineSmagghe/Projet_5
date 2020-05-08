@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block style %}
 {{ encore_entry_link_tags("admin") }}
+{{ encore_entry_link_tags("account") }}
+
 {% endblock %}
 {% block body %}
 <div class="undernav"></div>
@@ -15,7 +17,6 @@
         <div class="form-group">
             <label for="mail">{% trans %}Email{% endtrans %}</label>
             <input type="text" id='mail' name="_username" placeholder="{% trans %}Address{% endtrans %}" class="form-control" value="{{ last_user }}">
-        <div class="form-group">
         </div>
         <div class="form-group">
             <label for="password">{% trans %}Mot de passe{% endtrans %}</label>
@@ -26,5 +27,8 @@
             <button type="submit" class="a_btn a_btn btn_more">{% trans %}connect{% endtrans %}</button>
         </div>
     </form>
+    <div class="form-group">
+        <a href="{{ path('anonymeResetPassword') }}" class="blue-link" style="text-decoration:underline;">Mot de passe oublié</a>
+    </div>
 </section>
 {% endblock %}
