@@ -9,6 +9,7 @@ use DateTime;
 use App\Entity\Users;
 use App\Form\AnonymeMailType;
 use App\Form\ResetMailType;
+use App\Form\ResetPasswordFromMailType;
 use App\Form\ResetPasswordType;
 use App\Form\TokenSinginType;
 use App\Form\UserIdentityType;
@@ -261,7 +262,7 @@ class SecurityController extends AbstractController
                 $send = (new TemplatedEmail())
                     ->from(new MimeAddress('cdlm.free@gmail.com', "Le Chant de la Machine"))
                     ->to($email)
-                    ->subject('Hello !')
+                    ->subject('Changement de mot de passe')
                     ->htmlTemplate('mailer/resetPasswordFromMail.html.twig')
                     ->context([
                         'url' => $url,
@@ -282,29 +283,35 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/user-reset-password", requirements={"_locale": "fr|en"}, name="resetPasswordFromMail", methods={"POST", "GET")
+     * @Route("/{_locale}/user-reset-password", requirements={"_locale": "fr|en"}, name="resetPasswordFromMail", methods={"POST", "GET"})
      */
-    public function resetPasswordFromMail(Request $request, ResetPasswordRepository $resetRepository, UsersRepository $users){
+    public function resetPasswordFromMail(Request $request, ResetPasswordRepository $resetRepository, UserPasswordEncoderInterface $passwordEncoder, UsersRepository $users){
         $link = $resetRepository->findOneBy(["token" => $request->get("t")]);
-        
+
         if (!empty($link)){
             $user = $users->findOneBy(["mail" => $link->getEmail()]);
-            $form = $this->createForm(ResetPasswordType::class, $user);
+            dump($user);
+            $form = $this->createForm(ResetPasswordFromMailType::class, $user);
             $form->handleRequest($request);
             
             if($form->isSubmitted() && $form->isValid()){
-                
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $user->getResetPassword());
+                $user->setPassword($newEncodedPassword);
+
                 $this->em->persist($user);
                 $this->em->remove($link);
                 $this->em->flush();
 
                 $this->addFlash('success', $this->trans->trans("Your password has been updated"));
-                $this->redirectToRoute("home_public");
+                return $this->redirectToRoute("home_public");
             }
 
-            return $this->render("users/reset_password.html.twig", [
+            return $this->render("security/resetPasswordFromMail.html.twig", [
                 'form' => $form->createView(),
             ]);
         }
+
+        $this->addFlash('fail', $this->trans->trans("Wrong link, send us an email"));
+        return $this->redirectToRoute("home_public");
     }
 }
