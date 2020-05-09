@@ -1,0 +1,9 @@
+<script async defer src="https://connect.facebook.net/fr_FR/sdk.js"></script>
+<script>
+	window.fbAsyncInit = function () {
+        FB.init({xfbml: true, version: 'v7.0'});
+    };
+{% for video in videos %}
+document.getElementById('fbplayer[{{ loop.index0 }}]').setAttribute('data-href', video);
+{% endfor %}
+</script>

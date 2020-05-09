@@ -48,6 +48,13 @@
                 {% endfor %}
             </div>
             {% endif %}
+            {% if article.facebook != [] %}
+            <div class="youtube_videos">
+                {% for video in article.facebook %}
+                <div id="fbplayer[{{loop.index0}}]" class="fb-post" data-width="500"></div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </aside>
     </section>
     {% if article.imgs.snapshot != null %}
@@ -62,4 +69,5 @@
 <script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 {% include 'include/youtubePlayer.html.twig' with {"videos": article.youtube} %}
+{% include 'include/facebookPlayer.html.twig' with {"videos": article.facebook} %}
 {% endblock %}

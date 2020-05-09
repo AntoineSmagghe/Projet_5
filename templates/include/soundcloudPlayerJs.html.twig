@@ -1,6 +1,5 @@
 <script src="https://connect.soundcloud.com/sdk/sdk-3.3.2.js"></script>
 <script>
-
 {% for sound in sounds %}
 fetch("https://soundcloud.com/oembed?url={{ sound }}&format=json&iframe=false", {
     method: 'GET',
@@ -11,29 +10,4 @@ fetch("https://soundcloud.com/oembed?url={{ sound }}&format=json&iframe=false", 
     document.getElementById("sound[{{ loop.index0 }}]").innerHTML = '<iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track_id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe>';
 });
 {% endfor %}
-
-{#
- Resolve
- "https://api.soundcloud.com/resolve?url={{ sound }}&client_id=" + client_id
-
- Oembed
- "https://soundcloud.com/oembed?url={{ sound }}&format=json&iframe=false"
-#}
-
-/*
-//Soundcloud ID
-SC.initialize({
-        client_id: 'Uz4aPhG7GAl1VYGOnvOPW1wQ0M6xKtA9'
-    });
-
-let date;
-{% for sound in sounds %}
-SC.resolve("{{sound}}")
-    .then((track) => {
-        console.log(track);
-        date = (new Date(track.created_at)).getFullYear();
-        document.getElementById("sound[{{ loop.index0 }}]").innerHTML = '<a href="'+ track.permalink_url +'"><img class="cover_track" src="'+ track.artwork_url +'"/></a><div class="info_track"><h3>'+ track.title +'</h3><p>'+ date +'</p><iframe width="100%" height="20" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + track.id + '&color=%230e0d26&inverse=true&auto_play=false&show_user=true"></iframe></div>';
-    });
-{% endfor %}
-*/
 </script>

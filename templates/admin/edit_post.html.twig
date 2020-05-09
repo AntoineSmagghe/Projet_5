@@ -106,6 +106,21 @@
                 {% endfor %}
             </ul>
         </div>
+        <div id="add_fb_field">
+            <a id="add_fb_btn" class="a_btn btn_modify">Facebook</a>
+        </div>
+        <ul id="list_fb" class="facebook" data-prototype="{{ form_widget(form.facebook.vars.prototype)|e('html_attr') }}">
+            {% for facebook in form.facebook %}
+            <li>
+                {{form_row(facebook, {
+                            'label': false,
+                            'attr': {'class': 'url_FB'}
+                        })}}
+                <button class="btn_del_facebook" name="{{facebook.vars.name}}" type="button">X</button>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
         <div class="row">
             <div class="col-md-3">
             {{ form_errors(form.imgsFile) }}
@@ -231,6 +246,17 @@
         "article_youtube",
         "article[youtube]",
         "btn_del_video"
+        );
+    addYtInput.init();
+
+    let addFbInput = new AddField(
+        document.getElementById("add_fb_btn"), 
+        document.getElementsByClassName("facebook")[0],
+        document.getElementsByClassName("facebook")[0].getAttribute("data-prototype"),
+        document.getElementsByClassName("url_FB"),
+        "article_facebook",
+        "article[facebook]",
+        "btn_del_facebook"
         );
     addYtInput.init();
 

@@ -120,6 +120,16 @@ class Article implements Translatable
      */
     private $youtube = [];
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     * @Assert\All({
+     *      @Assert\Url(
+     *          message = "l'url {{ value }} n'est pas valide",
+     *      )
+     * })
+     */
+    private $facebook = [];
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -339,6 +349,18 @@ class Article implements Translatable
     public function setYoutube(?array $youtube): self
     {
         $this->youtube = $youtube;
+
+        return $this;
+    }
+
+    public function getFacebook(): ?array
+    {
+        return $this->facebook;
+    }
+
+    public function setFacebook(?array $facebook): self
+    {
+        $this->facebook = $facebook;
 
         return $this;
     }
