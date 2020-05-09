@@ -4,6 +4,6 @@
         FB.init({xfbml: true, version: 'v7.0'});
     };
 {% for video in videos %}
-document.getElementById('fbplayer[{{ loop.index0 }}]').setAttribute('data-href', video);
+document.getElementById('fbplayer[{{ loop.index0 }}]').setAttribute('data-href', "{{video}}");
 {% endfor %}
 </script>

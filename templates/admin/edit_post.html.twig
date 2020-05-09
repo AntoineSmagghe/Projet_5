@@ -1,45 +1,47 @@
 {% extends 'base.html.twig' %}
-{% block title %}<title>Editeur d'article pour le Chant de la Machine.</title>{% endblock %}
+{% block title %}
+	<title>Editeur d'article pour le Chant de la Machine.</title>
+{% endblock %}
 {% block style %}
-{{ encore_entry_link_tags("admin") }}
-<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
+	{{ encore_entry_link_tags("admin") }}
+	<link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
 {% endblock %}
 {% block body %}
 <div class="undernav"></div>
 {% if app.request.attributes.get('_route') == 'editPost' %}
-<div id="delete_article_btn">
-    <form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-        <button id="del_article" class="a_btn btn_del">{% trans %}Supprimer{% endtrans %}</button>
-    </form>
-</div>
+	<div id="delete_article_btn">
+		<form method="POST" action="{{ path("delPost", { "id" : article.id }) }}">
+			<input type="hidden" name="_method" value="DELETE">
+			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+			<button id="del_article" class="a_btn btn_del">{% trans %}Supprimer{% endtrans %}</button>
+		</form>
+	</div>
 {% endif %}
 <section id="edit_post">
-    {{ form_start(form) }}
-    <div class="form_error">
-        {{ form_errors(form) }}
-    </div>
-    <div class="sticky_edit_menu">
-        <div class="see_and_delete">
-        {% if app.request.attributes.get('_route') == 'editPost' %}
-            <a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
-        {% endif %}
-        {{ form_row(form.save, {
+	{{ form_start(form) }}
+	<div class="form_error">
+		{{ form_errors(form) }}
+	</div>
+	<div class="sticky_edit_menu">
+		<div class="see_and_delete">
+			{% if app.request.attributes.get('_route') == 'editPost' %}
+				<a href="{{ path("article", {"slug": article.slug, "format": article.format}) }}" class="a_btn btn_more">{% trans %}Voir{% endtrans %}</a>
+			{% endif %}
+			{{ form_row(form.save, {
             'label': 'Enregistrer',
             'attr': {'class': 'a_btn btn_modify'}
         }) }}
-        </div>
-    </div>
-    <div class="main_form">
-    
-        <div class="row">
-            <div class="col-md-2 date">
-            {{ form_errors(form.date_event) }}
-            {{ form_row(form.date_event, {'label' : 'Date'}) }}
-            </div>
-            <div class="col-md-2 type">
-            {{ form_row(form.format, {
+		</div>
+	</div>
+	<div class="main_form">
+
+		<div class="row">
+			<div class="col-md-2 date">
+				{{ form_errors(form.date_event) }}
+				{{ form_row(form.date_event, {'label' : 'Date'}) }}
+			</div>
+			<div class="col-md-2 type">
+				{{ form_row(form.format, {
                 'label': 'Type de l\'article', 
                 'placeholder': 'Sélectionnez ici'
                 }) }}
@@ -105,20 +107,16 @@
                 </li>
                 {% endfor %}
             </ul>
-        </div>
-        <div id="add_fb_field">
-            <a id="add_fb_btn" class="a_btn btn_modify">Facebook</a>
-        </div>
-        <ul id="list_fb" class="facebook" data-prototype="{{ form_widget(form.facebook.vars.prototype)|e('html_attr') }}">
-            {% for facebook in form.facebook %}
-            <li>
-                {{form_row(facebook, {
-                            'label': false,
-                            'attr': {'class': 'url_FB'}
-                        })}}
-                <button class="btn_del_facebook" name="{{facebook.vars.name}}" type="button">X</button>
-            </li>
-            {% endfor %}
+            <div id="add_fb_field">
+                <a id="add_fb_btn" class="a_btn btn_modify">Facebook</a>
+            </div>
+            <ul id="list_fb" class="facebook" data-prototype="{{ form_widget(form.facebook.vars.prototype)|e('html_attr') }}">
+                {% for facebook in form.facebook %}
+                <li>
+                    {{form_row(facebook, {'label': false,'attr': {'class': 'url_FB'}})}}
+                    <button class="btn_del_facebook" name="{{facebook.vars.name}}" type="button">X</button>
+                </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="row">
@@ -250,7 +248,7 @@
     addYtInput.init();
 
     let addFbInput = new AddField(
-        document.getElementById("add_fb_btn"), 
+        document.getElementById("add_fb_btn"),
         document.getElementsByClassName("facebook")[0],
         document.getElementsByClassName("facebook")[0].getAttribute("data-prototype"),
         document.getElementsByClassName("url_FB"),
