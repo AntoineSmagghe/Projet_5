@@ -88,15 +88,8 @@ label[for="article_text"]{
     padding: 5px;
 }
 
-.api_data{
+.api_data, .youtube, .facebook{
     margin: 0 0 15px 0;
-}
-
-.youtube{
-    margin: 0;
-}
-
-.api_data, .youtube{
     flex-basis: 0;
     transition: .5s ease;
 }
@@ -112,7 +105,7 @@ label[for="article_text"]{
     transition: .5s ease;
 }
 
-.api_data li, .youtube li, .emailMember li{
+.api_data li, .youtube li, .emailMember li, .facebook li{
     display: flex;
     justify-content: flex-end;
     margin: auto;
@@ -124,12 +117,12 @@ label[for="article_text"]{
     }
 }
 
-.api_data .form-group, .youtube .form-group, .emailMember .form-group{
+.api_data .form-group, .youtube .form-group, .emailMember .form-group, .facebook .form-group{
     width: 100%;
     margin: 5px 0;
 }
 
-.btn_del_sets, .btn_del_video, .btn_del_email{
+.btn_del_sets, .btn_del_video, .btn_del_email, .btn_del_facebook{
     font-size: 20px;
     margin: 0 0 0 15px;
     font-weight: 900;

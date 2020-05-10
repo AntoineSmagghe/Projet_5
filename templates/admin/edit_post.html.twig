@@ -225,10 +225,11 @@
         keyboardControl: true
     });
 
+    //Add urls fields for soundcloud, youtube, facebook...
     let addScInput = new AddField(
-        document.getElementById("add_sc_btn"), 
-        document.getElementsByClassName("api_data")[0],
-        document.getElementsByClassName("api_data")[0].getAttribute("data-prototype"),
+        document.getElementById("add_sc_btn"),
+        document.getElementById("list_sc"),
+        document.getElementById("list_sc").getAttribute("data-prototype"),
         document.getElementsByClassName("url_SC"),
         "article_api_data",
         "article[api_data]",
@@ -238,8 +239,8 @@
 
     let addYtInput = new AddField(
         document.getElementById("add_yt_btn"), 
-        document.getElementsByClassName("youtube")[0],
-        document.getElementsByClassName("youtube")[0].getAttribute("data-prototype"),
+        document.getElementById("list_yt"),
+        document.getElementById("list_yt").getAttribute("data-prototype"),
         document.getElementsByClassName("url_YT"),
         "article_youtube",
         "article[youtube]",
@@ -249,14 +250,14 @@
 
     let addFbInput = new AddField(
         document.getElementById("add_fb_btn"),
-        document.getElementsByClassName("facebook")[0],
-        document.getElementsByClassName("facebook")[0].getAttribute("data-prototype"),
+        document.getElementById("list_fb"),
+        document.getElementById("list_fb").getAttribute("data-prototype"),
         document.getElementsByClassName("url_FB"),
         "article_facebook",
         "article[facebook]",
         "btn_del_facebook"
         );
-    addYtInput.init();
+    addFbInput.init();
 
     //Reindex all the array at the good order for soundcloud and youtube urls
     document.querySelector('form[name="article"]').addEventListener("submit", ()=>{

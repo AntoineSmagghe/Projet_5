@@ -1,8 +1,22 @@
 <script async defer src="https://connect.facebook.net/fr_FR/sdk.js"></script>
 <script>
 	window.fbAsyncInit = function () {
-        FB.init({xfbml: true, version: 'v7.0'});
+        FB.init({
+            appId: '670409820405312',
+            xfbml: true, 
+            version: 'v7.0'
+            });
+
+        // Get Embedded Video Player API Instance
+        var my_video_player;
+        FB.Event.subscribe('xfbml.render', function(msg) {
+            console.log(msg);
+            if (msg.type === 'video') {
+            my_video_player = msg.instance;
+            }
+        });
     };
+
 {% for video in videos %}
 document.getElementById('fbplayer[{{ loop.index0 }}]').setAttribute('data-href', "{{video}}");
 {% endfor %}
