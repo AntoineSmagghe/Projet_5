@@ -290,7 +290,6 @@ class SecurityController extends AbstractController
 
         if (!empty($link)){
             $user = $users->findOneBy(["mail" => $link->getEmail()]);
-            dump($user);
             $form = $this->createForm(ResetPasswordFromMailType::class, $user);
             $form->handleRequest($request);
             
