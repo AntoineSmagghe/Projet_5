@@ -52,7 +52,7 @@
         {% if article.facebook != [] %}
         <div class="youtube_videos" data-aos="fade-left">
             {% for video in article.facebook %}
-            <div id="player[{{loop.index0}}]"></div>
+            <div id="fbplayer[{{loop.index0}}]"></div>
             {% endfor %}
         </div>
         {% endif %}
