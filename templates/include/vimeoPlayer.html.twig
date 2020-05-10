@@ -1,0 +1,7 @@
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+{% for video in videos %}
+document.getElementById("vimeoplayer[{{ loop.index0 }}]").setAttribute("data-vimeo-url", "{{video}}");
+//new Vimeo.Player('vimeoplayer[{{ loop.index0 }}]');
+{% endfor %}
+</script>
