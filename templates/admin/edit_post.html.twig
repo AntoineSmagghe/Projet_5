@@ -107,6 +107,20 @@
                 </li>
                 {% endfor %}
             </ul>
+            <div id="add_vi_field" >
+                <a id="add_vi_btn" class="a_btn btn_modify">Vimeo</a>
+            </div>
+            <ul id="list_vi" class="vimeo" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
+                {% for video in form.vimeo %}
+                <li>
+                    {{form_row(video, {
+                        'label': false,
+                        'attr': {'class': 'url_VI'}
+                    })}}
+                    <button class="btn_del_video" name="{{video.vars.name}}" type="button">X</button>
+                </li>
+                {% endfor %}
+            </ul>
             <div id="add_fb_field">
                 <a id="add_fb_btn" class="a_btn btn_modify">Facebook</a>
             </div>
@@ -225,7 +239,7 @@
         keyboardControl: true
     });
 
-    //Add urls fields for soundcloud, youtube, facebook...
+    //Add urls fields for soundcloud, youtube, vimeo, facebook...
     let addScInput = new AddField(
         document.getElementById("add_sc_btn"),
         document.getElementById("list_sc"),
@@ -247,6 +261,17 @@
         "btn_del_video"
         );
     addYtInput.init();
+
+    let addVimeoInput = new AddField(
+        document.getElementById("add_vi_btn"), 
+        document.getElementById("list_vi"),
+        document.getElementById("list_vi").getAttribute("data-prototype"),
+        document.getElementsByClassName("url_VI"),
+        "article_vimeo",
+        "article[vimeo]",
+        "btn_del_video"
+        );
+    addVimeoInput.init();
 
     let addFbInput = new AddField(
         document.getElementById("add_fb_btn"),

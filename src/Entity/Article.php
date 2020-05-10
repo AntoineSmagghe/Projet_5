@@ -130,6 +130,11 @@ class Article implements Translatable
      */
     private $facebook = [];
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $vimeo;
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -361,6 +366,18 @@ class Article implements Translatable
     public function setFacebook(?array $facebook): self
     {
         $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getVimeo(): ?string
+    {
+        return $this->vimeo;
+    }
+
+    public function setVimeo(?string $vimeo): self
+    {
+        $this->vimeo = $vimeo;
 
         return $this;
     }

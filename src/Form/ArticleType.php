@@ -74,6 +74,18 @@ class ArticleType extends AbstractType
                     ]
                 ]
             ])
+            ->add('vimeo', CollectionType::class, [
+                'allow_delete' => true,
+                'delete_empty' => true,
+                'allow_add' => true,
+                'entry_type' => TextType::class,
+                'entry_options' => [
+                    'attr' => [
+                        'class' => 'soundcloud_url',
+                        'placeholder' => 'Une url stp',
+                    ]
+                ]
+            ])
             ->add('save', SubmitType::class)
         ;
     }
