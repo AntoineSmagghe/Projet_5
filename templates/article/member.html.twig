@@ -49,6 +49,13 @@
             {% endfor %}
         </div>
         {% endif %}
+        {% if article.facebook != [] %}
+        <div class="youtube_videos" data-aos="fade-left">
+            {% for video in article.facebook %}
+            <div id="player[{{loop.index0}}]"></div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% if article.imgs.snapshot != null %}
             <div class="hes-gallery member_images">
             {% for image in article.imgs %}
@@ -64,6 +71,7 @@
 <script src="/js/MovingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 {% include 'include/youtubePlayer.html.twig' with {"videos": article.youtube} %}
+{% include 'include/facebookPlayer.html.twig' with {"videos": article.facebook} %}
 <script>
 let moveTitle = new MovingElt(
     document.querySelector("#member_text_soundcloud h1"), 
