@@ -45,6 +45,7 @@
         text-shadow: 0 0 10px black;
         max-width: 1500px;
         margin: 0 0 0 5px;
+        text-transform: uppercase;
     }
 
     @media #{$phone-width}{
@@ -65,7 +66,7 @@
         padding: 7px;
         display: inline-block;
         color: white;
-        background-color: var(--blue);
+        text-shadow: 0 0 7px black;
 
         @media #{$phone-width}{
             font-size: 1rem;
