@@ -88,10 +88,35 @@ label[for="article_text"]{
     padding: 5px;
 }
 
-.api_data, .youtube, .facebook{
+.api_data, .youtube, .facebook, .vimeo{
     margin: 0 0 15px 0;
     flex-basis: 0;
     transition: .5s ease;
+
+    & .form-group{
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    & li{
+        display: flex;
+        justify-content: flex-end;
+        margin: auto;
+        animation: scaleBlur .5s ease;
+
+        & input {
+            width: calc(100% - 20px);
+            margin: auto;
+        }
+    }
+
+    & button{
+        font-size: 20px;
+        margin: 0 0 0 15px;
+        font-weight: 900;
+        font-family: 'Quicksand', sans-serif;
+        color: red;
+    }
 }
 
 
@@ -103,31 +128,6 @@ label[for="article_text"]{
     flex-basis: 0;
     margin: 0 5px 15px 5px;
     transition: .5s ease;
-}
-
-.api_data li, .youtube li, .emailMember li, .facebook li{
-    display: flex;
-    justify-content: flex-end;
-    margin: auto;
-    animation: scaleBlur .5s ease;
-
-    & input {
-        width: calc(100% - 20px);
-        margin: auto;
-    }
-}
-
-.api_data .form-group, .youtube .form-group, .emailMember .form-group, .facebook .form-group{
-    width: 100%;
-    margin: 5px 0;
-}
-
-.btn_del_sets, .btn_del_video, .btn_del_email, .btn_del_facebook{
-    font-size: 20px;
-    margin: 0 0 0 15px;
-    font-weight: 900;
-    font-family: 'Quicksand', sans-serif;
-    color: red;
 }
 
 @media #{$phone-width}{

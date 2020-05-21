@@ -131,9 +131,14 @@ class Article implements Translatable
     private $facebook = [];
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="array", nullable=true)
+     * @Assert\All({
+     *      @Assert\Url(
+     *          message = "l'url {{ value }} n'est pas valide",
+     *      )
+     * })
      */
-    private $vimeo;
+    private $vimeo = [];
 
     public function __construct()
     {
@@ -370,12 +375,12 @@ class Article implements Translatable
         return $this;
     }
 
-    public function getVimeo(): ?string
+    public function getVimeo(): ?array
     {
         return $this->vimeo;
     }
 
-    public function setVimeo(?string $vimeo): self
+    public function setVimeo(?array $vimeo): self
     {
         $this->vimeo = $vimeo;
 

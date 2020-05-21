@@ -79,7 +79,7 @@
         </div>
         <div class="urls">
             <div id="add_sc_field" >
-                <a id="add_sc_btn" class="a_btn btn_modify">{% trans %}Add sound{% endtrans %}</a>
+                <a id="add_sc_btn" class="a_btn btn_modify">Soundcloud</a>
             </div>
             {{ form_errors(form.api_data) }}
             <ul id="list_sc" class="api_data" data-prototype="{{ form_widget(form.api_data.vars.prototype)|e('html_attr') }}">
@@ -110,7 +110,7 @@
             <div id="add_vi_field" >
                 <a id="add_vi_btn" class="a_btn btn_modify">Vimeo</a>
             </div>
-            <ul id="list_vi" class="vimeo" data-prototype="{{ form_widget(form.youtube.vars.prototype)|e('html_attr') }}">
+            <ul id="list_vi" class="vimeo" data-prototype="{{ form_widget(form.vimeo.vars.prototype)|e('html_attr') }}">
                 {% for video in form.vimeo %}
                 <li>
                     {{form_row(video, {

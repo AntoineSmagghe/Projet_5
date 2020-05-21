@@ -1,7 +1,10 @@
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
 {% for video in videos %}
-document.getElementById("vimeoplayer[{{ loop.index0 }}]").setAttribute("data-vimeo-url", "{{ video }}");
-//new Vimeo.Player('vimeoplayer[{{ loop.index0 }}]');
+{# document.getElementById("vimeoplayer[{{ loop.index0 }}]").innerHTML = "<div width='400' height='400' data-vimeo-url='{{ video }}'></div>"; #}
+(new Vimeo.Player("vimeoplayer[{{ loop.index0 }}]", {
+    url: "{{ video }}",
+}));
+
 {% endfor %}
 </script>
