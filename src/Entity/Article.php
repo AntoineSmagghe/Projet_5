@@ -130,6 +130,16 @@ class Article implements Translatable
      */
     private $facebook = [];
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     * @Assert\All({
+     *      @Assert\Url(
+     *          message = "l'url {{ value }} n'est pas valide",
+     *      )
+     * })
+     */
+    private $vimeo = [];
+
     public function __construct()
     {
         $this->created_at = new DateTime();
@@ -361,6 +371,18 @@ class Article implements Translatable
     public function setFacebook(?array $facebook): self
     {
         $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    public function getVimeo(): ?array
+    {
+        return $this->vimeo;
+    }
+
+    public function setVimeo(?array $vimeo): self
+    {
+        $this->vimeo = $vimeo;
 
         return $this;
     }

@@ -1,47 +1,47 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    {% include 'articles/meta.html.twig'%}
+	{% include 'articles/meta.html.twig'%}
 {% endblock %}
 {% block style %}
-{{ encore_entry_link_tags("public") }}
+	{{ encore_entry_link_tags("public") }}
 {% endblock %}
 {% block body %}
-<section id="articles">
-  <section id="articles_cover">
-  {% if format == 'public-event' %}
-  <img class="articles_image_cover" src="{{ asset('build/img/18556493_10158695312680298_6402872989759344248_o.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
-  <div class="incover">
-      <div class="articles_cover_title" data-aos="fade-right">
-        <h1 class="part_title">{% trans %}Les évènements{% endtrans %}</h1>
-      </div>
-  </div>
-  {% elseif format == 'private-event' %}
-  <img class="articles_image_cover" src="{{ asset('build/img/Arthur/DSCF6310.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
-  <div class="incover">
-      <div class="articles_cover_title" data-aos="fade-right">
-        <h1 class="part_title">{% trans %}Les évènements privés{% endtrans %}</h1>
-      </div>
-  </div>
-  {% endif %}
-  </section>
-  <div id="welcome_cards">
-  {% for article in articles %}
-    <div class="welcome_card" data-aos="zoom-in">
-      <div class="in_card_welcome">
-        <a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
-          <div class="col_wel_img">
-          {% include 'articles/cover.html.twig' %}
-          </div>
-          <div class="col_wel_txt">
-            <div class="col_wel_txt_body">
-              <h5>{{ article.title }}</h5>
-              <p>{{ article.dateEvent|date("d/m/Y") }}
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
-  {% endfor %}
-  </div>
-</section>
+	<section id="articles">
+		<section id="articles_cover">
+			{% if format == 'public-event' %}
+				<img class="articles_image_cover" src="{{ asset('build/img/18556493_10158695312680298_6402872989759344248_o.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
+				<div class="incover">
+					<div class="articles_cover_title" data-aos="fade-right">
+						<h1 class="part_title">{% trans %}Les évènements{% endtrans %}</h1>
+					</div>
+				</div>
+			{% elseif format == 'private-event' %}
+				<img class="articles_image_cover" src="{{ asset('build/img/Arthur/DSCF6310.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
+				<div class="incover">
+					<div class="articles_cover_title" data-aos="fade-right">
+						<h1 class="part_title">{% trans %}Les évènements privés{% endtrans %}</h1>
+					</div>
+				</div>
+			{% endif %}
+		</section>
+		<div id="welcome_cards">
+			{% for article in articles %}
+				<div class="welcome_card" data-aos="zoom-in">
+					<div class="in_card_welcome">
+						<a href="{{ path("article", {"format" : article.format, "slug" : article.slug }) }}">
+							<div class="col_wel_img">
+								{% include 'articles/cover.html.twig' %}
+							</div>
+							<div class="col_wel_txt">
+								<div class="col_wel_txt_body">
+									<h5>{{ article.title }}</h5>
+									<p>{{ article.dateEvent|date("d/m/Y") }}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 {% endblock %}
