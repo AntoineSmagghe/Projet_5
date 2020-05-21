@@ -49,6 +49,13 @@
             {% endfor %}
         </div>
         {% endif %}
+        {% if article.vimeo != [] %}
+        <div class="youtube_videos">
+            {% for video in article.vimeo %}
+            <div id="vimeoplayer[{{loop.index0}}]"></div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% if article.facebook != [] %}
         <div class="youtube_videos" data-aos="fade-left">
             {% for video in article.facebook %}
@@ -71,6 +78,7 @@
 <script src="/js/MovingElt.js"></script>
 {% include 'include/soundcloudPlayerJs.html.twig' with {"sounds": article.apiData} %}
 {% include 'include/youtubePlayer.html.twig' with {"videos": article.youtube} %}
+{% include 'include/vimeoPlayer.html.twig' with {"videos": article.vimeo} %}
 {% include 'include/facebookPlayer.html.twig' with {"videos": article.facebook} %}
 <script>
 let moveTitle = new MovingElt(
