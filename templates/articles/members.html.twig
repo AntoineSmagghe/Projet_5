@@ -1,80 +1,84 @@
 {% extends 'base.html.twig' %}
 {% block header %}
-    {% include 'articles/meta.html.twig'%}
+	{% include 'articles/meta.html.twig'%}
 {% endblock %}
 {% block style %}
-{{ encore_entry_link_tags("public") }}
+	{{ encore_entry_link_tags("public") }}
 {% endblock %}
 {% block body %}
-<section id="articles_cover">
-    <img class="articles_image_cover" src="{{ asset('build/img/Arthur/DSCF6179.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
-    <div class="incover">
-        <div class="articles_cover_title" data-aos="fade-right">
-            <h1 class="part_title">{% trans %}Les artistes{% endtrans %}</h1>
-        </div>
-    </div>
-</section>
-<section id="members">
-    <article class="members_picture">
-    {% for artist in articles %}
-    {% if artist.socialNetwork.category != "visual" %}
-        <figure>
-            <a href="{{ path('article', {"format" : "members", "slug" : artist.slug}) }}" data-aos="fade-down">
-                {% set hasCover = false %}
-                {% if covers != [] %}
-                    {% for cover in covers %}
-                        {% if cover.idArticle == artist.id %}
-                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ artist.title }}">
-                        {% set hasCover = true %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if hasCover == false %}
-                    {% if artist.imgs|first != "" %}
-                    <img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
-                    {% else %}
-                    <img class="img_member" src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300') }}" alt="Photo de l'article : {{ artist.title }}">
-                    {% endif %}
-                {% endif %}
-            </a>
-            <figcaption>
-                <h3>{{artist.title}}</h3>
-            </figcaption>
-        </figure>
-    {% endif %}
-    {% endfor %}
-    </article>
-
-    <div class="visual_artists"></div>
-
-    {% for artist in articles %}
-    {% if artist.socialNetwork.category == "visual" %}
-        <figure>
-            <a href="{{ path('article', {"format" : "members", "slug" : artist.slug}) }}" data-aos="fade-down">
-                {% set hasCover = false %}
-                {% if covers != [] %}
-                    {% for cover in covers %}
-                        {% if cover.idArticle == artist.id %}
-                            <img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ artist.title }}">
-                            {% set hasCover = true %}
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if hasCover == false %}
-                    {% if artist.imgs|first != "" %}
-                        <img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
-                    {% else %}
-                        <img class="img_member" src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300') }}" alt="Photo de l'article : {{ artist.title }}">
-                    {% endif %}
-                {% endif %}
-            </a>
-            <figcaption>
-                <h3>{{artist.title}}</h3>
-            </figcaption>
-        </figure>
-    {% endif %}
-    {% endfor %}
+	<section id="articles_cover">
+		<img class="articles_image_cover" src="{{ asset('build/img/Arthur/DSCF6179.jpg') | imagine_filter('cover') }}" alt="Cover CDLM members">
+		<div class="incover">
+			<div class="articles_cover_title" data-aos="fade-right">
+				<h1 class="part_title">{% trans %}Les artistes{% endtrans %}</h1>
+			</div>
+		</div>
+	</section>
 
 
-</section>
+	<section id="members">
+			<div class="artists_category_title">{% trans %}Music{% endtrans %}</div>
+		<article class="members_picture">
+			{% for artist in articles %}
+				{% if artist.socialNetwork.category != "visual" %}
+					<figure>
+						<a href="{{ path('article', {"format" : "members", "slug" : artist.slug}) }}" data-aos="fade-down">
+							{% set hasCover = false %}
+							{% if covers != [] %}
+								{% for cover in covers %}
+									{% if cover.idArticle == artist.id %}
+										<img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ artist.title }}">
+										{% set hasCover = true %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if hasCover == false %}
+								{% if artist.imgs|first != "" %}
+									<img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
+								{% else %}
+									<img class="img_member" src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300') }}" alt="Photo de l'article : {{ artist.title }}">
+								{% endif %}
+							{% endif %}
+						</a>
+						<figcaption>
+							<h3>{{artist.title}}</h3>
+						</figcaption>
+					</figure>
+				{% endif %}
+			{% endfor %}
+		</article>
+
+		<article class="members_picture">
+			<div class="artists_category_title">{% trans %}Visual{% endtrans %}</div>
+			{% for artist in articles %}
+				{% if artist.socialNetwork.category == "visual" %}
+					<figure>
+						<a href="{{ path('article', {"format" : "members", "slug" : artist.slug}) }}" data-aos="fade-down">
+							{% set hasCover = false %}
+							{% if covers != [] %}
+								{% for cover in covers %}
+									{% if cover.idArticle == artist.id %}
+										<img class="img_member" src="{{ asset('/upload/pictures/' ~ cover.covername) | imagine_filter('300x300') }}" alt="Photo de l\'artiste : {{ artist.title }}">
+										{% set hasCover = true %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if hasCover == false %}
+								{% if artist.imgs|first != "" %}
+									<img class="img_member" src="{{ asset('/upload/pictures/' ~ artist.imgs|first.name) | imagine_filter('300x300')}}" alt="Photo de l'artiste : {{ artist.title }}">
+								{% else %}
+									<img class="img_member" src="{{ asset('build/img/Arthur/DSCF6226.jpg') | imagine_filter('300x300') }}" alt="Photo de l'article : {{ artist.title }}">
+								{% endif %}
+							{% endif %}
+						</a>
+						<figcaption>
+							<h3>{{artist.title}}</h3>
+						</figcaption>
+					</figure>
+				{% endif %}
+			{% endfor %}
+		</article>
+
+		<div class="artists_category_title">{% trans %}Scenography{% endtrans %}</div>
+	</section>
 {% endblock %}
