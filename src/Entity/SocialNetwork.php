@@ -40,6 +40,11 @@ class SocialNetwork
      */
     private $instagram;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +94,18 @@ class SocialNetwork
     public function setInstagram(?string $instagram): self
     {
         $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

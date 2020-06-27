@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\SocialNetwork;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,6 +23,13 @@ class SocialNetworkType extends AbstractType
             ->add('instagram', TextType::class, [
                 'required' => false,
                 ])
+            ->add('category', ChoiceType::class, [
+                'required' => false,
+                'choices' => [
+                    "Music" => "music",
+                    "Visual" => "visual"
+                ],
+            ])
         ;
     }
 

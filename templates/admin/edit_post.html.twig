@@ -60,7 +60,12 @@
             {{ form_row(form.socialNetwork.instagram) }}
             {{ form_errors(form.socialNetwork.instagram) }}
             </div>
+            <div class="col-md-2">
+            {{ form_row(form.socialNetwork.category) }}
+            {{ form_errors(form.socialNetwork.category) }}
+            </div>
         </div>
+        
         <div class="row">
             <div id="edit_text_content">
             {{ form_row(form.title, {
