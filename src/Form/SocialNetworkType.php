@@ -27,7 +27,8 @@ class SocialNetworkType extends AbstractType
                 'required' => false,
                 'choices' => [
                     "Music" => "music",
-                    "Visual" => "visual"
+                    "Visual" => "visual",
+                    "Scenography" => "scenography"
                 ],
             ])
         ;
