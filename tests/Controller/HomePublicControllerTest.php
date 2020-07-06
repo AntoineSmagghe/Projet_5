@@ -26,18 +26,13 @@ class HomePublicControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
+    
     public function websiteUrls(){
         return [
-            ['GET', '/{_locale}/', 'fr'],
             ['GET', '/fr/about', null],
             ['GET', '/fr/contact', null],
             ['GET', '/fr/legals', null],
             ['GET', '/fr/rgpd', null],
-            ['GET', '/fr/article/{format}', 'members'],
-            ['GET', '/fr/article/releases/', null],
-            ['GET', '/fr/article/public-event/', null],
-            ['GET', '/fr/article/private-event/', null],
         ];
     }
 }
